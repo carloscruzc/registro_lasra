@@ -160,7 +160,7 @@ html;
             //     $status = '<span class="badge badge-danger">Carga un Archivo PDF valido</span>';
             // }
 
-            if ($value['tipo_pago'] == "Efectivo" || $value['tipo_pago'] == "Transferencia" || $value['tipo_pago'] == "") {
+            if ($value['tipo_pago'] == "Efectivo" || $value['tipo_pago'] == "Transferencia" || $value['tipo_pago'] == "" || $value['tipo_pago'] == "Registro_Becado") {
 
                 $reimprimir_ticket = '<a href="/comprobantePago/ticketImp/' . $value["clave"] . '" class="btn bg-pink btn-icon-only morado-musa-text text-center"  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Reimprimir Ticket" target="_blank"><i class="fas fa-file"></i></a>';
             } else if ($value['tipo_pago'] == "Paypal" && empty($value['url_archivo'])) {
@@ -220,7 +220,10 @@ html;
                                     <input type="file" accept="application/pdf" class="form-control" id="file-input" name="file-input" style="width: auto; margin: 0 auto;">
                                     <button class="btn btn-primary btn-only-icon mt-2" type="submit">Subir</button>
                                     </form>';
-            } else {
+            } else if($value['tipo_pago'] == "Registro_Becado") {
+                $button_comprobante = '';
+            }
+            else {
                 $button_comprobante = '<a href="/comprobantesPago/' . $value["url_archivo"] . '" class="btn bg-pink btn-icon-only morado-musa-text text-center"  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Ver mi comprobante" target="_blank"><i class="fas fa-print"> </i></a>';
             }
 

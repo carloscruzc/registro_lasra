@@ -9,6 +9,7 @@ use \App\models\Login AS LoginDao;
 use \App\models\Register AS RegisterDao;
 use \App\models\LineaGeneral AS LineaGeneralDao;
 use \App\models\Data AS DataDao;
+use App\models\Transmision AS TransmisionDao;
 use \Core\Controller;
 
 class Account extends Controller{
@@ -29,7 +30,7 @@ class Account extends Controller{
     public function index() {
         $extraHeader =<<<html
         <title>
-            Cuenta - Congreso Neurología
+            Cuenta 
         </title>
 
 html;
@@ -247,14 +248,14 @@ html;
 //         }
         $select_pais = '';
         foreach(RegisterDao::getPais() as $key => $value){
-            $selectedPais = ($value['id_pais'] == $userData['id_nationality']) ? 'selected' : '';  
+            $selectedPais = ($value['id_pais'] == $userData['id_pais']) ? 'selected' : '';  
             $select_pais .= <<<html
                     <option value="{$value['id_pais']}" $selectedPais>{$value['pais']}</option>
 html;
 }
         $select_estado = '';
-        foreach(RegisterDao::getStateByCountry($userData['id_nationality']) as $key => $value){
-            $selectedEstado = ($value['id_estado'] == $userData['id_state']) ? 'selected' : '';  
+        foreach(RegisterDao::getStateByCountry($userData['id_pais']) as $key => $value){
+            $selectedEstado = ($value['id_estado'] == $userData['id_estado']) ? 'selected' : '';  
             $select_estado .= <<<html
                     <option value="{$value['id_estado']}" $selectedEstado>{$value['estado']}</option>
 html;
@@ -270,97 +271,11 @@ html;
 html;
         }
 
-        $pais_fiscal = RegisterDao::getPaisById($userData['organization_country'])[0];
+        $pais_fiscal = RegisterDao::getPaisById($userData['id_pais'])[0];
 
-        $radio = '';
+        $especialidad = TransmisionDao::getEspecialidadesById($userData['especialidades'])['nombre'];
 
-        if($userData['APAL'] == 1){
-            $radio .= <<<html
-
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="APM_radio" id="APAL" value="1" aria-label="APAL" checked readonly>
-                <label class="form-check-label" for="APAL">APAL</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="APM_radio" id="AILANCYP" value="1" aria-label="AILANCYP">
-                <label class="form-check-label" for="APAL">AILANCYP</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="APM_radio" id="AMPI" value="1" aria-label="AMPI">
-                <label class="form-check-label" for="AMPI">AMPI</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="APM_radio" id="LC" value="1" aria-label="LC">
-                <label class="form-check-label" for="LC">Países de América Latina y el Caribe</label>
-            </div>
-html;
-        }
-
-        else if($userData['AILANCYP'] == 1){
-            $radio .= <<<html
-
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="APM_radio" id="APAL" value="1" aria-label="APAL" >
-                <label class="form-check-label" for="APAL">APAL</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="APM_radio" id="AILANCYP" value="1" aria-label="AILANCYP" checked>
-                <label class="form-check-label" for="APAL">AILANCYP</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="APM_radio" id="AMPI" value="1" aria-label="AMPI">
-                <label class="form-check-label" for="AMPI">AMPI</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="APM_radio" id="LC" value="1" aria-label="LC">
-                <label class="form-check-label" for="LC">Países de América Latina y el Caribe</label>
-            </div>
-html;
-        }
-
-        else if($userData['AMPI'] == 1){
-            $radio .= <<<html
-
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="APM_radio" id="APAL" value="1" aria-label="APAL" >
-                <label class="form-check-label" for="APAL">APAL</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="APM_radio" id="AILANCYP" value="1" aria-label="AILANCYP" >
-                <label class="form-check-label" for="APAL">AILANCYP</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="APM_radio" id="AMPI" value="1" aria-label="AMPI" checked>
-                <label class="form-check-label" for="AMPI">AMPI</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="APM_radio" id="LC" value="1" aria-label="LC">
-                <label class="form-check-label" for="LC">Países de América Latina y el Caribe</label>
-            </div>
-html;
-        }
-
-        else if($userData['LC'] == 1){
-            $radio .= <<<html
-
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="APM_radio" id="APAL" value="1" aria-label="APAL" >
-                <label class="form-check-label" for="APAL">APAL</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="APM_radio" id="AILANCYP" value="1" aria-label="AILANCYP" >
-                <label class="form-check-label" for="APAL">AILANCYP</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="APM_radio" id="AMPI" value="1" aria-label="AMPI" >
-                <label class="form-check-label" for="AMPI">AMPI</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="APM_radio" id="LC" value="1" aria-label="LC" checked>
-                <label class="form-check-label" for="LC">Países de América Latina y el Caribe</label>
-            </div>
-html;
-        }
+        
        
 
       View::set('imgUser',$imgUser);
@@ -378,7 +293,8 @@ html;
       View::set('select_estado',$select_estado);
       View::set('select_especialidad',$select_especialidad);
       View::set('pais_fiscal',$pais_fiscal);
-      View::set('radio',$radio);
+      View::set('especialidad',$especialidad);
+    //   View::set('radio',$radio);
       View::render("account_all");
     }
 
@@ -403,29 +319,25 @@ html;
 
             
             $nombre = $_POST['nombre'];
-            $segundo_nombre = $_POST['segundo_nombre'];
             $apellido_paterno = $_POST['apellido_paterno'];
             $apellido_materno = $_POST['apellido_materno'];
-            // $genero = $_POST['genero'];
             $pais = $_POST['pais'];
             $estado = $_POST['estado'];
             $email = $_POST['email'];
-            $cod_telefono = $_POST['cod_telefono'];
             $telefono = $_POST['telefono'];
-            $especialidad = $_POST['especialidad'];
+            // $especialidad = $_POST['especialidad'];
             // $alergia = $_POST['alergia'];
 
             $documento->_nombre = $nombre;
-            $documento->_segundo_nombre = $segundo_nombre;
             $documento->_apellido_paterno = $apellido_paterno;
             $documento->_apellido_materno = $apellido_materno;
             // $documento->_genero = $genero;
             $documento->_pais = $pais;
             $documento->_estado = $estado;
             $documento->_email = $email;
-            $documento->_cod_telefono = $cod_telefono;
+            // $documento->_cod_telefono = $cod_telefono;
             $documento->_telefono = $telefono;
-            $documento->_especialidad = $especialidad;
+            // $documento->_especialidad = $especialidad;
             // $documento->_alergia = $alergia;
 
             // var_dump($documento);
@@ -460,16 +372,14 @@ html;
             
             $business_name_iva = $_POST['business_name_iva'];
             $code_iva = $_POST['code_iva'];
-            $payment_method_iva = $_POST['payment_method_iva'];
+            // $payment_method_iva = $_POST['payment_method_iva'];
             $email_receipt_iva = $_POST['email_receipt_iva'];
-            $postal_code_iva = $_POST['postal_code_iva'];
+            // $postal_code_iva = $_POST['postal_code_iva'];
             $email_user = $_POST['email_user'];
             
 
             $documento->_business_name_iva = $business_name_iva;
             $documento->_code_iva = $code_iva;
-            $documento->_payment_method_iva = $payment_method_iva;
-            $documento->_postal_code_iva = $postal_code_iva;
             $documento->_email_receipt_iva = $email_receipt_iva;
             $documento->_email_user = $email_user;
 

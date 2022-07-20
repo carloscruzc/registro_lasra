@@ -85,7 +85,7 @@
                         <div class="col-sm-auto col-8 my-auto">
                             <div class="h-100">
                                 <h5 class="mb-1 font-weight-bolder">
-                                    <?= $userData['title'] . " " . $userData['name_user'] . " " . $userData['middle_name'] . " " . $userData['surname']. " " . $userData['second_surname'] ?>
+                                    <?= $userData['title'] . " " . $userData['nombre'] . " " . $userData['apellidop'] . " " . $userData['apellidom']?>
                                 </h5>
                                 <p class="mb-0 font-weight-bold text-sm">
                                     <span class="badge badge-info"><?php echo $userData['nombre_modalidad']; ?></span>
@@ -114,28 +114,23 @@
                             <div class="row">
                                 <div class="col-12 col-lg-4">
                                     <!-- <input type="text" id="id_registro" name="id_registro" value="<?= $userData['id_registro'] ?> "> -->
-                                    <label class="form-label">Primer nombre *</label>
+                                    <label class="form-label">Nombres *</label>
                                     <div class="input-group">
-                                        <input id="nombre" name="nombre" maxlength="29" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*" class="form-control" type="text" placeholder="Alec" required="" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $userData['name_user'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                        <input id="nombre" name="nombre" maxlength="29" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*" class="form-control" type="text" placeholder="Alec" required="" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $userData['nombre'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                     </div>
                                 </div>
-                                <div class="col-12 col-lg-4">
-                                    <label class="form-label">Segundo nombre </label>
-                                    <div class="input-group">
-                                        <input id="segundo_nombre" name="segundo_nombre" maxlength="49" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*" class="form-control" type="text" placeholder="Alec" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $userData['middle_name'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                                    </div>
-                                </div>
+                               
                                 <div class="col-12 col-lg-4">
                                     <label class="form-label">Apellido paterno *</label>
                                     <div class="input-group">
-                                        <input id="apellido_paterno" name="apellido_paterno" maxlength="29" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*" class="form-control" type="text" placeholder="Thompson" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $userData['surname'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                        <input id="apellido_paterno" name="apellido_paterno" maxlength="29" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*" class="form-control" type="text" placeholder="Thompson" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $userData['apellidop'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                     </div>
                                 </div>
 
                                 <div class="col-12 col-lg-4">
                                     <label class="form-label">Apellido materno *</label>
                                     <div class="input-group">
-                                        <input id="apellido_materno" name="apellido_materno" maxlength="29" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*" class="form-control" type="text" placeholder="Thompson" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $userData['second_surname'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                        <input id="apellido_materno" name="apellido_materno" maxlength="29" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*" class="form-control" type="text" placeholder="Thompson" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $userData['apellidom'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                     </div>
                                 </div>
 
@@ -166,17 +161,12 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-2 col-12">
-                                    <label class="form-label mt-4">Código de País</label>
-                                    <div class="input-group">
-                                        <input id="cod_telefono" name="cod_telefono" maxlength="10" pattern="[0-9]" class="form-control" type="number" placeholder="+52" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $userData['international_code'] ?>">
-                                    </div>
-                                </div>
+                                
 
                                 <div class="col-lg-5 col-12">
                                     <label class="form-label mt-4">Número de teléfono</label>
                                     <div class="input-group">
-                                        <input id="telefono" name="telefono" maxlength="10" pattern="[0-9]" class="form-control" type="number" placeholder="+40 735 631 620" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $userData['telephone'] ?>">
+                                        <input id="telefono" name="telefono" maxlength="10" pattern="[0-9]" class="form-control" type="number" placeholder="+40 735 631 620" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $userData['telefono'] ?>">
                                     </div>
                                 </div>
 
@@ -191,7 +181,7 @@
                                             <!-- <select class="form-control" style="cursor: pointer;" name="especialidad" id="especialidad" tabindex="-1" data-choice="active" disabled>
                                                 <?php echo $select_especialidad; ?>
                                             </select> -->
-                                          <input class="form-control" id="especialidad" maxlength="149"  name="especialidad" data-color="dark" type="text" value="<?= $userData['specialties'] ?>" placeholder="Ej: México" readonly/> 
+                                          <input class="form-control" id="especialidad" maxlength="149"  name="especialidad" data-color="dark" type="text" value="<?= $especialidad ?>" placeholder="Ej: México" readonly/> 
                                     </div>
                                 </div>
                                 <!-- <div class="row">
@@ -249,29 +239,25 @@
                             
 
                                     <div class="col-12 col-sm-4 mt-1 mt-sm-0">
-                                        <label>RFC *</label>
+                                        <label>RFC  *</label>
                                         <input class="multisteps-form__input form-control" type="text" id="code_iva" name="code_iva" placeholder="eg. CPJ41250AS" maxlength="13" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $userData['code_iva'] ?>">
                                     </div>
 
-                                    <div class="col-12 col-sm-4 mt-1 mt-sm-0">
+                                    <!-- <div class="col-12 col-sm-4 mt-1 mt-sm-0">
                                         <label>Metodo de Pago *</label>
                                         <input class="multisteps-form__input form-control" type="text" id="payment_method_iva" name="payment_method_iva" placeholder="eg. CPJ41250AS" maxlength="13" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $userData['payment_method_iva'] ?>">
-                                        <!-- <select class="multisteps-form__select form-control all_input_select" name="payment_method_iva" id="payment_method_iva">
-                                            <option value="" disabled selected>Selecciona una Opción</option>
-                                            <option value="ELECTRONIC TRANSFER">ELECTRONIC TRANSFER</option>
-                                            <option value="CREDIT OR DEBIT CARD">CREDIT OR DEBIT CARD</option>
-                                        </select> -->
-                                    </div>
+                                        
+                                    </div> -->
 
-                                    <div class="col-12 col-sm-5">
+                                    <div class="col-12 col-sm-4">
                                         <label>Correo Electrónico facturación * </label>
                                         <input class="multisteps-form__input form-control" type="text"  id="email_receipt_iva" name="email_receipt_iva" placeholder="eg. user@domain.com" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $userData['email_receipt_iva'] ?>">
                                         <span class="mb-0 text-sm" id="error_email_send" style="display:none;color:red;">Wrong email</span>
                                     </div>
-                                    <div class="col-12 col-sm-2">
+                                    <!-- <div class="col-12 col-sm-2">
                                         <label>C.P *</label>
                                         <input class="multisteps-form__input form-control" type="text" id="postal_code_iva" name="postal_code_iva" maxlength="5" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" placeholder="eg. 50398"  value="<?= $userData['postal_code_iva'] ?>">
-                                    </div>
+                                    </div> -->
 
                                     <div class="row">
                                         <div class="button-row d-flex mt-4 col-12">
@@ -290,7 +276,7 @@
 
                 
 
-                <div class="card mt-4" id="adicional-info">
+                <!-- <div class="card mt-4" id="adicional-info">
                     <div class="card-header">
                         <h5>INFORMACIÓN ADICIONAL</h5>
                         
@@ -318,10 +304,7 @@
                                         <label>País *</label>
                                         <input class="multisteps-form__input form-control" type="text" id="organization_country" maxlength="50" name="organization_country"   value="<?= $pais_fiscal['pais'] ?>" readonly>
                                      
-                                        <!-- <select class="multisteps-form__select form-control all_input_second_select" id="organization_country" name="organization_country">
-                                            <option value="" disabled selected>Selecciona una Opción</option>
-                                            <?php echo $idCountry; ?>
-                                        </select> -->
+                                        
                                     </div>
                                     <div class="col-6 col-sm-3 mt-3 mt-sm-0">
                                         <div class="col-12 col-sm-6">
@@ -345,42 +328,19 @@
                                 <div class="row mt-3">  
                                     <div class="col-4">
                                         <label>¿Eres miembro de la WADD? *</label>
-                                        <!-- <select class="multisteps-form__select form-control all_input_second_select" id="wadd_member" name="wadd_member">
-                                            <option value="" disabled selected>Selecciona una Opción</option>
-                                            <option value="1">Si</option>
-                                            <option value="2">No</option>
-                                        </select> -->
+                                       
                                        
                                         <input class="multisteps-form__input form-control" type="text" id="wadd_member" name="wadd_member" maxlength="5" value="<?=  $wadd_member = $userData['wadd_member'] == '1' ? "SI" : "NO";?>" readonly>
                                     </div>
                                     <div class="col-4">
                                         <label>¿Eres socio de la APM? *</label>
                                         <input class="multisteps-form__input form-control" type="text" id="apm_member" name="apm_member" maxlength="5" value="<?=  $apm_member = $userData['apm_member'] == '1' ? "SI" : "NO";?>" readonly>
-                                        <!-- <select class="multisteps-form__select form-control all_input_second_select" id="apm_member" name="apm_member">
-                                            <option value="" disabled selected>Selecciona una Opción</option>
-                                            <option value="1">Si</option>
-                                            <option value="2">No</option>
-                                        </select> -->
+                                        
                                     </div>
                                     <div class="col-4">
                                         <label>¿Eres miembro de alguna otra asociación?</label>
                                         <?php echo $radio ?>
-                                        <!-- <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="APM_radio" id="APAL" value="1" aria-label="APAL">
-                                            <label class="form-check-label" for="APAL">APAL</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="APM_radio" id="AILANCYP" value="1" aria-label="AILANCYP">
-                                            <label class="form-check-label" for="APAL">AILANCYP</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="APM_radio" id="AMPI" value="1" aria-label="AMPI">
-                                            <label class="form-check-label" for="AMPI">AMPI</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="APM_radio" id="LC" value="1" aria-label="LC">
-                                            <label class="form-check-label" for="LC">Países de América Latina y el Caribe</label>
-                                        </div> -->
+                                        
                                     </div>
                                 </div>
                                 <div class="row">
@@ -395,7 +355,7 @@
 
                     
                     
-                </div>
+                </div> -->
 
         </div>
         <?php echo $footer; ?>

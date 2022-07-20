@@ -46,18 +46,15 @@ sql;
   {
     $mysqli = Database::getInstance(true);
     $query = <<<sql
-    UPDATE utilerias_administradores SET specialties = :especialidad, name_user = :nombre, middle_name = :segundo_nombre ,surname = :apellido_paterno, second_surname = :apellido_materno, telephone = :telefono, international_code = :international_code,id_nationality = :id_pais, 	id_state = :id_estado, specialties = :especialidad  WHERE usuario = :email;
+    UPDATE utilerias_administradores SET  nombre = :nombre ,apellidop = :apellido_paterno, apellidom = :apellido_materno, telefono = :telefono, id_pais = :id_pais, 	id_estado = :id_estado WHERE usuario = :email;
 sql;
     $parametros = array(
       ':nombre' => $user->_nombre,
-      ':segundo_nombre'=>$user->_segundo_nombre,
       ':apellido_paterno' => $user->_apellido_paterno,
       ':apellido_materno' => $user->_apellido_materno,
       ':id_estado' => $user->_estado,
       ':id_pais' => $user->_pais,
-      ':international_code' => $user->_cod_telefono,
       ':telefono' => $user->_telefono,
-      ':especialidad' => $user->_especialidad,
       ':email' => $user->_email
 
     );
@@ -75,13 +72,11 @@ sql;
   {
     $mysqli = Database::getInstance(true);
     $query = <<<sql
-    UPDATE utilerias_administradores SET business_name_iva = :business_name_iva, code_iva = :code_iva, payment_method_iva = :payment_method_iva,postal_code_iva = :postal_code_iva, email_receipt_iva = :email_receipt_iva  WHERE usuario = :email_user;
+    UPDATE utilerias_administradores SET business_name_iva = :business_name_iva, code_iva = :code_iva, email_receipt_iva = :email_receipt_iva  WHERE usuario = :email_user;
 sql;
     $parametros = array(
       ':business_name_iva' => $user->_business_name_iva,
       ':code_iva'=>$user->_code_iva,
-      ':payment_method_iva' => $user->_payment_method_iva,
-      ':postal_code_iva' => $user->_postal_code_iva,
       ':email_receipt_iva' => $user->_email_receipt_iva,      
       ':email_user' => $user->_email_user
 

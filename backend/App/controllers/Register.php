@@ -565,6 +565,12 @@ html;
         //Acarrear los datoss 
         $data = unserialize($_POST['dataUser']);
 
+        if($data['categorias'] == 0){
+            $monto_congreso = RegisterDao::getMontoPago(1)['costo'];
+        }else{
+            $monto_congreso = RegisterDao::getMontoPago($data['categorias'])['costo'];
+        }
+
         if($data['especialidades'] == null){
             $data['especialidades'] = '';
         }
@@ -595,6 +601,7 @@ html;
         $documento->_nationality = $data['nationality'];
         $documento->_state= $data['state'];
         $documento->_monto_congreso= $monto_congreso;
+        $documento->_clave_socio= $data['clave_socio'];
 
         $existe_user = RegisterDao::getUser($data['email']);
 
@@ -1017,8 +1024,7 @@ html;
 
 
 
-        $data_user = HomeDao::getDataUser($user_email);       
-
+        $data_user = HomeDao::getDataUser($user_email);   
 
         $header =<<<html
         <!DOCTYPE html>

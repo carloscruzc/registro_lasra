@@ -148,7 +148,7 @@ sql;
     public static function getNewChatByID($data){
         $mysqli = Database::getInstance(true);
         $query =<<<sql
-        SELECT nc.*, uad.name_user, uad.surname, uad.second_surname
+        SELECT nc.*, uad.nombre, uad.apellidop, uad.apellidom
         FROM new_chat nc
         INNER JOIN utilerias_administradores uad ON (uad.user_id = nc.user_id)
         WHERE nc.tipo = :tipo and nc.sala = :sala and nc.id_tipo = :id_tipo;
@@ -165,7 +165,7 @@ sql;
     public static function getNewPreguntaByID($data){
         $mysqli = Database::getInstance(true);
         $query =<<<sql
-        SELECT nc.*, uad.name_user, uad.surname, uad.second_surname
+        SELECT nc.*, uad.nombre, uad.apellidop, uad.apellidom
         FROM new_chat nc
         INNER JOIN utilerias_administradores uad ON (uad.user_id = nc.user_id)
         WHERE nc.tipo = :tipo and nc.sala = :sala and nc.id_tipo = :id_tipo;
@@ -198,12 +198,12 @@ sql;
         return $mysqli->update($query);
     } 
 
-    public static function getPais(){
+    public static function getEspecialidadesById($id){
         $mysqli = Database::getInstance(true);
         $query =<<<sql
-        SELECT * FROM especialidades
+        SELECT * FROM especialidades WHERE id_especialidad = $id
 sql;
 
-        return $mysqli->queryAll($query);
+        return $mysqli->queryOne($query);
     }
 }

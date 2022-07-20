@@ -321,7 +321,7 @@ sql;
     public static function getContenidoProdductCursoByAsignacion($id_registrado,$clave_taller){
       $mysqli = Database::getInstance();
       $query=<<<sql
-      SELECT p.nombre, uad.name_user as nombre_usuario, ap.* FROM asigna_producto ap
+      SELECT p.nombre, uad.nombre as nombre_usuario, ap.* FROM asigna_producto ap
       INNER JOIN utilerias_administradores uad
       ON ap.user_id = uad.user_id
       INNER JOIN productos p

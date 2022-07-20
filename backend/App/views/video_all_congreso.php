@@ -373,7 +373,7 @@
                 $.each(respuesta, function(index, el) {
 
                     // console.log(el.title);
-                    var nombre_completo = el.name_user + ' ' + el.surname + ' ' + el.second_surname;
+                    var nombre_completo = el.nombre + ' ' + el.apellidop + ' ' + el.apellidom;
                     // <img alt="Image placeholder" class="avatar rounded-circle" src="../../../img/users_musa/${el.avatar_img}">
 
                     $("#cont_chat").append(

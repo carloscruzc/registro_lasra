@@ -189,9 +189,17 @@ sql;
       public static function getCategorias(){       
         $mysqli = Database::getInstance();
         $query=<<<sql
-        SELECT * FROM categorias WHERE id_categoria != 1 ORDER BY id_categoria ASC LIMIT 4
+        SELECT * FROM categorias WHERE id_categoria != 1 ORDER BY id_categoria ASC LIMIT 5
 sql;
         return $mysqli->queryAll($query);
+      }
+
+      public static function getCategoriaById($id){       
+        $mysqli = Database::getInstance();
+        $query=<<<sql
+        SELECT * FROM categorias WHERE id_categoria = $id
+sql;
+        return $mysqli->queryOne($query);
       }
 
 //     public static function getUser($usuario){

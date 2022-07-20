@@ -17,7 +17,7 @@ class Register
     {
         $mysqli = Database::getInstance();
         $query = <<<sql
-        INSERT INTO utilerias_administradores(usuario,title,nombre,apellidop,apellidom,telefono,id_categoria,especialidades,id_pais,id_estado,referencia,monto_congreso,status) VALUES(:usuario,:title,:nombre,:apellidop,:apellidom,:telefono,:id_categoria,:especialidades,:id_pais,:id_estado,:referencia,:monto_congreso,1)                        
+        INSERT INTO utilerias_administradores(usuario,title,nombre,apellidop,apellidom,telefono,id_categoria,especialidades,id_pais,id_estado,referencia,monto_congreso,clave_socio,status) VALUES(:usuario,:title,:nombre,:apellidop,:apellidom,:telefono,:id_categoria,:especialidades,:id_pais,:id_estado,:referencia,:monto_congreso,:clave_socio,1)                        
 sql;
 
         $parametros = array(
@@ -32,7 +32,8 @@ sql;
             ':id_pais' => $register->_nationality,
             ':id_estado' => $register->_state,
             ':referencia' => $register->_referencia,
-            ':monto_congreso' => $register->_monto_congreso
+            ':monto_congreso' => $register->_monto_congreso,
+            ':clave_socio' => $register->_clave_socio
         );
 
         $id = $mysqli->insert($query, $parametros);
@@ -64,7 +65,7 @@ sql;
   {
     $mysqli = Database::getInstance(true);
     $query = <<<sql
-    UPDATE utilerias_administradores SET title = :prefijo, nombre = :nombre, apellidop = :apellidop, apellidom = :apellidom, telefono = :telefono, referencia = :referencia,id_categoria = :id_categoria, especialidades = :especialidades,id_pais = :id_pais, id_estado = :id_estado ,monto_congreso = :monto_congreso,status = 1 WHERE usuario = :email;
+    UPDATE utilerias_administradores SET title = :prefijo, nombre = :nombre, apellidop = :apellidop, apellidom = :apellidom, telefono = :telefono, referencia = :referencia,id_categoria = :id_categoria, especialidades = :especialidades,id_pais = :id_pais, id_estado = :id_estado ,monto_congreso = :monto_congreso, clave_socio = :clave_socio ,status = 1 WHERE usuario = :email;
 sql;
 
     $parametros = array(
@@ -79,7 +80,8 @@ sql;
       ':id_pais' => $user->_nationality,
       ':id_estado' => $user->_state,
       ':email' => $user->_email,
-      ':monto_congreso' =>$user->_monto_congreso
+      ':monto_congreso' =>$user->_monto_congreso,
+      ':clave_socio' => $user->_clave_socio 
 
     );
 

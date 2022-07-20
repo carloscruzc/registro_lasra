@@ -57,7 +57,7 @@ echo $header;
                                                 <!--form panels-->
                                                 <div class="row">
                                                     <div class="col-12 col-lg-12 m-auto">
-                                                        <form class="multisteps-form__form" id="add" action="/Register/Success" method="POST">
+                                                        <form class="multisteps-form__form" id="add" action="" method="POST">
                                                             <!--single form panel-->
                                                             <div id="card_one" class="card multisteps-form__panel p-3 border-radius-xl bg-white js-active" id="card_one" data-animation="FadeIn">
                                                                 <h5 class="font-weight-bolder mb-0">INFORMACIÓN PERSONAL</h5>
@@ -97,12 +97,12 @@ echo $header;
                                                                         </div>
                                                                         <div class="col-12 col-sm-4">
                                                                             <label>Nombre *</label>
-                                                                            <input class="multisteps-form__input form-control all_input" type="text" id="nombre" name="nombre" maxlength="15" placeholder="eg. Christopher" required disabled value="<?= $data['nombre'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" >
+                                                                            <input class="multisteps-form__input form-control all_input" type="text" id="nombre" name="nombre" maxlength="15" placeholder="eg. Christopher" required disabled value="<?= $data['nombre'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                                                         </div>
 
                                                                         <div class="col-12 col-sm-5">
                                                                             <label>Primer apellido *</label>
-                                                                            <input class="multisteps-form__input form-control all_input" type="text" id="apellidop" name="apellidop" maxlength="15" placeholder="eg. Jones" disabled value="<?= $data['apellidop'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" >
+                                                                            <input class="multisteps-form__input form-control all_input" type="text" id="apellidop" name="apellidop" maxlength="15" placeholder="eg. Jones" disabled value="<?= $data['apellidop'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                                                         </div>
 
                                                                     </div>
@@ -110,7 +110,7 @@ echo $header;
 
                                                                         <div class="col-12 col-sm-5 mt-3 mt-sm-0">
                                                                             <label>Segundo apellido</label>
-                                                                            <input class="multisteps-form__input form-control" type="text" id="apellidom" name="apellidom" maxlength="15" placeholder="eg. Wilson" disabled value="<?= $data['apellidom'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" >
+                                                                            <input class="multisteps-form__input form-control" type="text" id="apellidom" name="apellidom" maxlength="15" placeholder="eg. Wilson" disabled value="<?= $data['apellidom'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                                                         </div>
 
                                                                         <div class="col-12 col-sm-4">
@@ -132,17 +132,24 @@ echo $header;
 
                                                                         </div>
 
+                                                                        <div class="col-12 col-sm-4" id="cont-clave-socio" style="display: none;">
+                                                                            <label id="label-clave-socio">Clave Socio *</label>
+                                                                            <input type="text" class="form-control" name="clave_socio" id="clave_socio" value="<?= $data['clave_socio'] ?>">
+                                                                        </div>
+
                                                                         <div class="col-12 col-sm-4" id="cont-especialidades">
 
-                                                                        <label id="label-especialidades">Especialidades *</label>
+                                                                            <label id="label-especialidades">Especialidades *</label>
                                                                             <select class="multisteps-form__select form-control all_input_select" name="especialidades" id="especialidades" disabled>
                                                                                 <option value="" disabled selected>Selecciona una Opción</option>
-                                                                                
-                                                                                <?=$especialidades?>
+
+                                                                                <?= $especialidades ?>
 
                                                                             </select>
 
                                                                         </div>
+
+                                                                       
 
 
 
@@ -173,8 +180,8 @@ echo $header;
                                                                         <div class="col-12 col-sm-4">
                                                                             <label>País *</label>
                                                                             <select class="multisteps-form__select form-control all_input_select" name="nationality" id="nationality" onchange="actualizaEdos();" disabled>
-                                                                               <option value="" disabled selected>Selecciona una Opción</option> 
-                                                                                <option value="156">Mexico</option> 
+                                                                                <option value="" disabled selected>Selecciona una Opción</option>
+                                                                                <option value="156">Mexico</option>
                                                                                 <?php echo $idCountry; ?>
                                                                             </select>
                                                                         </div>
@@ -254,9 +261,11 @@ echo $header;
             $("#btn_next_1").show();
             $("#add").attr('action', '/Register/passTwo');
             $("#cont-especialidades").hide();
-        }else{
-            $("#add").attr('action', '/Register/UpdateData');
-            $("#btn_next_update").show();
+        } else {
+            // $("#add").attr('action', '/Register/UpdateData');
+            $("#add").attr('action', '/Register/passTwo');
+            // $("#btn_next_update").show();
+            $("#btn_next_1").show();
             $("#cont-categoria").hide();
             $("#cont-especialidades").show();
             // $("#especialidades").css('display','none');
@@ -351,12 +360,19 @@ echo $header;
 
         $("#categorias").on("change", function() {
             id_categoria = $(this).val();
+            var categoria = $('select[id="categorias"] option:selected').text();
 
             //Especialista y residente
-            if (id_categoria == 2 || id_categoria == 3) {
+            if (categoria == "Especialista" || categoria == "Residente" || categoria == "Socio") {
                 $("#cont-especialidades").show();
             } else {
                 $("#cont-especialidades").hide();
+            }
+
+            if (categoria == 'Socio') {
+                $("#cont-clave-socio").show();
+            } else {
+                $("#cont-clave-socio").hide();
             }
         });
 
@@ -451,6 +467,11 @@ echo $header;
                         $('#categorias')
                             .append('<option value="' + value.id_categoria + '" ' + selectedCategoria + '>' + value.categoria + '</option>');
                     });
+
+                    if($('select[id="categorias"] option:selected').text() == "Socio"){
+                        $("#cont-clave-socio").show();
+                    }
+
 
                 },
                 error: function(respuesta) {

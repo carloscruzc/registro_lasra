@@ -61,7 +61,8 @@
                     </ul>
 
                 </div>
-
+               
+                <input type="hidden" id="categoria" value="<?=$categoria['categoria'];?>"> 
                 <input type="hidden" name="datos" id="datos" value="<?php echo $datos; ?>">
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -272,6 +273,14 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script>
         $(document).ready(function() {
+
+            if($('#categoria').val() == 'Socio'){
+                Swal.fire("¡Te registraste como socio!", "Debemos validar tu información para que puedas comprar", "warning")
+
+                setTimeout(function(){
+                    window.location.replace('/Login')
+                },3000);
+            }
 
             $('#forma_pago').on('change', function(e) {
                 var tipo = $(this).val();

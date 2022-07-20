@@ -458,6 +458,7 @@ html;
         $especialidades = $_POST['especialidades'];
         $nationality = $_POST['nationality'];
         $state = $_POST['state'];
+        $clave_socio = $_POST['clave_socio'];
 
         $data = [
             'email' => $email,
@@ -469,7 +470,8 @@ html;
             'categorias' => $categorias,
             'especialidades' => $especialidades,
             'nationality' => $nationality,
-            'state' => $state
+            'state' => $state,
+            'clave_socio'=>$clave_socio
         ];
 
         View::set('dataUser',$data);
@@ -650,7 +652,13 @@ html;
         //Acarrear los datos
         $data = unserialize($_POST['dataUser']);
 
-        $monto_congreso = RegisterDao::getMontoPago($data['categorias'])['costo'];
+        if($data['categorias'] == 0){
+            $monto_congreso = RegisterDao::getMontoPago(1)['costo'];
+        }else{
+            $monto_congreso = RegisterDao::getMontoPago($data['categorias'])['costo'];
+        }
+
+        
 
 
         if($data['especialidades'] == null){
@@ -680,7 +688,8 @@ html;
         $documento->_especialidades = $data['especialidades'];
         $documento->_nationality = $data['nationality'];
         $documento->_state= $data['state'];
-        $documento->_monto_congreso= $monto_congreso;
+        $documento->_monto_congreso = $monto_congreso;
+        $documento->_clave_socio = $data['clave_socio'];
 
         $existe_user = RegisterDao::getUser($data['email']);
 
@@ -979,8 +988,11 @@ html;
 
         // $total_mx = intval($total_pago) * floatval($tipo_cambio['tipo_cambio']);
         $total_mx = intval($total_pago);
+
+        $getCategoria = LoginDao::getCategoriaById($data_user['id_categoria']);
         
 
+        View::set('categoria',$getCategoria);
         View::set('header',$header);  
         View::set('datos',$data_user);
         View::set('clave',$clave);    

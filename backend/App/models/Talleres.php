@@ -85,7 +85,7 @@ sql;
     public static function getCarritoByIdUser($user_id){
       $mysqli = Database::getInstance();
       $query=<<<sql
-      SELECT c.id_carrito,pro.id_producto,pro.nombre,pro.precio_publico,pro.precio_socio,pro.tipo_moneda,pro.caratula,pro.es_curso,pro.es_servicio,pro.es_congreso,ua.amout_due,ua.wadd_member,ua.apm_member,ua.APAL,ua.AILANCYP,ua.AMPI,ua.LC
+      SELECT c.id_carrito,pro.id_producto,pro.nombre,pro.precio_publico,pro.precio_socio,pro.tipo_moneda,pro.caratula,pro.es_curso,pro.es_servicio,pro.es_congreso,ua.monto_congreso as amout_due
       FROM productos pro
       INNER JOIN carrito c ON(c.id_producto = pro.id_producto)
       INNER JOIN utilerias_administradores ua ON(c.user_id = ua.user_id)
@@ -98,7 +98,7 @@ sql;
     public static function getCarritoByIdUserTicket($user_id,$clave){
       $mysqli = Database::getInstance();
       $query=<<<sql
-      SELECT c.id_carrito,pro.id_producto,pro.nombre,pro.precio_publico,pro.precio_socio,pro.tipo_moneda,pro.caratula,pro.es_curso,pro.es_servicio,pro.es_congreso,ua.amout_due,ua.wadd_member,ua.apm_member,ua.APAL,ua.AILANCYP,ua.AMPI,ua.LC
+      SELECT c.id_carrito,pro.id_producto,pro.nombre,pro.precio_publico,pro.precio_socio,pro.tipo_moneda,pro.caratula,pro.es_curso,pro.es_servicio,pro.es_congreso,ua.monto_congreso as amout_due
       FROM productos pro
       INNER JOIN carrito c ON(c.id_producto = pro.id_producto)
       INNER JOIN utilerias_administradores ua ON(c.user_id = ua.user_id)

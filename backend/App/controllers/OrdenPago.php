@@ -67,7 +67,7 @@ class OrdenPago extends Controller
             $nombre_curso = $value['nombre'];
             $id_producto = $value['id_producto'];
             $user_id = $datos_user['user_id'];
-            $reference = $datos_user['reference'];
+            $reference = $datos_user['referencia'];
             $fecha =  date("Y-m-d");
             // $monto = $value['precio_publico'];
             $monto = $precio;

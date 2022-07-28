@@ -206,4 +206,13 @@ sql;
 
         return $mysqli->queryOne($query);
     }
+
+    public static function getCategoriaById($id){
+        $mysqli = Database::getInstance(true);
+        $query =<<<sql
+        SELECT * FROM categorias WHERE id_categoria = $id
+sql;
+
+        return $mysqli->queryOne($query);
+    }
 }

@@ -265,7 +265,7 @@ html;
         $select_especialidad = '';
 
         foreach(RegisterDao::getAllEspecialidades() as $key => $value){
-            $selectedEspecialidad = ($value['id_especialidad'] == $userData['specialties']) ? 'selected' : '';
+            $selectedEspecialidad = ($value['id_especialidad'] == $userData['especialidades']) ? 'selected' : '';
             $select_especialidad .= <<<html
                 <option value="{$value['id_especialidad']}" $selectedEspecialidad>{$value['nombre']}</option>
 html;
@@ -274,6 +274,9 @@ html;
         $pais_fiscal = RegisterDao::getPaisById($userData['id_pais'])[0];
 
         $especialidad = TransmisionDao::getEspecialidadesById($userData['especialidades'])['nombre'];
+        $categoria = TransmisionDao::getCategoriaById($userData['id_categoria'])['categoria'];
+
+        
 
         
        
@@ -294,6 +297,7 @@ html;
       View::set('select_especialidad',$select_especialidad);
       View::set('pais_fiscal',$pais_fiscal);
       View::set('especialidad',$especialidad);
+      View::set('categoria',$categoria);
     //   View::set('radio',$radio);
       View::render("account_all");
     }
@@ -325,7 +329,7 @@ html;
             $estado = $_POST['estado'];
             $email = $_POST['email'];
             $telefono = $_POST['telefono'];
-            // $especialidad = $_POST['especialidad'];
+            $especialidad = $_POST['especialidad'];
             // $alergia = $_POST['alergia'];
 
             $documento->_nombre = $nombre;
@@ -337,7 +341,7 @@ html;
             $documento->_email = $email;
             // $documento->_cod_telefono = $cod_telefono;
             $documento->_telefono = $telefono;
-            // $documento->_especialidad = $especialidad;
+            $documento->_especialidad = $especialidad;
             // $documento->_alergia = $alergia;
 
             // var_dump($documento);

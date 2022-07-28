@@ -178,10 +178,17 @@
                                     <div class="col-lg-4 col-12">
                                         <label class="form-label mt-4">Especialidad *</label>
                                         
-                                            <!-- <select class="form-control" style="cursor: pointer;" name="especialidad" id="especialidad" tabindex="-1" data-choice="active" disabled>
+                                            <select class="form-control" style="cursor: pointer;" name="especialidad" id="especialidad" tabindex="-1" data-choice="active" >
                                                 <?php echo $select_especialidad; ?>
-                                            </select> -->
-                                          <input class="form-control" id="especialidad" maxlength="149"  name="especialidad" data-color="dark" type="text" value="<?= $especialidad ?>" placeholder="Ej: México" readonly/> 
+                                            </select> 
+                                          <!-- <input class="form-control" id="especialidad" maxlength="149"  name="especialidad" data-color="dark" type="text" value="<?= $especialidad ?>" placeholder="Ej: México" readonly/>  -->
+                                    </div>
+
+                                    <div class="col-lg-4 col-12">
+                                        <label class="form-label mt-4">Categoria </label>
+                                        
+                                            
+                                          <input class="form-control" id="categoria" maxlength="149"  name="categoria" data-color="dark" type="text" value="<?= $categoria ?>" placeholder="Ej: México" readonly/> 
                                     </div>
                                 </div>
                                 <!-- <div class="row">

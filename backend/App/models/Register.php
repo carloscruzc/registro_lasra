@@ -103,7 +103,7 @@ sql;
     public static function getUserById($id){
         $mysqli = Database::getInstance(true);
         $query =<<<sql
-        SELECT * FROM utilerias_administradores  WHERE user_id = '$id'
+        SELECT monto_congreso as amout_due FROM utilerias_administradores  WHERE user_id = '$id'
 sql;
     
         return $mysqli->queryAll($query);

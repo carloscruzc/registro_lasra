@@ -159,13 +159,21 @@ html;
 
         foreach ($cursos as $key => $value) {
 
-            // if($value['es_congreso'] == 1){
-            //     $precio = $value['amout_due'];
-            // }else if($value['es_servicio'] == 1){
-            //     $precio = $value['precio_publico'];
-            // }else if($value['es_curso'] == 1){
-            //     $precio = $value['precio_publico'];
-            // }
+            if($value['es_congreso'] == 1 && $value['clave_socio'] == ""){
+                $precio = $value['amout_due'];
+            }elseif($value['es_congreso'] == 1 && $value['clave_socio'] != ""){
+                $precio = $value['amout_due'];
+            }
+            else if($value['es_servicio'] == 1 && $value['clave_socio'] == ""){
+                $precio = $value['precio_publico'];
+            }else if($value['es_servicio'] == 1 && $value['clave_socio'] != ""){
+                $precio = $value['precio_socio'];
+            }
+            else if($value['es_curso'] == 1  && $value['clave_socio'] == ""){
+                $precio = $value['precio_publico'];
+            }else if($value['es_curso'] == 1  && $value['clave_socio'] != ""){
+                $precio = $value['precio_socio'];
+            }
 
             $progreso = TalleresDao::getProductProgreso($_SESSION['user_id'], $value['id_producto']);
 
@@ -239,7 +247,7 @@ html;
                     </div>
                 </div>
                 <div class="card-footer">
-                <p style="font-size: 23px; color: #2B932B;" class="text-left mx-3 mt-2" style="color: black;"><b>$ {$value['precio_publico']} {$value['tipo_moneda']}</b></p>
+                <p style="font-size: 23px; color: #2B932B;" class="text-left mx-3 mt-2" style="color: black;"><b>$ {$precio} {$value['tipo_moneda']}</b></p>
                 <div style = "display: flex; justify-content:start">
                 <p class="badge badge-success" style="margin-left: 5px;margin-bottom: 38px;">
                   Este curso ya lo compraste.
@@ -484,7 +492,7 @@ html;
                     if($data_user['clave_socio'] == "" || empty($data_user['clave_socio'])){
                         $costo = $value['precio_publico']." ".$value['tipo_moneda'];
                     }else{
-                        $costo = "0 USD";
+                        $costo = $value['precio_socio']." ".$value['tipo_moneda'];
                     }
 
                     $card_cursos .= <<<html
@@ -549,12 +557,20 @@ html;
 
         foreach ($cursos as $key => $value) {
 
-            if($value['es_congreso'] == 1){
+            if($value['es_congreso'] == 1 && $value['clave_socio'] == ""){
                 $precio = $value['amout_due'];
-            }else if($value['es_servicio'] == 1){
+            }elseif($value['es_congreso'] == 1 && $value['clave_socio'] != ""){
+                $precio = $value['amout_due'];
+            }
+            else if($value['es_servicio'] == 1 && $value['clave_socio'] == ""){
                 $precio = $value['precio_publico'];
-            }else if($value['es_curso'] == 1){
+            }else if($value['es_servicio'] == 1 && $value['clave_socio'] != ""){
+                $precio = $value['precio_socio'];
+            }
+            else if($value['es_curso'] == 1  && $value['clave_socio'] == ""){
                 $precio = $value['precio_publico'];
+            }else if($value['es_curso'] == 1  && $value['clave_socio'] != ""){
+                $precio = $value['precio_socio'];
             }
 
             $progreso = TalleresDao::getProductProgreso($_SESSION['user_id'], $value['id_producto']);
@@ -1757,12 +1773,20 @@ html;
 
         foreach($productos as $key => $value){
             // echo $value['precio_publico'];
-            if($value['es_congreso'] == 1){
+            if($value['es_congreso'] == 1 && $value['clave_socio'] == ""){
                 $precio = $value['amout_due'];
-            }else if($value['es_servicio'] == 1){
+            }elseif($value['es_congreso'] == 1 && $value['clave_socio'] != ""){
+                $precio = $value['amout_due'];
+            }
+            else if($value['es_servicio'] == 1 && $value['clave_socio'] == ""){
                 $precio = $value['precio_publico'];
-            }else if($value['es_curso'] == 1){
+            }else if($value['es_servicio'] == 1 && $value['clave_socio'] != ""){
+                $precio = $value['precio_socio'];
+            }
+            else if($value['es_curso'] == 1  && $value['clave_socio'] == ""){
                 $precio = $value['precio_publico'];
+            }else if($value['es_curso'] == 1  && $value['clave_socio'] != ""){
+                $precio = $value['precio_socio'];
             }
             array_push($precios,$precio);
         }
@@ -1800,12 +1824,20 @@ html;
         $html = "";
         foreach (TalleresDao::getCarritoByIdUser($id_user) as $key => $value) {
 
-            if($value['es_congreso'] == 1){
+            if($value['es_congreso'] == 1 && $value['clave_socio'] == ""){
                 $precio = $value['amout_due'];
-            }else if($value['es_servicio'] == 1){
+            }elseif($value['es_congreso'] == 1 && $value['clave_socio'] != ""){
+                $precio = $value['amout_due'];
+            }
+            else if($value['es_servicio'] == 1 && $value['clave_socio'] == ""){
                 $precio = $value['precio_publico'];
-            }else if($value['es_curso'] == 1){
+            }else if($value['es_servicio'] == 1 && $value['clave_socio'] != ""){
+                $precio = $value['precio_socio'];
+            }
+            else if($value['es_curso'] == 1  && $value['clave_socio'] == ""){
                 $precio = $value['precio_publico'];
+            }else if($value['es_curso'] == 1  && $value['clave_socio'] != ""){
+                $precio = $value['precio_socio'];
             }
             
             $html .= <<<html

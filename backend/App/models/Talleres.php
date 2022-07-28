@@ -492,7 +492,7 @@ sql;
   public static function getAsignaProducto($usuario){
     $mysqli = Database::getInstance(true);
     $query =<<<sql
-    SELECT uad.*, p.nombre AS nombre_curso, p.*
+    SELECT uad.monto_congreso as amout_due, uad.*, p.nombre AS nombre_curso, p.*
     FROM asigna_producto ap
     INNER JOIN utilerias_administradores uad
     ON ap.user_id = uad.user_id
@@ -507,7 +507,7 @@ sql;
 public static function getAsignaProductoCongreso($usuario){
   $mysqli = Database::getInstance(true);
   $query =<<<sql
-  SELECT uad.*, p.nombre AS nombre_curso, p.*
+  SELECT uad.monto_congreso as amout_due,uad.*, p.nombre AS nombre_curso, p.*
   FROM asigna_producto ap
   INNER JOIN utilerias_administradores uad
   ON ap.user_id = uad.user_id

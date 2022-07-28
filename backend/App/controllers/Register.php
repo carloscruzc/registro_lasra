@@ -640,11 +640,7 @@ html;
 
         $update_fiscal_data = RegisterDao::updateFiscalData($documento);
 
-        // echo $business_name_iva;
-        // echo $code_iva;
-        // echo $payment_method_iva;
-        // echo $email_receipt_iva;
-        // echo $data['email'];
+        
 
         if($update_fiscal_data){
             echo "success";
@@ -843,12 +839,12 @@ html;
             else if($value['es_servicio'] == 1 && $value['clave_socio'] == ""){
                 $precio = $value['precio_publico'];
             }else if($value['es_servicio'] == 1 && $value['clave_socio'] != ""){
-                $precio = $value['precio_publico'];
+                $precio = $value['precio_socio'];
             }
             else if($value['es_curso'] == 1  && $value['clave_socio'] == ""){
                 $precio = $value['precio_publico'];
             }else if($value['es_curso'] == 1  && $value['clave_socio'] != ""){
-                $precio = $value['precio_publico'];
+                $precio = $value['precio_socio'];
             }
             
             $count_producto = HomeDao::getCountProductos($data_user['user_id'],$value['id_producto'])[0];
@@ -936,20 +932,17 @@ html;
             if($value['es_congreso'] == 1 && $value['clave_socio'] == ""){
                 $precio = $value['amout_due'];
             }elseif($value['es_congreso'] == 1 && $value['clave_socio'] != ""){
-                $precio = 0;
-                $checked = 'checked';
+                $precio = $value['amout_due'];
             }
             else if($value['es_servicio'] == 1 && $value['clave_socio'] == ""){
                 $precio = $value['precio_publico'];
             }else if($value['es_servicio'] == 1 && $value['clave_socio'] != ""){
-                $precio = 0;
-                $precio = $value['precio_publico'];
+                $precio = $value['precio_socio'];
             }
             else if($value['es_curso'] == 1  && $value['clave_socio'] == ""){
                 $precio = $value['precio_publico'];
             }else if($value['es_curso'] == 1  && $value['clave_socio'] != ""){
-                $precio = 0;
-                $precio = $value['precio_publico'];
+                $precio = $value['precio_socio'];
             }
 
             if($value['max_compra'] <= 1){
@@ -1161,12 +1154,12 @@ $array_productos = [];
         else if($value['es_servicio'] == 1 && $value['clave_socio'] == ""){
             $precio = $value['precio_publico'];
         }else if($value['es_servicio'] == 1 && $value['clave_socio'] != ""){
-            $precio = $value['precio_publico'];
+            $precio = $value['precio_socio'];
         }
         else if($value['es_curso'] == 1  && $value['clave_socio'] == ""){
             $precio = $value['precio_publico'];
         }else if($value['es_curso'] == 1  && $value['clave_socio'] != ""){
-            $precio = $value['precio_publico'];
+            $precio = $value['precio_socio'];
         }
         
         $count_producto = HomeDao::getCountProductos($data_user['user_id'],$value['id_producto'])[0];
@@ -1254,19 +1247,17 @@ html;
             if($value['es_congreso'] == 1 && $value['clave_socio'] == ""){
                 $precio = $value['amout_due'];
             }elseif($value['es_congreso'] == 1 && $value['clave_socio'] != ""){
-                $precio = 0;
+                $precio = $value['amout_due'];
             }
             else if($value['es_servicio'] == 1 && $value['clave_socio'] == ""){
                 $precio = $value['precio_publico'];
             }else if($value['es_servicio'] == 1 && $value['clave_socio'] != ""){
-                $precio = 0;
-                $precio = $value['precio_publico'];
+                $precio = $value['precio_socio'];
             }
             else if($value['es_curso'] == 1  && $value['clave_socio'] == ""){
                 $precio = $value['precio_publico'];
             }else if($value['es_curso'] == 1  && $value['clave_socio'] != ""){
-                $precio = 0;
-                $precio = $value['precio_publico'];
+                $precio = $value['precio_socio'];
             }
 
             if($value['max_compra'] <= 1){
@@ -1484,19 +1475,17 @@ html;
             if($value['es_congreso'] == 1 && $value['clave_socio'] == ""){
                 $precio = $value['amout_due'];
             }elseif($value['es_congreso'] == 1 && $value['clave_socio'] != ""){
-                $precio = 0;
+                $precio = $value['amout_due'];
             }
             else if($value['es_servicio'] == 1 && $value['clave_socio'] == ""){
                 $precio = $value['precio_publico'];
             }else if($value['es_servicio'] == 1 && $value['clave_socio'] != ""){
-                $precio = 0;
-                $precio = $value['precio_publico'];
+                $precio = $value['precio_socio'];
             }
             else if($value['es_curso'] == 1  && $value['clave_socio'] == ""){
                 $precio = $value['precio_publico'];
             }else if($value['es_curso'] == 1  && $value['clave_socio'] != ""){
-                $precio = 0;
-                $precio = $value['precio_publico'];
+                $precio = $value['precio_socio'];
             }
            
             // $documento = new \stdClass();  
@@ -1552,19 +1541,17 @@ html;
             if($value['es_congreso'] == 1 && $value['clave_socio'] == ""){
                 $precio = $value['amout_due'];
             }elseif($value['es_congreso'] == 1 && $value['clave_socio'] != ""){
-                $precio = 0;
+                $precio = $value['amout_due'];
             }
             else if($value['es_servicio'] == 1 && $value['clave_socio'] == ""){
                 $precio = $value['precio_publico'];
             }else if($value['es_servicio'] == 1 && $value['clave_socio'] != ""){
-                $precio = 0;
-                $precio = $value['precio_publico'];
+                $precio = $value['precio_socio'];
             }
             else if($value['es_curso'] == 1  && $value['clave_socio'] == ""){
                 $precio = $value['precio_publico'];
             }else if($value['es_curso'] == 1  && $value['clave_socio'] != ""){
-                $precio = 0;
-                $precio = $value['precio_publico'];
+                $precio = $value['precio_socio'];
             }
 
             array_push($total,$precio);
@@ -1616,320 +1603,7 @@ html;
         // $pdf->Output('F', 'C:/pases_abordar/'. $clave.'.pdf');
     }
 
-//     public function Success(){
 
-//         $register = new \stdClass();
-
-//         $name = MasterDom::getDataAll('name_user');
-//         $name = MasterDom::procesoAcentosNormal($name);
-//         $register->_name = $name;
-
-//         $correo = $_REQUEST['email_validado'];
-
-//         $email = MasterDom::getDataAll('email_validado');
-//         $register->_email = $email;
-
-//         $title = MasterDom::getDataAll('title');
-//         $title = MasterDom::procesoAcentosNormal($title);
-//         $register->_title = $title;
-
-//         $middle_name = MasterDom::getDataAll('middle_name');
-//         $middle_name = MasterDom::procesoAcentosNormal($middle_name);
-//         $register->_middle_name = $middle_name;
-
-//         $apellidop = MasterDom::getDataAll('apellidop');
-//         $apellidop = MasterDom::procesoAcentosNormal($apellidop);
-//         $register->_apellidop = $apellidop;
-
-//         $apellidom = MasterDom::getDataAll('apellidom');
-//         $apellidom = MasterDom::procesoAcentosNormal($apellidom);
-//         $register->_apellidom = $apellidom;
-
-//         $telephone = MasterDom::getDataAll('telephone');
-//         $register->_telephone = $telephone;
-
-//         $international_code = MasterDom::getDataAll('telephone_code');
-//         $register->_international_code = $international_code;
-
-//         $nationality = MasterDom::getDataAll('nationality');
-//         $register->_nationality = $nationality;
-
-//         $specialties = MasterDom::getDataAll('specialties');
-//         $register->_specialties = $specialties;
-
-//         $modality = MasterDom::getDataAll('modality');
-//         $register->_modality = $modality;
-
-//         $state = MasterDom::getDataAll('state');
-//         $register->_state = $state;
-
-//         foreach($_POST['group1'] as $opcion){
-//             $register->_pay = $opcion;
-//             $method_pay = $opcion;
-
-//             $residence = $method_pay;
-//             $register->_method_pay = $residence;
-//         }
-
-
-//         $residence = MasterDom::getDataAll('residence');
-//         $register->_residence = $residence;
-
-//         $organization = MasterDom::getDataAll('organization');
-//         $organization = MasterDom::procesoAcentosNormal($organization);
-//         $register->_organization = $organization;
-
-//         $position = MasterDom::getDataAll('position');
-//         $register->_position = $position;
-
-//         $address = MasterDom::getDataAll('address');
-//         $address = MasterDom::procesoAcentosNormal($address);
-//         $register->_address = $address;
-
-//         $organization_country = MasterDom::getDataAll('organization_country');
-//         $register->_organization_country = $organization_country;
-
-//         $organization_postal_code = MasterDom::getDataAll('organization_postal_code');
-//         $register->_organization_postal_code = $organization_postal_code;
-
-//         $wadd_member = MasterDom::getDataAll('wadd_member');
-//         $register->_wadd_member = $wadd_member;
-
-//         $apm_member = MasterDom::getDataAll('apm_member');
-//         $register->_apm_member = $apm_member;
-
-//         $APM_radio = $_POST["APM_radio"];
-
-//         ///1 = SOCIO; 2= NO SOCIO
-
-//         if ($APM_radio == 'APAL')
-//         {
-//             $APAL = 1;//ES SOCIO
-//         }
-//         else
-//         {
-//             $APAL = 2;//NO ES SOCIO
-//         }
-//         $register->_APAL = $APAL;
-
-//         if ($APM_radio == 'AILANCYP')
-//         {
-//             $AILANCYP = 1;//ES SOCIO
-//         }
-//         else
-//         {
-//             $AILANCYP = 2;//NO ES SOCIO
-//         }
-//         $register->_AILANCYP = $AILANCYP;
-
-
-//         if ($APM_radio == 'AMPI')
-//         {
-//             $AMPI = 1;//ES SOCIO
-//         }
-//         else
-//         {
-//             $AMPI = 2;//NO ES SOCIO
-//         }
-//         $register->_AMPI = $AMPI;
-
-//         if ($APM_radio == 'LC')
-//         {
-//             $LC = 1;//ES SOCIO
-//         }
-//         else
-//         {
-//             $LC = 2;//NO ES SOCIO
-//         }
-//         $register->_LC = $LC;
-
-//         if ($APM_radio == 'APAL')
-//         {
-//             $register->_APAL = '1';
-//             $register->_AILANCYP = '2';
-//             $register->_AMPI = '2';
-//             $register->_LC = '2';
-//         }
-//         if ($APM_radio == '$AILANCYP')
-//         {
-//             $register->_APAL = '2';
-//             $register->_AILANCYP = '1';
-//             $register->_AMPI = '2';
-//             $register->_LC = '2';
-//         }
-//         if ($APM_radio == 'AMPI')
-//         {
-//             $register->_APAL = '2';
-//             $register->_AILANCYP = '2';
-//             $register->_AMPI = '1';
-//             $register->_LC = '2';
-//         }
-//         if ($APM_radio == 'LC')
-//         {
-//             $register->_APAL = '2';
-//             $register->_AILANCYP = '2';
-//             $register->_AMPI = '2';
-//             $register->_LC = '1';
-//         }
-
-//         if ($APM_radio == 'NULL')
-//         {
-//             $register->_APAL = '2';
-//             $register->_AILANCYP = '2';
-//             $register->_AMPI = '2';
-//             $register->_LC = '2';
-//         }
-
-
-
-//         $scholarship = MasterDom::getDataAll('scholarship');
-//         $register->_scholarship = $scholarship;
-
-//         $business_name_iva = MasterDom::getDataAll('business_name_iva');
-//         $register->_business_name_iva = $business_name_iva;
-
-//         $code_iva = MasterDom::getDataAll('code_iva');
-//         $register->_code_iva = $code_iva;
-
-//         $payment_method_iva = MasterDom::getDataAll('payment_method_iva');
-//         $register->_payment_method_iva = $payment_method_iva;
-
-//         $email_receipt_iva = MasterDom::getDataAll('email_receipt_iva');
-//         $register->_email_receipt_iva = $email_receipt_iva;
-
-//         $postal_code_iva = MasterDom::getDataAll('postal_code_iva');
-//         $register->_postal_code_iva = $postal_code_iva;
-
-//         $name_register = $name." ".$middle_name." ".$apellidop;
-
-//         $fecha_actual = date("d-m-Y");
-//         $fecha_limite_pago =  date("d-m-Y",strtotime($fecha_actual."+ 5 days"));
-
-//         $dia =date("d");
-//         $mes = date("m");
-//         $año = date("y");
-//         $sub_name =  substr($name, 0, 2);  // abcd
-//         $sub_name_sur =  substr($apellidop, 0, 2);  // abcd
-
-//         $reference_user = $sub_name.$sub_name_sur.$dia.$mes.$año;
-//         $register->_reference_user = $reference_user;
-
-
-
-//         if($register->_specialties == 'Students')
-//         {
-//             $costo = '250'; //Costo estudiante para Mexico e Internacional
-//         }
-//         else
-//         {
-//             if($register->_specialties == 'Residents')
-//             {
-//                 if($register->_wadd_member == '1' ||  $register->_apm_member == '1' || $register->_APAL == '1' || $register->_AILANCYP == '1' || $register->_AMPI = $AMPI == '1')
-//                 {
-//                     if($register->_LC = $LC == '2')
-//                     {
-//                         $costo = '250'; //Costo Residente si es socio
-//                     }
-//                     else
-//                     {
-//                         $costo = '250'; //Costo Residente si es socio
-//                     }
-
-//                 }
-//                 else
-//                 {
-//                     $costo = '300'; //Costo residente si no es socio
-//                 }
-//             }
-//             else
-//             {
-//                 if($register->_specialties == 'Psychiatrist' || $register->_specialties == 'Child_Psychiatry' || $register->_specialties == 'Neurology'
-//                     || $register->_specialties == 'Pediatric_Neurology' || $register->_specialties == 'Paidapsychiatry' || $register->_specialties == 'Pedagogy'
-//                     || $register->_specialties == 'Psychogeriatrics' || $register->_specialties == 'Psychology' || $register->_specialties == 'Clinical_psychology'
-//                 )
-//                 {
-//                     if($register->_wadd_member == '1' ||  $register->_apm_member == '1' || $register->_APAL == '1' || $register->_AILANCYP == '1' || $register->_AMPI = $AMPI == '1' || $register->_LC = $LC == '1')
-//                     {
-//                         $costo = '450'; //Costo para socios de especialidades
-//                     }
-//                     else
-//                     {
-//                         if($register->_nationality == '156')
-//                         {
-//                             $costo = '600';
-//                         }
-//                         else
-//                         {
-//                             $res_costo = RegisterDao::getByCost($register->_nationality);
-//                             $costo = $res_costo['cost_abril_junio'];//costo para no socios de otras especialidades
-
-//                             if($register->_nationality == '156')
-//                             {
-//                                 $costo = '600';
-//                             }
-//                         }
-
-//                     }
-
-//                 }
-//                 else
-//                 {
-//                     if($register->_specialties == 'Others')
-//                     {
-//                         if($register->_nationality != '156')
-//                         {
-//                             if($register->_wadd_member == '2' ||  $register->_apm_member == '2' || $register->_APAL == '2' || $register->_AILANCYP == '2' || $register->_AMPI = $AMPI == '2' || $register->_LC = $LC == '2')
-//                             {
-//                                 $costo = $res_costo['cost_abril_junio'];//costo para no socios de otras especialidades
-
-//                             }
-//                             else
-//                             {
-//                                 if($register->_wadd_member == '1' ||  $register->_apm_member == '1' || $register->_APAL == '1' || $register->_AILANCYP == '1' || $register->_AMPI = $AMPI == '1' || $register->_LC = $LC == '1')
-//                                 {
-//                                     $costo = '450'; //Costo para otros socios internacionales
-//                                 }
-//                             }
-//                         }
-//                         else
-//                         {
-//                             if($register->_nationality == '156')
-//                             {
-//                                 if($register->_wadd_member == '2' ||  $register->_apm_member == '2' || $register->_APAL == '2' || $register->_AILANCYP == '2' || $register->_AMPI = $AMPI == '2' || $register->_LC = $LC == '2')
-//                                 {
-//                                     $costo = '600'; //Costo para otros no socios Mexicanos
-//                                 }
-//                                 else
-//                                 {
-//                                     if($register->_wadd_member == '1' ||  $register->_apm_member == '1' || $register->_APAL == '1' || $register->_AILANCYP == '1' || $register->_AMPI = $AMPI == '1' || $register->_LC = $LC == '1')
-//                                     {
-//                                         $costo = '450'; //Costo para otros socios Mexicanos
-//                                     }
-
-//                                 }
-//                             }
-//                         }
-//                     }
-//                 }
-
-//             }
-//         }
-
-
-
-//         $register->_costo = $costo;
-        
-
-//         $id = RegisterDao::insert($register);
-//         if($id >= 1)
-//         {
-//             $this->alerta($id,'add',$method_pay, $name_register, $costo, $fecha_limite_pago,$reference_user, $modality,$email);
-
-//         }else
-//         {
-//             $this->alerta($id,'error',$method_pay, $name_register,"","","", "","");
-//         }
-//     }
 
     public function getCategorias()
     {
@@ -1944,73 +1618,7 @@ html;
         // }
     }
 
-//     public function alerta($id, $parametro, $type_deposit, $name_register, $costo, $limit_pay, $reference_user){
-//         $regreso = "/Login/";
-//         $pay = '';
-//         $name = $name_register;
 
-//         if($parametro == 'add')
-//         {
-
-//             if($type_deposit == 'paypal')
-//             {
-//                 $pay = 'CREDIT OR DEBIT CARD';
-//                 $name = $name_register;
-//                 $message_pay = 'Important note: Please include the reference provided by this system in the field "Concepto 
-//                 de pago" as per instructions above. The payment reference must be entered in capital 
-//                 letters. Do not add any spaces between names or include any other punctuation marks, as 
-//                 this may affect your bank transfer confirmation.';
-//                 $amount = $costo;
-//                 $date_pay = $limit_pay;
-//                 $reference = $reference_user;
-//                 $account_number = '021180040158530967';
-//                 $bank = 'HSBC';
-//                 $name_association = 'Asociacion Psiquiatrica Mexicana A.C';
-//                 $swift_account = 'BIMEMXMM';
-//                 $estilo = 'style="display: none;"';
-//                 $estilo_boton = 'style="display: block;"';
-//             }
-//             if($type_deposit == 'electronic')
-//             {
-//                 $pay = 'ELECTRONIC TRANSFER';
-//                 $name = $name_register;
-//                 $addres = 'Periferico Sur No. 4194, Int. 104, Col.Jardines del Pedregal, CDMX, CP.01900 ';
-//                 $message_pay = '';
-//                 $amount = $costo;
-//                 $date_pay = $limit_pay;
-//                 $reference = $reference_user;
-//                 $account_number = '4015853096';
-//                 $bank = 'HSBC';
-//                 $name_association = 'Asociacion Psiquiatrica Mexicana A.C';
-//                 $swift_account = 'BIMEMXMM';
-//                 $estilo = 'style="display: block;"';
-//                 $estilo_boton = 'style="display: none;"';
-//             }
-
-//         }
-
-//         if($parametro == "error")
-//         {
-//             $mensaje = "Al parecer ha ocurrido un problema";
-//         }
-
-//         View::set('regreso',$regreso);
-//         View::set('pay',$pay);
-//         View::set('message_pay',$message_pay);
-//         View::set('amount',$amount);
-//         View::set('reference',$reference);
-//         View::set('account_number',$account_number);
-//         View::set('bank',$bank);
-//         View::set('name_association',$name_association);
-//         View::set('reference',$reference);
-//         View::set('date_pay',$date_pay);
-//         View::set('name',$name);
-//         View::set('swift',$swift_account);
-//         View::set('estilo',$estilo);
-//         View::set('estilo_boton',$estilo_boton);
-//         View::set('address',$addres);
-//         View::render("alerta");
-//     }
 
     public function getCountry(){
         $country = '';

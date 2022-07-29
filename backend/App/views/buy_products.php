@@ -4,7 +4,7 @@
 <body class="bg-body" id="body-home">
 
     <main>
-        <div class="barra-verde"></div>
+        <div class="barra-azul"></div>
         <nav class="navbar navbar-main navbar-expand-lg bg-gradient-info position-sticky mt-4 top-1 px-0 mx-4 shadow-none border-radius-xl z-index-sticky" id="navbarBlur" data-scroll="true">
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">

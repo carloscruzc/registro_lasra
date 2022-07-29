@@ -163,7 +163,8 @@ html;
             if ($value['tipo_pago'] == "Efectivo" || $value['tipo_pago'] == "Transferencia" || $value['tipo_pago'] == "" || $value['tipo_pago'] == "Registro_Becado") {
 
                 $reimprimir_ticket = '<a href="/comprobantePago/ticketImp/' . $value["clave"] . '" class="btn bg-pink btn-icon-only morado-musa-text text-center"  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Reimprimir Ticket" target="_blank"><i class="fas fa-file"></i></a>';
-            } else if ($value['tipo_pago'] == "Paypal" && empty($value['url_archivo'])) {
+            } 
+            else if ($value['tipo_pago'] == "Paypal" && empty($value['url_archivo'])) {
                 $total_array_paypal = array();
                 $nombre_producto = '';
 
@@ -171,21 +172,19 @@ html;
 
                     if($value['es_congreso'] == 1 && $value['clave_socio'] == ""){
                         $precio = $value['amout_due'];
+                        // $precio = $value['precio_publico'];
                     }elseif($value['es_congreso'] == 1 && $value['clave_socio'] != ""){
-                        $precio = 0;
-                        $checked = 'checked';
+                        $precio = $value['amout_due'];
                     }
                     else if($value['es_servicio'] == 1 && $value['clave_socio'] == ""){
                         $precio = $value['precio_publico'];
                     }else if($value['es_servicio'] == 1 && $value['clave_socio'] != ""){
-                        $precio = 0;
-                        $precio = $value['precio_publico'];
+                        $precio = $value['precio_socio'];
                     }
                     else if($value['es_curso'] == 1  && $value['clave_socio'] == ""){
                         $precio = $value['precio_publico'];
                     }else if($value['es_curso'] == 1  && $value['clave_socio'] != ""){
-                        $precio = 0;
-                        $precio = $value['precio_publico'];
+                        $precio = $value['precio_socio'];
                     }
 
                     array_push($total_array_paypal, $precio);
@@ -213,7 +212,7 @@ html;
                 $reimprimir_ticket = '';
             }
 
-            if (empty($value['url_archivo']) || $value['url_archivo'] == '') {
+            if (empty($value['url_archivo']) || $value['url_archivo'] == '' || $value['status'] == 2) {
                 $button_comprobante = '<form method="POST" enctype="multipart/form-data" action="/ComprobantePago/uploadComprobante" data-id-pp=' . $value["id_pendiente_pago"] . '>
                                     <input type="hidden" name="id_pendiente_pago" id="id_pendiente_pago" value="' . $value["id_pendiente_pago"] . '"/>
                                     <input type="hidden" name="clave" id="clave" value="' . $value["clave"] . '"/>
@@ -228,16 +227,6 @@ html;
             }
 
 
-            //             $estatus = '';
-            //             if ($value['status'] == 1) {
-            //                 $estatus .= <<<html
-            //                 <span class="badge badge-success">Activo</span>
-            // html;
-            //             } else {
-            //                 $estatus .= <<<html
-            //                 <span class="badge badge-success">Inactivo</span>
-            // html;
-            //             }
             $html .= <<<html
         <tr>
             <td style="width:70%">
@@ -250,21 +239,19 @@ html;
 
                 if($value2['es_congreso'] == 1 && $value2['clave_socio'] == ""){
                     $precio = $value2['amout_due'];
+                    // $precio = $value2['precio_publico'];
                 }elseif($value2['es_congreso'] == 1 && $value2['clave_socio'] != ""){
-                    $precio = 0;
-                    
+                    $precio = $value2['amout_due'];
                 }
                 else if($value2['es_servicio'] == 1 && $value2['clave_socio'] == ""){
                     $precio = $value2['precio_publico'];
                 }else if($value2['es_servicio'] == 1 && $value2['clave_socio'] != ""){
-                    
-                    $precio = $value2['precio_publico'];
+                    $precio = $value2['precio_socio'];
                 }
                 else if($value2['es_curso'] == 1  && $value2['clave_socio'] == ""){
                     $precio = $value2['precio_publico'];
                 }else if($value2['es_curso'] == 1  && $value2['clave_socio'] != ""){
-                   
-                    $precio = $value2['precio_publico'];
+                    $precio = $value2['precio_socio'];
                 }
                 
 
@@ -288,10 +275,12 @@ html;
                     $status = '<span class="badge badge-danger">Carga un Archivo PDF valido</span>';
                 }
 
-                if($value2['status'] == 0){
+                if($value2['status'] == 0 || $value2['status'] == 2){
                     array_push($total_array, $precio);
 
                     $precio = number_format($precio, 2);
+                }else{
+                    $reimprimir_ticket = '';
                 }
     
                     $html .= <<<html
@@ -417,16 +406,20 @@ html;
 
 
             if($value['es_congreso'] == 1 && $value['clave_socio'] == ""){
-                $precio = $value['amout_due'];
+            $precio = $value['amout_due'];
+            // $precio = $value['precio_publico'];
             }elseif($value['es_congreso'] == 1 && $value['clave_socio'] != ""){
-                $precio = 0;
-               
+                $precio = $value['amout_due'];
             }
-            else if($value['es_servicio'] == 1 ){
+            else if($value['es_servicio'] == 1 && $value['clave_socio'] == ""){
                 $precio = $value['precio_publico'];
+            }else if($value['es_servicio'] == 1 && $value['clave_socio'] != ""){
+                $precio = $value['precio_socio'];
             }
-            else if($value['es_curso'] == 1){
+            else if($value['es_curso'] == 1  && $value['clave_socio'] == ""){
                 $precio = $value['precio_publico'];
+            }else if($value['es_curso'] == 1  && $value['clave_socio'] != ""){
+                $precio = $value['precio_socio'];
             }
 
             array_push($total, $precio);
@@ -502,13 +495,13 @@ html;
                     // ];
                     // echo "success";
                     echo "<script>
-                    // alert('Archivo subido correctamente');
+                     alert('Archivo subido correctamente');
                     window.location.href = /ComprobantePago/;
                 </script>";
                 } else {
                     // echo "fail";
                     echo "<script>
-                        // alert('Hubo un error al subir el archivo');
+                         alert('Hubo un error al subir el archivo');
                         window.location.href = /ComprobantePago/;
                     </script>";
 
@@ -519,7 +512,7 @@ html;
                 }
             }else{
                 echo "<script>
-                        // alert('Hubo un error al subir el archivo');
+                         alert('Hubo un error al subir el archivo');
                         window.location.href = /ComprobantePago/;
                     </script>";
             }
@@ -530,7 +523,7 @@ html;
 
         } else {
             echo "<script>
-                // alert('No selecciono ningun archivo');
+                 alert('No selecciono ningun archivo');
                 window.location.href = /ComprobantePago/;
             </script>";
         }

@@ -507,19 +507,19 @@ html;
                         <div style = "display: flex; justify-content:start">
 html;
                             
-                if($data_user['clave_socio'] == "" || empty($data_user['clave_socio'])){
+                // if($data_user['clave_socio'] == "" || empty($data_user['clave_socio'])){
 
                 
                     $card_cursos .= <<<html
                         <button class="btn btn-primary btn_comprar_individual" style="margin-right: 5px;margin-left: 5px; width:145px;"  value="{$value['id_producto']}">Comprar</button>
                         <button class="btn btn-primary btn_cart" value="{$value['id_producto']}" style="margin-right: 5px;margin-left: 5px;">Agregar <i class="fa far fa-cart-plus"></i></button>
 html;
-                }else{
-                    $card_cursos .= <<<html
-                        <button class="btn btn-primary btn_obtener_curso" style="margin-right: 5px;margin-left: 5px; width:auto;"  value="{$value['id_producto']}">Obtener Curso</button>
+//                 }else{
+//                     $card_cursos .= <<<html
+//                         <button class="btn btn-primary btn_obtener_curso" style="margin-right: 5px;margin-left: 5px; width:auto;"  value="{$value['id_producto']}">Obtener Curso</button>
                        
-html;
-                }
+// html;
+//                 }
                     $card_cursos .= <<<html
                     
                     </div>

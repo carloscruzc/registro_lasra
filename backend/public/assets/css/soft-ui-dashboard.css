@@ -36966,7 +36966,7 @@ input#chk-6:checked ~ #lbl-6{display: block;}
     background-position-y: -10px; */
     
     border-radius: 10px!important;
-    height: 15rem;
+    height: 11rem;
     width: 15.8rem;
   }
 
@@ -37076,8 +37076,8 @@ input#chk-6:checked ~ #lbl-6{display: block;}
   transform: translateX(calc((100% - 100vw) / 2));
 }
 
-.barra-verde{
-  background: rgb( 0 145 135 );
+.barra-azul{
+  background: rgb(36,71,155);
   width: -webkit-fill-available;
   max-width: -webkit-fill-available;
   height: 1rem;
@@ -37091,7 +37091,7 @@ input#chk-6:checked ~ #lbl-6{display: block;}
 }
 
 #body-home{
- background-image: url(/img/a.png);
+ background-image: url(/img/Web1.png);
   background-size: cover;
 } 
 

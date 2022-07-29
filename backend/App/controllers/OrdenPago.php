@@ -54,12 +54,21 @@ class OrdenPago extends Controller
 
         foreach($productos as $key => $value){
 
-            if($value['es_congreso'] == 1){
+            if($value['es_congreso'] == 1 && $value['clave_socio'] == ""){
+            $precio = $value['amout_due'];
+            // $precio = $value['precio_publico'];
+            }elseif($value['es_congreso'] == 1 && $value['clave_socio'] != ""){
                 $precio = $value['amout_due'];
-            }else if($value['es_servicio'] == 1){
+            }
+            else if($value['es_servicio'] == 1 && $value['clave_socio'] == ""){
                 $precio = $value['precio_publico'];
-            }else if($value['es_curso'] == 1){
+            }else if($value['es_servicio'] == 1 && $value['clave_socio'] != ""){
+                $precio = $value['precio_socio'];
+            }
+            else if($value['es_curso'] == 1  && $value['clave_socio'] == ""){
                 $precio = $value['precio_publico'];
+            }else if($value['es_curso'] == 1  && $value['clave_socio'] != ""){
+                $precio = $value['precio_socio'];
             }
            
             $documento = new \stdClass();  
@@ -114,12 +123,21 @@ class OrdenPago extends Controller
         foreach($productos as $key => $value){            
             
             
-            if($value['es_congreso'] == 1){
+            if($value['es_congreso'] == 1 && $value['clave_socio'] == ""){
+            $precio = $value['amout_due'];
+            // $precio = $value['precio_publico'];
+            }elseif($value['es_congreso'] == 1 && $value['clave_socio'] != ""){
                 $precio = $value['amout_due'];
-            }else if($value['es_servicio'] == 1){
+            }
+            else if($value['es_servicio'] == 1 && $value['clave_socio'] == ""){
                 $precio = $value['precio_publico'];
-            }else if($value['es_curso'] == 1){
+            }else if($value['es_servicio'] == 1 && $value['clave_socio'] != ""){
+                $precio = $value['precio_socio'];
+            }
+            else if($value['es_curso'] == 1  && $value['clave_socio'] == ""){
                 $precio = $value['precio_publico'];
+            }else if($value['es_curso'] == 1  && $value['clave_socio'] != ""){
+                $precio = $value['precio_socio'];
             }
 
             array_push($total,$precio);
@@ -178,7 +196,7 @@ class OrdenPago extends Controller
         $nombre_curso = $_POST['nombre_curso'];
         $id_producto = $_POST['id_producto'];
         $user_id = $datos_user['user_id'];
-        $reference = $datos_user['reference'];
+        $reference = $datos_user['referencia'];
         $fecha =  date("Y-m-d");
         $monto = $_POST['costo'];
         $tipo_pago = $_POST['tipo_pago'];
@@ -387,12 +405,21 @@ class OrdenPago extends Controller
 
         foreach($productos as $key => $value){
 
-            if($value['es_congreso'] == 1){
+            if($value['es_congreso'] == 1 && $value['clave_socio'] == ""){
+            $precio = $value['amout_due'];
+            // $precio = $value['precio_publico'];
+            }elseif($value['es_congreso'] == 1 && $value['clave_socio'] != ""){
                 $precio = $value['amout_due'];
-            }else if($value['es_servicio'] == 1){
+            }
+            else if($value['es_servicio'] == 1 && $value['clave_socio'] == ""){
                 $precio = $value['precio_publico'];
-            }else if($value['es_curso'] == 1){
+            }else if($value['es_servicio'] == 1 && $value['clave_socio'] != ""){
+                $precio = $value['precio_socio'];
+            }
+            else if($value['es_curso'] == 1  && $value['clave_socio'] == ""){
                 $precio = $value['precio_publico'];
+            }else if($value['es_curso'] == 1  && $value['clave_socio'] != ""){
+                $precio = $value['precio_socio'];
             }
            
             $documento = new \stdClass();  

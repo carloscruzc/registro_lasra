@@ -21,13 +21,13 @@
         <div class="barra-azul"></div>
       
         <!-- Navbar -->
-        <nav class="navbar navbar-main navbar-expand-lg bg-gradient-info position-sticky mt-4 top-1 px-0 mx-4 shadow-none border-radius-xl z-index-sticky" id="navbarBlur" data-scroll="true">
+        <nav class="navbar text-white navbar-main navbar-expand-lg bg-gradient-info position-sticky mt-4 top-1 px-0 mx-4 shadow-none border-radius-xl z-index-sticky" id="navbarBlur" data-scroll="true">
             <div class="container-fluid py-1 px-3">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-                        <li class="breadcrumb-item text-sm">
-                            <a class="opacity-3 text-dark" href="javascript:;">
-                                <svg width="12px" height="12px" class="mb-1" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <nav aria-label="breadcrumb text-white">
+                    <ol class="breadcrumb text-white bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+                        <li class="breadcrumb-item text-sm text-white">
+                            <a class="opacity-3 text-white" href="javascript:;">
+                                <svg width="12px" height="12px" class="mb-1 text-white" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <title>shop </title>
                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                         <g transform="translate(-1716.000000, -439.000000)" fill="#252f40" fill-rule="nonzero">
@@ -42,7 +42,7 @@
                                 </svg>
                             </a>
                         </li>
-                        <li class="breadcrumb-item text-sm"><a class="opacity-10 text-dark" href="javascript:;">Inicio</a></li>
+                        <li class="breadcrumb-item text-sm"><a class="opacity-10" href="javascript:;">Inicio</a></li>
                     </ol>
                 </nav>
 

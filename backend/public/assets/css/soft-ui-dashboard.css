@@ -8057,6 +8057,7 @@ fieldset:disabled .btn {
 
 .opacity-10 {
   opacity: 1 !important;
+  color: #FFF !important;
 }
 
 .overflow-auto {
@@ -10241,7 +10242,7 @@ fieldset:disabled .btn {
 }
 
 .text-body {
-  color: #67748e !important;
+  color: #FFF !important;
 }
 
 .text-muted {
@@ -20543,8 +20544,15 @@ fieldset:disabled .btn {
   color: #3A416F;
 }
 
+.barrita-azul{
+  background-color: rgb(36,71,155); 
+  border-radius: 20px; 
+  height: 38px;
+}
+
 .breadcrumb-item {
   font-size: 0.875rem;
+  color: #FFF;
 }
 
 .breadcrumb-item.text-white::before {
@@ -21354,7 +21362,7 @@ label,
 
 .bg-gradient-info {
   /* azul con verde fosforecente */
-  background-image:  linear-gradient(0deg, #7CE644, #08D3C0 70%);
+  background-image:  linear-gradient(0deg, #02A7E9, #293A90 70%);
 }
 
 .bg-gradient-warning {
@@ -21372,14 +21380,19 @@ label,
   background-image: linear-gradient(310deg, #CED4DA 0%, #EBEFF4 100%);
 }
 
-.bg-gradient-dark {
-  /* azul fuerte */
+/* .bg-gradient-dark {
+  azul fuerte
   background-image: linear-gradient(310deg, #141727 0%, #3A416F 100%);
 }
 
 .bg-gradient-dark {
-  /* azul con verde fosforecente */
+  azul con verde fosforecente
   background-image:  linear-gradient(0deg, #7CE644, #08D3C0 70%);
+} */
+
+.bg-gradient-dark {
+  /* azules */
+  background-image:  linear-gradient(0deg, #02A7E9, #293A90 70%);
 }
 
 .bg-gradient-faded-primary {

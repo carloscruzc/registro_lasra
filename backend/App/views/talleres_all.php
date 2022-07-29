@@ -1,5 +1,5 @@
 <title>
-    Cursos - APM
+    Cursos - LASRA
 </title>
 <?php echo $header; ?>
 <style>
@@ -181,7 +181,7 @@
             <div class="card-header pb-0 p-3">
                     <div class="row">
                     <!-- <img src="/assets/img/cinta_menu.jpeg" style="border-radius: 20px; height: 38px;" alt=""> -->
-                    <div style="background-color: rgb(36,71,155); border-radius: 20px; height: 38px;"></div>
+                    <div class="barrita-azul"></div>
                     </div>
                     <h4 class="mb-1 mt-4 text-left"><i class="fa fa-desktop"></i> IV CONGRESO MUNDIAL DE PATOLOGÍA DUAL</h4>
                     <p>(CONGRESO)</p>
@@ -223,7 +223,7 @@
                 <div class="card-header pb-0 p-3">
                     <div class="row">
                     <!-- <img src="/assets/img/cinta_menu.jpeg" style="border-radius: 20px; height: 38px;" alt=""> -->
-                    <div style="background-color: rgb(36,71,155); border-radius: 20px; height: 38px;"></div>
+                    <div class="barrita-azul"></div>
                     </div>
                     <h4 class="mb-1 mt-4 text-left"><i class="fa fa-desktop"></i> IV CONGRESO MUNDIAL DE PATOLOGÍA DUAL</h4>
                     <p>(CURSOS TRASCONGRESO)</p>

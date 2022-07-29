@@ -62,8 +62,8 @@ class Contenedor extends Controller{
           <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-            <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/favicon.png">
-            <link rel="icon" type="image/png" href="/assets/img/favicon.png">
+            <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/logo_lasra.png">
+            <link rel="icon" type="image/png" href="/assets/img/logo_lasra.png">
             <title>
                GRUPO LAHE
             </title>

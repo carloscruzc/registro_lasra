@@ -68,7 +68,7 @@
             <div class="card-header pb-0 p-3">
                     <div class="row">
                     <!-- <img src="/assets/img/cinta_menu.jpeg" style="border-radius: 20px; height: 38px;" alt=""> -->
-                    <div style="background-color: rgb( 0 145 135 ); border-radius: 20px; height: 38px;"></div>
+                    <div class="barrita-azul"></div>
                     </div>
                     <h4 class="mb-1 mt-4 text-left"><i class="fa fa-cash-register"></i> Comprobantes y estatus de pago</h4>
                 </div>

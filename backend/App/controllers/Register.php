@@ -715,7 +715,7 @@ html;
             <link rel="apple-touch-icon" sizes="76x76" href="../../../assets/img/logos/apmn.png">
             <link rel="icon" type="image/png" href="../../../assets/img/logos/apmn.png">
             <title>
-               AMH - GRUPO LAHE
+               LASRA - GRUPO LAHE
             </title>
             <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
             <!-- Nucleo Icons -->
@@ -1029,7 +1029,7 @@ html;
             <link rel="apple-touch-icon" sizes="76x76" href="../../../assets/img/logos/apmn.png">
             <link rel="icon" type="image/png" href="../../../assets/img/logos/apmn.png">
             <title>
-               AMH - GRUPO LAHE
+               LASRA - GRUPO LAHE
             </title>
             <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
             <!-- Nucleo Icons -->

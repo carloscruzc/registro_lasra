@@ -9,10 +9,10 @@ echo $header;
 
             <nav class="navbar navbar-expand-lg  blur blur-rounded top-0  z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
                 <div class="container-fluid">
-                    <img src="/assets/img/logos/amh.png" height="40" alt=""> &nbsp;&nbsp;
+                    <img src="/assets/img/logo_lasra.png" height="40" alt=""> &nbsp;&nbsp;
                     <!--<img src="/assets/img/logos/wadd.png" style="width: 40px; height: 40px; margin-left: 5px; margin-right: 5px;">-->&nbsp;&nbsp;
                     <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 ">
-                    ASOCIACIÓN MEXICANA DE HEPATOLOGÍA
+                    LASRA
                     </a>
                     <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon mt-2">

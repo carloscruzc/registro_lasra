@@ -17,7 +17,7 @@ class Programa2022{
           <head>
             <meta charset="utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-           <link rel="icon" type="image/vnd.microsoft.icon" href="../../../assets/img/logos/apmn.png">
+           <link rel="icon" type="image/vnd.microsoft.icon" href="/assets/img/logo_lasra.png">
             <!--title>
                Home - MUSA
             </title-->
@@ -57,7 +57,7 @@ class Programa2022{
         
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="icon" type="image/vnd.microsoft.icon" href="../../../assets/img/logos/apmn.png">
+        <link rel="icon" type="image/vnd.microsoft.icon" href="/assets/img/logo_lasra.png">
         <title>
            Login - XVII Congreso Nacional de Hepatología
         </title>

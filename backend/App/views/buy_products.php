@@ -51,12 +51,12 @@
                             </a>
                         </li>
 
-                        <!--  <li class="nav-item d-flex align-items-center">
-                            <a href="/Login/cerrarSession" class="nav-link text-body font-weight-bold px-0">
+                         <li class="nav-item d-flex align-items-center">
+                            <a href="/Login" class="nav-link text-body font-weight-bold px-0">
                                 <i class="fa fa-power-off me-sm-1"></i>
-                                <span class="d-sm-inline ">Logout</span>
+                                <span class="d-sm-inline ">Salir</span>
                             </a>
-                        </li> -->
+                        </li>
 
                     </ul>
 
@@ -83,14 +83,14 @@
                             </a>
                         </li>
                     </ul>
-                    <!-- <ul class="navbar-nav  justify-content-end">
+                    <ul class="navbar-nav  justify-content-end">
                         <li class="nav-item d-flex align-items-center">
-                            <a href="/Login/cerrarSession" class="nav-link text-body font-weight-bold px-0">
+                            <a href="/Login" class="nav-link text-body font-weight-bold px-0">
                                 <i class="fa fa-power-off me-sm-1"></i>
-                                <span class="d-sm-inline ">Logout</span>
+                                <span class="d-sm-inline ">Salir</span>
                             </a>
                         </li>
-                    </ul> -->
+                    </ul>
                 </div>
             </div>
 

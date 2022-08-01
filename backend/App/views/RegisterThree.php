@@ -9,9 +9,9 @@ echo $header;
             <nav class="navbar navbar-expand-lg  blur blur-rounded top-0  z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
                 <div class="container-fluid">
                     <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 ">
-                        <img src="/assets/img/logos/amh.png" height="40" alt="">
+                        <img src="/assets/img/logo_lasra.png" height="40" alt="">
                         <!-- <img src="/assets/img/logos/waddn.png" style="width: 40px; height: 40px; margin-left: 5px; margin-right: 5px;"> -->
-                        XVII Congreso Nacional de Hepatología
+                        LASRA
                     </a>
 
                     <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0" id="navigation">

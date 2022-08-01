@@ -5,7 +5,7 @@ defined("APPPATH") OR die("Access denied");
 use \Core\View;
 use \Core\MasterDom;
 use App\models\Login as LoginDao;
-use App\models\Usuarios as UsuariosDao;
+
 
 class Login{
 
@@ -17,9 +17,9 @@ class Login{
           <head>
             <meta charset="utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-           <link rel="icon" type="image/vnd.microsoft.icon" href="../../../assets/img/logos/apmn.png">
+           <link rel="icon" type="image/vnd.microsoft.icon" href="../../../assets/img/logos/logo_lasra.png">
             <!--title>
-               Home - MUSA
+               Home -
             </title-->
             <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
             <!-- Nucleo Icons -->
@@ -57,9 +57,9 @@ class Login{
         
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="icon" type="image/vnd.microsoft.icon" href="../../../assets/img/logos/apmn.png">
+        <link rel="icon" type="image/vnd.microsoft.icon" href="../../../assets/img/logos/logo_lasra.png">
         <title>
-           Login - XVII Congreso Nacional de Hepatología
+           Login - LASRA
         </title>
         <!--     Fonts and icons     -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />

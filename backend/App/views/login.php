@@ -101,10 +101,7 @@ echo $header;
                         </ul>
                         <ul class="navbar-nav d-lg-block d-none">
                             <li class="nav-item">
-                                <!-- <button type="button" class="btn btn-sm bg-gradient-info btn-round mb-0 me-1" data-toggle="modal" data-target="#doc_programa"><b style="color: #ffffff">Programa</b></button> -->
-                                <!--<a href="https://register.dualdisorderswaddmexico2022.com/Inicio/" class="flag-cont" onclick="smoothToPricing('pricing-soft-ui')">
-                                    <img id="flag" src="/assets/img/united-k.png">
-                                </a>-->
+                            <a href="/Register/" type="button" class="btn bg-gradient-faded-danger-2 w-100 mt-4 mb-0 font-weight-bold"><b style="color: white">¡QUIERO REGISTRARME!</b></a>
                             </li>
                         </ul>
                         <!-- <ul class="navbar-nav text-center mt-3 mb-2 d-block d-lg-none">
@@ -127,9 +124,9 @@ echo $header;
                         <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
                             <div class="card card-plain mt-7">
                                 <div class="card-header pb-0 text-start">
-                                    <h5 style="color:#1B8586;" class="font-weight-bolder text-center">Congreso Nacional de Hepatología 2022</h5>
+                                    <h5 style="color: #293A90;" class="font-weight-bolder text-center">Congreso Mexicano de Anestesia Regional 2022</h5>
                                     <hr>
-                                    <h4 style="color: #a19a9a;" class="font-weight-bolder text-center">"XVII CONGRESO NACIONAL DE HEPATOLOGÍA"</h4>
+                                    <h4 style="color: #a19a9a;" class="font-weight-bolder text-center">"5° Congreso Mexicano de Anestesia Regional y Medicina del Dolor"</h4>
                                     <div id="counter" class="group text-center mt-4">
                                         <!-- <span><em>days</em></span> 
                                         <span><em>hours</em></span>
@@ -167,19 +164,9 @@ echo $header;
                                             <button type="button" id="btnEntrar" class="btn bg-gradient-info w-100 mt-1 mb-0"><b style="color: #FFFFFF">ENTRAR</b></button>
                                         </div>
                                     </form>
-                                    <!-- <button type="button" style="background: #1B8586; color: #ffffff;" id="btn_modal_add" class="btn mb-0 mt-3 w-100" data-toggle="modal" data-target="#Modal_Add" disabled="">REGISTRARSE</button> -->
-                                    <!-- <div class="card-footer text-center pt-0 px-lg-2 px-1">
-                                        <p class="mb-2 text-sm mx-auto">
-                                            ¿Olvido su contraseña?
-                                            <a href="/Register/" class="text-info text-dark font-weight-bold">De clic aquí.</a>
-                                        </p>
-                                        <p class="mb-1 text-sm mx-auto text-center">
-                                            Para crear su cuenta de acceso proporcione su cuenta de correo electrónico y de clic en el siguiente botón.
-                                        </p>
-                                        <div class="text-center">
-                                            <a href="/Register/" type="button" class="btn bg-gradient-warning w-100 mt-4 mb-0 font-weight-bold"><b style="color: white">¡QUIERO REGISTRARME!</b></a>
-                                        </div>
-                                    </div> -->
+                                    <div class="text-center">
+                                        <a href="/Register/" type="button" class="btn bg-gradient-faded-danger w-100 mt-4 mb-0 font-weight-bold"><b style="color: white">¡QUIERO REGISTRARME!</b></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -204,13 +191,14 @@ echo $header;
                 </div>
             </div>
         </section>
-        <div class="fixed-bottom space-wa">
+        <!-- WHATSAPP
+            <div class="fixed-bottom space-wa">
             <div class="m-5">
                 <a href="https://api.whatsapp.com/send?phone=527293787668&text=Buen%20d%C3%ADa" target="_blank">
                     <span class="fa fa-whatsapp px-1 py-3-3 icon-wa bg-gradient-success"></span>
                 </a>
             </div>
-        </div>
+        </div> -->
     </main>
     <!-- Modal -->
     <div class="modal" id="doc_programa" role="dialog" aria-labelledby="doc_programaLabel" aria-hidden="true">

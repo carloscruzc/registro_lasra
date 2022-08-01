@@ -21416,7 +21416,11 @@ label,
 }
 
 .bg-gradient-faded-danger {
-  background-image: radial-gradient(370px circle at 80% 50%, rgba(234, 6, 6, 0.6) 0, #b80505 100%);
+  background-image: radial-gradient(370px circle at 80% 50%, #EB9F1D 0, #AB2790 100%);
+}
+
+.bg-gradient-faded-danger-2 {
+  background-image: radial-gradient(370px circle at 100% 50%, #EB9F1D 0, #AB2790 100%);
 }
 
 .bg-gradient-faded-light {

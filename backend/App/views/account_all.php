@@ -185,7 +185,7 @@
                                     </div>
 
                                     <div class="col-lg-4 col-12">
-                                        <label class="form-label mt-4">Categoria </label>
+                                        <label class="form-label mt-4">Categoría </label>
                                         
                                             
                                           <input class="form-control" id="categoria" maxlength="149"  name="categoria" data-color="dark" type="text" value="<?= $categoria ?>" placeholder="Ej: México" readonly/> 

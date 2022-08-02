@@ -4417,7 +4417,9 @@ fieldset:disabled .btn {
 }
 
 .collapse:not(.show) {
-  display: none;
+  display: flex !important;
+  flex-basis: auto;
+  padding-left: 10px;
 }
 
 .collapsing {
@@ -4511,7 +4513,7 @@ fieldset:disabled .btn {
   left: auto;
 }
 
-@media (min-width: 576px) {
+@media (max-width: 768px) {
   .dropdown-menu-sm-start {
     --bs-position: start;
   }
@@ -4528,6 +4530,12 @@ fieldset:disabled .btn {
   .dropdown-menu-sm-end[data-bs-popper] {
     right: 0;
     left: auto;
+  }
+
+  .collapse:not(.show) {
+    display: block !important;
+    flex-basis: auto;
+    padding-left: 10px;
   }
 }
 
@@ -5049,7 +5057,7 @@ fieldset:disabled .btn {
 .navbar-nav {
   display: flex;
   flex-direction: column;
-  padding-left: 0;
+  padding-left: 7px;
   margin-bottom: 0;
   list-style: none;
 }
@@ -8827,6 +8835,7 @@ fieldset:disabled .btn {
 
 .align-items-center {
   align-items: center !important;
+  margin-right: 10px;
 }
 
 .align-items-baseline {
@@ -10247,7 +10256,7 @@ fieldset:disabled .btn {
 }
 
 .text-body {
-  color: #FFF !important;
+  color: #000;
 }
 
 .text-muted {

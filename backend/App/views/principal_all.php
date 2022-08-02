@@ -57,7 +57,7 @@
 
                     <ul class="navbar-nav  justify-content-end">
                         <li class="nav-item d-flex align-items-center">
-                            <a href="/Account" class="nav-link text-body font-weight-bold mx-lg-4 mx-0  px-0">
+                            <a href="/Account" class="nav-link text-white font-weight-bold mx-lg-4 mx-0  px-0">
                                 <i class="fa fa-user me-sm-0"></i>
 
                                 <?php
@@ -66,15 +66,15 @@
                                 $arr1 = str_split($apellido);
 
                                 ?>
-                                <span class="d-sm-inline d-none"><?php echo $datos['nombre'] . " " . $arr1[0] . "."; ?></span>
+                                <span class="d-sm-inline"><?php echo $datos['nombre'] ." ".$arr1[0].".";?></span>
                             </a>
                         </li>
                     </ul>
                     <ul class="navbar-nav  justify-content-end">
                         <li class="nav-item d-flex align-items-center">
-                            <a href="/Login/cerrarSession" class="nav-link text-body font-weight-bold px-0">
+                            <a href="/Login/cerrarSession" class="nav-link text-white font-weight-bold px-0">
                                 <i class="fa fa-power-off me-sm-1"></i>
-                                <span class="d-sm-inline d-none">Logout</span>
+                                <span class="d-sm-inline">Logout</span>
                             </a>
                         </li>
                     </ul>

@@ -37,7 +37,7 @@
                     <li class="nav-item d-flex align-items-center">
                         <a href="/Home/" class="nav-link text-body font-weight-bold mx-lg-4 mx-0 px-0">
                             <i class="fa fa-home me-sm-0"></i>
-                            <span class="d-sm-inline d-none">Inicio</span>
+                            <span class="d-sm-inline">Inicio</span>
                         </a>
                     </li>
                 </ul>
@@ -45,7 +45,7 @@
                     <li class="nav-item d-flex align-items-center">
                         <a href="/Login/cerrarSession" class="nav-link text-body font-weight-bold px-0">
                             <i class="fa fa-power-off me-sm-1"></i>
-                            <span class="d-sm-inline d-none">Logout</span>
+                            <span class="d-sm-inline">Logout</span>
                         </a>
                     </li>
                 </ul>

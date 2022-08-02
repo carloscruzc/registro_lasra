@@ -4,14 +4,17 @@
 <?php echo $header; ?>
 <link id="pagestyle" href="/assets/css/soft-ui-dashboard.css?v=1.0.5" rel="stylesheet" />
 <style>
-    .card{
-        background-color: transparent!important;
+    .card {
+        background-color: transparent !important;
     }
+
+    
 </style>
+
 <body class="bg-body" id="body-home">
 
-<!-- <div id="content"> -->
-    
+    <!-- <div id="content"> -->
+
     <main>
         <!-- <video class="video-fondo" autoplay="true" muted="false" loop="true" src="/videos/dfic.mp4" type="video/mp4">
         </video> -->
@@ -19,7 +22,7 @@
         <!-- <div class="barra-amarilla"></div> -->
 
         <div class="barra-azul"></div>
-      
+
         <!-- Navbar -->
         <nav class="navbar text-white navbar-main navbar-expand-lg bg-gradient-info position-sticky mt-4 top-1 px-0 mx-4 shadow-none border-radius-xl z-index-sticky" id="navbarBlur" data-scroll="true">
             <div class="container-fluid py-1 px-3">
@@ -46,7 +49,7 @@
                     </ol>
                 </nav>
 
-                <input type="hidden" name="datos" id="datos" value="<?php echo $datos;?>">
+                <input type="hidden" name="datos" id="datos" value="<?php echo $datos; ?>">
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                         <div class="input-group"></div>
@@ -56,14 +59,14 @@
                         <li class="nav-item d-flex align-items-center">
                             <a href="/Account" class="nav-link text-body font-weight-bold mx-lg-4 mx-0  px-0">
                                 <i class="fa fa-user me-sm-0"></i>
-                                <!-- <span class="d-sm-inline d-none">Mi Cuenta</span> -->
+
                                 <?php
-                                
-                                    $apellido = $datos['apellidop'];                                    
-                                    $arr1 = str_split($apellido);                         
-                                   
+
+                                $apellido = $datos['apellidop'];
+                                $arr1 = str_split($apellido);
+
                                 ?>
-                                <span class="d-sm-inline d-none"><?php echo $datos['nombre'] ." ".$arr1[0].".";?></span>
+                                <span class="d-sm-inline d-none"><?php echo $datos['nombre'] . " " . $arr1[0] . "."; ?></span>
                             </a>
                         </li>
                     </ul>
@@ -76,16 +79,19 @@
                         </li>
                     </ul>
                 </div>
+
+                
             </div>
         </nav>
 
-        
+
         <!-- End Navbar -->
         <div class="container-fluid py-0">
 
-        <div class="row mt-3">
-                <?php //echo $card_cursos;?>
-        </div>        
+            <div class="row mt-3">
+                <?php //echo $card_cursos;
+                ?>
+            </div>
             <div class="row">
                 <div class="col-xl-12 mt-xl-0 mt-0">
                     <div class="row mt-md-4 mt-0">
@@ -110,14 +116,14 @@
 
                         <div class="col-6 m-auto m-md-0 col-lg-3 col-md-4 my-md-3 mt-4">
                             <a href="/Talleres/">
-                                <div class="card card-link btn-menu-home m-auto"  style="background-image: url(/img/SMNP_Iconos/Web2.png); background-size: contain; background-repeat: no-repeat;">
+                                <div class="card card-link btn-menu-home m-auto" style="background-image: url(/img/SMNP_Iconos/Web2.png); background-size: contain; background-repeat: no-repeat;">
                                     <div class="card-body mt-md-3 text-center content-card-home">
                                         <div class="col-12 text-center">
-                                            
-                                            
+
+
                                         </div>
-                                        
-                                        
+
+
                                     </div>
                                 </div>
                             </a>
@@ -125,19 +131,19 @@
 
                         <div class="col-6 m-auto m-md-0 col-lg-3 col-md-4 my-md-3 mt-4">
                             <a href="/ComprobantePago/">
-                                <div class="card card-link btn-menu-home m-auto"  style="background-image: url(/img/SMNP_Iconos/Web3.png); background-size: contain; background-repeat: no-repeat;">
+                                <div class="card card-link btn-menu-home m-auto" style="background-image: url(/img/SMNP_Iconos/Web3.png); background-size: contain; background-repeat: no-repeat;">
                                     <div class="card-body mt-md-3 text-center content-card-home">
                                         <div class="col-12 text-center">
-                                          
-                                        
+
+
                                         </div>
-                                        
-                                        
+
+
                                     </div>
                                 </div>
                             </a>
                         </div>
-                        
+
                         <!-- <div class="col-6 m-auto m-md-0 col-lg-3 col-md-4 my-md-3 mt-4">
                             <div class="row">
                                 <div class="col-12 col-md-12">
@@ -154,21 +160,21 @@
                             </div>
                         </div> -->
 
-                       
 
-                       
+
+
 
                         <div class="col-6 m-auto m-md-0 col-lg-3 col-md-4 my-md-3 mt-4">
                             <div class="row">
                                 <div class="col-12 col-md-12">
                                     <a href="/Account/">
-                                        <div class="card card-link btn-menu-home m-auto"  style="background-image: url(/img/SMNP_Iconos/Web4.png); background-size: contain;  background-repeat: no-repeat;">
+                                        <div class="card card-link btn-menu-home m-auto" style="background-image: url(/img/SMNP_Iconos/Web4.png); background-size: contain;  background-repeat: no-repeat;">
                                             <div class="card-body mt-md-3 text-center content-card-home">
                                                 <div class="col-12 text-center">
-                                               
+
                                                 </div>
 
-                                             
+
                                             </div>
                                         </div>
                                     </a>
@@ -178,12 +184,12 @@
 
                         <div class="col-6 m-auto m-md-0 col-lg-3 col-md-4 my-md-3 mt-4">
                             <a href="/Congreso/">
-                                <div class="card card-link btn-menu-home m-auto"  style="background-image: url(/img/SMNP_Iconos/Web5.png);background-size: contain;  background-repeat: no-repeat;">
+                                <div class="card card-link btn-menu-home m-auto" style="background-image: url(/img/SMNP_Iconos/Web5.png);background-size: contain;  background-repeat: no-repeat;">
                                     <div class="card-body mt-md-3 text-center content-card-home">
                                         <div class="col-12 text-center">
-                                            
+
                                         </div>
-                                     
+
                                     </div>
                                 </div>
                             </a>
@@ -202,7 +208,7 @@
                             </a>
                         </div> -->
 
-                        
+
 
                         <!-- <div class="col-6 m-auto m-md-0 col-lg-3 col-md-4 my-md-3 mt-4">
                             <div class="row">
@@ -222,10 +228,10 @@
                             </div>
                         </div> -->
 
-                        <input type="hidden" id="id_curso" name="id_curso" value="<?php echo $id_curso;?>">
+                        <input type="hidden" id="id_curso" name="id_curso" value="<?php echo $id_curso; ?>">
 
-                        
-                       
+
+
                         <!-- <div class="col-6 m-auto m-md-0 col-lg-3 col-md-4 my-md-3 mt-4">
                             <a href="#">
                                 <div class="card card-link btn-menu-home m-auto"  style="background-image: url(/img/SMNP_Iconos/5.png)">
@@ -306,15 +312,15 @@
                             </a>
                         </div> -->
                     </div>
-                        
+
                 </div>
             </div>
 
         </div>
 
-         <?php echo $footer; ?> 
+        <?php echo $footer; ?>
     </main>
-<!-- </div> -->
+    <!-- </div> -->
     <!-- Modal -->
     <div class="modal fade" id="encuesta" role="dialog" aria-labelledby="encuestaLabel" aria-hidden="true">
         <div class="modal-dialog modal-size" role="document">
@@ -352,23 +358,25 @@
 
 
     <script type='text/javascript'>
-
         getData($("#datos").val());
-        function getData(datos){
+
+        function getData(datos) {
             $.ajax({
-                    url:"/Home/getData",
-                    type: "POST",
-                    data: {datos},                   
-                    beforeSend: function(){
-                        console.log("Procesando....");
+                url: "/Home/getData",
+                type: "POST",
+                data: {
+                    datos
+                },
+                beforeSend: function() {
+                    console.log("Procesando....");
 
-                    
-                    },
-                    success: function(respuesta){
 
-                        console.log(respuesta);
-                        if(respuesta == 0){
-                            Swal.fire({
+                },
+                success: function(respuesta) {
+
+                    console.log(respuesta);
+                    if (respuesta == 0) {
+                        Swal.fire({
                             title: '¡Es necesario que actualice sus datos.!',
                             text: "",
                             icon: 'info',
@@ -376,183 +384,181 @@
                             showCancelButton: false,
                             // allowOutsideClick: false,
                             confirmButtonColor: '#3085d6'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    window.location.replace("/Account/");
-                                }
-                            })
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.replace("/Account/");
+                            }
+                        })
+                    }
+
+                },
+                error: function(respuesta) {
+
+                    console.log(respuesta);
+                }
+
+            });
+        }
+
+
+        $(function() {
+
+            function getDateFromHours(time) {
+                time = time.split(':');
+                let now = new Date();
+                return new Date(now.getFullYear(), now.getMonth(), now.getDate(), ...time);
+            }
+
+            function timeNow() {
+
+                var d = new Date(),
+                    h = (d.getHours() < 10 ? '0' : '') + d.getHours(),
+                    m = (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
+                var hora_actual = getDateFromHours(h + ':' + m);
+                var hora_inicial_trivia = getDateFromHours('08:00');
+                var hora_final_trivia = getDateFromHours('22:00');
+
+                if (hora_actual >= hora_inicial_trivia && hora_actual <= hora_final_trivia) {
+
+                    $("#abrir_trivia").attr('data-toggle', 'modal');
+                    $("#abrir_trivia").attr('data-target', '#encuesta');
+
+                } else {
+                    Swal.fire('La trivia estará disponible en un horario de ', '4 pm a 6 pm', 'info');
+
+                }
+
+            }
+
+            $("#abrir_trivia").on("click", function() {
+                timeNow();
+            });
+
+            let list_r = [];
+
+            // $('#btn-examen').html('<button type="button" class="btn btn-primary" style="background-color: orangered!important;" data-toggle="modal" data-target="#encuesta">Responde la Trivia</button>');
+
+            $('#enviar_encuesta').on('click', function() {
+                // alert('envio de formulario');
+                let enc = $('.encuesta_completa');
+                let id_curso = $('#id_curso').val();
+
+                for (let index = 0; index < enc.length; index++) {
+                    const respuesta = enc[index];
+                    let id = $('#id_pregunta_' + (index + 1)).val();
+                    let res = $('input[name=pregunta_' + (index + 1) + ']:checked', enc[index]).val();
+                    let res_id = [id, res];
+                    list_r.push(res_id);
+                    // console.log(res_id);
+                }
+
+                // alert(list_r);
+                $.ajax({
+                    url: "/Talleres/guardarRespuestas",
+                    type: "POST",
+                    dataType: 'json',
+                    data: {
+                        list_r,
+                        id_curso
+                    },
+                    beforeSend: function() {
+                        console.log("Procesando....");
+                    },
+                    success: function(respuesta) {
+                        console.log(respuesta);
+
+                        if (respuesta.status == 'success') {
+                            Swal.fire('Ha contestado la trivia', '', 'success').
+                            then((result) => {
+                                console.log('a');
+                                // $('#constancia_download').attr('href', respuesta.href)
+                                // $('#constancia_download')[0].click();
+                                // $('#constancia_download_1').attr('href',respuesta.href_download)
+                                // $('#constancia_download_1')[0].click();
+                                window.location.reload();
+                            });
+                        } else {
+                            Swal.fire('Lo sentimos, usted ya ha contestado la trivia', '', 'info').
+                            then((result) => {
+                                console.log('b');
+                                window.location.reload();
+                            });
                         }
 
                     },
-                    error:function (respuesta)
-                    {
-                        
+                    error: function(respuesta) {
+                        console.log(respuesta);
+                        Swal.fire('Ha contestado la trivia', '', 'success');
+                        //     Swal.fire('Ha ocurrido un error, contacte con soporte', '', 'error').
+                        //     then((result) => {
+                        //         console.log('c');
+                        //     });
+                    }
+                });
+            });
+
+
+            $(document).bind("contextmenu", function(e) {
+                return true;
+            });
+
+            $('.heart-not-like').on('click', function() {
+                let clave = $(this).attr('data-clave');
+                let heart = $(this);
+
+                if (heart.hasClass('heart-like')) {
+                    heart.removeClass('heart-like').addClass('heart-not-like');
+                } else {
+                    heart.removeClass('heart-not-like').addClass('heart-like');
+                }
+                console.log('se cambió a like: ' + clave);
+                $.ajax({
+                    url: "/Talleres/Likes",
+                    type: "POST",
+                    data: {
+                        clave
+                    },
+                    beforeSend: function() {
+                        console.log("Procesando....");
+                    },
+                    success: function(respuesta) {
+                        console.log(respuesta);
+
+                    },
+                    error: function(respuesta) {
                         console.log(respuesta);
                     }
-
                 });
-        }
+            })
 
-        
-    $(function(){
+            $('.heart-like').on('click', function() {
+                let clave = $(this).attr('data-clave');
+                let heart = $(this);
 
-        function getDateFromHours(time) {
-            time = time.split(':');
-            let now = new Date();
-            return new Date(now.getFullYear(), now.getMonth(), now.getDate(), ...time);
-        }
+                if (heart.hasClass('heart-like')) {
+                    heart.removeClass('heart-like').addClass('heart-not-like');
+                } else {
+                    heart.removeClass('heart-not-like').addClass('heart-like');
+                }
+                console.log('se cambió a like: ' + clave);
+                $.ajax({
+                    url: "/Talleres/Likes",
+                    type: "POST",
+                    data: {
+                        clave
+                    },
+                    beforeSend: function() {
+                        console.log("Procesando....");
+                    },
+                    success: function(respuesta) {
+                        console.log(respuesta);
 
-        function timeNow() {
-
-            var d = new Date(),
-                h = (d.getHours()<10?'0':'') + d.getHours(),
-                m = (d.getMinutes()<10?'0':'') + d.getMinutes();
-            var hora_actual = getDateFromHours(h + ':' + m);
-            var hora_inicial_trivia = getDateFromHours('08:00');
-            var hora_final_trivia = getDateFromHours('22:00');
-
-            if(hora_actual >= hora_inicial_trivia && hora_actual <= hora_final_trivia){
-
-                $("#abrir_trivia").attr('data-toggle','modal');
-                $("#abrir_trivia").attr('data-target','#encuesta');
-                
-            }else{
-                Swal.fire('La trivia estará disponible en un horario de ','4 pm a 6 pm','info');
-              
-            }
-           
-        }
-
-        $("#abrir_trivia").on("click",function(){
-            timeNow(); 
-        });
-
-        let list_r = [];
-
-        // $('#btn-examen').html('<button type="button" class="btn btn-primary" style="background-color: orangered!important;" data-toggle="modal" data-target="#encuesta">Responde la Trivia</button>');
-
-        $('#enviar_encuesta').on('click', function() {
-            // alert('envio de formulario');
-            let enc = $('.encuesta_completa');
-            let id_curso = $('#id_curso').val();
-
-            for (let index = 0; index < enc.length; index++) {
-                const respuesta = enc[index];
-                let id = $('#id_pregunta_' + (index + 1)).val();
-                let res = $('input[name=pregunta_' + (index + 1) + ']:checked', enc[index]).val();
-                let res_id = [id, res];
-                list_r.push(res_id);
-                // console.log(res_id);
-            }
-
-            // alert(list_r);
-            $.ajax({
-                url: "/Talleres/guardarRespuestas",
-                type: "POST",
-                dataType: 'json',
-                data: {
-                    list_r,
-                    id_curso
-                },
-                beforeSend: function() {
-                    console.log("Procesando....");
-                },
-                success: function(respuesta) {
-                    console.log(respuesta);
-
-                    if (respuesta.status == 'success') {
-                        Swal.fire('Ha contestado la trivia', '', 'success').
-                        then((result) => {
-                            console.log('a');
-                            // $('#constancia_download').attr('href', respuesta.href)
-                            // $('#constancia_download')[0].click();
-                            // $('#constancia_download_1').attr('href',respuesta.href_download)
-                            // $('#constancia_download_1')[0].click();
-                            window.location.reload();
-                        });
-                    } else {
-                        Swal.fire('Lo sentimos, usted ya ha contestado la trivia', '', 'info').
-                        then((result) => {
-                            console.log('b');
-                            window.location.reload();
-                        });
+                    },
+                    error: function(respuesta) {
+                        console.log(respuesta);
                     }
-
-                },
-                error: function(respuesta) {
-                    console.log(respuesta);
-                    Swal.fire('Ha contestado la trivia', '', 'success');
-                //     Swal.fire('Ha ocurrido un error, contacte con soporte', '', 'error').
-                //     then((result) => {
-                //         console.log('c');
-                //     });
-                }
-            });
+                });
+            })
         });
-
-        
-        $(document).bind("contextmenu",function(e){
-            return true;
-        });
-
-        $('.heart-not-like').on('click', function(){
-            let clave = $(this).attr('data-clave');
-            let heart = $(this);
-
-            if (heart.hasClass('heart-like')) {
-                heart.removeClass('heart-like').addClass('heart-not-like');
-            } else {
-                heart.removeClass('heart-not-like').addClass('heart-like');
-            }
-            console.log('se cambió a like: '+clave);
-            $.ajax({
-                url: "/Talleres/Likes",
-                type: "POST",
-                data: {clave},
-                beforeSend: function() {
-                    console.log("Procesando....");
-                },
-                success: function(respuesta) {
-                    console.log(respuesta);
-                    
-                },
-                error: function(respuesta) {
-                    console.log(respuesta);
-                }
-            });
-        })
-
-        $('.heart-like').on('click', function(){
-            let clave = $(this).attr('data-clave');
-            let heart = $(this);
-
-            if (heart.hasClass('heart-like')) {
-                heart.removeClass('heart-like').addClass('heart-not-like');
-            } else {
-                heart.removeClass('heart-not-like').addClass('heart-like');
-            }
-            console.log('se cambió a like: '+clave);
-            $.ajax({
-                url: "/Talleres/Likes",
-                type: "POST",
-                data: {clave},
-                beforeSend: function() {
-                    console.log("Procesando....");
-                },
-                success: function(respuesta) {
-                    console.log(respuesta);
-                    
-                },
-                error: function(respuesta) {
-                    console.log(respuesta);
-                }
-            });
-        })
-    });
-
-   
-
     </script>
 </body>
-
-

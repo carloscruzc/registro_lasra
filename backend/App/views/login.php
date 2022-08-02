@@ -99,11 +99,11 @@ echo $header;
                                 </a>
                             </li> -->
                         </ul>
-                        <ul class="navbar-nav d-lg-block d-none">
+                        <!-- <ul class="navbar-nav d-lg-block d-none">
                             <li class="nav-item">
                             <a href="/Register/" type="button" class="btn bg-gradient-faded-danger-2 w-100 mt-4 mb-0 font-weight-bold"><b style="color: white">¡QUIERO REGISTRARME!</b></a>
                             </li>
-                        </ul>
+                        </ul> -->
                         <!-- <ul class="navbar-nav text-center mt-3 mb-2 d-block d-lg-none">
                             <li class="nav-item">
                                 <button type="button" class="btn btn-sm bg-gradient-info btn-round mb-0 me-1" data-toggle="modal" data-target="#doc_programa"><b style="color: #ffffff">Programa</b></button>

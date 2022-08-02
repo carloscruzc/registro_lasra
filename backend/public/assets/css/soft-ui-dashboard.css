@@ -4088,6 +4088,11 @@ fieldset:disabled .btn {
   border-color: #82d616;
 }
 
+.btn-outline-azul {
+  color: #293A90;
+  border-color: #293A90;
+}
+
 .btn-outline-success:hover {
   color: #000;
   background-color: #82d616;

@@ -313,13 +313,20 @@ echo $header;
 
         });
 
+        // if($("#email").val() == ''){
+        //     $("#email").removeAttr('readonly');
+        // }
+
 
         if ($("#email_register").val() == '') {
             let email = localStorage.getItem("email");
+            
 
             $("#email").val(email);
             if ($("#email").val() != '') {
                 $("#confirm_email").removeAttr('disabled');
+            }else{
+                $("#email").removeAttr('readonly');
             }
 
             mostrarCategorias();

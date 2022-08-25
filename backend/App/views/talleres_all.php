@@ -183,7 +183,7 @@
                     <!-- <img src="/assets/img/cinta_menu.jpeg" style="border-radius: 20px; height: 38px;" alt=""> -->
                     <div class="barrita-azul"></div>
                     </div>
-                    <h4 class="mb-1 mt-4 text-left"><i class="fa fa-desktop"></i> IV CONGRESO MUNDIAL DE PATOLOGÍA DUAL</h4>
+                    <h4 class="mb-1 mt-4 text-left"><i class="fa fa-desktop"></i> V CONGRESO LASRA MÉXICO</h4>
                     <p>(CONGRESO)</p>
                     
                 </div>
@@ -225,7 +225,7 @@
                     <!-- <img src="/assets/img/cinta_menu.jpeg" style="border-radius: 20px; height: 38px;" alt=""> -->
                     <div class="barrita-azul"></div>
                     </div>
-                    <h4 class="mb-1 mt-4 text-left"><i class="fa fa-desktop"></i> IV CONGRESO MUNDIAL DE PATOLOGÍA DUAL</h4>
+                    <h4 class="mb-1 mt-4 text-left"><i class="fa fa-desktop"></i> V CONGRESO LASRA MÉXICO</h4>
                     <p>(CURSOS TRASCONGRESO)</p>
                     
                 </div>
@@ -484,11 +484,12 @@
 
         $(".btn_cart").on("click",function(){            
             var id_producto = $(this).val();
+            var grupo = $(this).attr('data-grupo');
             $.ajax({
                 url: "/Talleres/cartShopping",
                 type: "POST",
                 dataType: 'json',
-                data: {id_producto},
+                data: {id_producto,grupo},
                 beforeSend: function() {
                     console.log("Procesando....");
                 },

@@ -151,7 +151,7 @@
                                                 <select id="forma_pago" name="forma_pago" class="form-control">
                                                     <option value="">Seleccione una Opción</option>
                                                     <option value="Transferencia">Depósito/Transferencia</option>
-                                                    <option value="Paypal">Paypal</option>
+                                                    <!-- <option value="Paypal">Paypal</option> -->
                                                 </select>
 
                                                 <form class="form_compra" method="POST" action="" target="_blank">
@@ -333,21 +333,15 @@
                 $("#check_curso_1").prop('disabled', true);
             }
 
-            // if (precios.length <= 0) {
 
-            //     $("#btn_pago").attr('disabled','disabled');
-
-            // }
-
-            // console.log(precios_anteriores);
-
-            // console.log(precios_anteriores.length);
 
             $(".checks_product").on("change", function() {
                 var id_product = $(this).val();
                 var precio = $(this).attr('data-precio');
+                var precio_socio = $(this).attr('data-precio-socio');
                 var cantidad = $("#numero_articulos" + id_product).val();
                 var nombre_producto = $(this).attr('data-nombre-producto');
+
 
 
                 if (this.checked) {
@@ -355,150 +349,192 @@
                     //validacion para comprar con costo de socio y anualidad
                     if (nombre_producto == 'V Congreso LASRA México (socio)') {
 
+                        $(".checks_product").each(function(index) {
+                            $("#cont_precio_" + $(this).val()).html($(this).data('precio-socio') + ' - MXN');
+                        });
+
+
                         if (!$("#check_curso_2").is(":checked")) {
-                            
+
                             Swal.fire('Aviso', 'Para obtener este costo se debe de pagar la anualidad tambien', 'info');
                             $("#check_curso_2").prop('checked', true);
                             $("#check_curso_2").attr('disabled', 'disabled');
 
                             precios.push({
                                 'id_product': '2',
-                                'precio': '2000', //cambiar manualmente
+                                'precio': '2500', //cambiar manualmente
                                 'cantidad': '1'
                             });
 
                             productos.push({
                                 'id_product': '2',
-                                'precio': '2000', //cambiar manualmente
+                                'precio': '2500', //cambiar manualmente
                                 'cantidad': '1',
                                 'nombre_producto': 'ANUALIDAD (2022)'
                             });
 
 
-                        }else{
+                        } else {
                             $("#check_curso_2").attr('disabled', 'disabled');
                         }
 
                     }
 
 
+
                     //validaciones para los talleres simultaneos 
 
-                    if(nombre_producto == 'INDISPENSABLE'){
+                    if (nombre_producto == 'INDISPENSABLE') {
                         $("#check_curso_25").attr('disabled', 'disabled');
                         $("#check_curso_26").attr('disabled', 'disabled');
                     }
 
-                    if(nombre_producto == 'BLOQUEOS BASICOS'){
+                    if (nombre_producto == 'BLOQUEOS BASICOS') {
                         $("#check_curso_24").attr('disabled', 'disabled');
                         $("#check_curso_26").attr('disabled', 'disabled');
                     }
 
-                    if(nombre_producto == 'MIEMBRO SUPERIOR/MIEMBRO INFERIOR'){
+                    if (nombre_producto == 'MIEMBRO SUPERIOR/MIEMBRO INFERIOR') {
                         $("#check_curso_24").attr('disabled', 'disabled');
                         $("#check_curso_25").attr('disabled', 'disabled');
                     }
-                    
 
-                    if(nombre_producto == 'SIMULADORES ESCANEA Y PRACTICA CON MODELO EN SIMULACION'){
+
+                    if (nombre_producto == 'SIMULADORES ESCANEA Y PRACTICA CON MODELO EN SIMULACION') {
                         $("#check_curso_29").attr('disabled', 'disabled');
                         $("#check_curso_30").attr('disabled', 'disabled');
                     }
 
-                    if(nombre_producto == 'ULTRASONIDO EN BLOQUEOS PARA DOLOR CRONICO'){
+                    if (nombre_producto == 'ULTRASONIDO EN BLOQUEOS PARA DOLOR CRONICO') {
                         $("#check_curso_28").attr('disabled', 'disabled');
                         $("#check_curso_30").attr('disabled', 'disabled');
                     }
 
-                    if(nombre_producto == 'BLOQUEOS AVANZADOS :TORAX Y ABDOMEN'){
+                    if (nombre_producto == 'BLOQUEOS AVANZADOS :TORAX Y ABDOMEN') {
                         $("#check_curso_28").attr('disabled', 'disabled');
                         $("#check_curso_29").attr('disabled', 'disabled');
                     }
 
                     //fin de validaciones para talleres simultaneos
 
-                    precios.push({
-                        'id_product': id_product,
-                        'precio': precio,
-                        'cantidad': cantidad
-                    });
+
+                    //validar si esta checado la anualidad
+                    if ($("#check_curso_2").is(":checked")) {
+
+                        precios.push({
+                            'id_product': id_product,
+                            'precio': precio_socio,
+                            'cantidad': cantidad
+                        });
+
+
+                        productos.push({
+                            'id_product': id_product,
+                            'precio': precio_socio,
+                            'cantidad': cantidad,
+                            'nombre_producto': nombre_producto
+                        });
+
+
+                    } else {
+
+                        precios.push({
+                            'id_product': id_product,
+                            'precio': precio,
+                            'cantidad': cantidad
+                        });
+
+
+                        productos.push({
+                            'id_product': id_product,
+                            'precio': precio,
+                            'cantidad': cantidad,
+                            'nombre_producto': nombre_producto
+                        });
+                    }
                     sumarPrecios(precios);
-
-
-                    productos.push({
-                        'id_product': id_product,
-                        'precio': precio,
-                        'cantidad': cantidad,
-                        'nombre_producto': nombre_producto
-                    });
-
                     sumarProductos(productos);
+
 
                 } else if (!this.checked) {
 
                     //Si se selecciona el prodicto 2
-                    
+
                     if (nombre_producto == 'V Congreso LASRA México (socio)' || nombre_producto == 'ANUALIDAD (2022)') {
 
                         // if ($("#check_curso_2").is(":checked")) {
 
-                        $("#check_curso_2").prop('checked', false);
+                        $(".checks_product").each(function(index) {                            
+                            $("#cont_precio_" + $(this).val()).html($(this).data('precio') + ' - MXN');
+                            
+                        });
+
+                        $("#check_curso_2").prop('checked', false);                        
                         $("#check_curso_2").removeAttr('disabled', 'disabled');
 
 
                         for (var i = 0; i < precios.length; i++) {
 
+
                             if (precios[i].id_product === '2') {
                                 console.log("remover aqui");
                                 precios.splice(i, 1);
                                 productos.splice(i, 1);
-                                
 
-                                sumarPrecios(precios);
-                                sumarProductos(productos);
+
+
                             } else if (precios[i].id_product === '2' && precios[i].cantidad === cantidad) {
                                 precios.splice(i, 1);
                                 productos.splice(i, 1);
 
-
-                                sumarPrecios(precios);
-                                sumarProductos(productos);
+                                // sumarPrecios(precios);
+                                // sumarProductos(productos);
 
                             }
+
+                            $(".checks_product").prop('checked', false);
+                            $(".checks_product").removeAttr('disabled', 'disabled');
+                            precios = [];
+                            productos = [];
+
+                            sumarPrecios(precios);
+                            sumarProductos(productos);
                         }
+
+
                         // }
                     }
 
 
-                    
+
                     //validaciones para los talleres simultaneos 
 
-                    if(nombre_producto == 'INDISPENSABLE'){
+                    if (nombre_producto == 'INDISPENSABLE') {
                         $("#check_curso_25").removeAttr('disabled');
                         $("#check_curso_26").removeAttr('disabled');
                     }
 
-                    if(nombre_producto == 'BLOQUEOS BASICOS'){
+                    if (nombre_producto == 'BLOQUEOS BASICOS') {
                         $("#check_curso_24").removeAttr('disabled');
                         $("#check_curso_26").removeAttr('disabled');
                     }
 
-                    if(nombre_producto == 'MIEMBRO SUPERIOR/MIEMBRO INFERIOR'){
+                    if (nombre_producto == 'MIEMBRO SUPERIOR/MIEMBRO INFERIOR') {
                         $("#check_curso_24").removeAttr('disabled');
                         $("#check_curso_25").removeAttr('disabled');
                     }
 
-                    if(nombre_producto == 'SIMULADORES ESCANEA Y PRACTICA CON MODELO EN SIMULACION'){
+                    if (nombre_producto == 'SIMULADORES ESCANEA Y PRACTICA CON MODELO EN SIMULACION') {
                         $("#check_curso_29").removeAttr('disabled');
                         $("#check_curso_30").removeAttr('disabled');
                     }
 
-                    if(nombre_producto == 'ULTRASONIDO EN BLOQUEOS PARA DOLOR CRONICO'){
+                    if (nombre_producto == 'ULTRASONIDO EN BLOQUEOS PARA DOLOR CRONICO') {
                         $("#check_curso_28").removeAttr('disabled');
                         $("#check_curso_30").removeAttr('disabled');
                     }
 
-                    if(nombre_producto == 'BLOQUEOS AVANZADOS :TORAX Y ABDOMEN'){
+                    if (nombre_producto == 'BLOQUEOS AVANZADOS :TORAX Y ABDOMEN') {
                         $("#check_curso_28").removeAttr('disabled');
                         $("#check_curso_29").removeAttr('disabled');
                     }

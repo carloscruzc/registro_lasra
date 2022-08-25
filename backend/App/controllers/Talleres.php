@@ -159,21 +159,23 @@ html;
 
         foreach ($cursos as $key => $value) {
 
-            if($value['es_congreso'] == 1 && $value['clave_socio'] == ""){
-                $precio = $value['amout_due'];
-            }elseif($value['es_congreso'] == 1 && $value['clave_socio'] != ""){
-                $precio = $value['amout_due'];
-            }
-            else if($value['es_servicio'] == 1 && $value['clave_socio'] == ""){
-                $precio = $value['precio_publico'];
-            }else if($value['es_servicio'] == 1 && $value['clave_socio'] != ""){
-                $precio = $value['precio_socio'];
-            }
-            else if($value['es_curso'] == 1  && $value['clave_socio'] == ""){
-                $precio = $value['precio_publico'];
-            }else if($value['es_curso'] == 1  && $value['clave_socio'] != ""){
-                $precio = $value['precio_socio'];
-            }
+            // if($value['es_congreso'] == 1 && $value['clave_socio'] == ""){
+            //     $precio = $value['amout_due'];
+            // }elseif($value['es_congreso'] == 1 && $value['clave_socio'] != ""){
+            //     $precio = $value['amout_due'];
+            // }
+            // else if($value['es_servicio'] == 1 && $value['clave_socio'] == ""){
+            //     $precio = $value['precio_publico'];
+            // }else if($value['es_servicio'] == 1 && $value['clave_socio'] != ""){
+            //     $precio = $value['precio_socio'];
+            // }
+            // else if($value['es_curso'] == 1  && $value['clave_socio'] == ""){
+            //     $precio = $value['precio_publico'];
+            // }else if($value['es_curso'] == 1  && $value['clave_socio'] != ""){
+            //     $precio = $value['precio_socio'];
+            // }
+            
+            $precio = $value['monto'];
 
             $progreso = TalleresDao::getProductProgreso($_SESSION['user_id'], $value['id_producto']);
 
@@ -287,6 +289,8 @@ html;
             $duracion_min = substr($max_time, strlen($max_time) - 5, 2);
             $duracion_hrs = substr($max_time, 0, strpos($max_time, ':'));
 
+            $precio = 2000;
+
             $secs_totales = (intval($duracion_hrs) * 3600) + (intval($duracion_min) * 60) + intval($duracion_sec);
 
             $porcentaje = round(($progreso['segundos'] * 100) / $secs_totales);
@@ -343,7 +347,7 @@ html;
                         </div>
                     </div>
                     <div class="card-footer">
-                        <p style="font-size: 23px; color: #2B932B;" class="text-left mx-3 mt-2" style="color: black;"><b>$ {$value['precio_publico']} {$value['tipo_moneda']}</b></p>
+                        <p style="font-size: 23px; color: #2B932B;" class="text-left mx-3 mt-2" style="color: black;"><b>$ {$pendientes_pago['monto']} {$value['tipo_moneda']}</b></p>
                         <div style = "display: flex; justify-content:start">
                         <!--<button class="btn btn-primary" style="margin-right: 5px;margin-left: 5px; width:145px;" data-toggle="modal" data-target="#comprar-curso{$value['id_producto']}">Comprar</button>-->
                         <!--<a class="btn btn-primary" href="/OrdenPago/impticket/{$link_parametro_user_id}/{$link_parametro_id_producto})" target="_blank" style="margin-right: 5px;margin-left: 5px; width:auto;">Reimprimir orden de pago</a>-->
@@ -489,7 +493,7 @@ html;
                             <p style="font-size: 14px;" class="text-left mx-3 mt-2" style="color: black;"><b>{$value['nombre']}</b></p> 
 
 html;
-                    if($data_user['clave_socio'] == "" || empty($data_user['clave_socio'])){
+                    if($data_user['socio'] == "" || $data_user['socio'] != 1){
                         $costo = $value['precio_publico']." ".$value['tipo_moneda'];
                     }else{
                         $costo = $value['precio_socio']." ".$value['tipo_moneda'];
@@ -675,6 +679,7 @@ html;
         //CONGRESOS SIN COMPRAR
 
         $cursos = TalleresDao::getAllProductCongresosNotInUser($_SESSION['user_id']);
+
         $costoUser  = RegisterDao::getUserById($_SESSION['user_id'])[0]['amout_due'];        
 
 
@@ -759,7 +764,7 @@ html;
                     </div>
                 </div>
                 <div class="card-footer">
-                    <p style="font-size: 23px; color: #2B932B;" class="text-left mx-3 mt-2" style="color: black;"><b>$ {$costoUser} {$value['tipo_moneda']}</b></p>
+                    <p style="font-size: 23px; color: #2B932B;" class="text-left mx-3 mt-2" style="color: black;"><b>$ {$pendientes_pago['monto']} {$value['tipo_moneda']}</b></p>
                     <div style = "display: flex; justify-content:start">
                         <!--<button class="btn btn-primary" style="margin-right: 5px;margin-left: 5px; width:145px;" data-toggle="modal" data-target="#comprar-curso{$value['id_producto']}">Comprar</button>-->
 
@@ -1939,9 +1944,61 @@ html;
 
     }
 
+    // public function cartShopping(){
+    //     $id_producto =  $_POST['id_producto'];
+        
+
+    //     // $producto = TalleresDao::getProductoById($id_producto);
+
+    //     $getProductCart = TalleresDao::getProductCart($_SESSION['user_id'],$id_producto);
+
+    //     if($getProductCart){
+    //         $data = [
+    //             "msg" => "Este producto ya esta en su cesta",
+    //             "status" => "warning"
+    //         ];
+    //     }else{
+    //         $documento = new \stdClass();
+    //         $documento->_id_producto = $id_producto;
+    //         $documento->_user_id = $_SESSION['user_id'];
+
+    //         $insertProductCart = TalleresDao::insertProductCart($documento);
+
+    //         if($insertProductCart){
+    //             $data = [
+    //                 "msg" => "Se ingreso el producto a su cesta",
+    //                 "status" => "success"
+    //             ];
+    //         }else{
+    //             $data = [
+    //                 "msg" => "Error al gurdar el producto",
+    //                 "status" => "error"
+    //             ];
+    //         }
+    //     }
+
+    //     echo json_encode($data);
+    // }
+
     public function cartShopping(){
         $id_producto =  $_POST['id_producto'];
+        
+        // if($id_producto == 24){
+        //     $id_p1 = 25;
+        //     $id_p2 = 26; 
 
+        // }
+
+        // if($id_producto == 25){
+        //     $id_p1 = 24;
+        //     $id_p2 = 26; 
+        // }
+
+        // if($id_producto == 26){
+        //     $id_p1 = 24;
+        //     $id_p2 = 25; 
+
+        // }
         // $producto = TalleresDao::getProductoById($id_producto);
 
         $getProductCart = TalleresDao::getProductCart($_SESSION['user_id'],$id_producto);

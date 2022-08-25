@@ -840,7 +840,7 @@ html;
             <div class="row">
                 <div class="col-md-8">
                     <div class="form-check">
-                        <input class="form-check-input checks_product" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" {$disabled} {$checked} data-precio="{$precio}" data-nombre-producto="{$value['nombre_producto']}">
+                        <input class="form-check-input checks_product" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" {$disabled} {$checked} data-precio="{$precio}" data-precio-socio="{$value['precio_socio']}" data-nombre-producto="{$value['nombre_producto']}">
                         <label class="form-check-label" for="check_curso_{$value['id_producto']}">
                             {$value['tipo']} {$value['nombre_producto']} <span style="font-size: 13px; text-decoration: underline; color: green;">{$pend_validar}</span>
                         </label>
@@ -848,7 +848,7 @@ html;
                 </div>
                 
                 <div class="col-md-2">
-                    {$precio} - {$value['tipo_moneda']}
+                    <span class="cont_precio" id="cont_precio_{$value['id_producto']}">{$precio} <span>- {$value['tipo_moneda']}
                 </div>
 
                 <div class="col-md-2">
@@ -916,7 +916,7 @@ html;
             <div class="row">
                  <div class="col-md-8">
                      <div class="form-check">
-                         <input class="form-check-input checks_product" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" data-precio="{$precio}" data-nombre-producto="{$value['nombre_producto']}" {$check_disabled}>
+                         <input class="form-check-input checks_product" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" data-precio="{$precio}" data-precio-socio="{$value['precio_socio']}" data-nombre-producto="{$value['nombre_producto']}" {$check_disabled}>
                          <label class="form-check-label" for="check_curso_{$value['id_producto']}">
                          {$value['tipo']} {$value['nombre_producto']}
                          </label>
@@ -924,7 +924,7 @@ html;
                  </div>
                
                  <div class="col-md-2">
-                     {$precio} - {$value['tipo_moneda']}
+                     <span class="cont_precio" id="cont_precio_{$value['id_producto']}">{$precio} <span>- {$value['tipo_moneda']}
                  </div>
 
                  <div class="col-md-2">
@@ -1156,7 +1156,7 @@ $array_productos = [];
         <div class="row">
             <div class="col-md-8">
                 <div class="form-check">
-                    <input class="form-check-input checks_product" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" {$disabled} {$checked} data-precio="{$precio}" data-nombre-producto="{$value['nombre_producto']}">
+                    <input class="form-check-input checks_product" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" {$disabled} {$checked} data-precio="{$precio}" data-precio-socio="{$value['precio_socio']}" data-nombre-producto="{$value['nombre_producto']}">
                     <label class="form-check-label" for="check_curso_{$value['id_producto']}">
                         {$value['nombre_producto']} <span style="font-size: 13px; text-decoration: underline; color: green;">{$pend_validar}</span>
                     </label>
@@ -1164,7 +1164,7 @@ $array_productos = [];
             </div>
 
             <div class="col-md-2">
-                {$precio} - {$value['tipo_moneda']}
+                <span class="cont_precio" id="cont_precio_{$value['id_producto']}">{$precio} <span>- {$value['tipo_moneda']}
             </div>
 
             <div class="col-md-2">
@@ -1199,9 +1199,11 @@ html;
             //     $precio = $value['precio_publico'];
             // }
 
-            if($value['es_congreso'] == 1 && $value['clave_socio'] == ""){
-                $precio = $value['amout_due'];
-            }elseif($value['es_congreso'] == 1 && $value['clave_socio'] != ""){
+            //Esto se tiene que modificar por el nombre prducto 
+            if($value['es_congreso'] == 1 && $value['nombre_producto'] == "V Congreso LASRA México (socio)"){
+                $precio = $value['precio_publico'];
+                
+            }elseif($value['es_congreso'] == 1 ){
                 $precio = $value['amout_due'];
             }
             else if($value['es_servicio'] == 1 && $value['clave_socio'] == ""){
@@ -1230,7 +1232,7 @@ html;
             <div class="row">
                  <div class="col-md-8">
                      <div class="form-check">
-                         <input class="form-check-input checks_product" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" data-precio="{$precio}" data-nombre-producto="{$value['nombre_producto']}" {$check_disabled}>
+                         <input class="form-check-input checks_product" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" data-precio="{$precio}" data-precio-socio="{$value['precio_socio']}" data-nombre-producto="{$value['nombre_producto']}" {$check_disabled}>
                          <label class="form-check-label" for="check_curso_{$value['id_producto']}">
                              {$value['nombre_producto']}
                          </label>
@@ -1238,7 +1240,7 @@ html;
                  </div>
                
                  <div class="col-md-2">
-                     {$precio} - {$value['tipo_moneda']}
+                     <span class="cont_precio" id="cont_precio_{$value['id_producto']}">{$precio} <span>- {$value['tipo_moneda']}
                  </div>
 
                  <div class="col-md-2">
@@ -1478,7 +1480,7 @@ html;
         $pdf->SetFont('Arial', 'B', 8);    //Letra Arial, negrita (Bold), tam. 20
         $pdf->setY(1);
         $pdf->SetFont('Arial', 'B', 16);
-        $pdf->Image('constancias/plantillas/orden.jpeg', 0, 0, 210, 300);
+        $pdf->Image('constancias/plantillas/orden.png', 0, 0, 210, 300);
         // $pdf->SetFont('Arial', 'B', 25);
         // $pdf->Multicell(133, 80, $clave_ticket, 0, 'C');
 
@@ -1544,10 +1546,10 @@ html;
 
 
        // total
-        // $pdf->SetXY(118, 170);
-        // $pdf->SetFont('Arial', 'B', 8);  
-        // $pdf->SetTextColor(0, 0, 0);
-        // $pdf->Multicell(100, 10, 'TOTAL : '.number_format(array_sum($total),2), 0, 'C');
+        $pdf->SetXY(125, 200);
+        $pdf->SetFont('Arial', 'B', 8);  
+        $pdf->SetTextColor(0, 0, 0);
+        $pdf->Multicell(100, 10, 'TOTAL : '.number_format(array_sum($total),2). ' MXN', 0, 'C');
 
         $pdf->Output();
         // $pdf->Output('F','constancias/'.$clave.$id_curso.'.pdf');

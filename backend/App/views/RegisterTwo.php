@@ -11,7 +11,7 @@ echo $header;
                     <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 ">
                         <img src="/assets/img/logo_lasra.png" height="40" alt="">
                         <!-- <img src="/assets/img/logos/waddn.png" style="width: 40px; height: 40px; margin-left: 5px; margin-right: 5px;"> -->
-                        XVII Congreso Nacional de Hepatología
+                        Lasra
                     </a>
 
                     <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0" id="navigation">
@@ -56,22 +56,22 @@ echo $header;
                                                             <div id="card_two" class="card multisteps-form__panel p-3 border-radius-xl bg-white js-active" id="card_one" data-animation="FadeIn">
 
                                                                 <?php if ($dataUser['categorias'] == 3): ?>
-                                                                    <div class="row text-center">
+                                                                    <!-- <div class="row text-center">
                                                                         <div class="col-10 mx-auto">
                                                                             <h5 class="font-weight-normal">Residente</h5>
                                                                             <p class="bg-gradient-red-info">Para poder acceder al evento deberá presentar credencial vigente de residencia o carta de residencia, con sellos del hospital.
                                                                             </p>
                                                                         </div>
-                                                                    </div>
+                                                                    </div> -->
                                                                 
                                                                 <?php elseif($dataUser['categorias'] == 5):?>
-                                                                    <div class="row text-center">
+                                                                    <!-- <div class="row text-center">
                                                                         <div class="col-10 mx-auto">
                                                                             <h5 class="font-weight-normal">Estudiante</h5>
                                                                             <p class="bg-gradient-red-info">Para poder acceder al evento deberá presentar credencial vigente de la escuela, de lo contrario deberá cubrir el costo total. 
                                                                             </p>
                                                                         </div>
-                                                                    </div>    
+                                                                    </div>     -->
 
                                                                 <?php endif?>
 
@@ -80,11 +80,11 @@ echo $header;
                                                                 <div class="row text-center">
                                                                     <div class="col-10 mx-auto">
                                                                         <h5 class="font-weight-normal">Muy Importante</h5>
-                                                                        <p>La Asociación Mexicana de Hepatología es una sociedad sin fines de lucro, 
+                                                                        <p>LASRA México es una sociedad sin fines de lucro, 
                                                                             y puede expedir comprobantes deducibles de impuestos para personas físicas y 
                                                                             morales mexicanas. Una vez que tu pago haya sido procesado, recibirás tu comprobante 
                                                                             dentro de las primeras 48 horas. En caso de no recibirlo, favor de enviar un correo con 
-                                                                            el comprobante adjunto a secretario@hepatologia.org.mx. Recuerda que los comprobantes 
+                                                                            el comprobante adjunto a secretario@xxx.org.mx. Recuerda que los comprobantes 
                                                                             fiscales solo pueden ser emitidos en el mes en el cual realizaste tu pago. Si necesitas factura,
                                                                              por favor selecciona la opción en los botones siguientes.
                                                                         </p>

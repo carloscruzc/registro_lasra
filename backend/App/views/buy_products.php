@@ -51,7 +51,7 @@
                             </a>
                         </li>
 
-                         <li class="nav-item d-flex align-items-center">
+                        <li class="nav-item d-flex align-items-center">
                             <a href="/Login" class="nav-link text-body font-weight-bold px-0">
                                 <i class="fa fa-power-off me-sm-1"></i>
                                 <span class="d-sm-inline ">Salir</span>
@@ -61,8 +61,8 @@
                     </ul>
 
                 </div>
-               
-                <input type="hidden" id="categoria" value="<?=$categoria['categoria'];?>"> 
+
+                <input type="hidden" id="categoria" value="<?= $categoria['categoria']; ?>">
                 <input type="hidden" name="datos" id="datos" value="<?php echo $datos; ?>">
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -176,9 +176,9 @@
 
                                                 </form>
 
-                                                <form id="form_compra_paypal" method="POST" >
+                                                <form id="form_compra_paypal" method="POST">
                                                     <input type="hidden" id="tipo_pago_paypal" name="tipo_pago_paypal">
-                                                    <input type='hidden' id='clave_paypal' name='clave_paypal' value="<?=$clave?>"> 
+                                                    <input type='hidden' id='clave_paypal' name='clave_paypal' value="<?= $clave ?>">
                                                 </form>
 
                                             </div>
@@ -274,12 +274,12 @@
     <script>
         $(document).ready(function() {
 
-            if($('#categoria').val() == 'Socio'){
+            if ($('#categoria').val() == 'Socio') {
                 Swal.fire("¡Te registraste como socio!", "Debemos validar tu información para que puedas comprar", "warning")
 
-                setTimeout(function(){
+                setTimeout(function() {
                     window.location.replace('/Login')
-                },3000);
+                }, 3000);
             }
 
             $('#forma_pago').on('change', function(e) {
@@ -301,12 +301,12 @@
 
             });
 
-             var precios=<?php echo json_encode($array_precios); ?>;
-             var productos=<?php echo json_encode($array_productos); ?>;
+            var precios = <?php echo json_encode($array_precios); ?>;
+            var productos = <?php echo json_encode($array_productos); ?>;
 
 
-             console.log(precios);
-             console.log(productos);
+            console.log(precios);
+            console.log(productos);
 
             // var precios = [];
             // var productos = [];
@@ -350,8 +350,35 @@
                 var nombre_producto = $(this).attr('data-nombre-producto');
 
 
-
                 if (this.checked) {
+
+                    if (nombre_producto == 'V Congreso LASRA México (socio)') {
+
+                        if (!$("#check_curso_2").is(":checked")) {
+                            
+                            Swal.fire('Aviso', 'Para obtener este costo se debe de pagar la anualidad tambien', 'info');
+                            $("#check_curso_2").prop('checked', true);
+                            $("#check_curso_2").attr('disabled', 'disabled');
+
+                            precios.push({
+                                'id_product': '2',
+                                'precio': '2000', //cambiar manualmente
+                                'cantidad': '1'
+                            });
+
+                            productos.push({
+                                'id_product': '2',
+                                'precio': '2000', //cambiar manualmente
+                                'cantidad': '1',
+                                'nombre_producto': 'ANUALIDAD (2022)'
+                            });
+
+
+                        }else{
+                            $("#check_curso_2").attr('disabled', 'disabled');
+                        }
+
+                    }
 
                     precios.push({
                         'id_product': id_product,
@@ -359,7 +386,7 @@
                         'cantidad': cantidad
                     });
                     sumarPrecios(precios);
-                    
+
 
                     productos.push({
                         'id_product': id_product,
@@ -372,10 +399,44 @@
 
                 } else if (!this.checked) {
 
+                    //Si se selecciona el prodicto 2
+                    
+                    if (nombre_producto == 'V Congreso LASRA México (socio)' || nombre_producto == 'ANUALIDAD (2022)') {
+
+                        // if ($("#check_curso_2").is(":checked")) {
+
+                        $("#check_curso_2").prop('checked', false);
+                        $("#check_curso_2").removeAttr('disabled', 'disabled');
+
+
+                        for (var i = 0; i < precios.length; i++) {
+
+                            if (precios[i].id_product === '2') {
+                                console.log("remover aqui");
+                                precios.splice(i, 1);
+                                productos.splice(i, 1);
+                                
+
+                                sumarPrecios(precios);
+                                sumarProductos(productos);
+                            } else if (precios[i].id_product === '2' && precios[i].cantidad === cantidad) {
+                                precios.splice(i, 1);
+                                productos.splice(i, 1);
+
+
+                                sumarPrecios(precios);
+                                sumarProductos(productos);
+
+                            }
+                        }
+                        // }
+                    }
+
+
                     for (var i = 0; i < precios.length; i++) {
 
                         if (precios[i].id_product === id_product) {
-                            console.log("remover");
+                            // console.log("remover");
                             precios.splice(i, 1);
 
                             productos.splice(i, 1);
@@ -422,6 +483,7 @@
                 // sumarProductos(productos);
 
             });
+
 
             $(".select_numero_articulos").on("change", function() {
                 var id_producto = $(this).attr('data-id-producto');
@@ -481,7 +543,7 @@
 
                 });
 
-                
+
 
                 console.log("Suma precios " + sumaPrecios);
 
@@ -505,12 +567,12 @@
 
                     console.log("precio " + index + " | id_product: " + producto.id_product + " precio: " + parseInt(producto.precio) + " cantidad: " + parseInt(producto.cantidad) + " producto: " + producto.nombre_producto)
 
-                    nombreProductos += producto.nombre_producto+',';
+                    nombreProductos += producto.nombre_producto + ',';
                 });
 
                 console.log(nombreProductos);
                 $("#item_name").val(nombreProductos);
-                
+
 
             }
 
@@ -522,6 +584,9 @@
                 var clave = $("#clave").val();
                 var usuario = $("#email_usuario").val();
                 var metodo_pago = $("#metodo_pago").val();
+
+                console.log("precios ------");
+                console.log(precios);
 
 
                 if (precios.length <= 0) {
@@ -567,7 +632,7 @@
                     }).then((result) => {
                         if (result.isConfirmed) {
 
-                            
+
                             console.log($("#total_mx").text());
 
                             if ($("#total_mx").text() == '0.00') {
@@ -608,8 +673,7 @@
 
                                 });
 
-                            }
-                            else {
+                            } else {
                                 var enviar_email = 1;
                                 $.ajax({
                                     url: "/Register/generaterQr",

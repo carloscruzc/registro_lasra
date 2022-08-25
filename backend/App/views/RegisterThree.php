@@ -101,14 +101,14 @@ echo $header;
                                                                         <div class="row mt-1">
 
                                                                         </div>
-                                                                        <div class="row text-center mt-1">
+                                                                        <!-- <div class="row text-center mt-1">
                                                                             <div class="col-10 mx-auto">
                                                                                 <p class="mb-0 text-sm">Una vez que el pago haya sido identificado, usted recibirá su factura 
                                                                                     dentro de las 48 horas posteriores. Para reportar retrasos, favor de enviar un correo con su 
                                                                                     comprobante de pago adjunto a secretario@hepatologia.org.mx. recuerde que la expedición de 
                                                                                     facturas solo podrá realizarse en el mes correspondiente al pago.</p>
                                                                             </div>
-                                                                        </div>
+                                                                        </div> -->
                                                                         <div class="button-row d-flex mt-1">
                                                                             <button class="btn bg-gradient-success ms-auto mb-0" type="button" id='btn_next'>Siguiente</button>
                                                                         </div>

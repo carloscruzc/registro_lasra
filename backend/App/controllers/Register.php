@@ -615,7 +615,6 @@ html;
             $monto_congreso = RegisterDao::getMontoPago($data['categorias'])['costo'];
         }
 
-        
 
 
         if($data['especialidades'] == null){
@@ -785,7 +784,7 @@ html;
             $checked = '';
             $pend_validar ='';
 
-            if($value['es_congreso'] == 1 && $value['clave_socio'] == ""){
+            if($value['es_congreso'] == 1){
                 $precio = $value['amout_due'];
             }elseif($value['es_congreso'] == 1 && $value['clave_socio'] != ""){
                 $precio = $value['amout_due'];
@@ -882,10 +881,12 @@ html;
             //     $precio = $value['precio_publico'];
             // }
 
-
-            if($value['es_congreso'] == 1 && $value['clave_socio'] == ""){
-                $precio = $value['amout_due'];
-            }elseif($value['es_congreso'] == 1 && $value['clave_socio'] != ""){
+            
+            //Esto se tiene que modificar por el nombre prducto 
+            if($value['es_congreso'] == 1 && $value['nombre_producto'] == "V Congreso LASRA México (socio)"){
+                $precio = $value['precio_publico'];
+                
+            }elseif($value['es_congreso'] == 1 ){
                 $precio = $value['amout_due'];
             }
             else if($value['es_servicio'] == 1 && $value['clave_socio'] == ""){
@@ -1301,11 +1302,7 @@ html;
             $datos = json_decode($_POST['array'],true);
     
             $datos_user = RegisterDao::getDataUser($usuario);
-            // $metodo_pago = $_POST['metodo_pago'];
-
-            // var_dump($datos_user);
-
-            // exit;
+            
             
             $user_id = $datos_user['user_id'];
             $reference = $datos_user['referencia'];
@@ -1399,10 +1396,6 @@ html;
                 ];
     
            }
-
-
-    
-          
            echo json_encode($res);
            
         }
@@ -1426,9 +1419,10 @@ html;
 
         foreach($productos as $key => $value){
 
-            if($value['es_congreso'] == 1 && $value['clave_socio'] == ""){
-                $precio = $value['amout_due'];
-            }elseif($value['es_congreso'] == 1 && $value['clave_socio'] != ""){
+            if($value['es_congreso'] == 1 && $value['nombre_producto'] == "V Congreso LASRA México (socio)"){
+                $precio = $value['precio_publico'];
+                
+            }elseif($value['es_congreso'] == 1 ){
                 $precio = $value['amout_due'];
             }
             else if($value['es_servicio'] == 1 && $value['clave_socio'] == ""){
@@ -1441,7 +1435,8 @@ html;
             }else if($value['es_curso'] == 1  && $value['clave_socio'] != ""){
                 $precio = $value['precio_socio'];
             }
-           
+            // $precio = $value['monto'];
+
             // $documento = new \stdClass();  
 
             $nombre_curso = $value['nombre'];
@@ -1492,21 +1487,24 @@ html;
         foreach($productos as $key => $value){            
             
             
-            if($value['es_congreso'] == 1 && $value['clave_socio'] == ""){
-                $precio = $value['amout_due'];
-            }elseif($value['es_congreso'] == 1 && $value['clave_socio'] != ""){
-                $precio = $value['amout_due'];
-            }
-            else if($value['es_servicio'] == 1 && $value['clave_socio'] == ""){
-                $precio = $value['precio_publico'];
-            }else if($value['es_servicio'] == 1 && $value['clave_socio'] != ""){
-                $precio = $value['precio_socio'];
-            }
-            else if($value['es_curso'] == 1  && $value['clave_socio'] == ""){
-                $precio = $value['precio_publico'];
-            }else if($value['es_curso'] == 1  && $value['clave_socio'] != ""){
-                $precio = $value['precio_socio'];
-            }
+            // if($value['es_congreso'] == 1 && $value['nombre_producto'] == "V Congreso LASRA México (socio)"){
+            //     $precio = $value['precio_publico'];
+                
+            // }elseif($value['es_congreso'] == 1 ){
+            //     $precio = $value['amout_due'];
+            // }
+            // else if($value['es_servicio'] == 1 && $value['clave_socio'] == ""){
+            //     $precio = $value['precio_publico'];
+            // }else if($value['es_servicio'] == 1 && $value['clave_socio'] != ""){
+            //     $precio = $value['precio_socio'];
+            // }
+            // else if($value['es_curso'] == 1  && $value['clave_socio'] == ""){
+            //     $precio = $value['precio_publico'];
+            // }else if($value['es_curso'] == 1  && $value['clave_socio'] != ""){
+            //     $precio = $value['precio_socio'];
+            // }
+
+            $precio = $value['monto'];
 
             array_push($total,$precio);
 

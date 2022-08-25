@@ -352,6 +352,7 @@
 
                 if (this.checked) {
 
+                    //validacion para comprar con costo de socio y anualidad
                     if (nombre_producto == 'V Congreso LASRA México (socio)') {
 
                         if (!$("#check_curso_2").is(":checked")) {
@@ -379,6 +380,42 @@
                         }
 
                     }
+
+
+                    //validaciones para los talleres simultaneos 
+
+                    if(nombre_producto == 'INDISPENSABLE'){
+                        $("#check_curso_25").attr('disabled', 'disabled');
+                        $("#check_curso_26").attr('disabled', 'disabled');
+                    }
+
+                    if(nombre_producto == 'BLOQUEOS BASICOS'){
+                        $("#check_curso_24").attr('disabled', 'disabled');
+                        $("#check_curso_26").attr('disabled', 'disabled');
+                    }
+
+                    if(nombre_producto == 'MIEMBRO SUPERIOR/MIEMBRO INFERIOR'){
+                        $("#check_curso_24").attr('disabled', 'disabled');
+                        $("#check_curso_25").attr('disabled', 'disabled');
+                    }
+                    
+
+                    if(nombre_producto == 'SIMULADORES ESCANEA Y PRACTICA CON MODELO EN SIMULACION'){
+                        $("#check_curso_29").attr('disabled', 'disabled');
+                        $("#check_curso_30").attr('disabled', 'disabled');
+                    }
+
+                    if(nombre_producto == 'ULTRASONIDO EN BLOQUEOS PARA DOLOR CRONICO'){
+                        $("#check_curso_28").attr('disabled', 'disabled');
+                        $("#check_curso_30").attr('disabled', 'disabled');
+                    }
+
+                    if(nombre_producto == 'BLOQUEOS AVANZADOS :TORAX Y ABDOMEN'){
+                        $("#check_curso_28").attr('disabled', 'disabled');
+                        $("#check_curso_29").attr('disabled', 'disabled');
+                    }
+
+                    //fin de validaciones para talleres simultaneos
 
                     precios.push({
                         'id_product': id_product,
@@ -431,6 +468,42 @@
                         }
                         // }
                     }
+
+
+                    
+                    //validaciones para los talleres simultaneos 
+
+                    if(nombre_producto == 'INDISPENSABLE'){
+                        $("#check_curso_25").removeAttr('disabled');
+                        $("#check_curso_26").removeAttr('disabled');
+                    }
+
+                    if(nombre_producto == 'BLOQUEOS BASICOS'){
+                        $("#check_curso_24").removeAttr('disabled');
+                        $("#check_curso_26").removeAttr('disabled');
+                    }
+
+                    if(nombre_producto == 'MIEMBRO SUPERIOR/MIEMBRO INFERIOR'){
+                        $("#check_curso_24").removeAttr('disabled');
+                        $("#check_curso_25").removeAttr('disabled');
+                    }
+
+                    if(nombre_producto == 'SIMULADORES ESCANEA Y PRACTICA CON MODELO EN SIMULACION'){
+                        $("#check_curso_29").removeAttr('disabled');
+                        $("#check_curso_30").removeAttr('disabled');
+                    }
+
+                    if(nombre_producto == 'ULTRASONIDO EN BLOQUEOS PARA DOLOR CRONICO'){
+                        $("#check_curso_28").removeAttr('disabled');
+                        $("#check_curso_30").removeAttr('disabled');
+                    }
+
+                    if(nombre_producto == 'BLOQUEOS AVANZADOS :TORAX Y ABDOMEN'){
+                        $("#check_curso_28").removeAttr('disabled');
+                        $("#check_curso_29").removeAttr('disabled');
+                    }
+
+                    //fin de validaciones para talleres simultaneos
 
 
                     for (var i = 0; i < precios.length; i++) {

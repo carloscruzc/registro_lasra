@@ -112,7 +112,7 @@ sql;
     public static function getTicketUser($user_id,$clave){
       $mysqli = Database::getInstance();
       $query=<<<sql
-      SELECT pro.id_producto,pro.nombre,pro.precio_publico,pro.precio_socio,pro.tipo_moneda,pro.caratula,pro.es_curso,pro.es_servicio,pro.es_congreso,ua.monto_congreso as amout_due,ua.clave_socio, pp.status
+      SELECT pro.id_producto,pro.nombre,pro.precio_publico,pro.precio_socio,pro.tipo_moneda,pro.caratula,pro.es_curso,pro.es_servicio,pro.es_congreso,ua.monto_congreso as amout_due,ua.clave_socio, pp.status,pp.monto
       FROM productos pro         
       INNER JOIN pendiente_pago pp ON (pp.id_producto = pro.id_producto)
       INNER JOIN utilerias_administradores ua ON(pp.user_id = ua.user_id)

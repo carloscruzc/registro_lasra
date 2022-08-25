@@ -170,22 +170,24 @@ html;
 
                 foreach (ComprobantePagoDao::getAllComprobantes($id_user, $value['clave']) as $key => $value) {
 
-                    if($value['es_congreso'] == 1 && $value['clave_socio'] == ""){
-                        $precio = $value['amout_due'];
-                        // $precio = $value['precio_publico'];
-                    }elseif($value['es_congreso'] == 1 && $value['clave_socio'] != ""){
-                        $precio = $value['amout_due'];
-                    }
-                    else if($value['es_servicio'] == 1 && $value['clave_socio'] == ""){
-                        $precio = $value['precio_publico'];
-                    }else if($value['es_servicio'] == 1 && $value['clave_socio'] != ""){
-                        $precio = $value['precio_socio'];
-                    }
-                    else if($value['es_curso'] == 1  && $value['clave_socio'] == ""){
-                        $precio = $value['precio_publico'];
-                    }else if($value['es_curso'] == 1  && $value['clave_socio'] != ""){
-                        $precio = $value['precio_socio'];
-                    }
+                    // if($value['es_congreso'] == 1 && $value['clave_socio'] == ""){
+                    //     $precio = $value['amout_due'];
+                    //     // $precio = $value['precio_publico'];
+                    // }elseif($value['es_congreso'] == 1 && $value['clave_socio'] != ""){
+                    //     $precio = $value['amout_due'];
+                    // }
+                    // else if($value['es_servicio'] == 1 && $value['clave_socio'] == ""){
+                    //     $precio = $value['precio_publico'];
+                    // }else if($value['es_servicio'] == 1 && $value['clave_socio'] != ""){
+                    //     $precio = $value['precio_socio'];
+                    // }
+                    // else if($value['es_curso'] == 1  && $value['clave_socio'] == ""){
+                    //     $precio = $value['precio_publico'];
+                    // }else if($value['es_curso'] == 1  && $value['clave_socio'] != ""){
+                    //     $precio = $value['precio_socio'];
+                    // }
+
+                    $precio = $value['monto'];
 
                     array_push($total_array_paypal, $precio);
 
@@ -237,22 +239,24 @@ html;
 
                 
 
-                if($value2['es_congreso'] == 1 && $value2['clave_socio'] == ""){
-                    $precio = $value2['amout_due'];
-                    // $precio = $value2['precio_publico'];
-                }elseif($value2['es_congreso'] == 1 && $value2['clave_socio'] != ""){
-                    $precio = $value2['amout_due'];
-                }
-                else if($value2['es_servicio'] == 1 && $value2['clave_socio'] == ""){
-                    $precio = $value2['precio_publico'];
-                }else if($value2['es_servicio'] == 1 && $value2['clave_socio'] != ""){
-                    $precio = $value2['precio_socio'];
-                }
-                else if($value2['es_curso'] == 1  && $value2['clave_socio'] == ""){
-                    $precio = $value2['precio_publico'];
-                }else if($value2['es_curso'] == 1  && $value2['clave_socio'] != ""){
-                    $precio = $value2['precio_socio'];
-                }
+                // if($value2['es_congreso'] == 1 && $value2['clave_socio'] == ""){
+                //     $precio = $value2['amout_due'];
+                //     // $precio = $value2['precio_publico'];
+                // }elseif($value2['es_congreso'] == 1 && $value2['clave_socio'] != ""){
+                //     $precio = $value2['amout_due'];
+                // }
+                // else if($value2['es_servicio'] == 1 && $value2['clave_socio'] == ""){
+                //     $precio = $value2['precio_publico'];
+                // }else if($value2['es_servicio'] == 1 && $value2['clave_socio'] != ""){
+                //     $precio = $value2['precio_socio'];
+                // }
+                // else if($value2['es_curso'] == 1  && $value2['clave_socio'] == ""){
+                //     $precio = $value2['precio_publico'];
+                // }else if($value2['es_curso'] == 1  && $value2['clave_socio'] != ""){
+                //     $precio = $value2['precio_socio'];
+                // }
+
+                $precio = $value2['monto'];
                 
 
                 if($value2['comprado_en'] == 1){
@@ -405,22 +409,23 @@ html;
         foreach ($productos as $key => $value) {
 
 
-            if($value['es_congreso'] == 1 && $value['clave_socio'] == ""){
-            $precio = $value['amout_due'];
-            // $precio = $value['precio_publico'];
-            }elseif($value['es_congreso'] == 1 && $value['clave_socio'] != ""){
-                $precio = $value['amout_due'];
-            }
-            else if($value['es_servicio'] == 1 && $value['clave_socio'] == ""){
-                $precio = $value['precio_publico'];
-            }else if($value['es_servicio'] == 1 && $value['clave_socio'] != ""){
-                $precio = $value['precio_socio'];
-            }
-            else if($value['es_curso'] == 1  && $value['clave_socio'] == ""){
-                $precio = $value['precio_publico'];
-            }else if($value['es_curso'] == 1  && $value['clave_socio'] != ""){
-                $precio = $value['precio_socio'];
-            }
+            // if($value['es_congreso'] == 1 && $value['clave_socio'] == ""){
+            // $precio = $value['amout_due'];
+            // // $precio = $value['precio_publico'];
+            // }elseif($value['es_congreso'] == 1 && $value['clave_socio'] != ""){
+            //     $precio = $value['amout_due'];
+            // }
+            // else if($value['es_servicio'] == 1 && $value['clave_socio'] == ""){
+            //     $precio = $value['precio_publico'];
+            // }else if($value['es_servicio'] == 1 && $value['clave_socio'] != ""){
+            //     $precio = $value['precio_socio'];
+            // }
+            // else if($value['es_curso'] == 1  && $value['clave_socio'] == ""){
+            //     $precio = $value['precio_publico'];
+            // }else if($value['es_curso'] == 1  && $value['clave_socio'] != ""){
+            //     $precio = $value['precio_socio'];
+            // }
+            $precio = $value['monto'];
 
             array_push($total, $precio);
 

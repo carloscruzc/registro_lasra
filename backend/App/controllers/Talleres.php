@@ -712,8 +712,8 @@ html;
                         <div class="card-body " style="height:100px;">
                             <input class="curso" hidden type="text" value="{$value['clave']}" readonly>
                             <div class="caratula-content">
-                                <!-- <a href="/Talleres/Video/{$value['clave']}"> -->
-                                <img class="caratula-img border-radius-15" src="/caratulas/{$value['caratula']}" style="object-fit: cover; object-position: center center; height: auto;">
+                                <!-- <a href="/Talleres/Video/{$value['clave']}"> 
+                                <img class="caratula-img border-radius-15" src="/caratulas/{$value['caratula']}" style="object-fit: cover; object-position: center center; height: auto;">-->
                                 <!--</a>-->
                                 <!--<div class="duracion"><p>{$value['duracion']}</p></div>-->
                                 <!--<button class="btn btn-outline-danger"></button-->

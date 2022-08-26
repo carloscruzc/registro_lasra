@@ -26,7 +26,7 @@
                                 </svg>
                             </a>
                         </li>
-                        <li class="breadcrumb-item text-sm"><a class="opacity-10" href="javascript:;">Inicio</a></li>
+                        <li class="breadcrumb-item text-sm"><a class="opacity-10" href="/Home">Inicio</a></li>
                     </ol>
                 </nav>
 

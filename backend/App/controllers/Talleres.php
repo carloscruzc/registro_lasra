@@ -174,7 +174,7 @@ html;
             // }else if($value['es_curso'] == 1  && $value['clave_socio'] != ""){
             //     $precio = $value['precio_socio'];
             // }
-            
+
             $precio = $value['monto'];
 
             $progreso = TalleresDao::getProductProgreso($_SESSION['user_id'], $value['id_producto']);
@@ -204,19 +204,19 @@ html;
                         <!--<button class="btn btn-outline-danger"></button-->
                         
 html;
-        
-                    $like = TalleresDao::getlikeProductCurso($value['id_producto'], $_SESSION['user_id']);
-                    if ($like['status'] == 1) {
-                        $card_cursos .= <<<html
+
+            $like = TalleresDao::getlikeProductCurso($value['id_producto'], $_SESSION['user_id']);
+            if ($like['status'] == 1) {
+                $card_cursos .= <<<html
                     <span id="video_{$value['clave']}" data-clave="{$value['clave']}" class="fas fa-heart heart-like p-2"></span>
 html;
-                    } else {
-                        $card_cursos .= <<<html
+            } else {
+                $card_cursos .= <<<html
                     <span id="video_{$value['clave']}" data-clave="{$value['clave']}" class="fas fa-heart heart-not-like p-2"></span>
 html;
-                    }
-        
-                    $card_cursos .= <<<html
+            }
+
+            $card_cursos .= <<<html
                        <!-- <div class="row">
                             <div class="col-11 m-auto" id="">
                                 <progress class="barra_progreso_small mt-2" max="$secs_totales" value="{$progreso['segundos']}"></progress>
@@ -235,13 +235,13 @@ html;
                         </p>-->
         
 html;
-                    if ($value['status'] == 2 || $porcentaje >= 80) {
-                        $card_cursos .= <<<html
+            if ($value['status'] == 2 || $porcentaje >= 80) {
+                $card_cursos .= <<<html
                             <!--<div class="ms-3 me-3 msg-encuesta px-2 py-1">Se ha habilitado un examen para este taller</div><br><br>-->
 html;
-                    }
-        
-                    $card_cursos .= <<<html
+            }
+
+            $card_cursos .= <<<html
                     </a>
         
                     <div>
@@ -297,9 +297,9 @@ html;
 
             $pendientes_pago = TalleresDao::getProductosPendientesPago($_SESSION['user_id'], $value['id_producto'])[0];
 
-            if(isset($pendientes_pago['status'])){
+            if (isset($pendientes_pago['status'])) {
 
-                if($pendientes_pago['status'] == 0){
+                if ($pendientes_pago['status'] == 0) {
                     //pediente de pago
                     $card_cursos .= <<<html
     
@@ -314,18 +314,18 @@ html;
                            
 html;
 
-                            $like = TalleresDao::getlikeProductCurso($value['id_producto'], $_SESSION['user_id']);
-                            if ($like['status'] == 1) {
-                                $card_cursos .= <<<html
+                    $like = TalleresDao::getlikeProductCurso($value['id_producto'], $_SESSION['user_id']);
+                    if ($like['status'] == 1) {
+                        $card_cursos .= <<<html
                             <span id="video_{$value['clave']}" data-clave="{$value['clave']}" class="fas fa-heart heart-like p-2"></span>
 html;
-                            } else {
-                                $card_cursos .= <<<html
+                    } else {
+                        $card_cursos .= <<<html
                             <span id="video_{$value['clave']}" data-clave="{$value['clave']}" class="fas fa-heart heart-not-like p-2"></span>
 html;
-                            }
+                    }
 
-                $card_cursos .= <<<html
+                    $card_cursos .= <<<html
                        
                         </div>
                         
@@ -334,7 +334,7 @@ html;
                            
 
 html;
-                       
+
 
                     $link_parametro_user_id = base64_encode($_SESSION['user_id']);
                     $link_parametro_id_producto = base64_encode($value['id_producto']);
@@ -375,7 +375,7 @@ html;
         // });
     </script>
 html;
-                }else if($pendientes_pago['status'] == 2){
+                } else if ($pendientes_pago['status'] == 2) {
                     //pago rechazado
                     $card_cursos .= <<<html
     
@@ -389,18 +389,18 @@ html;
                                     <!--<img class="caratula-img border-radius-15" src="/caratulas/{$value['caratula']}" style="object-fit: cover; object-position: center center; height: auto;">-->
                                
 html;
-    
-                                $like = TalleresDao::getlikeProductCurso($value['id_producto'], $_SESSION['user_id']);
-                                if ($like['status'] == 1) {
-                                    $card_cursos .= <<<html
+
+                    $like = TalleresDao::getlikeProductCurso($value['id_producto'], $_SESSION['user_id']);
+                    if ($like['status'] == 1) {
+                        $card_cursos .= <<<html
                                 <span id="video_{$value['clave']}" data-clave="{$value['clave']}" class="fas fa-heart heart-like p-2"></span>
 html;
-                                } else {
-                                    $card_cursos .= <<<html
+                    } else {
+                        $card_cursos .= <<<html
                                 <span id="video_{$value['clave']}" data-clave="{$value['clave']}" class="fas fa-heart heart-not-like p-2"></span>
 html;
-                                }
-    
+                    }
+
                     $card_cursos .= <<<html
                            
                             </div>
@@ -410,12 +410,12 @@ html;
                                
     
 html;
-                           
-    
-                        $link_parametro_user_id = base64_encode($_SESSION['user_id']);
-                        $link_parametro_id_producto = base64_encode($value['id_producto']);
-    
-                        $card_cursos .= <<<html
+
+
+                    $link_parametro_user_id = base64_encode($_SESSION['user_id']);
+                    $link_parametro_id_producto = base64_encode($value['id_producto']);
+
+                    $card_cursos .= <<<html
                                 
     
                                 <div>
@@ -451,13 +451,10 @@ html;
             // });
         </script>
 html;
-                
-                }else {
+                } else {
                     //echo "pagado";
                 }
-
-            }
-            else{
+            } else {
                 //comprar
                 $card_cursos .= <<<html
     
@@ -475,16 +472,16 @@ html;
                 
 html;
 
-                            $like = TalleresDao::getlikeProductCurso($value['id_producto'], $_SESSION['user_id']);
-                            if ($like['status'] == 1) {
-                                $card_cursos .= <<<html
+                $like = TalleresDao::getlikeProductCurso($value['id_producto'], $_SESSION['user_id']);
+                if ($like['status'] == 1) {
+                    $card_cursos .= <<<html
                             <span id="video_{$value['clave']}" data-clave="{$value['clave']}" class="fas fa-heart heart-like p-2"></span>
 html;
-                            } else {
-                                $card_cursos .= <<<html
+                } else {
+                    $card_cursos .= <<<html
                             <span id="video_{$value['clave']}" data-clave="{$value['clave']}" class="fas fa-heart heart-not-like p-2"></span>
 html;
-                            }
+                }
 
                 $card_cursos .= <<<html
                         
@@ -493,13 +490,13 @@ html;
                             <p style="font-size: 14px;" class="text-left mx-3 mt-2" style="color: black;"><b>{$value['nombre']}</b></p> 
 
 html;
-                    if($data_user['socio'] == "" || $data_user['socio'] != 1){
-                        $costo = $value['precio_publico']." ".$value['tipo_moneda'];
-                    }else{
-                        $costo = $value['precio_socio']." ".$value['tipo_moneda'];
-                    }
+                if ($data_user['socio'] == "" || $data_user['socio'] != 1) {
+                    $costo = $value['precio_publico'] . " " . $value['tipo_moneda'];
+                } else {
+                    $costo = $value['precio_socio'] . " " . $value['tipo_moneda'];
+                }
 
-                    $card_cursos .= <<<html
+                $card_cursos .= <<<html
                             
 
                             <div>
@@ -510,21 +507,21 @@ html;
                         <p style="font-size: 23px; color: #2B932B;" class="text-left mx-3 mt-2" style="color: black;"><b>$ {$costo}</b></p>
                         <div style = "display: flex; justify-content:start">
 html;
-                            
+
                 // if($data_user['clave_socio'] == "" || empty($data_user['clave_socio'])){
 
-                
-                    $card_cursos .= <<<html
+
+                $card_cursos .= <<<html
                         <button class="btn btn-primary btn_comprar_individual" style="margin-right: 5px;margin-left: 5px; width:145px;"  value="{$value['id_producto']}">Comprar</button>
                         <button class="btn btn-primary btn_cart" value="{$value['id_producto']}" style="margin-right: 5px;margin-left: 5px;">Agregar <i class="fa far fa-cart-plus"></i></button>
 html;
-//                 }else{
-//                     $card_cursos .= <<<html
-//                         <button class="btn btn-primary btn_obtener_curso" style="margin-right: 5px;margin-left: 5px; width:auto;"  value="{$value['id_producto']}">Obtener Curso</button>
-                       
-// html;
-//                 }
-                    $card_cursos .= <<<html
+                //                 }else{
+                //                     $card_cursos .= <<<html
+                //                         <button class="btn btn-primary btn_obtener_curso" style="margin-right: 5px;margin-left: 5px; width:auto;"  value="{$value['id_producto']}">Obtener Curso</button>
+
+                // html;
+                //                 }
+                $card_cursos .= <<<html
                     
                     </div>
                 </div>
@@ -544,11 +541,9 @@ html;
     </script>
 html;
 
-            $modalComprar .= $this->generateModalComprar($value);
+                $modalComprar .= $this->generateModalComprar($value);
+            }
         }
-
-            
-    }
 
         //CURSOS SIN COMPRAR
 
@@ -561,19 +556,17 @@ html;
 
         foreach ($cursos as $key => $value) {
 
-            if($value['es_congreso'] == 1 && $value['clave_socio'] == ""){
+            if ($value['es_congreso'] == 1 && $value['clave_socio'] == "") {
                 $precio = $value['amout_due'];
-            }elseif($value['es_congreso'] == 1 && $value['clave_socio'] != ""){
+            } elseif ($value['es_congreso'] == 1 && $value['clave_socio'] != "") {
                 $precio = $value['amout_due'];
-            }
-            else if($value['es_servicio'] == 1 && $value['clave_socio'] == ""){
+            } else if ($value['es_servicio'] == 1 && $value['clave_socio'] == "") {
                 $precio = $value['precio_publico'];
-            }else if($value['es_servicio'] == 1 && $value['clave_socio'] != ""){
+            } else if ($value['es_servicio'] == 1 && $value['clave_socio'] != "") {
                 $precio = $value['precio_socio'];
-            }
-            else if($value['es_curso'] == 1  && $value['clave_socio'] == ""){
+            } else if ($value['es_curso'] == 1  && $value['clave_socio'] == "") {
                 $precio = $value['precio_publico'];
-            }else if($value['es_curso'] == 1  && $value['clave_socio'] != ""){
+            } else if ($value['es_curso'] == 1  && $value['clave_socio'] != "") {
                 $precio = $value['precio_socio'];
             }
 
@@ -604,19 +597,19 @@ html;
                         <!--<button class="btn btn-outline-danger"></button-->
                         
 html;
-        
-                    $like = TalleresDao::getlikeProductCurso($value['id_producto'], $_SESSION['user_id']);
-                    if ($like['status'] == 1) {
-                        $card_congresos .= <<<html
+
+            $like = TalleresDao::getlikeProductCurso($value['id_producto'], $_SESSION['user_id']);
+            if ($like['status'] == 1) {
+                $card_congresos .= <<<html
                     <span id="video_{$value['clave']}" data-clave="{$value['clave']}" class="fas fa-heart heart-like p-2"></span>
 html;
-                    } else {
-                        $card_congresos .= <<<html
+            } else {
+                $card_congresos .= <<<html
                     <span id="video_{$value['clave']}" data-clave="{$value['clave']}" class="fas fa-heart heart-not-like p-2"></span>
 html;
-                    }
-        
-                    $card_congresos .= <<<html
+            }
+
+            $card_congresos .= <<<html
                        <!-- <div class="row">
                             <div class="col-11 m-auto" id="">
                                 <progress class="barra_progreso_small mt-2" max="$secs_totales" value="{$progreso['segundos']}"></progress>
@@ -635,13 +628,13 @@ html;
                         </p>-->
         
 html;
-                    if ($value['status'] == 2 || $porcentaje >= 80) {
-                        $card_congresos .= <<<html
+            if ($value['status'] == 2 || $porcentaje >= 80) {
+                $card_congresos .= <<<html
                             <!--<div class="ms-3 me-3 msg-encuesta px-2 py-1">Se ha habilitado un examen para este taller</div><br><br>-->
 html;
-                    }
-        
-                    $card_congresos .= <<<html
+            }
+
+            $card_congresos .= <<<html
                     </a>
         
                     <div>
@@ -680,7 +673,7 @@ html;
 
         $cursos = TalleresDao::getAllProductCongresosNotInUser($_SESSION['user_id']);
 
-        $costoUser  = RegisterDao::getUserById($_SESSION['user_id'])[0]['amout_due'];        
+        $costoUser  = RegisterDao::getUserById($_SESSION['user_id'])[0]['amout_due'];
 
 
         foreach ($cursos as $key => $value) {
@@ -696,15 +689,15 @@ html;
             $porcentaje = round(($progreso['segundos'] * 100) / $secs_totales);
 
             $pendientes_pago = TalleresDao::getProductosPendientesPago($_SESSION['user_id'], $value['id_producto'])[0];
-            
 
 
-            if(isset($pendientes_pago['status'])){
 
-                if($pendientes_pago['status'] == 0){
+            if (isset($pendientes_pago['status'])) {
+
+                if ($pendientes_pago['status'] == 0) {
                     //echo "pendiente pago";
 
-                $card_congresos .= <<<html
+                    $card_congresos .= <<<html
     
     
                 <div class="col-12 col-md-4 mt-3">
@@ -720,18 +713,18 @@ html;
                 
 html;
 
-                                $like = TalleresDao::getlikeProductCurso($value['id_producto'], $_SESSION['user_id']);
-                                if ($like['status'] == 1) {
-                                    $card_congresos .= <<<html
+                    $like = TalleresDao::getlikeProductCurso($value['id_producto'], $_SESSION['user_id']);
+                    if ($like['status'] == 1) {
+                        $card_congresos .= <<<html
                                 <span id="video_{$value['clave']}" data-clave="{$value['clave']}" class="fas fa-heart heart-like p-2"></span>
 html;
-                                } else {
-                                    $card_congresos .= <<<html
+                    } else {
+                        $card_congresos .= <<<html
                                 <span id="video_{$value['clave']}" data-clave="{$value['clave']}" class="fas fa-heart heart-not-like p-2"></span>
 html;
-                                }
+                    }
 
-                $card_congresos .= <<<html
+                    $card_congresos .= <<<html
                                 <!-- <div class="row">
                                         <div class="col-11 m-auto" id="">
                                             <progress class="barra_progreso_small mt-2" max="$secs_totales" value="{$progreso['segundos']}"></progress>
@@ -749,15 +742,15 @@ html;
                             </p>-->
 
 html;
-                        if ($value['status'] == 2 || $porcentaje >= 80) {
-                            $card_congresos .= <<<html
+                    if ($value['status'] == 2 || $porcentaje >= 80) {
+                        $card_congresos .= <<<html
                                 <!--<div class="ms-3 me-3 msg-encuesta px-2 py-1">Se ha habilitado un examen para este taller</div><br><br>-->
 html;
-            }
-                $link_parametro_user_id = base64_encode($_SESSION['user_id']);
-                $link_parametro_id_producto = base64_encode($value['id_producto']);
+                    }
+                    $link_parametro_user_id = base64_encode($_SESSION['user_id']);
+                    $link_parametro_id_producto = base64_encode($value['id_producto']);
 
-                $card_congresos .= <<<html
+                    $card_congresos .= <<<html
                             <!--</a>-->
 
                         <div>                
@@ -794,11 +787,11 @@ html;
             // });
         </script>
 html;
+                }
+                if ($pendientes_pago['status'] == 2) {
+                    //echo "no se pudo validar el pago";
 
-            }if($pendientes_pago['status'] == 2){
-            //echo "no se pudo validar el pago";
-
-            $card_congresos .= <<<html
+                    $card_congresos .= <<<html
 
 
             <div class="col-12 col-md-4 mt-3">
@@ -814,18 +807,18 @@ html;
 
 html;
 
-                $like = TalleresDao::getlikeProductCurso($value['id_producto'], $_SESSION['user_id']);
-                if ($like['status'] == 1) {
-                    $card_congresos .= <<<html
+                    $like = TalleresDao::getlikeProductCurso($value['id_producto'], $_SESSION['user_id']);
+                    if ($like['status'] == 1) {
+                        $card_congresos .= <<<html
                 <span id="video_{$value['clave']}" data-clave="{$value['clave']}" class="fas fa-heart heart-like p-2"></span>
 html;
-                } else {
-                    $card_congresos .= <<<html
+                    } else {
+                        $card_congresos .= <<<html
                 <span id="video_{$value['clave']}" data-clave="{$value['clave']}" class="fas fa-heart heart-not-like p-2"></span>
 html;
-                }
+                    }
 
-                $card_congresos .= <<<html
+                    $card_congresos .= <<<html
                                 <!-- <div class="row">
                                         <div class="col-11 m-auto" id="">
                                             <progress class="barra_progreso_small mt-2" max="$secs_totales" value="{$progreso['segundos']}"></progress>
@@ -888,12 +881,10 @@ html;
                     // });
                     </script>
 html;
-
-
-                }else {
+                } else {
                     //echo "pagado";
                 }
-            }else{
+            } else {
                 //echo "comprar";
                 $card_congresos .= <<<html
     
@@ -911,16 +902,16 @@ html;
                 
 html;
 
-                                $like = TalleresDao::getlikeProductCurso($value['id_producto'], $_SESSION['user_id']);
-                                if ($like['status'] == 1) {
-                                    $card_congresos .= <<<html
+                $like = TalleresDao::getlikeProductCurso($value['id_producto'], $_SESSION['user_id']);
+                if ($like['status'] == 1) {
+                    $card_congresos .= <<<html
                                 <span id="video_{$value['clave']}" data-clave="{$value['clave']}" class="fas fa-heart heart-like p-2"></span>
 html;
-                                } else {
-                                    $card_congresos .= <<<html
+                } else {
+                    $card_congresos .= <<<html
                                 <span id="video_{$value['clave']}" data-clave="{$value['clave']}" class="fas fa-heart heart-not-like p-2"></span>
 html;
-                                }
+                }
 
                 $card_congresos .= <<<html
                                 <!-- <div class="row">
@@ -940,11 +931,11 @@ html;
                             </p>-->
 
 html;
-                        if ($value['status'] == 2 || $porcentaje >= 80) {
-                            $card_congresos .= <<<html
+                if ($value['status'] == 2 || $porcentaje >= 80) {
+                    $card_congresos .= <<<html
                                 <!--<div class="ms-3 me-3 msg-encuesta px-2 py-1">Se ha habilitado un examen para este taller</div><br><br>-->
 html;
-            }
+                }
 
                 $card_congresos .= <<<html
                             <!--</a>-->
@@ -976,12 +967,11 @@ html;
         </script>
 html;
 
-            $cost = ['amout_due'=> $costoUser];
-            $value = array_merge($value, $cost);
-            // array_push($value, ['amout_due'=>$costoUser]);
-            $modalComprar .= $this->generateModalComprar($value);
+                $cost = ['amout_due' => $costoUser];
+                $value = array_merge($value, $cost);
+                // array_push($value, ['amout_due'=>$costoUser]);
+                $modalComprar .= $this->generateModalComprar($value);
             }
-        
         }
 
         //CONGRESOS SIN COMPRAR
@@ -1000,13 +990,323 @@ html;
         View::render("talleres_all");
     }
 
+    public function byProducts()
+    {
+
+        // $user_email = $_GET['e'];
+        // $user_email = base64_decode($user_email);
+
+
+
+        $data_user = HomeDao::getDataUser($this->__usuario);
+
+        $header = <<<html
+        <!DOCTYPE html>
+        <html lang="es">
+        
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/logo_lasra.png">
+            <link rel="icon" type="image/png" href="/assets/img/logo_lasra.png">
+            <title>
+               LASRA - GRUPO LAHE
+            </title>
+            <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+            <!-- Nucleo Icons -->
+            <link href="../../assets/css/nucleo-icons.css" rel="stylesheet" />
+            <link href="../../assets/css/nucleo-svg.css" rel="stylesheet" />
+            <!-- Font Awesome Icons -->
+            <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+            <link href="../../assets/css/nucleo-svg.css" rel="stylesheet" />
+            <!-- CSS Files -->
+            <link id="pagestyle" href="../../assets/css/soft-ui-dashboard.css?v=1.0.5" rel="stylesheet" />
+            <!-- TEMPLATE VIEJO-->
+            <link rel="stylesheet" href="/css/alertify/alertify.core.css" />
+            <link rel="stylesheet" href="/css/alertify/alertify.default.css" id="toggleCSS" />
+
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
+
+            <!--     Fonts and icons     -->
+            <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+            <!-- Nucleo Icons -->
+            <link href="../../assets/css/nucleo-icons.css" rel="stylesheet" />
+            <link href="../../assets/css/nucleo-svg.css" rel="stylesheet" />
+            <!-- Font Awesome Icons -->
+            <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+            <link href="../../assets/css/nucleo-svg.css" rel="stylesheet" />
+            <!-- CSS Files -->
+            <link id="pagestyle" href="../../assets/css/soft-ui-dashboard.css?v=1.0.5" rel="stylesheet" />
+
+            <link rel="stylesheet" href="/css/alertify/alertify.default.css" id="toggleCSS" />
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+              
+            <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
+            <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
+            
+            <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
+            <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
+
+           <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+           <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+           <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+           <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+           <script charset="UTF-8" src="//web.webpushs.com/js/push/9d0c1476424f10b1c5e277f542d790b8_1.js" async></script>
+           
+            <!-- TEMPLATE VIEJO-->
+
+            <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+            <!-- Nucleo Icons -->
+            <link href="../../../assets/css/nucleo-icons.css" rel="stylesheet" />
+            <link href="../../../assets/css/nucleo-svg.css" rel="stylesheet" />
+            <!-- Font Awesome Icons -->
+            <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+            <link href="../../../assets/css/nucleo-svg.css" rel="stylesheet" />
+            <!-- CSS Files -->
+            <link id="pagestyle" href="../../../assets/css/soft-ui-dashboard.css?v=1.0.5" rel="stylesheet" />
+            <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+            <link href="//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+            <style>
+            .select2-container--default .select2-selection--single {
+            height: 38px!important;
+            border-radius: 8px!important;
+            
+            }
+            .select2-container {
+              width: 100%!important;
+              
+          }
+           
+            </style>
+        </head>
+html;
+
+
+
+
+        $productos_pendientes_comprados = HomeDao::getProductosPendComprados($data_user['user_id']);
+        $checks = '';
+        $checked = '';
+        $total_productos = 0;
+        $total_pago = 0;
+        $check_disabled = '';
+        $array_precios = [];
+        $array_productos = [];
+
+
+
+        // // $clave = HomeDao::getProductosPendCompradosClave($data_user['user_id'])[0]['clave'];
+
+        // $clave = HomeDao::getLastQrPendientePago($data_user['user_id'])['clave'];
+
+
+        // if($clave != ""){
+        //     // $src_qr = '/qrs/'.$productos_pendientes_comprados[0]['clave'].'.png';
+        //     $src_qr = '/qrs/'.$clave.'.png';           
+        //     // $btn_block = 'style = "display:none"';
+        //     // $check_disabled = 'disabled';
+        // }else{
+        //     $src_qr = '';
+        //     $btn_block = '';
+
+        // }   
+
+
+        // if(count($productos_pendientes_comprados) > 0){
+        foreach ($productos_pendientes_comprados as $key => $value) {
+            $disabled = '';
+            $checked = '';
+            $pend_validar = '';
+
+            if ($value['es_congreso'] == 1 && $value['nombre_producto'] == "V Congreso LASRA México (socio)") {
+                $precio = $value['precio_publico'];
+            } elseif ($value['es_congreso'] == 1) {
+                $precio = $value['amout_due'];
+            } else if ($value['es_servicio'] == 1 && $value['clave_socio'] == "") {
+                $precio = $value['precio_publico'];
+            } else if ($value['es_servicio'] == 1 && $value['clave_socio'] != "") {
+                $precio = $value['precio_socio'];
+            } else if ($value['es_curso'] == 1  && $value['clave_socio'] == "") {
+                $precio = $value['precio_publico'];
+            } else if ($value['es_curso'] == 1  && $value['clave_socio'] != "") {
+                $precio = $value['precio_socio'];
+            }
+
+            $count_producto = HomeDao::getCountProductos($data_user['user_id'], $value['id_producto'])[0];
+
+
+
+            if ($value['estatus_compra'] == 1) {
+                $disabled = 'disabled';
+                $checked = 'checked';
+                $pend_validar = 'Pagado y validado por LASRA';
+                // $btn_imp = '';
+                // $productos_pendientes_comprados[0]['clave'].'" target="blank_">Imprimir Formato de Pago</a>';
+                // $ocultar = 'display:none;';
+
+            } else if ($value['estatus_compra'] == null) {
+                $pend_validar = 'Pendiente de Pagar';
+                // $btn_imp = '<a class="btn btn-primary" href="/Home/print/'.$productos_pendientes_comprados[0]['clave'].'" target="blank_">Imprimir Formato de Pago</a>';
+                // $ocultar = '';
+                $disabled = 'disabled';
+                $checked = 'checked';
+                $total_productos += $count_producto['numero_productos'];
+                $total_pago += $count_producto['numero_productos'] * $precio;
+                array_push($array_precios, ['id_product' => $value['id_producto'], 'precio' => $precio, 'cantidad' => $count_producto['numero_productos']]);
+                array_push($array_productos, ['id_product' => $value['id_producto'], 'precio' => $precio, 'cantidad' => $count_producto['numero_productos'], 'nombre_producto' => $value['nombre_producto']]);
+            }
+
+            if ($value['max_compra'] <= 1) {
+                $numero_productos = '<input type="number" id="numero_articulos' . $value['id_producto'] . '" name="numero_articulos" value="' . $value['max_compra'] . '" style="border:none;" readonly>';
+            } else {
+                $numero_productos = '<select class="form-control select_numero_articulos" id="numero_articulos' . $value['id_producto'] . '" name="numero_articulos" data-id-producto="' . $value['id_producto'] . '" data-precio="' . $precio . '" data-nombre-producto="' . $value['nombre_producto'] . '" ' . $disabled . '>';
+                for ($i = 1; $i <= $value['max_compra']; $i++) {
+                    $numero_productos .= '<option value="' . $i . '">' . $i . '</option>';
+                }
+                $numero_productos .= '</select>';
+            }
+
+            $checks .= <<<html
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-check">
+                    <input class="form-check-input checks_product" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" {$disabled} {$checked} data-precio="{$precio}" data-precio-socio="{$value['precio_socio']}" data-nombre-producto="{$value['nombre_producto']}">
+                    <label class="form-check-label" for="check_curso_{$value['id_producto']}">
+                        {$value['nombre_producto']} <span style="font-size: 13px; text-decoration: underline; color: green;">{$pend_validar}</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <span class="cont_precio" id="cont_precio_{$value['id_producto']}">{$precio} <span>- {$value['tipo_moneda']}
+            </div>
+
+            <div class="col-md-2">
+                {$numero_productos}
+            </div>
+        </div>
+
+        <hr>
+html;
+
+            $numero_productos = '';
+        }
+        // }
+        $clave = $this->generateRandomString();
+
+        $productos_no_comprados = HomeDao::getProductosNoComprados($data_user['user_id']);
+
+        foreach ($productos_no_comprados as $key => $value) {
+
+
+            // if($data_user['amout_due'] != null || $data_user['amout_due'] != ''){
+
+            // if($value['es_congreso'] == 1){
+            //     $precio = $data_user['amout_due'];
+            // }else if($value['es_servicio'] == 1){
+            //     $precio = $value['precio_publico'];
+            // }else if($value['es_curso'] == 1){
+            //     $precio = $value['precio_publico'];
+            // }
+            // }else{
+            //     $precio = $value['precio_publico'];
+            // }
+
+            //Esto se tiene que modificar por el nombre prducto 
+            if ($value['es_congreso'] == 1 && $value['nombre_producto'] == "V Congreso LASRA México (socio)") {
+                $precio = $value['precio_publico'];
+            } elseif ($value['es_congreso'] == 1) {
+                $precio = $value['amout_due'];
+            } else if ($value['es_servicio'] == 1 && $value['clave_socio'] == "") {
+                $precio = $value['precio_publico'];
+            } else if ($value['es_servicio'] == 1 && $value['clave_socio'] != "") {
+                $precio = $value['precio_socio'];
+            } else if ($value['es_curso'] == 1  && $value['clave_socio'] == "") {
+                $precio = $value['precio_publico'];
+            } else if ($value['es_curso'] == 1  && $value['clave_socio'] != "") {
+                $precio = $value['precio_socio'];
+            }
+
+            if ($value['max_compra'] <= 1) {
+                $numero_productos = '<input type="number" id="numero_articulos' . $value['id_producto'] . '" name="numero_articulos" value="' . $value['max_compra'] . '" style="border:none;" readonly>';
+            } else {
+                $numero_productos = '<select class="form-control select_numero_articulos" id="numero_articulos' . $value['id_producto'] . '" name="numero_articulos" data-id-producto="' . $value['id_producto'] . '"  data-precio="' . $precio . '" data-nombre-producto="' . $value['nombre_producto'] . '">';
+                for ($i = 1; $i <= $value['max_compra']; $i++) {
+                    $numero_productos .= '<option value="' . $i . '">' . $i . '</option>';
+                }
+                $numero_productos .= '</select>';
+            }
+
+            $checks .= <<<html
+
+            <div class="row">
+                 <div class="col-md-8">
+                     <div class="form-check">
+                         <input class="form-check-input checks_product" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" data-precio="{$precio}" data-precio-socio="{$value['precio_socio']}" data-nombre-producto="{$value['nombre_producto']}" {$check_disabled}>
+                         <label class="form-check-label" for="check_curso_{$value['id_producto']}">
+                             {$value['nombre_producto']}
+                         </label>
+                     </div>
+                 </div>
+               
+                 <div class="col-md-2">
+                     <span class="cont_precio" id="cont_precio_{$value['id_producto']}">{$precio} <span>- {$value['tipo_moneda']}
+                 </div>
+
+                 <div class="col-md-2">
+                        {$numero_productos}
+                 </div>
+
+             </div>
+
+             <hr>
+html;
+
+            $numero_productos = '';
+        }
+
+        $tipo_cambio = HomeDao::getTipoCambio();
+
+        // $total_mx = intval($total_pago) * floatval($tipo_cambio['tipo_cambio']);
+        $total_mx = intval($total_pago);
+
+
+        View::set('header', $header);
+        View::set('datos', $data_user);
+        View::set('clave', $clave);
+        View::set('checks', $checks);
+        // View::set('src_qr',$src_qr); 
+        // View::set('btn_block',$btn_block); 
+        View::set('total_productos', $total_productos);
+        View::set('total_pago', $total_pago);
+        View::set('total_pago_mx', $total_mx);
+        // View::set('btn_imp',$btn_imp); 
+        // View::set('ocultar',$ocultar);
+        View::set('tipo_cambio', $tipo_cambio['tipo_cambio']);
+        View::set('array_precios', $array_precios);
+        View::set('array_productos', $array_productos);
+        View::render("buy_products_plataforma");
+    }
+
     public function generateModalComprar($datos)
     {
-        if(isset($datos['amout_due'])){
-            $precio_curso = '$ '.$datos['amout_due'] ." ".$datos['tipo_moneda'];
+        if (isset($datos['amout_due'])) {
+            $precio_curso = '$ ' . $datos['amout_due'] . " " . $datos['tipo_moneda'];
             $solo_precio_curso = $datos['amout_due'];
-        }else{
-            $precio_curso = '$ '.$datos['precio_publico']." ".$datos['tipo_moneda'];
+        } else {
+            $precio_curso = '$ ' . $datos['precio_publico'] . " " . $datos['tipo_moneda'];
             $solo_precio_curso = $datos['precio_publico'];
         }
 
@@ -1104,7 +1404,8 @@ html;
         return $modal;
     }
 
-    public function AsignarCursoSocio(){
+    public function AsignarCursoSocio()
+    {
 
         $id_pro = $_POST['id_producto'];
         $prorducto = TalleresDao::getPorductById($id_pro);
@@ -1112,7 +1413,7 @@ html;
         $clave = $this->generateRandomString();
 
 
-        $documento = new \stdClass();  
+        $documento = new \stdClass();
 
         $nombre_curso = $prorducto['nombre'];
         $id_producto = $id_pro;
@@ -1133,19 +1434,19 @@ html;
         $documento->_status = $status;
 
         $id = TalleresDao::inserPendientePago($documento);
-        if($id){
+        if ($id) {
             $data = new \stdClass();
             $data->_user_id = $user_id;
-            $data->_id_producto = $id_pro;    
+            $data->_id_producto = $id_pro;
 
             $insertAsiganProducto = TalleresDao::insertAsignaProducto($data);
 
-            if($insertAsiganProducto){
+            if ($insertAsiganProducto) {
                 echo "success";
-            }else{
+            } else {
                 echo "fail";
             }
-        }else{
+        } else {
             echo "fail";
         }
     }
@@ -1671,7 +1972,8 @@ html;
         }
     }
 
-    public function Cart(){
+    public function Cart()
+    {
         $extraHeader = <<<html
 html;
         $extraFooter = <<<html
@@ -1776,29 +2078,27 @@ html;
         $precios = array();
         $total = 0;
 
-        foreach($productos as $key => $value){
+        foreach ($productos as $key => $value) {
             // echo $value['precio_publico'];
-            if($value['es_congreso'] == 1 && $value['clave_socio'] == ""){
+            if ($value['es_congreso'] == 1 && $value['clave_socio'] == "") {
                 $precio = $value['amout_due'];
-            }elseif($value['es_congreso'] == 1 && $value['clave_socio'] != ""){
+            } elseif ($value['es_congreso'] == 1 && $value['clave_socio'] != "") {
                 $precio = $value['amout_due'];
-            }
-            else if($value['es_servicio'] == 1 && $value['clave_socio'] == ""){
+            } else if ($value['es_servicio'] == 1 && $value['clave_socio'] == "") {
                 $precio = $value['precio_publico'];
-            }else if($value['es_servicio'] == 1 && $value['clave_socio'] != ""){
+            } else if ($value['es_servicio'] == 1 && $value['clave_socio'] != "") {
+                $precio = $value['precio_socio'];
+            } else if ($value['es_curso'] == 1  && $value['clave_socio'] == "") {
+                $precio = $value['precio_publico'];
+            } else if ($value['es_curso'] == 1  && $value['clave_socio'] != "") {
                 $precio = $value['precio_socio'];
             }
-            else if($value['es_curso'] == 1  && $value['clave_socio'] == ""){
-                $precio = $value['precio_publico'];
-            }else if($value['es_curso'] == 1  && $value['clave_socio'] != ""){
-                $precio = $value['precio_socio'];
-            }
-            array_push($precios,$precio);
+            array_push($precios, $precio);
         }
 
-        if(count($productos) >= 1){
+        if (count($productos) >= 1) {
             $style = 'display:flex;';
-        }else{
+        } else {
             $style = 'display:none';
         }
 
@@ -1807,44 +2107,43 @@ html;
         //get productos
         $nombres_productos = '';
         $productos = TalleresDao::getCarritoByIdUser($_SESSION['user_id']);
-        foreach($productos as $key => $value){
+        foreach ($productos as $key => $value) {
             // array_push($nombres_productos,$value['nombre']);
-            $nombres_productos .= $value['nombre'].", ";
+            $nombres_productos .= $value['nombre'] . ", ";
         }
         $nombres_productos = substr($nombres_productos, 0, -2);
         $clave = $this->generateRandomString();
 
-        View::set('clave',$clave);
-        View::set('producto_s',$nombres_productos);
+        View::set('clave', $clave);
+        View::set('producto_s', $nombres_productos);
         View::set('header', $this->_contenedor->header($extraHeader));
         View::set('footer', $this->_contenedor->footer($extraFooter));
-        View::set('tabla',$this->getAllProductsCartByUser($_SESSION['user_id']));
-        View::set('style',$style);
-        View::set('total',intval($total));
+        View::set('tabla', $this->getAllProductsCartByUser($_SESSION['user_id']));
+        View::set('style', $style);
+        View::set('total', intval($total));
         View::render("carrito");
     }
 
-    public function getAllProductsCartByUser($id_user){
+    public function getAllProductsCartByUser($id_user)
+    {
 
         $html = "";
         foreach (TalleresDao::getCarritoByIdUser($id_user) as $key => $value) {
 
-            if($value['es_congreso'] == 1 && $value['clave_socio'] == ""){
+            if ($value['es_congreso'] == 1 && $value['clave_socio'] == "") {
                 $precio = $value['amout_due'];
-            }elseif($value['es_congreso'] == 1 && $value['clave_socio'] != ""){
+            } elseif ($value['es_congreso'] == 1 && $value['clave_socio'] != "") {
                 $precio = $value['amout_due'];
-            }
-            else if($value['es_servicio'] == 1 && $value['clave_socio'] == ""){
+            } else if ($value['es_servicio'] == 1 && $value['clave_socio'] == "") {
                 $precio = $value['precio_publico'];
-            }else if($value['es_servicio'] == 1 && $value['clave_socio'] != ""){
+            } else if ($value['es_servicio'] == 1 && $value['clave_socio'] != "") {
+                $precio = $value['precio_socio'];
+            } else if ($value['es_curso'] == 1  && $value['clave_socio'] == "") {
+                $precio = $value['precio_publico'];
+            } else if ($value['es_curso'] == 1  && $value['clave_socio'] != "") {
                 $precio = $value['precio_socio'];
             }
-            else if($value['es_curso'] == 1  && $value['clave_socio'] == ""){
-                $precio = $value['precio_publico'];
-            }else if($value['es_curso'] == 1  && $value['clave_socio'] != ""){
-                $precio = $value['precio_socio'];
-            }
-            
+
             $html .= <<<html
             <tr>
                 <td >
@@ -1875,9 +2174,9 @@ html;
                
         </tr>
 html;
-        }    
-        
-        if($html == ""){
+        }
+
+        if ($html == "") {
 
             $html .= <<<html
 
@@ -1905,48 +2204,45 @@ html;
                 
             </tr>
 html;
-
         }
-       
+
         return $html;
     }
 
-    public function getNumberPorducts(){
+    public function getNumberPorducts()
+    {
 
         $user_id = $_SESSION['user_id'];
 
         $getNumberProducts = TalleresDao::getProductsNumber($user_id)[0]['total_productos'];
 
         echo $getNumberProducts;
-
     }
 
 
-    public function searchProductCart(){
+    public function searchProductCart()
+    {
         $id_producto = $_POST['id_producto'];
         $data = [];
-        $getProductCart = TalleresDao::getProductCart($_SESSION['user_id'],$id_producto);
+        $getProductCart = TalleresDao::getProductCart($_SESSION['user_id'], $id_producto);
 
-        if($getProductCart){
+        if ($getProductCart) {
             $data = [
                 "msg" => "Este producto ya esta en su cesta",
                 "status" => "warning"
             ];
-        }else{
+        } else {
             $data = [
-                "status"=>"success"
+                "status" => "success"
             ];
         }
 
         echo json_encode($data);
-
-
-
     }
 
     // public function cartShopping(){
     //     $id_producto =  $_POST['id_producto'];
-        
+
 
     //     // $producto = TalleresDao::getProductoById($id_producto);
 
@@ -1980,9 +2276,10 @@ html;
     //     echo json_encode($data);
     // }
 
-    public function cartShopping(){
+    public function cartShopping()
+    {
         $id_producto =  $_POST['id_producto'];
-        
+
         // if($id_producto == 24){
         //     $id_p1 = 25;
         //     $id_p2 = 26; 
@@ -2001,26 +2298,26 @@ html;
         // }
         // $producto = TalleresDao::getProductoById($id_producto);
 
-        $getProductCart = TalleresDao::getProductCart($_SESSION['user_id'],$id_producto);
+        $getProductCart = TalleresDao::getProductCart($_SESSION['user_id'], $id_producto);
 
-        if($getProductCart){
+        if ($getProductCart) {
             $data = [
                 "msg" => "Este producto ya esta en su cesta",
                 "status" => "warning"
             ];
-        }else{
+        } else {
             $documento = new \stdClass();
             $documento->_id_producto = $id_producto;
             $documento->_user_id = $_SESSION['user_id'];
 
             $insertProductCart = TalleresDao::insertProductCart($documento);
 
-            if($insertProductCart){
+            if ($insertProductCart) {
                 $data = [
                     "msg" => "Se ingreso el producto a su cesta",
                     "status" => "success"
                 ];
-            }else{
+            } else {
                 $data = [
                     "msg" => "Error al gurdar el producto",
                     "status" => "error"
@@ -2031,21 +2328,20 @@ html;
         echo json_encode($data);
     }
 
-    public function remove(){
+    public function remove()
+    {
         $id = $_POST['id'];
 
         $delete = TalleresDao::deleteItem($id);
 
-        if($delete){
+        if ($delete) {
             echo "success";
-        }else{
+        } else {
             echo "fail";
         }
-
-        
     }
 
-    
+
 
     public function saveChat()
     {
@@ -2087,7 +2383,7 @@ html;
 
 
 
-    
+
     public function savePregunta()
     {
         $pregunta = $_POST['txt_pregunta'];
@@ -2130,7 +2426,7 @@ html;
 
 
 
-    
+
     public function guardarRespuestas()
     {
         $respuestas = $_POST['list_r'];
@@ -2176,11 +2472,7 @@ html;
 
         TalleresDao::updateProgresoFechaProducto($curso, $_SESSION['user_id'], $progreso);
 
-            echo 'minuto ' . $progreso . ' ' . $curso;
-        
-
-
-        
+        echo 'minuto ' . $progreso . ' ' . $curso;
     }
 
     public function Vistas()
@@ -2259,6 +2551,4 @@ html;
     {
         return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
     }
-
-    
 }

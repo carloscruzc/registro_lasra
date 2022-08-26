@@ -49,7 +49,7 @@ sql;
     $query = <<<sql
       SELECT p.*
       FROM productos p
-      WHERE p.id_producto not in (SELECT id_producto FROM asigna_producto WHERE  user_id = $id) and p.es_congreso = 1 ORDER BY p.id_producto ASC
+      WHERE p.id_producto not in (SELECT id_producto FROM asigna_producto WHERE  user_id = $id) and p.es_congreso = 1 or p.es_servicio ORDER BY p.id_producto ASC
 sql;
     return $mysqli->queryAll($query);
   }

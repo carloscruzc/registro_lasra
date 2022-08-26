@@ -141,14 +141,14 @@ class Mailer
             $mail->isSMTP();                                            //Send using SMTP
             $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-            $mail->Username   = 'congresoamh2022@gmail.com';                     //SMTP username
-            $mail->Password   = 'qjawdupyevbeqbtw';                               //SMTP password
+            $mail->Username   = 'anestesiaregisonal@gmail.com';                     //SMTP username
+            $mail->Password   = 'rtjkdhbmxkohnsmd';                               //SMTP password
             $mail->SMTPSecure = 'ssl';
             $mail->SMTPAutoTLS = false;            //Enable implicit TLS encryption
             $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
             //Recipients
-            $mail->setFrom($msg['email'], 'AMH 2022 Registro');
+            $mail->setFrom($msg['email'], 'LASRA 2022 Registro');
             $mail->addAddress($msg['email'], 'a');     //Add a recipient
 
            
@@ -216,11 +216,11 @@ class Mailer
                     </p>
     
                     <p>
-                        a) Número de cuenta: XXXXXXXXX
+                        a) Número de cuenta: 0110402915
                         <br>
-                        b)	Banco: XXXXXX
+                        b)	Banco: BBVA
                         <br>
-                        c)	Nombre:
+                        c)	Nombre: LASRA MÉXICO AC
                     </p>
                     <p>
                         <b>Referencia:</b> '.$msg['referencia'].'
@@ -235,9 +235,7 @@ class Mailer
                         Recuerde que su lugar en el congreso no se confirmará hasta que se reciba el pago completo y se le haya enviado un correo electrónico de confirmación. Las reservas incompletas se cancelarán después de la fecha límite de pago indicada anteriormente.
                     </p>
     
-                    <p>
-                        Si tiene alguna consulta o no recibe su código de confirmación dentro de los dos días hábiles posteriores a la realización de su pago, envíe su recibo bancario por correo electrónico a 
-                    </p>
+                    
                     
                 </div>
                 

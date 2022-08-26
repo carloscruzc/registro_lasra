@@ -408,7 +408,7 @@ html;
         $apellidop = $_POST['apellidop'];
         $apellidom = $_POST['apellidom'];
         $telephone = $_POST['telephone'];
-        $categorias = $_POST['categorias'];
+        $categorias = 5;//por ahora se deja por default la categoria 5  $_POST['categorias'];
         $especialidades = $_POST['especialidades'];
         $nationality = $_POST['nationality'];
         $state = $_POST['state'];
@@ -783,6 +783,7 @@ html;
             $disabled = '';
             $checked = '';
             $pend_validar ='';
+            $fecha = $value['fecha_producto'];
 
             if($value['es_congreso'] == 1){
                 $precio = $value['amout_due'];
@@ -842,7 +843,7 @@ html;
                     <div class="form-check">
                         <input class="form-check-input checks_product" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" {$disabled} {$checked} data-precio="{$precio}" data-precio-socio="{$value['precio_socio']}" data-nombre-producto="{$value['nombre_producto']}">
                         <label class="form-check-label" for="check_curso_{$value['id_producto']}">
-                            {$value['tipo']} {$value['nombre_producto']} <span style="font-size: 13px; text-decoration: underline; color: green;">{$pend_validar}</span>
+                            {$value['tipo']} {$value['nombre_producto']} - {$fecha} <span style="font-size: 13px; text-decoration: underline; color: green;">{$pend_validar}</span>
                         </label>
                     </div>
                 </div>
@@ -867,19 +868,17 @@ html;
 
         foreach($productos_no_comprados as $key => $value) {
 
-            
-            // if($data_user['amout_due'] != null || $data_user['amout_due'] != ''){
+            $f = $value['fecha_producto'];
+            $fechas = explode(" ", $f);
+            $f1 = $fechas[0]; 
 
-                // if($value['es_congreso'] == 1){
-                //     $precio = $data_user['amout_due'];
-                // }else if($value['es_servicio'] == 1){
-                //     $precio = $value['precio_publico'];
-                // }else if($value['es_curso'] == 1){
-                //     $precio = $value['precio_publico'];
-                // }
-            // }else{
-            //     $precio = $value['precio_publico'];
-            // }
+
+            if($value['tipo'] == 'Taller'){
+                $fecha = $f1;
+            }else{
+                $fecha = '';
+            }
+
 
             
             //Esto se tiene que modificar por el nombre prducto 
@@ -918,7 +917,7 @@ html;
                      <div class="form-check">
                          <input class="form-check-input checks_product" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" data-precio="{$precio}" data-precio-socio="{$value['precio_socio']}" data-nombre-producto="{$value['nombre_producto']}" {$check_disabled}>
                          <label class="form-check-label" for="check_curso_{$value['id_producto']}">
-                         {$value['tipo']} {$value['nombre_producto']}
+                         {$value['tipo']} {$value['nombre_producto']} - {$fecha}
                          </label>
                      </div>
                  </div>

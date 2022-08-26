@@ -123,14 +123,14 @@ echo $header;
                                                                     <div class="row mt-3">
 
 
-                                                                        <div class="col-12 col-sm-4" id="cont-categoria">
+                                                                        <!-- <div class="col-12 col-sm-4" id="cont-categoria">
 
                                                                             <label>Categoria *</label>
                                                                             <select class="multisteps-form__select form-control all_input_select" name="categorias" id="categorias" disabled>
                                                                                 <option value="" disabled selected>Selecciona una Opción</option>
                                                                             </select>
 
-                                                                        </div>
+                                                                        </div> -->
 
                                                                         <div class="col-12 col-sm-4" id="cont-clave-socio" style="display: none;">
                                                                             <label id="label-clave-socio">Clave Socio *</label>

@@ -380,23 +380,14 @@
 
                     }
 
-
-
                     //validaciones para los talleres simultaneos 
 
-                    if (nombre_producto == 'INDISPENSABLE') {
-                        $("#check_curso_25").attr('disabled', 'disabled');
-                        $("#check_curso_26").attr('disabled', 'disabled');
+                    if (nombre_producto == 'INDISPENSABLE BLOQUEOS BASICOS MIEMBRO SUPERIOR/MIEMBRO INFERIOR') {
+                        $("#check_curso_27").attr('disabled', 'disabled');
                     }
 
-                    if (nombre_producto == 'BLOQUEOS BASICOS') {
+                    if (nombre_producto == 'PERFUSIONES INTRAVENOSAS PARA SEDACIÓN DE LO MANUAL A TCI') {
                         $("#check_curso_24").attr('disabled', 'disabled');
-                        $("#check_curso_26").attr('disabled', 'disabled');
-                    }
-
-                    if (nombre_producto == 'MIEMBRO SUPERIOR/MIEMBRO INFERIOR') {
-                        $("#check_curso_24").attr('disabled', 'disabled');
-                        $("#check_curso_25").attr('disabled', 'disabled');
                     }
 
 
@@ -509,19 +500,12 @@
 
                     //validaciones para los talleres simultaneos 
 
-                    if (nombre_producto == 'INDISPENSABLE') {
-                        $("#check_curso_25").removeAttr('disabled');
-                        $("#check_curso_26").removeAttr('disabled');
+                    if (nombre_producto == 'INDISPENSABLE BLOQUEOS BASICOS MIEMBRO SUPERIOR/MIEMBRO INFERIOR') {
+                        $("#check_curso_27").removeAttr('disabled');
                     }
 
-                    if (nombre_producto == 'BLOQUEOS BASICOS') {
+                    if (nombre_producto == 'PERFUSIONES INTRAVENOSAS PARA SEDACIÓN DE LO MANUAL A TCI') {
                         $("#check_curso_24").removeAttr('disabled');
-                        $("#check_curso_26").removeAttr('disabled');
-                    }
-
-                    if (nombre_producto == 'MIEMBRO SUPERIOR/MIEMBRO INFERIOR') {
-                        $("#check_curso_24").removeAttr('disabled');
-                        $("#check_curso_25").removeAttr('disabled');
                     }
 
                     if (nombre_producto == 'SIMULADORES ESCANEA Y PRACTICA CON MODELO EN SIMULACION') {

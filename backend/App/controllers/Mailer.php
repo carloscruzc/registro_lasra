@@ -250,7 +250,7 @@ class Mailer
 
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
-            $mail->Subject = 'Preregistro AMH';
+            $mail->Subject = 'Preregistro LASRA';
             $mail->Body    = $html;
             $mail->CharSet = 'UTF-8';
 

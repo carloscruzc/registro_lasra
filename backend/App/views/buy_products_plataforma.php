@@ -90,7 +90,7 @@
                                         <input type="hidden" id="tipo_cambio" value="<?= $tipo_cambio ?>">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <p>Productos agregados: <span id="productos_agregados"><?= $total_productos ?></span></p>
+                                                <p>Productos agregados: <span id="productos_agregados"></span></p>
 
                                             </div>
 

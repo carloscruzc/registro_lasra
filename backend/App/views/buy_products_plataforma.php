@@ -750,7 +750,7 @@
                                             Swal.fire("¡Se genero su preregistro, correctamente!", "", "success").
                                             then((value) => {
                                                 // $(".form_compra").submit();
-                                                location.href = '/Login';
+                                                location.href = '/Home';
                                             });
                                         }
 

@@ -1143,6 +1143,17 @@ html;
                 $precio = $value['precio_socio'];
             }
 
+            $f = $value['fecha_producto'];
+            $fechas = explode(" ", $f);
+            $f1 = $fechas[0]; 
+
+
+            if($value['tipo'] == 'Taller'){
+                $fecha = $f1;
+            }else{
+                $fecha = '';
+            }
+
             $count_producto = HomeDao::getCountProductos($data_user['user_id'], $value['id_producto'])[0];
 
 
@@ -1184,7 +1195,7 @@ html;
                 <div class="form-check">
                     <input class="form-check-input checks_product" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" {$disabled} {$checked} data-precio="{$precio}" data-precio-socio="{$value['precio_socio']}" data-nombre-producto="{$value['nombre_producto']}">
                     <label class="form-check-label" for="check_curso_{$value['id_producto']}">
-                        {$value['nombre_producto']} <span style="font-size: 13px; text-decoration: underline; color: green;">{$pend_validar}</span>
+                        {$value['nombre_producto']} - {$fecha} <span style="font-size: 13px; text-decoration: underline; color: green;">{$pend_validar}</span>
                     </label>
                 </div>
             </div>
@@ -1249,6 +1260,17 @@ html;
                 $numero_productos .= '</select>';
             }
 
+            $f = $value['fecha_producto'];
+            $fechas = explode(" ", $f);
+            $f1 = $fechas[0]; 
+
+
+            if($value['tipo'] == 'Taller'){
+                $fecha = $f1;
+            }else{
+                $fecha = '';
+            }
+
             $checks .= <<<html
 
             <div class="row">
@@ -1256,7 +1278,7 @@ html;
                      <div class="form-check">
                          <input class="form-check-input checks_product" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" data-precio="{$precio}" data-precio-socio="{$value['precio_socio']}" data-nombre-producto="{$value['nombre_producto']}" {$check_disabled}>
                          <label class="form-check-label" for="check_curso_{$value['id_producto']}">
-                             {$value['nombre_producto']}
+                             {$value['nombre_producto']} - {$fecha}
                          </label>
                      </div>
                  </div>

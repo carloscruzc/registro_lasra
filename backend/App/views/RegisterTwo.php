@@ -84,7 +84,7 @@ echo $header;
                                                                             y puede expedir comprobantes deducibles de impuestos para personas físicas y 
                                                                             morales mexicanas. Una vez que tu pago haya sido procesado, recibirás tu comprobante 
                                                                             dentro de las primeras 48 horas. En caso de no recibirlo, favor de enviar un correo con 
-                                                                            el comprobante adjunto a secretario@xxx.org.mx. Recuerda que los comprobantes 
+                                                                            el comprobante adjunto a secretario@lasra.org.mx. Recuerda que los comprobantes 
                                                                             fiscales solo pueden ser emitidos en el mes en el cual realizaste tu pago. Si necesitas factura,
                                                                              por favor selecciona la opción en los botones siguientes.
                                                                         </p>

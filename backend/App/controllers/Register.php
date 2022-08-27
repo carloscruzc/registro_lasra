@@ -1115,6 +1115,17 @@ $array_productos = [];
         }else if($value['es_curso'] == 1  && $value['clave_socio'] != ""){
             $precio = $value['precio_socio'];
         }
+
+        $f = $value['fecha_producto'];
+        $fechas = explode(" ", $f);
+        $f1 = $fechas[0]; 
+
+
+        if($value['tipo'] == 'Taller'){
+            $fecha = $f1;
+        }else{
+            $fecha = '';
+        }
         
         $count_producto = HomeDao::getCountProductos($data_user['user_id'],$value['id_producto'])[0];
 
@@ -1123,7 +1134,7 @@ $array_productos = [];
         if($value['estatus_compra'] == 1){
             $disabled = 'disabled';
             $checked = 'checked';
-            $pend_validar ='Pagado y validado por AMH';
+            $pend_validar ='Pagado y validado por LASRA';
             // $btn_imp = '';
             // $productos_pendientes_comprados[0]['clave'].'" target="blank_">Imprimir Formato de Pago</a>';
             // $ocultar = 'display:none;';
@@ -1184,6 +1195,17 @@ html;
 
         foreach($productos_no_comprados as $key => $value) {
 
+            $f = $value['fecha_producto'];
+            $fechas = explode(" ", $f);
+            $f1 = $fechas[0]; 
+
+
+            if($value['tipo'] == 'Taller'){
+                $fecha = $f1;
+            }else{
+                $fecha = '';
+            }
+
             
             // if($data_user['amout_due'] != null || $data_user['amout_due'] != ''){
 
@@ -1233,7 +1255,7 @@ html;
                      <div class="form-check">
                          <input class="form-check-input checks_product" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" data-precio="{$precio}" data-precio-socio="{$value['precio_socio']}" data-nombre-producto="{$value['nombre_producto']}" {$check_disabled}>
                          <label class="form-check-label" for="check_curso_{$value['id_producto']}">
-                             {$value['nombre_producto']}
+                             {$value['nombre_producto']} - {$fecha}
                          </label>
                      </div>
                  </div>

@@ -373,7 +373,7 @@
 
                         if (!$("#check_curso_2").is(":checked")) {
 
-                            Swal.fire('Aviso', 'Para obtener este costo se debe de pagar la anualidad tambien', 'info');
+                            Swal.fire('Aviso', 'Para obtener este costo se debe de pagar la anualidad también', 'info');
                             $("#check_curso_2").prop('checked', true);
                             $("#check_curso_2").attr('disabled', 'disabled');
 

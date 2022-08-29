@@ -47,36 +47,36 @@ echo $header;
                                                     </div>
                                                 </div>
                                                 <!--form panels-->
-                                                <!--<?php var_dump($dataUser);?>-->
+                                                <!--<?php var_dump($dataUser); ?>-->
                                                 <div class="row">
                                                     <div class="col-12 col-lg-12 m-auto">
                                                         <input type="hidden" id="email" name="email" value="<?php echo $dataUser['email'] ?>">
-                                                        <form class="multisteps-form__form" id="add"  method="POST">
+                                                        <form class="multisteps-form__form" id="add" method="POST">
                                                             <!--single form panel-->
-                                                            <input type="hidden" name="dataUser" value='<?php echo serialize($dataUser)?>' >
+                                                            <input type="hidden" name="dataUser" value='<?php echo serialize($dataUser) ?>'>
                                                             <div class="row text-center">
-                                                                    <div class="row text-center">
-                                                                        <div class="row text-center mt-1">
-                                                                            <div class="col-10 mx-auto">
-                                                                                <h5 class="font-weight-normal">Información Fiscal:</h5>
-                                                                                <p class="mb-0 text-sm">
-                                                                                    AVISO SAT: Si usted requiere factura, solo necesitamos la siguiente información para la expedición.
-                                                                            </div>
+                                                                <div class="row text-center">
+                                                                    <div class="row text-center mt-1">
+                                                                        <div class="col-10 mx-auto">
+                                                                            <h5 class="font-weight-normal">Información Fiscal:</h5>
+                                                                            <p class="mb-0 text-sm">
+                                                                                AVISO SAT: Si usted requiere factura, solo necesitamos la siguiente información para la expedición.
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="multisteps-form__content">
-                                                                    <div class="row mt-0">
-                                                                        <div class="row mt-1">
-                                                                            <div class="col-12 col-sm-4">
-                                                                                <label>Razón Social *</label>
-                                                                                <input class="multisteps-form__input form-control" type="text" id="business_name_iva" name="business_name_iva" placeholder="eg. Christopher Prior Jones" maxlength="100" onfocus="focused(this)" onfocusout="defocused(this)">
-                                                                            </div>
-                                                                            <div class="col-12 col-sm-4 mt-1 mt-sm-0">
-                                                                                <label>RFC *</label>
-                                                                                <input class="multisteps-form__input form-control" type="text" id="code_iva" name="code_iva" placeholder="eg. CPJ41250AS" maxlength="13" onfocus="focused(this)" onfocusout="defocused(this)" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                                                                            </div>
-                                                                            <!-- <div class="col-12 col-sm-4 mt-1 mt-sm-0">
+                                                            </div>
+                                                            <div class="multisteps-form__content">
+                                                                <div class="row mt-0">
+                                                                    <div class="row mt-1">
+                                                                        <div class="col-12 col-sm-4">
+                                                                            <label>Razón Social *</label>
+                                                                            <input class="multisteps-form__input form-control" type="text" id="business_name_iva" name="business_name_iva" placeholder="eg. Christopher Prior Jones" maxlength="100" onfocus="focused(this)" onfocusout="defocused(this)">
+                                                                        </div>
+                                                                        <div class="col-12 col-sm-4 mt-1 mt-sm-0">
+                                                                            <label>RFC *</label>
+                                                                            <input class="multisteps-form__input form-control" type="text" id="code_iva" name="code_iva" placeholder="eg. CPJ41250AS" maxlength="13" onfocus="focused(this)" onfocusout="defocused(this)" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                                                        </div>
+                                                                        <!-- <div class="col-12 col-sm-4 mt-1 mt-sm-0">
                                                                                 <label>Método de Pago *</label>
                                                                                 <select class="multisteps-form__select form-control all_input_select" name="payment_method_iva" id="payment_method_iva">
                                                                                     <option value="" disabled selected>Selecciona una Opción</option>
@@ -85,23 +85,51 @@ echo $header;
                                                                                 </select>
                                                                             </div> -->
 
-                                                                            <div class="col-md-4 col-sm-12">
-                                                                                <label>Correo Electrónico facturación * </label>
-                                                                                <input class="multisteps-form__input form-control" type="text" id="email_receipt_iva" name="email_receipt_iva" placeholder="eg. user@domain.com" onfocus="focused(this)" onfocusout="defocused(this)">
-                                                                                <span class="mb-0 text-sm" id="error_email_send" style="display:none;color:red;">Correo electrónico incorrecto</span>
-                                                                            </div>
+                                                                        <div class="col-md-4 col-sm-12">
+                                                                            <label>Correo Electrónico facturación * </label>
+                                                                            <input class="multisteps-form__input form-control" type="text" id="email_receipt_iva" name="email_receipt_iva" placeholder="eg. user@domain.com" onfocus="focused(this)" onfocusout="defocused(this)">
+
                                                                         </div>
-                                                                        <div class="row mt-1">
-                                                                            
-                                                                            <!-- <div class="col-12 col-sm-2">
+
+                                                                        <div class="col-md-4 col-sm-12 mt-2">
+                                                                            <label>CP * </label>
+                                                                            <input class="multisteps-form__input form-control" type="text" id="cp_fac" name="cp_fac" placeholder="" onfocus="focused(this)" onfocusout="defocused(this)">
+
+                                                                        </div>
+
+                                                                        <div class="col-md-4 col-sm-12 mt-2">
+                                                                            <label>CFDI * </label>
+                                                                            <select class="multisteps-form__select form-control all_input_select" name="cfdi" id="cfdi">
+                                                                                <option value="">Selecciona una opción</option>
+                                                                                <?= $usoCfdi ?>
+
+                                                                            </select>
+
+                                                                        </div>
+
+                                                                        <div class="col-md-4 col-sm-12 mt-2">
+                                                                            <label>RÉGIMEN FISCAL * </label>
+                                                                            <select class="multisteps-form__select form-control all_input_select" name="regimen_fiscal" id="regimen_fiscal">
+                                                                                <option value="">Selecciona una opción</option>
+                                                                                <?= $remigenFiscal ?>
+
+                                                                            </select>
+
+                                                                        </div>
+
+
+                                                                    </div>
+                                                                    <div class="row mt-1">
+
+                                                                        <!-- <div class="col-12 col-sm-2">
                                                                                 <label>C.P *</label>
                                                                                 <input class="multisteps-form__input form-control" type="text" id="postal_code_iva" name="postal_code_iva" maxlength="5" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" placeholder="eg. 50398">
                                                                             </div> -->
-                                                                        </div>
-                                                                        <div class="row mt-1">
+                                                                    </div>
+                                                                    <div class="row mt-1">
 
-                                                                        </div>
-                                                                        <!-- <div class="row text-center mt-1">
+                                                                    </div>
+                                                                    <!-- <div class="row text-center mt-1">
                                                                             <div class="col-10 mx-auto">
                                                                                 <p class="mb-0 text-sm">Una vez que el pago haya sido identificado, usted recibirá su factura 
                                                                                     dentro de las 48 horas posteriores. Para reportar retrasos, favor de enviar un correo con su 
@@ -109,11 +137,11 @@ echo $header;
                                                                                     facturas solo podrá realizarse en el mes correspondiente al pago.</p>
                                                                             </div>
                                                                         </div> -->
-                                                                        <div class="button-row d-flex mt-1">
-                                                                            <button class="btn bg-gradient-success ms-auto mb-0" type="button" id='btn_next'>Siguiente</button>
-                                                                        </div>
+                                                                    <div class="button-row d-flex mt-1">
+                                                                        <button class="btn bg-gradient-success ms-auto mb-0" type="button" id='btn_next'>Siguiente</button>
                                                                     </div>
                                                                 </div>
+                                                            </div>
 
 
                                                         </form>
@@ -164,12 +192,12 @@ echo $header;
 <script>
     $(document).ready(function() {
 
-       $("#btn_next").on("click",function(event){
-        event.preventDefault();
+        $("#btn_next").on("click", function(event) {
+            event.preventDefault();
 
-        var email = $("#email").val();
+            var email = $("#email").val();
 
-        var formData = new FormData(document.getElementById("add"));
+            var formData = new FormData(document.getElementById("add"));
             for (var value of formData.values()) {
                 console.log(value);
             }
@@ -190,26 +218,26 @@ echo $header;
                 success: function(respuesta) {
                     console.log(respuesta);
 
-                    if(respuesta == "success"){
-                        Swal.fire('Datos Guardados Correctamente','','success');
-                        setTimeout(function(){
-                            location.href = '/Register/passFinalize?e='+btoa(email);
-                        },1000)
-                        
-                    }else{
-                        Swal.fire('Hubo un error al actualizar sus datos contacte a soporte.','','info');
-                        setTimeout(function(){
-                            location.href = '/Register/passFinalize?e='+btoa(email);
-                        },1000)
+                    if (respuesta == "success") {
+                        Swal.fire('Datos Guardados Correctamente', '', 'success');
+                        setTimeout(function() {
+                            location.href = '/Register/passFinalize?e=' + btoa(email);
+                        }, 1000)
+
+                    } else {
+                        Swal.fire('Hubo un error al actualizar sus datos contacte a soporte.', '', 'info');
+                        setTimeout(function() {
+                            location.href = '/Register/passFinalize?e=' + btoa(email);
+                        }, 1000)
                     }
-                    
+
                 },
                 error: function(respuesta) {
                     console.log(respuesta);
                 }
 
             });
-       });
+        });
 
     });
 </script>

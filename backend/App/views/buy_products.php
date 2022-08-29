@@ -37,17 +37,18 @@
 
 
 
-                    <ul class="navbar-nav  justify-content-end">
+                    <!-- <ul class="navbar-nav  justify-content-end">
                         <li class="nav-item d-flex align-items-center">
                             <a href="/Account" class="nav-link text-body font-weight-bold  mx-0  px-0">
                                 <i class="fa fa-user me-sm-0"></i>
 
                                 <?php
-                                $apellido = $datos['apellidop'];
-                                $arr1 = str_split($apellido);
+                                // $apellido = $datos['apellidop'];
+                                // $arr1 = str_split($apellido);
 
                                 ?>
-                                <span class="d-sm-inline "><?php echo $datos['nombre'] . " " . $arr1[0] . "."; ?></span>
+                                <span class="d-sm-inline "><?php //echo $datos['nombre'] . " " . $arr1[0] . "."; 
+                                                            ?></span>
                             </a>
                         </li>
 
@@ -58,7 +59,7 @@
                             </a>
                         </li>
 
-                    </ul>
+                    </ul> -->
 
                 </div>
 
@@ -71,23 +72,23 @@
 
                     <ul class="navbar-nav  justify-content-end">
                         <li class="nav-item d-flex align-items-center">
-                            <a href="/Account" class="nav-link text-body font-weight-bold mx-lg-4 mx-0  px-0">
+                            <a href="/Account" class="nav-link text-body font-weight-bold mx-lg-4 mx-0  px-0" style="color: #fff;">
                                 <i class="fa fa-user me-sm-0"></i>
-                                <!-- <span class="d-sm-inline d-none">Mi Cuenta</span> -->
+
                                 <?php
                                 $apellido = $datos['apellidop'];
                                 $arr1 = str_split($apellido);
 
                                 ?>
-                                <span class="d-sm-inline "><?php echo $datos['nombre'] . " " . $arr1[0] . "."; ?></span>
+                                <span class="d-sm-inline"><?php echo $datos['nombre'] . " " . $arr1[0] . "."; ?></span>
                             </a>
                         </li>
                     </ul>
                     <ul class="navbar-nav  justify-content-end">
                         <li class="nav-item d-flex align-items-center">
-                            <a href="/Login" class="nav-link text-body font-weight-bold px-0">
+                            <a href="/Login" class="nav-link text-body font-weight-bold px-0" style="color: #fff;">
                                 <i class="fa fa-power-off me-sm-1"></i>
-                                <span class="d-sm-inline ">Salir</span>
+                                <span class="d-sm-inline">Salir</span>
                             </a>
                         </li>
                     </ul>
@@ -159,7 +160,7 @@
                                                     <input type="hidden" id="clave_socio" name="clave_socio" value="<?= $datos['clave_socio'] ?>">
                                                     <input type="hidden" id="email_usuario" name="email_usuario" value="<?= $datos['usuario'] ?>">
                                                     <input type="hidden" id="metodo_pago" name="metodo_pago" value="">
-                                                    <input type="hidden" id="clave" name="clave" value="<?= $clave ?>">
+                                                    <input type="text" id="clave" name="clave" value="<?= $clave ?>">
 
                                                     <hr>
 
@@ -274,587 +275,595 @@
     <script>
         $(document).ready(function() {
 
-            if ($('#categoria').val() == 'Socio') {
-                Swal.fire("¡Te registraste como socio!", "Debemos validar tu información para que puedas comprar", "warning")
+                    if ($('#categoria').val() == 'Socio') {
+                        Swal.fire("¡Te registraste como socio!", "Debemos validar tu información para que puedas comprar", "warning")
 
-                setTimeout(function() {
-                    window.location.replace('/Login')
-                }, 3000);
-            }
+                        setTimeout(function() {
+                            window.location.replace('/Login')
+                        }, 3000);
+                    }
 
-            $('#forma_pago').on('change', function(e) {
-                var tipo = $(this).val();
-                $("#metodo_pago").val(tipo);
-                // alert(tipo);
-                if (tipo == 'Paypal') {
-                    // $(".form_compra").attr('action','/OrdenPago/PagarPaypal');
-                    $(".form_compra").attr('action', 'https://www.paypal.com/es/cgi-bin/webscr');
-                    // $(".btn_comprar").val('Paypal');
-                    $("#tipo_pago_paypal").val('Paypal');
-                } else if (tipo == 'Transferencia') {
-                    $(".form_compra").attr('action', '/Register/ticketAll');
-                    $("#tipo_pago_paypal").val('');
-                    // $(".btn_comprar").val('Efectivo');
-                    // $(".tipo_pago").val('Efectivo');
+                    $('#forma_pago').on('change', function(e) {
+                        var tipo = $(this).val();
+                        $("#metodo_pago").val(tipo);
+                        // alert(tipo);
+                        if (tipo == 'Paypal') {
+                            // $(".form_compra").attr('action','/OrdenPago/PagarPaypal');
+                            $(".form_compra").attr('action', 'https://www.paypal.com/es/cgi-bin/webscr');
+                            // $(".btn_comprar").val('Paypal');
+                            $("#tipo_pago_paypal").val('Paypal');
+                        } else if (tipo == 'Transferencia') {
+                            $(".form_compra").attr('action', '/Register/ticketAll');
+                            $("#tipo_pago_paypal").val('');
+                            // $(".btn_comprar").val('Efectivo');
+                            // $(".tipo_pago").val('Efectivo');
 
-                }
-
-            });
-
-            var precios = <?php echo json_encode($array_precios); ?>;
-            var productos = <?php echo json_encode($array_productos); ?>;
-
-
-            console.log(precios);
-            console.log(productos);
-
-            // var precios = [];
-            // var productos = [];
-            var total = 0;
-
-            if ($("#clave_socio").val() != '') {
-                precios.push({
-                    'id_product': 1,
-                    'precio': 0,
-                    'cantidad': 1
-                });
-                // sumarPrecios(precios);
-
-                productos.push({
-                    'id_product': 1,
-                    'precio': 0,
-                    'cantidad': 1,
-                    'nombre_producto': 'Congreso'
-                });
-
-                // sumarProductos(productos);
-
-                $("#check_curso_1").prop('checked', true);
-                $("#check_curso_1").prop('disabled', true);
-            }
-
-
-
-            $(".checks_product").on("change", function() {
-                var id_product = $(this).val();
-                var precio = $(this).attr('data-precio');
-                var precio_socio = $(this).attr('data-precio-socio');
-                var cantidad = $("#numero_articulos" + id_product).val();
-                var nombre_producto = $(this).attr('data-nombre-producto');
-
-
-
-                if (this.checked) {
-
-                    //validacion para comprar con costo de socio y anualidad
-                    if (nombre_producto == 'V Congreso LASRA México (socio)') {
-
-                        $(".checks_product").each(function(index) {
-                            $("#cont_precio_" + $(this).val()).html($(this).data('precio-socio') + ' - MXN');
-                        });
-
-
-                        if (!$("#check_curso_2").is(":checked")) {
-
-                            Swal.fire('Aviso', 'Para obtener este costo se debe de pagar la anualidad también', 'info');
-                            $("#check_curso_2").prop('checked', true);
-                            $("#check_curso_2").attr('disabled', 'disabled');
-
-                            precios.push({
-                                'id_product': '2',
-                                'precio': '2500', //cambiar manualmente
-                                'cantidad': '1'
-                            });
-
-                            productos.push({
-                                'id_product': '2',
-                                'precio': '2500', //cambiar manualmente
-                                'cantidad': '1',
-                                'nombre_producto': 'ANUALIDAD (2022)'
-                            });
-
-
-                        } else {
-                            $("#check_curso_2").attr('disabled', 'disabled');
                         }
 
-                    }
+                    });
 
-                    //validaciones para los talleres simultaneos 
-
-                    if (nombre_producto == 'INDISPENSABLE BLOQUEOS BASICOS MIEMBRO SUPERIOR/MIEMBRO INFERIOR') {
-                        $("#check_curso_27").attr('disabled', 'disabled');
-                    }
-
-                    if (nombre_producto == 'PERFUSIONES INTRAVENOSAS PARA SEDACIÓN DE LO MANUAL A TCI') {
-                        $("#check_curso_24").attr('disabled', 'disabled');
-                    }
+                    var precios = <?php echo json_encode($array_precios); ?>;
+                    var productos = <?php echo json_encode($array_productos); ?>;
 
 
+                    console.log(precios);
+                    console.log(productos);
 
-                    if (nombre_producto == 'SIMULADORES ESCANEA Y PRACTICA CON MODELO EN SIMULACION') {
-                        $("#check_curso_29").attr('disabled', 'disabled');
-                        $("#check_curso_30").attr('disabled', 'disabled');
-                    }
+                    // var precios = [];
+                    // var productos = [];
+                    var total = 0;
 
-                    if (nombre_producto == 'ULTRASONIDO EN BLOQUEOS PARA DOLOR CRONICO') {
-                        $("#check_curso_28").attr('disabled', 'disabled');
-                        $("#check_curso_30").attr('disabled', 'disabled');
-                    }
-
-                    if (nombre_producto == 'BLOQUEOS AVANZADOS :TORAX Y ABDOMEN') {
-                        $("#check_curso_28").attr('disabled', 'disabled');
-                        $("#check_curso_29").attr('disabled', 'disabled');
-                    }
-
-
-
-                    if (nombre_producto == 'ACCESOS VASCULARES PRAVE') {
-                        $("#check_curso_32").attr('disabled', 'disabled');
-                        $("#check_curso_33").attr('disabled', 'disabled');
-                    }
-
-                    if (nombre_producto == 'BLOQUEOS AVANZADOS :MIEMBROS SUPERIOR E INFERIOR / COLUMNA') {
-                        $("#check_curso_31").attr('disabled', 'disabled');
-                        $("#check_curso_33").attr('disabled', 'disabled');
-                    }
-
-                    if (nombre_producto == 'ABASI APRENDIZAJE BASADO EN SIMULACION') {
-                        $("#check_curso_31").attr('disabled', 'disabled');
-                        $("#check_curso_32").attr('disabled', 'disabled');
-                    }
-
-                    
-
-
-
-                    //fin de validaciones para talleres simultaneos
-
-
-                    //validar si esta checado la anualidad
-                    if ($("#check_curso_2").is(":checked")) {
-
+                    if ($("#clave_socio").val() != '') {
                         precios.push({
-                            'id_product': id_product,
-                            'precio': precio_socio,
-                            'cantidad': cantidad
+                            'id_product': 1,
+                            'precio': 0,
+                            'cantidad': 1
                         });
-
+                        // sumarPrecios(precios);
 
                         productos.push({
-                            'id_product': id_product,
-                            'precio': precio_socio,
-                            'cantidad': cantidad,
-                            'nombre_producto': nombre_producto
+                            'id_product': 1,
+                            'precio': 0,
+                            'cantidad': 1,
+                            'nombre_producto': 'Congreso'
                         });
 
+                        // sumarProductos(productos);
 
-                    } else {
-
-                        precios.push({
-                            'id_product': id_product,
-                            'precio': precio,
-                            'cantidad': cantidad
-                        });
-
-
-                        productos.push({
-                            'id_product': id_product,
-                            'precio': precio,
-                            'cantidad': cantidad,
-                            'nombre_producto': nombre_producto
-                        });
+                        $("#check_curso_1").prop('checked', true);
+                        $("#check_curso_1").prop('disabled', true);
                     }
-                    sumarPrecios(precios);
-                    sumarProductos(productos);
-
-
-                } else if (!this.checked) {
-
-                    //Si se selecciona el prodicto 2
-
-                    if (nombre_producto == 'V Congreso LASRA México (socio)' || nombre_producto == 'ANUALIDAD (2022)') {
-
-                        // if ($("#check_curso_2").is(":checked")) {
-
-                        $(".checks_product").each(function(index) {                            
-                            $("#cont_precio_" + $(this).val()).html($(this).data('precio') + ' - MXN');
-                            
-                        });
-
-                        $("#check_curso_2").prop('checked', false);                        
-                        $("#check_curso_2").removeAttr('disabled', 'disabled');
-
-
-                        for (var i = 0; i < precios.length; i++) {
-
-
-                            if (precios[i].id_product === '2') {
-                                console.log("remover aqui");
-                                precios.splice(i, 1);
-                                productos.splice(i, 1);
 
 
 
-                            } else if (precios[i].id_product === '2' && precios[i].cantidad === cantidad) {
-                                precios.splice(i, 1);
-                                productos.splice(i, 1);
+                    $(".checks_product").on("change", function() {
+                            var id_product = $(this).val();
+                            var precio = $(this).attr('data-precio');
+                            var precio_socio = $(this).attr('data-precio-socio');
+                            var cantidad = $("#numero_articulos" + id_product).val();
+                            var nombre_producto = $(this).attr('data-nombre-producto');
 
+
+
+                            if (this.checked) {
+
+                                //validacion para comprar con costo de socio y anualidad
+                                if (nombre_producto == 'V Congreso LASRA México (socio)') {
+
+                                    $(".checks_product").each(function(index) {
+                                        $("#cont_precio_" + $(this).val()).html($(this).data('precio-socio') + ' - MXN');
+                                    });
+
+
+                                    if (!$("#check_curso_2").is(":checked")) {
+
+                                        Swal.fire('Aviso', 'Para obtener este costo se debe de pagar la anualidad también', 'info');
+                                        $("#check_curso_2").prop('checked', true);
+                                        $("#check_curso_2").attr('disabled', 'disabled');
+
+                                        precios.push({
+                                            'id_product': '2',
+                                            'precio': '2500', //cambiar manualmente
+                                            'cantidad': '1'
+                                        });
+
+                                        productos.push({
+                                            'id_product': '2',
+                                            'precio': '2500', //cambiar manualmente
+                                            'cantidad': '1',
+                                            'nombre_producto': 'ANUALIDAD (2022)'
+                                        });
+
+
+                                    } else {
+                                        $("#check_curso_2").attr('disabled', 'disabled');
+                                    }
+
+                                }
+
+                                //precio socio si tiene anaulidad
+                                if (nombre_producto == 'ANUALIDAD (2022)') {
+
+                                    $(".checks_product").each(function(index) {
+                                        $("#cont_precio_" + $(this).val()).html($(this).data('precio-socio') + ' - MXN');
+                                    });
+                                }
+
+                                    //validaciones para los talleres simultaneos 
+
+                                    if (nombre_producto == 'INDISPENSABLE BLOQUEOS BASICOS MIEMBRO SUPERIOR/MIEMBRO INFERIOR') {
+                                        $("#check_curso_27").attr('disabled', 'disabled');
+                                    }
+
+                                    if (nombre_producto == 'PERFUSIONES INTRAVENOSAS PARA SEDACIÓN DE LO MANUAL A TCI') {
+                                        $("#check_curso_24").attr('disabled', 'disabled');
+                                    }
+
+
+
+                                    if (nombre_producto == 'SIMULADORES ESCANEA Y PRACTICA CON MODELO EN SIMULACION') {
+                                        $("#check_curso_29").attr('disabled', 'disabled');
+                                        $("#check_curso_30").attr('disabled', 'disabled');
+                                    }
+
+                                    if (nombre_producto == 'ULTRASONIDO EN BLOQUEOS PARA DOLOR CRONICO') {
+                                        $("#check_curso_28").attr('disabled', 'disabled');
+                                        $("#check_curso_30").attr('disabled', 'disabled');
+                                    }
+
+                                    if (nombre_producto == 'BLOQUEOS AVANZADOS :TORAX Y ABDOMEN') {
+                                        $("#check_curso_28").attr('disabled', 'disabled');
+                                        $("#check_curso_29").attr('disabled', 'disabled');
+                                    }
+
+
+
+                                    if (nombre_producto == 'ACCESOS VASCULARES PRAVE') {
+                                        $("#check_curso_32").attr('disabled', 'disabled');
+                                        $("#check_curso_33").attr('disabled', 'disabled');
+                                    }
+
+                                    if (nombre_producto == 'BLOQUEOS AVANZADOS :MIEMBROS SUPERIOR E INFERIOR / COLUMNA') {
+                                        $("#check_curso_31").attr('disabled', 'disabled');
+                                        $("#check_curso_33").attr('disabled', 'disabled');
+                                    }
+
+                                    if (nombre_producto == 'ABASI APRENDIZAJE BASADO EN SIMULACION') {
+                                        $("#check_curso_31").attr('disabled', 'disabled');
+                                        $("#check_curso_32").attr('disabled', 'disabled');
+                                    }
+
+
+
+
+
+                                    //fin de validaciones para talleres simultaneos
+
+
+                                    //validar si esta checado la anualidad
+                                    if ($("#check_curso_2").is(":checked")) {
+
+                                        precios.push({
+                                            'id_product': id_product,
+                                            'precio': precio_socio,
+                                            'cantidad': cantidad
+                                        });
+
+
+                                        productos.push({
+                                            'id_product': id_product,
+                                            'precio': precio_socio,
+                                            'cantidad': cantidad,
+                                            'nombre_producto': nombre_producto
+                                        });
+
+
+                                    } else {
+
+                                        precios.push({
+                                            'id_product': id_product,
+                                            'precio': precio,
+                                            'cantidad': cantidad
+                                        });
+
+
+                                        productos.push({
+                                            'id_product': id_product,
+                                            'precio': precio,
+                                            'cantidad': cantidad,
+                                            'nombre_producto': nombre_producto
+                                        });
+                                    }
+                                    sumarPrecios(precios);
+                                    sumarProductos(productos);
+
+
+                                } else if (!this.checked) {
+
+                                    //Si se selecciona el prodicto 2
+
+                                    if (nombre_producto == 'V Congreso LASRA México (socio)' || nombre_producto == 'ANUALIDAD (2022)') {
+
+                                        // if ($("#check_curso_2").is(":checked")) {
+
+                                        $(".checks_product").each(function(index) {
+                                            $("#cont_precio_" + $(this).val()).html($(this).data('precio') + ' - MXN');
+
+                                        });
+
+                                        $("#check_curso_2").prop('checked', false);
+                                        $("#check_curso_2").removeAttr('disabled', 'disabled');
+
+
+                                        for (var i = 0; i < precios.length; i++) {
+
+
+                                            if (precios[i].id_product === '2') {
+                                                console.log("remover aqui");
+                                                precios.splice(i, 1);
+                                                productos.splice(i, 1);
+
+
+
+                                            } else if (precios[i].id_product === '2' && precios[i].cantidad === cantidad) {
+                                                precios.splice(i, 1);
+                                                productos.splice(i, 1);
+
+                                                // sumarPrecios(precios);
+                                                // sumarProductos(productos);
+
+                                            }
+
+                                            $(".checks_product").prop('checked', false);
+                                            $(".checks_product").removeAttr('disabled', 'disabled');
+                                            precios = [];
+                                            productos = [];
+
+                                            sumarPrecios(precios);
+                                            sumarProductos(productos);
+                                        }
+
+
+                                        // }
+                                    }
+
+
+
+                                    //validaciones para los talleres simultaneos 
+
+                                    if (nombre_producto == 'INDISPENSABLE BLOQUEOS BASICOS MIEMBRO SUPERIOR/MIEMBRO INFERIOR') {
+                                        $("#check_curso_27").removeAttr('disabled');
+                                    }
+
+                                    if (nombre_producto == 'PERFUSIONES INTRAVENOSAS PARA SEDACIÓN DE LO MANUAL A TCI') {
+                                        $("#check_curso_24").removeAttr('disabled');
+                                    }
+
+
+
+                                    if (nombre_producto == 'SIMULADORES ESCANEA Y PRACTICA CON MODELO EN SIMULACION') {
+                                        $("#check_curso_29").removeAttr('disabled');
+                                        $("#check_curso_30").removeAttr('disabled');
+                                    }
+
+                                    if (nombre_producto == 'ULTRASONIDO EN BLOQUEOS PARA DOLOR CRONICO') {
+                                        $("#check_curso_28").removeAttr('disabled');
+                                        $("#check_curso_30").removeAttr('disabled');
+                                    }
+
+                                    if (nombre_producto == 'BLOQUEOS AVANZADOS :TORAX Y ABDOMEN') {
+                                        $("#check_curso_28").removeAttr('disabled');
+                                        $("#check_curso_29").removeAttr('disabled');
+                                    }
+
+
+                                    if (nombre_producto == 'ACCESOS VASCULARES PRAVE') {
+                                        $("#check_curso_32").removeAttr('disabled');
+                                        $("#check_curso_33").removeAttr('disabled');
+                                    }
+
+                                    if (nombre_producto == 'BLOQUEOS AVANZADOS :MIEMBROS SUPERIOR E INFERIOR / COLUMNA') {
+                                        $("#check_curso_31").removeAttr('disabled');
+                                        $("#check_curso_33").removeAttr('disabled');
+                                    }
+
+                                    if (nombre_producto == 'ABASI APRENDIZAJE BASADO EN SIMULACION') {
+                                        $("#check_curso_31").removeAttr('disabled');
+                                        $("#check_curso_32").removeAttr('disabled');
+                                    }
+
+                                    //fin de validaciones para talleres simultaneos
+
+
+                                    for (var i = 0; i < precios.length; i++) {
+
+                                        if (precios[i].id_product === id_product) {
+                                            // console.log("remover");
+                                            precios.splice(i, 1);
+
+                                            productos.splice(i, 1);
+                                            sumarPrecios(precios);
+                                            sumarProductos(productos);
+                                        } else if (precios[i].id_product === id_product && precios[i].cantidad === cantidad) {
+                                            precios.splice(i, 1);
+
+                                            productos.splice(i, 1);
+                                            sumarPrecios(precios);
+                                            sumarProductos(productos);
+
+                                        }
+                                    }
+
+                                    // $.ajax({
+                                    //     url: "/Home/removePendientesPago",
+                                    //     type: "POST",
+                                    //     data: {
+                                    //         id_product,cantidad
+                                    //     },
+                                    //     cache: false,
+                                    //     beforeSend: function() {
+                                    //         console.log("Procesando....");
+
+                                    //     },
+                                    //     success: function(respuesta) {
+
+                                    //         console.log(respuesta);
+                                    //         if(respuesta == "success"){
+                                    //             location.reload();
+                                    //         }
+
+
+                                    //     },
+                                    //     error: function(respuesta) {
+                                    //         console.log(respuesta);
+                                    //     }
+
+                                    // });
+                                }
+                                // console.log(productos);
                                 // sumarPrecios(precios);
                                 // sumarProductos(productos);
 
+                            });
+
+
+                        $(".select_numero_articulos").on("change", function() {
+                            var id_producto = $(this).attr('data-id-producto');
+                            var cantidad = $(this).val();
+                            var precio = $(this).attr('data-precio');
+                            var nombre_producto = $(this).attr('data-nombre-producto');
+
+                            if ($("#check_curso_" + id_producto).is(':checked')) {
+
+                                for (var i = 0; i < precios.length; i++) {
+
+                                    if (precios[i].id_product === id_producto && precios[i].cantidad != cantidad) {
+                                        console.log("remover");
+                                        precios.splice(i, 1, {
+                                            'id_product': id_producto,
+                                            'precio': precio,
+                                            'cantidad': cantidad
+                                        });
+
+                                        productos.splice(i, 1, {
+                                            'id_product': id_producto,
+                                            'precio': precio,
+                                            'cantidad': cantidad,
+                                            'nombre_producto': nombre_producto
+                                        });
+
+                                        // precios.push({'id_product':id_product,'precio':precio,'cantidad':cantidad});
+                                    }
+
+                                }
+                                console.log(precios.length);
+
+                                console.log(productos);
+
+                                sumarPrecios(precios);
+
                             }
 
-                            $(".checks_product").prop('checked', false);
-                            $(".checks_product").removeAttr('disabled', 'disabled');
-                            precios = [];
-                            productos = [];
+                        });
 
-                            sumarPrecios(precios);
-                            sumarProductos(productos);
-                        }
+                        function sumarPrecios(precios) {
+                            console.log(precios);
 
+                            // var sumaPrecios = <?= $total_pago ?>;
+                            // var sumaArticulos = <?= $total_productos ?>;
 
-                        // }
-                    }
+                            var sumaPrecios = 0;
+                            var sumaArticulos = 0;
 
+                            precios.forEach(function(precio, index) {
 
+                                console.log("precio " + index + " | id_product: " + precio.id_product + " precio: " + parseInt(precio.precio) + " cantidad: " + parseInt(precio.cantidad))
 
-                    //validaciones para los talleres simultaneos 
-
-                    if (nombre_producto == 'INDISPENSABLE BLOQUEOS BASICOS MIEMBRO SUPERIOR/MIEMBRO INFERIOR') {
-                        $("#check_curso_27").removeAttr('disabled');
-                    }
-
-                    if (nombre_producto == 'PERFUSIONES INTRAVENOSAS PARA SEDACIÓN DE LO MANUAL A TCI') {
-                        $("#check_curso_24").removeAttr('disabled');
-                    }
+                                sumaPrecios += parseInt(precio.precio * precio.cantidad);
+                                sumaArticulos += parseInt(precio.cantidad);
 
 
-
-                    if (nombre_producto == 'SIMULADORES ESCANEA Y PRACTICA CON MODELO EN SIMULACION') {
-                        $("#check_curso_29").removeAttr('disabled');
-                        $("#check_curso_30").removeAttr('disabled');
-                    }
-
-                    if (nombre_producto == 'ULTRASONIDO EN BLOQUEOS PARA DOLOR CRONICO') {
-                        $("#check_curso_28").removeAttr('disabled');
-                        $("#check_curso_30").removeAttr('disabled');
-                    }
-
-                    if (nombre_producto == 'BLOQUEOS AVANZADOS :TORAX Y ABDOMEN') {
-                        $("#check_curso_28").removeAttr('disabled');
-                        $("#check_curso_29").removeAttr('disabled');
-                    }
-
-
-                    if (nombre_producto == 'ACCESOS VASCULARES PRAVE') {
-                        $("#check_curso_32").removeAttr('disabled');
-                        $("#check_curso_33").removeAttr('disabled');
-                    }
-
-                    if (nombre_producto == 'BLOQUEOS AVANZADOS :MIEMBROS SUPERIOR E INFERIOR / COLUMNA') {
-                        $("#check_curso_31").removeAttr('disabled');
-                        $("#check_curso_33").removeAttr('disabled');
-                    }
-
-                    if (nombre_producto == 'ABASI APRENDIZAJE BASADO EN SIMULACION') {
-                        $("#check_curso_31").removeAttr('disabled');
-                        $("#check_curso_32").removeAttr('disabled');
-                    }
-
-                    //fin de validaciones para talleres simultaneos
-
-
-                    for (var i = 0; i < precios.length; i++) {
-
-                        if (precios[i].id_product === id_product) {
-                            // console.log("remover");
-                            precios.splice(i, 1);
-
-                            productos.splice(i, 1);
-                            sumarPrecios(precios);
-                            sumarProductos(productos);
-                        } else if (precios[i].id_product === id_product && precios[i].cantidad === cantidad) {
-                            precios.splice(i, 1);
-
-                            productos.splice(i, 1);
-                            sumarPrecios(precios);
-                            sumarProductos(productos);
-
-                        }
-                    }
-
-                    // $.ajax({
-                    //     url: "/Home/removePendientesPago",
-                    //     type: "POST",
-                    //     data: {
-                    //         id_product,cantidad
-                    //     },
-                    //     cache: false,
-                    //     beforeSend: function() {
-                    //         console.log("Procesando....");
-
-                    //     },
-                    //     success: function(respuesta) {
-
-                    //         console.log(respuesta);
-                    //         if(respuesta == "success"){
-                    //             location.reload();
-                    //         }
-
-
-                    //     },
-                    //     error: function(respuesta) {
-                    //         console.log(respuesta);
-                    //     }
-
-                    // });
-                }
-                // console.log(productos);
-                // sumarPrecios(precios);
-                // sumarProductos(productos);
-
-            });
-
-
-            $(".select_numero_articulos").on("change", function() {
-                var id_producto = $(this).attr('data-id-producto');
-                var cantidad = $(this).val();
-                var precio = $(this).attr('data-precio');
-                var nombre_producto = $(this).attr('data-nombre-producto');
-
-                if ($("#check_curso_" + id_producto).is(':checked')) {
-
-                    for (var i = 0; i < precios.length; i++) {
-
-                        if (precios[i].id_product === id_producto && precios[i].cantidad != cantidad) {
-                            console.log("remover");
-                            precios.splice(i, 1, {
-                                'id_product': id_producto,
-                                'precio': precio,
-                                'cantidad': cantidad
                             });
 
-                            productos.splice(i, 1, {
-                                'id_product': id_producto,
-                                'precio': precio,
-                                'cantidad': cantidad,
-                                'nombre_producto': nombre_producto
-                            });
 
-                            // precios.push({'id_product':id_product,'precio':precio,'cantidad':cantidad});
+
+                            console.log("Suma precios " + sumaPrecios);
+
+                            $("#total").html(sumaPrecios);
+                            $("#amount").val(sumaPrecios);
+
+                            // $("#total_mx").html(($("#tipo_cambio").val() * sumaPrecios).toFixed(2));
+                            $("#total_mx").html((sumaPrecios).toFixed(2));
+
+                            console.log("Suma Articulos " + sumaArticulos);
+
+                            $("#productos_agregados").html(sumaArticulos);
+
                         }
 
-                    }
-                    console.log(precios.length);
+                        function sumarProductos(productos) {
+                            console.log(productos);
+                            var nombreProductos = '';
 
-                    console.log(productos);
+                            productos.forEach(function(producto, index) {
 
-                    sumarPrecios(precios);
+                                console.log("precio " + index + " | id_product: " + producto.id_product + " precio: " + parseInt(producto.precio) + " cantidad: " + parseInt(producto.cantidad) + " producto: " + producto.nombre_producto)
 
-                }
+                                nombreProductos += producto.nombre_producto + ',';
+                            });
 
-            });
-
-            function sumarPrecios(precios) {
-                console.log(precios);
-
-                // var sumaPrecios = <?= $total_pago ?>;
-                // var sumaArticulos = <?= $total_productos ?>;
-
-                var sumaPrecios = 0;
-                var sumaArticulos = 0;
-
-                precios.forEach(function(precio, index) {
-
-                    console.log("precio " + index + " | id_product: " + precio.id_product + " precio: " + parseInt(precio.precio) + " cantidad: " + parseInt(precio.cantidad))
-
-                    sumaPrecios += parseInt(precio.precio * precio.cantidad);
-                    sumaArticulos += parseInt(precio.cantidad);
+                            console.log(nombreProductos);
+                            $("#item_name").val(nombreProductos);
 
 
-                });
+                        }
 
 
 
-                console.log("Suma precios " + sumaPrecios);
+                        $("#btn_pago").on("click", function(event) {
+                            event.preventDefault();
+                            // var metodo_pago = $("#metodo_pago").val();
+                            var clave = $("#clave").val();
+                            var usuario = $("#email_usuario").val();
+                            var metodo_pago = $("#metodo_pago").val();
 
-                $("#total").html(sumaPrecios);
-                $("#amount").val(sumaPrecios);
-
-                // $("#total_mx").html(($("#tipo_cambio").val() * sumaPrecios).toFixed(2));
-                $("#total_mx").html((sumaPrecios).toFixed(2));
-
-                console.log("Suma Articulos " + sumaArticulos);
-
-                $("#productos_agregados").html(sumaArticulos);
-
-            }
-
-            function sumarProductos(productos) {
-                console.log(productos);
-                var nombreProductos = '';
-
-                productos.forEach(function(producto, index) {
-
-                    console.log("precio " + index + " | id_product: " + producto.id_product + " precio: " + parseInt(producto.precio) + " cantidad: " + parseInt(producto.cantidad) + " producto: " + producto.nombre_producto)
-
-                    nombreProductos += producto.nombre_producto + ',';
-                });
-
-                console.log(nombreProductos);
-                $("#item_name").val(nombreProductos);
+                            console.log("precios ------");
+                            console.log(precios);
 
 
-            }
+                            if (precios.length <= 0) {
+
+                                Swal.fire("¡Debes seleccionar al menos un producto!", "", "warning")
 
 
+                            } else if (precios.length >= 2 && $("#forma_pago").val() == '' && $("#clave_socio").val() != '') {
+                                Swal.fire("¡Debes seleccionar un metodo de pago!", "", "warning")
+                            } else if ($("#forma_pago").val() == '' && $("#clave_socio").val() == '') {
+                                Swal.fire("¡Debes seleccionar un metodo de pago!", "", "warning")
+                            } else {
+                                var plantilla_productos = '';
 
-            $("#btn_pago").on("click", function(event) {
-                event.preventDefault();
-                // var metodo_pago = $("#metodo_pago").val();
-                var clave = $("#clave").val();
-                var usuario = $("#email_usuario").val();
-                var metodo_pago = $("#metodo_pago").val();
-
-                console.log("precios ------");
-                console.log(precios);
+                                plantilla_productos += `<ul>`;
 
 
-                if (precios.length <= 0) {
-
-                    Swal.fire("¡Debes seleccionar al menos un producto!", "", "warning")
-
-
-                } else if (precios.length >= 2 && $("#forma_pago").val() == '' && $("#clave_socio").val() != '') {
-                    Swal.fire("¡Debes seleccionar un metodo de pago!", "", "warning")
-                } else if ($("#forma_pago").val() == '' && $("#clave_socio").val() == '') {
-                    Swal.fire("¡Debes seleccionar un metodo de pago!", "", "warning")
-                } else {
-                    var plantilla_productos = '';
-
-                    plantilla_productos += `<ul>`;
-
-
-                    $.each(productos, function(key, value) {
-                        console.log("funcioina");
-                        console.log(value);
-                        plantilla_productos += `<li style="text-align: justify; font-size:14px;">
+                                $.each(productos, function(key, value) {
+                                    console.log("funcioina");
+                                    console.log(value);
+                                    plantilla_productos += `<li style="text-align: justify; font-size:14px;">
                                                     ${value.nombre_producto} Cant. ${value.cantidad}
                                                 </li>`;
-                    });
+                                });
 
-                    plantilla_productos += `</ul>`;
-                    // plantilla_productos += `<p><strong>Total en dolares: $ ${$("#total").text()} USD </strong></p>`;
-                    plantilla_productos += `<p><strong>Total en pesos mexicanos: $ ${$("#total_mx").text()}</strong></p>`;
+                                plantilla_productos += `</ul>`;
+                                // plantilla_productos += `<p><strong>Total en dolares: $ ${$("#total").text()} USD </strong></p>`;
+                                plantilla_productos += `<p><strong>Total en pesos mexicanos: $ ${$("#total_mx").text()}</strong></p>`;
 
-                    // plantilla_productos += `<p>Confirme su selección y de clic en procesar compra y espere su turno en línea de cajas.</p>`;
-
-
-                    Swal.fire({
-                        title: 'Usted selecciono los siguientes productos',
-                        text: '',
-                        html: plantilla_productos,
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        cancelButtonText: 'Cancelar',
-                        confirmButtonText: 'Procesar Compra'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
+                                // plantilla_productos += `<p>Confirme su selección y de clic en procesar compra y espere su turno en línea de cajas.</p>`;
 
 
-                            console.log($("#total_mx").text());
+                                Swal.fire({
+                                    title: 'Usted selecciono los siguientes productos',
+                                    text: '',
+                                    html: plantilla_productos,
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    cancelButtonText: 'Cancelar',
+                                    confirmButtonText: 'Procesar Compra'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
 
-                            if ($("#total_mx").text() == '0.00') {
-                                $.ajax({
-                                    url: "/Register/generaterQr",
-                                    type: "POST",
-                                    data: {
-                                        'array': JSON.stringify(precios),
-                                        clave,
-                                        usuario,
-                                        metodo_pago
-                                    },
-                                    cache: false,
-                                    dataType: "json",
-                                    // contentType: false,
-                                    // processData: false,
-                                    beforeSend: function() {
-                                        console.log("Procesando....");
 
-                                    },
-                                    success: function(respuesta) {
+                                        console.log($("#total_mx").text());
 
-                                        console.log(respuesta);
+                                        if ($("#total_mx").text() == '0.00') {
+                                            $.ajax({
+                                                url: "/Register/generaterQr",
+                                                type: "POST",
+                                                data: {
+                                                    'array': JSON.stringify(precios),
+                                                    clave,
+                                                    usuario,
+                                                    metodo_pago
+                                                },
+                                                cache: false,
+                                                dataType: "json",
+                                                // contentType: false,
+                                                // processData: false,
+                                                beforeSend: function() {
+                                                    console.log("Procesando....");
 
-                                        if (respuesta.status == 'success') {
+                                                },
+                                                success: function(respuesta) {
 
-                                            Swal.fire("¡Se genero su preregistro, correctamente!", "", "success").
-                                            then((value) => {
-                                                // $(".form_compra").submit();
-                                                location.href = '/Login';
+                                                    console.log(respuesta);
+
+                                                    if (respuesta.status == 'success') {
+
+                                                        Swal.fire("¡Se genero su preregistro, correctamente!", "", "success").
+                                                        then((value) => {
+                                                            // $(".form_compra").submit();
+                                                            location.href = '/Login';
+                                                        });
+                                                    }
+
+                                                },
+                                                error: function(respuesta) {
+                                                    console.log(respuesta);
+                                                }
+
+                                            });
+
+                                        } else {
+                                            var enviar_email = 1;
+                                            $.ajax({
+                                                url: "/Register/generaterQr",
+                                                type: "POST",
+                                                data: {
+                                                    'array': JSON.stringify(precios),
+                                                    clave,
+                                                    usuario,
+                                                    metodo_pago,
+                                                    enviar_email
+                                                },
+                                                cache: false,
+                                                dataType: "json",
+                                                // contentType: false,
+                                                // processData: false,
+                                                beforeSend: function() {
+                                                    console.log("Procesando....");
+
+                                                },
+                                                success: function(respuesta) {
+
+                                                    console.log(respuesta);
+
+                                                    if (respuesta.status == 'success') {
+
+                                                        Swal.fire("¡Se genero su preregistro, correctamente!", "", "success").
+                                                        then((value) => {
+                                                            $(".form_compra").submit();
+                                                            location.href = '/Login';
+                                                        });
+                                                    }
+
+                                                },
+                                                error: function(respuesta) {
+                                                    console.log(respuesta);
+                                                }
+
                                             });
                                         }
 
-                                    },
-                                    error: function(respuesta) {
-                                        console.log(respuesta);
+
                                     }
-
-                                });
-
-                            } else {
-                                var enviar_email = 1;
-                                $.ajax({
-                                    url: "/Register/generaterQr",
-                                    type: "POST",
-                                    data: {
-                                        'array': JSON.stringify(precios),
-                                        clave,
-                                        usuario,
-                                        metodo_pago,
-                                        enviar_email
-                                    },
-                                    cache: false,
-                                    dataType: "json",
-                                    // contentType: false,
-                                    // processData: false,
-                                    beforeSend: function() {
-                                        console.log("Procesando....");
-
-                                    },
-                                    success: function(respuesta) {
-
-                                        console.log(respuesta);
-
-                                        if (respuesta.status == 'success') {
-
-                                            Swal.fire("¡Se genero su preregistro, correctamente!", "", "success").
-                                            then((value) => {
-                                                $(".form_compra").submit();
-                                                location.href = '/Login';
-                                            });
-                                        }
-
-                                    },
-                                    error: function(respuesta) {
-                                        console.log(respuesta);
-                                    }
-
-                                });
+                                })
                             }
+                        });
 
 
-                        }
-                    })
-                }
-            });
-
-
-        });
+                    });
     </script>
 
 

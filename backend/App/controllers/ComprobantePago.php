@@ -334,61 +334,122 @@ html;
         return $html;
     }
 
+    // public function ticketImp($clave)
+    // {
+
+    //     date_default_timezone_set('America/Mexico_City');
+
+
+    //     $metodo_pago = $_POST['metodo_pago'];
+    //     $user_id = $_SESSION['user_id'];
+    //     // $clave = $this->generateRandomString();
+    //     $datos_user = RegisterDao::getUser($this->getUsuario())[0];
+    //     $productos = TalleresDao::getTicketUser($user_id, $clave);
+
+
+    //     $fecha =  date("Y-m-d");       
+
+
+
+    //     // $d = $this->fechaCastellano($fecha);
+
+    //     $nombre_completo = $datos_user['nombre'] . " " . $datos_user['apellidom'] . " " . $datos_user['apellidop'];
+
+
+    //     $pdf = new \FPDF($orientation = 'P', $unit = 'mm', $format = 'A4');
+    //     $pdf->AddPage();
+    //     $pdf->SetFont('Arial', 'B', 8);    //Letra Arial, negrita (Bold), tam. 20
+    //     $pdf->setY(1);
+    //     $pdf->SetFont('Arial', 'B', 16);
+    //     $pdf->Image('constancias/plantillas/orden.png', 0, 0, 210, 300);
+    //     // $pdf->SetFont('Arial', 'B', 25);
+    //     // $pdf->Multicell(133, 80, $clave_ticket, 0, 'C');
+
+    //     $espace = 142;
+    //     $total = array();
+    //     foreach ($productos as $key => $value) {
+
+
+    //         // if($value['es_congreso'] == 1 && $value['clave_socio'] == ""){
+    //         // $precio = $value['amout_due'];
+    //         // // $precio = $value['precio_publico'];
+    //         // }elseif($value['es_congreso'] == 1 && $value['clave_socio'] != ""){
+    //         //     $precio = $value['amout_due'];
+    //         // }
+    //         // else if($value['es_servicio'] == 1 && $value['clave_socio'] == ""){
+    //         //     $precio = $value['precio_publico'];
+    //         // }else if($value['es_servicio'] == 1 && $value['clave_socio'] != ""){
+    //         //     $precio = $value['precio_socio'];
+    //         // }
+    //         // else if($value['es_curso'] == 1  && $value['clave_socio'] == ""){
+    //         //     $precio = $value['precio_publico'];
+    //         // }else if($value['es_curso'] == 1  && $value['clave_socio'] != ""){
+    //         //     $precio = $value['precio_socio'];
+    //         // }
+    //         $precio = $value['monto'];
+
+    //         array_push($total, $precio);
+
+    //         //Nombre Curso
+    //         $pdf->SetXY(28, $espace);
+    //         $pdf->SetFont('Arial', 'B', 8);
+    //         $pdf->SetTextColor(0, 0, 0);
+    //         $pdf->Multicell(100, 4, utf8_decode($value['nombre']), 0, 'C');
+
+    //         //Costo
+    //         $pdf->SetXY(129, $espace);
+    //         $pdf->SetFont('Arial', 'B', 8);
+    //         $pdf->SetTextColor(0, 0, 0);
+    //         $pdf->Multicell(100, 4, '$ ' . $precio . ' ' . $value['tipo_moneda'], 0, 'C');
+
+    //         $espace = $espace + 10;
+    //     }
+
+    //     //folio
+    //     $pdf->SetXY(90, 60);
+    //     $pdf->SetFont('Arial', 'B', 13);
+    //     $pdf->SetTextColor(0, 0, 0);
+    //     $pdf->Multicell(100, 10, $datos_user['referencia'], 0, 'C');
+
+    //     //fecha
+    //     $pdf->SetXY(88, 70);
+    //     $pdf->SetFont('Arial', 'B', 13);
+    //     $pdf->SetTextColor(0, 0, 0);
+    //     $pdf->Multicell(100, 10, $fecha, 0, 'C');
+
+    //     //nombre
+    //     $pdf->SetXY(88, 80);
+    //     $pdf->SetFont('Arial', 'B', 13);
+    //     $pdf->SetTextColor(0, 0, 0);
+    //     $pdf->Multicell(100, 10, utf8_decode($nombre_completo), 0, 'C');
+
+    //      //total
+    //     // $pdf->SetXY(118, 170);
+    //     // $pdf->SetFont('Arial', 'B', 8);  
+    //     // $pdf->SetTextColor(0, 0, 0);
+    //     // $pdf->Multicell(100, 10, 'TOTAL : '.number_format(array_sum($total),2), 0, 'C');
+
+    //     $pdf->Output();
+    //     // $pdf->Output('F','constancias/'.$clave.$id_curso.'.pdf');
+
+    //     // $pdf->Output('F', 'C:/pases_abordar/'. $clave.'.pdf');
+    // }
+
     public function ticketImp($clave)
     {
 
         date_default_timezone_set('America/Mexico_City');
 
 
-        $metodo_pago = $_POST['metodo_pago'];
         $user_id = $_SESSION['user_id'];
         // $clave = $this->generateRandomString();
         $datos_user = RegisterDao::getUser($this->getUsuario())[0];
         $productos = TalleresDao::getTicketUser($user_id, $clave);
 
 
-        // echo $user_id;
-        // echo "<br>";
-        // echo $clave;
-
-        // var_dump($productos);
-
-        // exit;
-
-        // foreach($productos as $key => $value){
-
-        //     if($value['es_congreso'] == 1){
-        //         $precio = $value['amout_due'];
-        //     }else if($value['es_servicio'] == 1){
-        //         $precio = $value['precio_publico'];
-        //     }else if($value['es_curso'] == 1){
-        //         $precio = $value['precio_publico'];
-        //     }
-
-        //     $documento = new \stdClass();  
-
-        //     $nombre_curso = $value['nombre'];
-        //     $id_producto = $value['id_producto'];
-        //     $user_id = $datos_user['user_id'];
-        //     $reference = $datos_user['reference'];
-        $fecha =  date("Y-m-d");
-        //     // $monto = $value['precio_publico'];
-        //     $monto = $precio;
-        //     $tipo_pago = $metodo_pago;
-        //     $status = 0;
-
-        //     $documento->_id_producto = $id_producto;
-        //     $documento->_user_id = $user_id;
-        //     $documento->_reference = $reference;
-        //     $documento->_fecha = $fecha;
-        //     $documento->_monto = $monto;
-        //     $documento->_tipo_pago = $tipo_pago;
-        //     $documento->_clave = $clave;
-        //     $documento->_status = $status;
-
-        // }
-
-
+        $fecha =  date("Y-m-d"); 
+        
+        $fecha_limite = date("d-m-Y",strtotime($fecha."+ 5 days"));
 
         // $d = $this->fechaCastellano($fecha);
 
@@ -400,7 +461,7 @@ html;
         $pdf->SetFont('Arial', 'B', 8);    //Letra Arial, negrita (Bold), tam. 20
         $pdf->setY(1);
         $pdf->SetFont('Arial', 'B', 16);
-        $pdf->Image('constancias/plantillas/orden.png', 0, 0, 210, 300);
+        $pdf->Image('constancias/plantillas/orden1.png', 0, 0, 210, 300);
         // $pdf->SetFont('Arial', 'B', 25);
         // $pdf->Multicell(133, 80, $clave_ticket, 0, 'C');
 
@@ -427,46 +488,56 @@ html;
             // }
             $precio = $value['monto'];
 
+            $metodo_pago = $value['tipo_pago'];
+
             array_push($total, $precio);
 
-            //Nombre Curso
-            $pdf->SetXY(28, $espace);
-            $pdf->SetFont('Arial', 'B', 8);
-            $pdf->SetTextColor(0, 0, 0);
-            $pdf->Multicell(100, 4, utf8_decode($value['nombre']), 0, 'C');
+            // //Nombre Curso
+            // $pdf->SetXY(28, $espace);
+            // $pdf->SetFont('Arial', 'B', 8);
+            // $pdf->SetTextColor(0, 0, 0);
+            // $pdf->Multicell(100, 4, utf8_decode($value['nombre']), 0, 'C');
 
-            //Costo
-            $pdf->SetXY(129, $espace);
-            $pdf->SetFont('Arial', 'B', 8);
-            $pdf->SetTextColor(0, 0, 0);
-            $pdf->Multicell(100, 4, '$ ' . $precio . ' ' . $value['tipo_moneda'], 0, 'C');
+            // //Costo
+            // $pdf->SetXY(129, $espace);
+            // $pdf->SetFont('Arial', 'B', 8);
+            // $pdf->SetTextColor(0, 0, 0);
+            // $pdf->Multicell(100, 4, '$ ' . $precio . ' ' . $value['tipo_moneda'], 0, 'C');
 
             $espace = $espace + 10;
         }
 
         //folio
-        $pdf->SetXY(90, 60);
-        $pdf->SetFont('Arial', 'B', 13);
+        $pdf->SetXY(1, 104);
+        $pdf->SetFont('Arial', 'B', 10);
         $pdf->SetTextColor(0, 0, 0);
-        $pdf->Multicell(100, 10, $datos_user['referencia'], 0, 'C');
+        $pdf->Multicell(80, 10, $clave.'-'.$user_id, 0, 'C');
 
         //fecha
-        $pdf->SetXY(88, 70);
-        $pdf->SetFont('Arial', 'B', 13);
+        $pdf->SetXY(8, 112.5);
+        $pdf->SetFont('Arial', 'B', 10);
         $pdf->SetTextColor(0, 0, 0);
-        $pdf->Multicell(100, 10, $fecha, 0, 'C');
+        $pdf->Multicell(100, 10, $fecha_limite, 0, 'C');
 
         //nombre
-        $pdf->SetXY(88, 80);
-        $pdf->SetFont('Arial', 'B', 13);
+        $pdf->SetXY(10, 62);
+        $pdf->SetFont('Arial', 'B', 10);
         $pdf->SetTextColor(0, 0, 0);
         $pdf->Multicell(100, 10, utf8_decode($nombre_completo), 0, 'C');
 
-         //total
-        // $pdf->SetXY(118, 170);
-        // $pdf->SetFont('Arial', 'B', 8);  
-        // $pdf->SetTextColor(0, 0, 0);
-        // $pdf->Multicell(100, 10, 'TOTAL : '.number_format(array_sum($total),2), 0, 'C');
+        //metodo pago
+        $pdf->SetXY(16, 70.5);
+        $pdf->SetFont('Arial', 'B', 10);
+        $pdf->SetTextColor(0, 0, 0);
+        $pdf->Multicell(80, 10, utf8_decode($metodo_pago), 0, 'C');
+
+
+
+        // total
+        $pdf->SetXY(5, 108.5);
+        $pdf->SetFont('Arial', 'B', 10);
+        $pdf->SetTextColor(0, 0, 0);
+        $pdf->Multicell(100, 10, number_format(array_sum($total), 2) . ' MXN', 0, 'C');
 
         $pdf->Output();
         // $pdf->Output('F','constancias/'.$clave.$id_curso.'.pdf');

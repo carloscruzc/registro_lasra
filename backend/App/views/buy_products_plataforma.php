@@ -725,6 +725,7 @@
                 var clave = $("#clave").val();
                 var usuario = $("#email_usuario").val();
                 var metodo_pago = $("#metodo_pago").val();
+                var compra_en = 'plataforma';
 
                 console.log("precios ------");
                 console.log(precios);
@@ -784,7 +785,8 @@
                                         'array': JSON.stringify(precios),
                                         clave,
                                         usuario,
-                                        metodo_pago
+                                        metodo_pago,
+                                        plataforma
                                     },
                                     cache: false,
                                     dataType: "json",
@@ -843,7 +845,7 @@
                                             Swal.fire("¡Se genero su preregistro, correctamente!", "", "success").
                                             then((value) => {
                                                 $(".form_compra").submit();
-                                                location.href = '/Login';
+                                                location.href = '/Home';
                                             });
                                         }
 

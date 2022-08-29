@@ -149,10 +149,13 @@ echo $header;
 
                                                                         </div>
 
-                                                                       
 
+                                                                        <div class="col-12 col-sm-4" id="cont-especialidad-text" style="display: none;">
 
+                                                                            <label id="label-especialidades">Especialidad (Especifique) *</label>
+                                                                            <input type="text" class="form-control" id="txt_especialidad" name="txt_especialidad">
 
+                                                                        </div> 
 
                                                                         <!-- <div class="col-12 col-sm-4" id="cont-especialidades">
 
@@ -271,6 +274,15 @@ echo $header;
             // $("#especialidades").css('display','none');
             // $("#label-especialidades").css('display','none');
         }
+
+        $("#especialidades").on("change",function(){
+            var especialidad = $("#especialidades option:selected" ).text();
+            if(especialidad == 'otra'){
+                $("#cont-especialidad-text").show();
+            }else{
+                $("#cont-especialidad-text").hide();
+            }
+        })
 
         $("#btn_next_update").on("click", function() {
 

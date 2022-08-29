@@ -82,8 +82,7 @@ echo $header;
                                                                         <h5 class="font-weight-normal">Muy Importante</h5>
                                                                         <p>LASRA México es una sociedad sin fines de lucro, 
                                                                             y puede expedir comprobantes deducibles de impuestos para personas físicas y 
-                                                                            morales mexicanas. Una vez que tu pago haya sido procesado, recibirás tu comprobante 
-                                                                            dentro de las primeras 48 horas. Recuerda que los comprobantes 
+                                                                            morales mexicanas. Recuerda que los comprobantes 
                                                                             fiscales solo pueden ser emitidos en el mes en el cual realizaste tu pago. Si necesitas factura,
                                                                              por favor selecciona la opción en los botones siguientes.
                                                                         </p>

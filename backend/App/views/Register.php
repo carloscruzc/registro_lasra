@@ -260,14 +260,14 @@ echo $header;
         if ($("#codigo_beca").val() == '' || $("#codigo_beca").val() == 0) {
             $("#btn_next_1").show();
             $("#add").attr('action', '/Register/passTwo');
-            $("#cont-especialidades").hide();
+            // $("#cont-especialidades").hide();
         } else {
             // $("#add").attr('action', '/Register/UpdateData');
             $("#add").attr('action', '/Register/passTwo');
             // $("#btn_next_update").show();
             $("#btn_next_1").show();
             $("#cont-categoria").hide();
-            $("#cont-especialidades").show();
+            // $("#cont-especialidades").show();
             // $("#especialidades").css('display','none');
             // $("#label-especialidades").css('display','none');
         }

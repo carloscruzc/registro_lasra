@@ -271,8 +271,30 @@
             if ($("#check_curso_30").prop('checked')) {
                 $("#check_curso_28").attr('disabled', 'disabled');
                 $("#check_curso_29").attr('disabled', 'disabled');
-                $("#check_curso_28").prop('checked', true);
-                $("#check_curso_29").prop('checked', true);
+                // $("#check_curso_28").prop('checked', true);
+                // $("#check_curso_29").prop('checked', true);
+            }
+
+
+            if ($("#check_curso_31").prop('checked')) {
+                $("#check_curso_32").attr('disabled', 'disabled');
+                $("#check_curso_33").attr('disabled', 'disabled');
+            //     $("#check_curso_32").prop('checked', true);
+            //     $("#check_curso_33").prop('checked', true);
+            }
+
+            if ($("#check_curso_32").prop('checked')) {
+                $("#check_curso_31").attr('disabled', 'disabled');
+                $("#check_curso_33").attr('disabled', 'disabled');
+                // $("#check_curso_31").prop('checked', true);
+                // $("#check_curso_33").prop('checked', true);
+            }
+
+            if ($("#check_curso_33").prop('checked')) {
+                $("#check_curso_31").attr('disabled', 'disabled');
+                $("#check_curso_32").attr('disabled', 'disabled');
+                // $("#check_curso_31").prop('checked', true);
+                // $("#check_curso_32").prop('checked', true);
             }
 
             if ($('#categoria').val() == 'Socio') {
@@ -401,6 +423,22 @@
                         $("#check_curso_29").attr('disabled', 'disabled');
                     }
 
+
+                    if (nombre_producto == 'ACCESOS VASCULARES PRAVE') {
+                        $("#check_curso_32").attr('disabled', 'disabled');
+                        $("#check_curso_33").attr('disabled', 'disabled');
+                    }
+
+                    if (nombre_producto == 'BLOQUEOS AVANZADOS :MIEMBROS SUPERIOR E INFERIOR / COLUMNA') {
+                        $("#check_curso_31").attr('disabled', 'disabled');
+                        $("#check_curso_33").attr('disabled', 'disabled');
+                    }
+
+                    if (nombre_producto == 'ABASI APRENDIZAJE BASADO EN SIMULACION') {
+                        $("#check_curso_31").attr('disabled', 'disabled');
+                        $("#check_curso_32").attr('disabled', 'disabled');
+                    }
+
                     //fin de validaciones para talleres simultaneos
 
 
@@ -518,6 +556,21 @@
                         $("#check_curso_29").removeAttr('disabled');
                     }
 
+
+                    if (nombre_producto == 'ACCESOS VASCULARES PRAVE') {
+                        $("#check_curso_32").removeAttr('disabled');
+                        $("#check_curso_33").removeAttr('disabled');
+                    }
+
+                    if (nombre_producto == 'BLOQUEOS AVANZADOS :MIEMBROS SUPERIOR E INFERIOR / COLUMNA') {
+                        $("#check_curso_31").removeAttr('disabled');
+                        $("#check_curso_33").removeAttr('disabled');
+                    }
+
+                    if (nombre_producto == 'ABASI APRENDIZAJE BASADO EN SIMULACION') {
+                        $("#check_curso_31").removeAttr('disabled');
+                        $("#check_curso_32").removeAttr('disabled');
+                    }
                     //fin de validaciones para talleres simultaneos
 
 

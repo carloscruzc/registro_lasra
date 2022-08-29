@@ -873,7 +873,7 @@ html;
             $f1 = $fechas[0]; 
 
 
-            if($value['tipo'] == 'Taller'){
+            if($value['tipo'] == 'TALLER'){
                 $fecha = $f1;
             }else{
                 $fecha = '';
@@ -1121,7 +1121,7 @@ $array_productos = [];
         $f1 = $fechas[0]; 
 
 
-        if($value['tipo'] == 'Taller'){
+        if($value['tipo'] == 'TALLER'){
             $fecha = $f1;
         }else{
             $fecha = '';
@@ -1168,7 +1168,7 @@ $array_productos = [];
                 <div class="form-check">
                     <input class="form-check-input checks_product" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" {$disabled} {$checked} data-precio="{$precio}" data-precio-socio="{$value['precio_socio']}" data-nombre-producto="{$value['nombre_producto']}">
                     <label class="form-check-label" for="check_curso_{$value['id_producto']}">
-                        {$value['nombre_producto']} <span style="font-size: 13px; text-decoration: underline; color: green;">{$pend_validar}</span>
+                    {$value['tipo']} {$value['nombre_producto']} <span style="font-size: 13px; text-decoration: underline; color: green;">{$pend_validar}</span>
                     </label>
                 </div>
             </div>
@@ -1200,7 +1200,7 @@ html;
             $f1 = $fechas[0]; 
 
 
-            if($value['tipo'] == 'Taller'){
+            if($value['tipo'] == 'TALLER'){
                 $fecha = $f1;
             }else{
                 $fecha = '';
@@ -1255,7 +1255,7 @@ html;
                      <div class="form-check">
                          <input class="form-check-input checks_product" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" data-precio="{$precio}" data-precio-socio="{$value['precio_socio']}" data-nombre-producto="{$value['nombre_producto']}" {$check_disabled}>
                          <label class="form-check-label" for="check_curso_{$value['id_producto']}">
-                             {$value['nombre_producto']} - {$fecha}
+                         {$value['tipo']} {$value['nombre_producto']} - {$fecha}
                          </label>
                      </div>
                  </div>

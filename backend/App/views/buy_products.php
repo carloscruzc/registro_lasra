@@ -391,6 +391,7 @@
                     }
 
 
+
                     if (nombre_producto == 'SIMULADORES ESCANEA Y PRACTICA CON MODELO EN SIMULACION') {
                         $("#check_curso_29").attr('disabled', 'disabled');
                         $("#check_curso_30").attr('disabled', 'disabled');
@@ -405,6 +406,27 @@
                         $("#check_curso_28").attr('disabled', 'disabled');
                         $("#check_curso_29").attr('disabled', 'disabled');
                     }
+
+
+
+                    if (nombre_producto == 'ACCESOS VASCULARES PRAVE') {
+                        $("#check_curso_32").attr('disabled', 'disabled');
+                        $("#check_curso_33").attr('disabled', 'disabled');
+                    }
+
+                    if (nombre_producto == 'BLOQUEOS AVANZADOS :MIEMBROS SUPERIOR E INFERIOR / COLUMNA') {
+                        $("#check_curso_31").attr('disabled', 'disabled');
+                        $("#check_curso_33").attr('disabled', 'disabled');
+                    }
+
+                    if (nombre_producto == 'ABASI APRENDIZAJE BASADO EN SIMULACION') {
+                        $("#check_curso_31").attr('disabled', 'disabled');
+                        $("#check_curso_32").attr('disabled', 'disabled');
+                    }
+
+                    
+
+
 
                     //fin de validaciones para talleres simultaneos
 
@@ -508,6 +530,8 @@
                         $("#check_curso_24").removeAttr('disabled');
                     }
 
+
+
                     if (nombre_producto == 'SIMULADORES ESCANEA Y PRACTICA CON MODELO EN SIMULACION') {
                         $("#check_curso_29").removeAttr('disabled');
                         $("#check_curso_30").removeAttr('disabled');
@@ -521,6 +545,22 @@
                     if (nombre_producto == 'BLOQUEOS AVANZADOS :TORAX Y ABDOMEN') {
                         $("#check_curso_28").removeAttr('disabled');
                         $("#check_curso_29").removeAttr('disabled');
+                    }
+
+
+                    if (nombre_producto == 'ACCESOS VASCULARES PRAVE') {
+                        $("#check_curso_32").removeAttr('disabled');
+                        $("#check_curso_33").removeAttr('disabled');
+                    }
+
+                    if (nombre_producto == 'BLOQUEOS AVANZADOS :MIEMBROS SUPERIOR E INFERIOR / COLUMNA') {
+                        $("#check_curso_31").removeAttr('disabled');
+                        $("#check_curso_33").removeAttr('disabled');
+                    }
+
+                    if (nombre_producto == 'ABASI APRENDIZAJE BASADO EN SIMULACION') {
+                        $("#check_curso_31").removeAttr('disabled');
+                        $("#check_curso_32").removeAttr('disabled');
                     }
 
                     //fin de validaciones para talleres simultaneos

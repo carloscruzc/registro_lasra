@@ -276,9 +276,9 @@ echo $header;
         }
 
         $("#especialidades").on("change",function(){
-            var especialidad = $("#especialidades option:selected").text();
-            // var especialidad = $("#especialidades option:selected" ).text();
-            if(especialidad == 'otra'){
+            // var especialidad = $("#especialidades option:selected").text();
+            var especialidad = $(this).val();
+            if(especialidad == 6){
                 $("#cont-especialidad-text").show();
             }else{
                 $("#cont-especialidad-text").hide();

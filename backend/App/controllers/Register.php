@@ -1724,9 +1724,9 @@ html;
         $pdf->Multicell(100, 10, number_format(array_sum($total), 2) . ' MXN', 0, 'C');
 
         // $pdf->Output();
-        $pdf->Output('F','comprobantesPago/'.$clave.'.pdf');
-        chmod('comprobantesPago/'.$clave.'.pdf', 0755);
+        $pdf->Output('F','comprobantesPago/'.$clave.'.pdf');        
         $pdf->Output('D','comprobantesPago/'.$clave.'.pdf');
+        chmod('comprobantesPago/'.$clave.'.pdf', 0755);
         
 
         // $pdf->Output('F', 'C:/pases_abordar/'. $clave.'.pdf');

@@ -1415,19 +1415,22 @@ html;
                 $msg = [
                     'nombre' => $datos_user['nombre'] . ' ' . $datos_user['apellidop'] . ' ' . $datos_user['apellidom'],
                     'metodo_pago' => $tipo_pago,
-                    'referencia' => $reference,
+                    'referencia' => $clave.'-'.$datos_user['user_id'],
                     'importe_pagar' => $total,
                     'fecha_limite_pago' => $fecha,
-                    'email' => $usuario
+                    'email' => $usuario,
+                    'clave' => $clave
                 ];
 
-                $mailer = new Mailer();
+          
 
-                if($compra_en == ""){
-                    $mailer->mailerPago($msg);
-                }else{
-                    $mailer->mailerPagoPlataforma($msg);
-                }
+                $mailer = new Mailer();
+                $mailer->mailerPago($msg);
+                // if($compra_en == ""){
+                //     $mailer->mailerPago($msg);
+                // }else{
+                //     $mailer->mailerPagoPlataforma($msg);
+                // }
                 
             }
         } else {
@@ -1720,12 +1723,163 @@ html;
         $pdf->SetTextColor(0, 0, 0);
         $pdf->Multicell(100, 10, number_format(array_sum($total), 2) . ' MXN', 0, 'C');
 
-        $pdf->Output();
-        // $pdf->Output('F','constancias/'.$clave.$id_curso.'.pdf');
+        // $pdf->Output();
+        $pdf->Output('F','comprobantesPago/'.$clave.'.pdf');
+        $pdf->Output('D','comprobantesPago/'.$clave.'.pdf');
+        
 
         // $pdf->Output('F', 'C:/pases_abordar/'. $clave.'.pdf');
     }
 
+
+    public function ticketAll_($usuario,$metodo_pago,$clave)
+    {
+        date_default_timezone_set('America/Mexico_City');
+
+        $fecha =  date("Y-m-d");
+        $f = explode('-',$fecha);
+
+        $fecha_limite = date("d-m-Y",strtotime($fecha."+ 5 days"));
+
+
+        // $usuario = $_POST['email_usuario'];
+        $datos_user = RegisterDao::getUser($usuario)[0];
+
+
+        // $metodo_pago = $_POST['metodo_pago'];
+
+
+        $user_id = $datos_user['user_id'];
+        // $clave = $_POST['clave'];
+
+        $productos = RegisterDao::getProductosPendientesPagoByUserandClave($user_id,$clave);
+
+        foreach ($productos as $key => $value) {
+
+            if ($value['es_congreso'] == 1 && $value['nombre_producto'] == "V Congreso LASRA México (socio)") {
+                $precio = $value['precio_publico'];
+            } elseif ($value['es_congreso'] == 1) {
+                $precio = $value['amout_due'];
+            } else if ($value['es_servicio'] == 1 && $value['clave_socio'] == "") {
+                $precio = $value['precio_publico'];
+            } else if ($value['es_servicio'] == 1 && $value['clave_socio'] != "") {
+                $precio = $value['precio_socio'];
+            } else if ($value['es_curso'] == 1  && $value['clave_socio'] == "") {
+                $precio = $value['precio_publico'];
+            } else if ($value['es_curso'] == 1  && $value['clave_socio'] != "") {
+                $precio = $value['precio_socio'];
+            }
+            // $precio = $value['monto'];
+
+            // $documento = new \stdClass();  
+
+            $nombre_curso = $value['nombre'];
+            $id_producto = $value['id_producto'];
+            $user_id = $datos_user['user_id'];
+            $reference = $f[1].$f[2].'-'.$user_id;
+            // $monto = $value['precio_publico'];
+            $monto = $precio;
+            $tipo_pago = $metodo_pago;
+            $status = 0;
+
+
+
+        }
+
+        // $d = $this->fechaCastellano($fecha);
+
+        $nombre_completo = $datos_user['nombre'] . " " . $datos_user['apellidop'] . " " . $datos_user['apellidom'];
+
+
+        $pdf = new \FPDF($orientation = 'P', $unit = 'mm', $format = 'A4');
+        $pdf->AddPage();
+        $pdf->SetFont('Arial', 'B', 8);    //Letra Arial, negrita (Bold), tam. 20
+        $pdf->setY(1);
+        $pdf->SetFont('Arial', 'B', 16);
+        $pdf->Image('constancias/plantillas/orden1.png', 0, 0, 210, 300);
+        // $pdf->SetFont('Arial', 'B', 25);
+        // $pdf->Multicell(133, 80, $clave_ticket, 0, 'C');
+
+        $espace = 141;
+        $total = array();
+        foreach ($productos as $key => $value) {
+
+
+            // if($value['es_congreso'] == 1 && $value['nombre_producto'] == "V Congreso LASRA México (socio)"){
+            //     $precio = $value['precio_publico'];
+
+            // }elseif($value['es_congreso'] == 1 ){
+            //     $precio = $value['amout_due'];
+            // }
+            // else if($value['es_servicio'] == 1 && $value['clave_socio'] == ""){
+            //     $precio = $value['precio_publico'];
+            // }else if($value['es_servicio'] == 1 && $value['clave_socio'] != ""){
+            //     $precio = $value['precio_socio'];
+            // }
+            // else if($value['es_curso'] == 1  && $value['clave_socio'] == ""){
+            //     $precio = $value['precio_publico'];
+            // }else if($value['es_curso'] == 1  && $value['clave_socio'] != ""){
+            //     $precio = $value['precio_socio'];
+            // }
+
+            $precio = $value['monto'];
+
+            array_push($total, $precio);
+
+            // //Nombre Curso
+            // $pdf->SetXY(30, $espace);
+            // $pdf->SetFont('Arial', 'B', 8);
+            // $pdf->SetTextColor(0, 0, 0);
+            // $pdf->Multicell(100, 4, utf8_decode($value['nombre']), 0, 'C');
+
+            // //Costo
+            // $pdf->SetXY(122, $espace);
+            // $pdf->SetFont('Arial', 'B', 8);
+            // $pdf->SetTextColor(0, 0, 0);
+            // $pdf->Multicell(100, 4, '$ ' . $precio . ' ' . $value['tipo_moneda'], 0, 'C');
+
+            // $espace = $espace + 7;
+        }
+
+        //folio
+        $pdf->SetXY(1, 104);
+        $pdf->SetFont('Arial', 'B', 10);
+        $pdf->SetTextColor(0, 0, 0);
+        $pdf->Multicell(80, 10, $clave.'-'.$user_id, 0, 'C');
+
+        //fecha
+        $pdf->SetXY(8, 112.5);
+        $pdf->SetFont('Arial', 'B', 10);
+        $pdf->SetTextColor(0, 0, 0);
+        $pdf->Multicell(100, 10, $fecha_limite, 0, 'C');
+
+        //nombre
+        $pdf->SetXY(10, 62);
+        $pdf->SetFont('Arial', 'B', 10);
+        $pdf->SetTextColor(0, 0, 0);
+        $pdf->Multicell(100, 10, utf8_decode($nombre_completo), 0, 'C');
+
+        //metodo pago
+        $pdf->SetXY(16, 70.5);
+        $pdf->SetFont('Arial', 'B', 10);
+        $pdf->SetTextColor(0, 0, 0);
+        $pdf->Multicell(80, 10, utf8_decode($metodo_pago), 0, 'C');
+
+
+
+        // total
+        $pdf->SetXY(5, 108.5);
+        $pdf->SetFont('Arial', 'B', 10);
+        $pdf->SetTextColor(0, 0, 0);
+        $pdf->Multicell(100, 10, number_format(array_sum($total), 2) . ' MXN', 0, 'C');
+
+        // $pdf->Output();
+        $pdf->Output('F','comprobantesPago/'.$clave.'.pdf');
+        $pdf->Output('D','comprobantesPago/'.$clave.'.pdf');
+        
+
+        // $pdf->Output('F', 'C:/pases_abordar/'. $clave.'.pdf');
+    }
 
 
     public function getCategorias()

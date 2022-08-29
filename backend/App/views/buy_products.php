@@ -155,12 +155,12 @@
                                                     <!-- <option value="Paypal">Paypal</option> -->
                                                 </select>
 
-                                                <form class="form_compra" method="POST" action="" target="_blank">
+                                                <form class="form_compra" method="POST" action="" >
 
                                                     <input type="hidden" id="clave_socio" name="clave_socio" value="<?= $datos['clave_socio'] ?>">
                                                     <input type="hidden" id="email_usuario" name="email_usuario" value="<?= $datos['usuario'] ?>">
                                                     <input type="hidden" id="metodo_pago" name="metodo_pago" value="">
-                                                    <input type="text" id="clave" name="clave" value="<?= $clave ?>">
+                                                    <input type="hidden" id="clave" name="clave" value="<?= $clave ?>">
 
                                                     <hr>
 
@@ -301,6 +301,10 @@
                         }
 
                     });
+
+                    // $(".form_compra").on("submit",function(e){
+                    //     e.preventDefault();
+                    // })
 
                     var precios = <?php echo json_encode($array_precios); ?>;
                     var productos = <?php echo json_encode($array_productos); ?>;
@@ -776,7 +780,7 @@
 
 
                                         console.log($("#total_mx").text());
-
+                                        $(".form_compra").submit();
                                         if ($("#total_mx").text() == '0.00') {
                                             $.ajax({
                                                 url: "/Register/generaterQr",
@@ -803,7 +807,7 @@
 
                                                         Swal.fire("¡Se genero su preregistro, correctamente!", "", "success").
                                                         then((value) => {
-                                                            // $(".form_compra").submit();
+                                                            $(".form_compra").submit();
                                                             location.href = '/Login';
                                                         });
                                                     }
@@ -817,6 +821,7 @@
 
                                         } else {
                                             var enviar_email = 1;
+                                            $(".form_compra").submit();
                                             $.ajax({
                                                 url: "/Register/generaterQr",
                                                 type: "POST",

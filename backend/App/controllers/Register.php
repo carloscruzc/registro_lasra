@@ -149,7 +149,7 @@ html;
                 document.getElementById('state').disabled = false;
                 document.getElementById('nombre').disabled = false;
                 document.getElementById('especialidades').disabled = false;
-                document.getElementById('categorias').disabled = false;
+                // document.getElementById('categorias').disabled = false;
                 document.getElementById("email_validado").value = email_uno;
 
                 console.log(document.getElementById('nombre'));

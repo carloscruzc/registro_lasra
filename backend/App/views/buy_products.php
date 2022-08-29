@@ -807,7 +807,7 @@
 
                                                         Swal.fire("¡Se genero su preregistro, correctamente!", "", "success").
                                                         then((value) => {
-                                                            $(".form_compra").submit();
+                                                            // $(".form_compra").submit();
                                                             location.href = '/Login';
                                                         });
                                                     }
@@ -848,7 +848,7 @@
 
                                                         Swal.fire("¡Se genero su preregistro, correctamente!", "", "success").
                                                         then((value) => {
-                                                            $(".form_compra").submit();
+                                                            // $(".form_compra").submit();
                                                             location.href = '/Login';
                                                         });
                                                     }

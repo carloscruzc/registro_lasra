@@ -1725,6 +1725,7 @@ html;
 
         // $pdf->Output();
         $pdf->Output('F','comprobantesPago/'.$clave.'.pdf');
+        chmod('comprobantesPago/'.$clave.'.pdf', 0755);
         $pdf->Output('D','comprobantesPago/'.$clave.'.pdf');
         
 

@@ -276,7 +276,8 @@ echo $header;
         }
 
         $("#especialidades").on("change",function(){
-            var especialidad = $("#especialidades option:selected" ).text();
+            var especialidad = $("#especialidades option:selected").text();
+            // var especialidad = $("#especialidades option:selected" ).text();
             if(especialidad == 'otra'){
                 $("#cont-especialidad-text").show();
             }else{
@@ -377,23 +378,23 @@ echo $header;
 
         }
 
-        $("#categorias").on("change", function() {
-            id_categoria = $(this).val();
-            var categoria = $('select[id="categorias"] option:selected').text();
+        // $("#categorias").on("change", function() {
+        //     id_categoria = $(this).val();
+        //     var categoria = $('select[id="categorias"] option:selected').text();
 
-            //Especialista y residente
-            if (categoria == "Especialista" || categoria == "Residente" || categoria == "Socio") {
-                $("#cont-especialidades").show();
-            } else {
-                $("#cont-especialidades").hide();
-            }
+        //     //Especialista y residente
+        //     if (categoria == "Especialista" || categoria == "Residente" || categoria == "Socio") {
+        //         $("#cont-especialidades").show();
+        //     } else {
+        //         $("#cont-especialidades").hide();
+        //     }
 
-            if (categoria == 'Socio') {
-                $("#cont-clave-socio").show();
-            } else {
-                $("#cont-clave-socio").hide();
-            }
-        });
+        //     if (categoria == 'Socio') {
+        //         $("#cont-clave-socio").show();
+        //     } else {
+        //         $("#cont-clave-socio").hide();
+        //     }
+        // });
 
 
 

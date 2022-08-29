@@ -250,7 +250,7 @@ class Mailer
 
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
-            // $mail->addAttachment("comprobantesPago/".$msg['clave'].'.pdf');
+            $mail->addAttachment("comprobantesPago/".$msg['clave'].'.pdf');
             $mail->Subject = 'Preregistro LASRA';
             $mail->Body    = $html;
             $mail->CharSet = 'UTF-8';

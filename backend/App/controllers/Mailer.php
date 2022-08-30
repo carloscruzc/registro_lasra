@@ -250,16 +250,16 @@ class Mailer
 
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
-            // $mail->addAttachment("comprobantesPago/".$msg['clave'].'.pdf');
+            $mail->addAttachment("comprobantesPago/".$msg['clave'].".pdf");
             $mail->Subject = 'Preregistro LASRA';
             $mail->Body    = $html;
             $mail->CharSet = 'UTF-8';
 
             $mail->send();
-        //    echo 'El mensaje ha sido enviado';
+           echo 'El mensaje ha sido enviado';
             
         } catch (Exception $e) {
-            // echo "No se pudo enviar el email: {$mail->ErrorInfo}";
+            echo "No se pudo enviar el email: {$mail->ErrorInfo}";
         }
     }
 

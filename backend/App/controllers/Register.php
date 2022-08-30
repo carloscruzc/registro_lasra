@@ -1412,25 +1412,25 @@ html;
 
             if (isset($_POST['enviar_email'])) {
 
-                $msg = [
-                    'nombre' => $datos_user['nombre'] . ' ' . $datos_user['apellidop'] . ' ' . $datos_user['apellidom'],
-                    'metodo_pago' => $tipo_pago,
-                    'referencia' => $clave.'-'.$datos_user['user_id'],
-                    'importe_pagar' => $total,
-                    'fecha_limite_pago' => $fecha,
-                    'email' => $usuario,
-                    'clave' => $clave
-                ];
+                // $msg = [
+                //     'nombre' => $datos_user['nombre'] . ' ' . $datos_user['apellidop'] . ' ' . $datos_user['apellidom'],
+                //     'metodo_pago' => $tipo_pago,
+                //     'referencia' => $clave.'-'.$datos_user['user_id'],
+                //     'importe_pagar' => $total,
+                //     'fecha_limite_pago' => $fecha,
+                //     'email' => $usuario,
+                //     'clave' => $clave
+                // ];
 
           
 
-                $mailer = new Mailer();
-                $mailer->mailerPago($msg);
-                // if($compra_en == ""){
-                //     $mailer->mailerPago($msg);
-                // }else{
-                //     $mailer->mailerPagoPlataforma($msg);
-                // }
+                // $mailer = new Mailer();
+                // $mailer->mailerPago($msg);
+                // // if($compra_en == ""){
+                // //     $mailer->mailerPago($msg);
+                // // }else{
+                // //     $mailer->mailerPagoPlataforma($msg);
+                // // }
                 
             }
         } else {
@@ -1727,6 +1727,21 @@ html;
         $pdf->Output('F','comprobantesPago/'.$clave.'.pdf');        
         $pdf->Output('D','comprobantesPago/'.$clave.'.pdf');
         chmod('comprobantesPago/'.$clave.'.pdf', 0755);
+
+        $msg = [
+            'nombre' => $datos_user['nombre'] . ' ' . $datos_user['apellidop'] . ' ' . $datos_user['apellidom'],
+            'metodo_pago' => $tipo_pago,
+            'referencia' => $clave.'-'.$datos_user['user_id'],
+            'importe_pagar' => number_format(array_sum($total), 2),
+            'fecha_limite_pago' => $fecha_limite,
+            'email' => $usuario,
+            'clave' => $clave
+        ];
+
+    
+
+        $mailer = new Mailer();
+        $mailer->mailerPago($msg);
         
 
         // $pdf->Output('F', 'C:/pases_abordar/'. $clave.'.pdf');

@@ -779,9 +779,9 @@
                                     if (result.isConfirmed) {
 
 
-                                        console.log($("#total_mx").text());
-                                        $(".form_compra").submit();
+                                        console.log($("#total_mx").text());                                        
                                         if ($("#total_mx").text() == '0.00') {
+                                            // $(".form_compra").submit();
                                             $.ajax({
                                                 url: "/Register/generaterQr",
                                                 type: "POST",
@@ -807,8 +807,8 @@
 
                                                         Swal.fire("¡Se genero su preregistro, correctamente!", "", "success").
                                                         then((value) => {
-                                                            // $(".form_compra").submit();
-                                                            location.href = '/Login';
+                                                            $(".form_compra").submit();
+                                                            // location.href = '/Login';
                                                         });
                                                     }
 
@@ -821,7 +821,7 @@
 
                                         } else {
                                             var enviar_email = 1;
-                                            $(".form_compra").submit();
+                                            // $(".form_compra").submit();
                                             $.ajax({
                                                 url: "/Register/generaterQr",
                                                 type: "POST",
@@ -845,12 +845,23 @@
                                                     console.log(respuesta);
 
                                                     if (respuesta.status == 'success') {
-
-                                                        Swal.fire("¡Se genero su preregistro, correctamente!", "", "success").
-                                                        then((value) => {
-                                                            // $(".form_compra").submit();
-                                                            location.href = '/Login';
+                                                        $(".form_compra").submit();
+                                                        Swal.fire({
+                                                            icon: 'success',
+                                                            title: '¡Se genero su preregistro, correctamente!',
+                                                            text: '',
+                                                            closeOnClickOutside: false,
+                                                            closeOnEsc: false,
+                                                            allowOutsideClick: false,
+                                                            buttons: false,
+                                                            timer: 2000
                                                         });
+                                                        
+                                                        setTimeout(function(){
+                                                            location.href = '/Login';
+                                                        },2500)
+                                                                                                       
+                                                        
                                                     }
 
                                                 },

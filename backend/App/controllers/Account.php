@@ -276,9 +276,25 @@ html;
         $especialidad = TransmisionDao::getEspecialidadesById($userData['especialidades'])['nombre'];
         $categoria = TransmisionDao::getCategoriaById($userData['id_categoria'])['categoria'];
 
-        
+        //Especialidad otra
+        $showEspecialidadOtro = $userData['especialidades'] == 6 ? 'display:block' : 'display:none'; 
 
-        
+        $cfdi = '';
+        foreach (RegisterDao::getCfdi() as $key => $value) {
+            $selected = ($value['id_uso_cfdi'] == $userData['cfdi']) ? 'selected' : '';  
+            $cfdi .= <<<html
+                    <option value="{$value['id_uso_cfdi']}" {$selected}>{$value['clave_uso_cfdi']} - {$value['descripcion_uso_cfdi']}</option>
+html;
+        }
+
+        $remigenFiscal = '';
+        foreach (RegisterDao::getRegimenFiscal() as $key => $value) {
+            $selected = ($value['id_regimen_fiscal'] == $userData['regimen_fiscal']) ? 'selected' : '';  
+            $remigenFiscal .= <<<html
+                    <option value="{$value['id_regimen_fiscal']}" {$selected}>{$value['descripcion_regimen_fiscal']}</option>
+html;
+        }
+
        
 
       View::set('imgUser',$imgUser);
@@ -298,6 +314,9 @@ html;
       View::set('pais_fiscal',$pais_fiscal);
       View::set('especialidad',$especialidad);
       View::set('categoria',$categoria);
+      View::set('showEspecialidadOtro',$showEspecialidadOtro);
+      View::set('usoCfdi',$cfdi);
+      View::set('remigenFiscal',$remigenFiscal);
     //   View::set('radio',$radio);
       View::render("account_all");
     }
@@ -330,6 +349,7 @@ html;
             $email = $_POST['email'];
             $telefono = $_POST['telefono'];
             $especialidad = $_POST['especialidad'];
+            $txt_especialidad = $_POST['txt_especialidad'] != '' ? $_POST['txt_especialidad'] : '';
             // $alergia = $_POST['alergia'];
 
             $documento->_nombre = $nombre;
@@ -342,6 +362,7 @@ html;
             // $documento->_cod_telefono = $cod_telefono;
             $documento->_telefono = $telefono;
             $documento->_especialidad = $especialidad;
+            $documento->_txt_especialidad = $txt_especialidad;
             // $documento->_alergia = $alergia;
 
             // var_dump($documento);
@@ -376,16 +397,20 @@ html;
             
             $business_name_iva = $_POST['business_name_iva'];
             $code_iva = $_POST['code_iva'];
-            // $payment_method_iva = $_POST['payment_method_iva'];
             $email_receipt_iva = $_POST['email_receipt_iva'];
-            // $postal_code_iva = $_POST['postal_code_iva'];
             $email_user = $_POST['email_user'];
-            
+            $cp_fac = $_POST['cp_fac'];
+            $cfdi = $_POST['cfdi'];
+            $regimen_fiscal = $_POST['regimen_fiscal'];
 
             $documento->_business_name_iva = $business_name_iva;
             $documento->_code_iva = $code_iva;
             $documento->_email_receipt_iva = $email_receipt_iva;
             $documento->_email_user = $email_user;
+            $documento->_cp_fac = $cp_fac;
+            $documento->_cfdi = $cfdi;
+            $documento->_regimen_fiscal = $regimen_fiscal;
+
 
 
               $id = DataDao::updateAccountFiscal($documento);

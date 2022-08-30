@@ -46,7 +46,7 @@ sql;
   {
     $mysqli = Database::getInstance(true);
     $query = <<<sql
-    UPDATE utilerias_administradores SET  nombre = :nombre ,apellidop = :apellido_paterno, apellidom = :apellido_materno, telefono = :telefono, especialidades = :especialidades, id_pais = :id_pais, 	id_estado = :id_estado WHERE usuario = :email;
+    UPDATE utilerias_administradores SET  nombre = :nombre ,apellidop = :apellido_paterno, apellidom = :apellido_materno, telefono = :telefono, especialidades = :especialidades, id_pais = :id_pais, id_estado = :id_estado, txt_especialidad = :txt_especialidad WHERE usuario = :email;
 sql;
     $parametros = array(
       ':nombre' => $user->_nombre,
@@ -56,6 +56,7 @@ sql;
       ':id_pais' => $user->_pais,
       ':telefono' => $user->_telefono,
       ':especialidades' => $user->_especialidad,
+      ':txt_especialidad' => $user->_txt_especialidad,
       ':email' => $user->_email
 
     );
@@ -73,23 +74,20 @@ sql;
   {
     $mysqli = Database::getInstance(true);
     $query = <<<sql
-    UPDATE utilerias_administradores SET business_name_iva = :business_name_iva, code_iva = :code_iva, email_receipt_iva = :email_receipt_iva  WHERE usuario = :email_user;
+    UPDATE utilerias_administradores SET business_name_iva = :business_name_iva, code_iva = :code_iva, email_receipt_iva = :email_receipt_iva,
+    cfdi = :cfdi, postal_code_iva = :postal_code_iva, regimen_fiscal = :regimen_fiscal  WHERE usuario = :email_user;
 sql;
     $parametros = array(
       ':business_name_iva' => $user->_business_name_iva,
       ':code_iva'=>$user->_code_iva,
-      ':email_receipt_iva' => $user->_email_receipt_iva,      
+      ':email_receipt_iva' => $user->_email_receipt_iva,
+      ':cfdi' => $user->_cfdi,
+      ':postal_code_iva' =>$user->_cp_fac,
+      ':regimen_fiscal' => $user->_regimen_fiscal,  
       ':email_user' => $user->_email_user
 
     );
 
-
-
-    // $accion = new \stdClass();
-    // $accion->_sql = $query;
-    // $accion->_parametros = $parametros;
-    // $accion->_id = $user->_administrador_id;
-    // UtileriasLog::addAccion($accion);
     return $mysqli->update($query, $parametros);
   }
 

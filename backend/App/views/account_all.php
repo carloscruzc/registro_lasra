@@ -62,22 +62,22 @@
                 <div class="card card-body" id="profile">
                     <div class="row justify-content-center align-items-center">
                         <div class="col-sm-auto col-4">
-                        <form method="POST" enctype="multipart/form-data" id="form_upload_image">
-                            <input type="hidden" id="email_" name="email_" value="<?= $userData['email'] ?>" readonly>
-                            <div class="image-upload">
-                                <label for="file-input" id="lbl-image">
-                                    <div class="avatar avatar-xl position-relative">
-                                        <?php echo $imgUser; ?>
-                                        <?php echo $userData['especialidad'];?>
-                                    </div>
-                                    <span id="btn-edit" class="btn btn-icon-only btn-rounded btn-outline-azul mb-0 me-2 btn-sm d-flex align-items-center justify-content-center">
-                                        <i class="fas fa-edit" aria-hidden="true"></i>
-                                    </span> 
-                                </label>
-                                
-                                <input id="file-input" name="file-input" type="file" style="display:none;" />
-                            </div>
-                        </form>    
+                            <form method="POST" enctype="multipart/form-data" id="form_upload_image">
+                                <input type="hidden" id="email_" name="email_" value="<?= $userData['email'] ?>" readonly>
+                                <div class="image-upload">
+                                    <label for="file-input" id="lbl-image">
+                                        <div class="avatar avatar-xl position-relative">
+                                            <?php echo $imgUser; ?>
+                                            <?php echo $userData['especialidad']; ?>
+                                        </div>
+                                        <span id="btn-edit" class="btn btn-icon-only btn-rounded btn-outline-azul mb-0 me-2 btn-sm d-flex align-items-center justify-content-center">
+                                            <i class="fas fa-edit" aria-hidden="true"></i>
+                                        </span>
+                                    </label>
+
+                                    <input id="file-input" name="file-input" type="file" style="display:none;" />
+                                </div>
+                            </form>
 
 
 
@@ -85,21 +85,21 @@
                         <div class="col-sm-auto col-8 my-auto">
                             <div class="h-100">
                                 <h5 class="mb-1 font-weight-bolder">
-                                    <?= $userData['title'] . " " . $userData['nombre'] . " " . $userData['apellidop'] . " " . $userData['apellidom']?>
+                                    <?= $userData['title'] . " " . $userData['nombre'] . " " . $userData['apellidop'] . " " . $userData['apellidom'] ?>
                                 </h5>
                                 <p class="mb-0 font-weight-bold text-sm">
                                     <span class="badge badge-info"><?php echo $userData['nombre_modalidad']; ?></span>
                                 </p>
                             </div>
                         </div>
-                       
+
                         <div class="col-sm-auto ms-sm-auto mt-sm-0 mt-3 d-flex">
                             <label class="form-check-label mb-0">
-                                
+
                             </label>
                         </div>
                     </div>
-                    
+
                 </div>
 
 
@@ -107,7 +107,7 @@
                 <div class="card mt-4" id="basic-info">
                     <div class="card-header">
                         <h5>INFORMACIÓN BÁSICA</h5>
-                        
+
                     </div>
                     <form class="form-horizontal" id="update_form" action="" method="POST">
                         <div class="card-body pt-0">
@@ -119,7 +119,7 @@
                                         <input id="nombre" name="nombre" maxlength="29" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*" class="form-control" type="text" placeholder="Alec" required="" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $userData['nombre'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                     </div>
                                 </div>
-                               
+
                                 <div class="col-12 col-lg-4">
                                     <label class="form-label">Apellido paterno *</label>
                                     <div class="input-group">
@@ -141,7 +141,7 @@
                                 <div class="col-sm-6 col-12 col-lg-6">
                                     <label class="form-label mt-4">País *</label>
                                     <select class="multisteps-form__select form-control all_input_select" name="pais" id="pais_edit" required>
-                                        <?php echo $select_pais;?>
+                                        <?php echo $select_pais; ?>
                                     </select>
                                     <!-- <input class="form-control" id="pais" maxlength="149" required name="pais" data-color="dark" type="text" value="<?= $userData['pais'] ?>" placeholder="Ej: México" readonly/> -->
                                 </div>
@@ -149,7 +149,7 @@
                                 <div class="col-sm-6 col-12 col-lg-6">
                                     <label class="form-label mt-4">Estado *</label>
                                     <select class="multisteps-form__select form-control all_input_select" name="estado" id="estado_edit" required>
-                                        <?php echo $select_estado;?>
+                                        <?php echo $select_estado; ?>
                                     </select>
                                     <!-- <input class="form-control" id="estado" maxlength="149" required name="estado" data-color="dark" type="text" value="<?= $userData['estado'] ?>" placeholder="Ej: México" readonly/> -->
                                 </div>
@@ -161,7 +161,7 @@
                                     </div>
                                 </div>
 
-                                
+
 
                                 <div class="col-lg-5 col-12">
                                     <label class="form-label mt-4">Número de teléfono</label>
@@ -173,25 +173,32 @@
                             </div>
 
                             <div class="row">
-                                   
-                                    
-                                    <div class="col-lg-4 col-12">
-                                        <label class="form-label mt-4">Especialidad *</label>
-                                        
-                                            <select class="form-control" style="cursor: pointer;" name="especialidad" id="especialidad" tabindex="-1" data-choice="active" >
-                                                <?php echo $select_especialidad; ?>
-                                            </select> 
-                                          <!-- <input class="form-control" id="especialidad" maxlength="149"  name="especialidad" data-color="dark" type="text" value="<?= $especialidad ?>" placeholder="Ej: México" readonly/>  -->
-                                    </div>
 
-                                    <div class="col-lg-4 col-12">
-                                        <label class="form-label mt-4">Categoría </label>
-                                        
-                                            
-                                          <input class="form-control" id="categoria" maxlength="149"  name="categoria" data-color="dark" type="text" value="<?= $categoria ?>" placeholder="Ej: México" readonly/> 
-                                    </div>
+
+                                <div class="col-lg-4 col-12">
+                                    <label class="form-label mt-4">Especialidad *</label>
+
+                                    <select class="form-control" style="cursor: pointer;" name="especialidad" id="especialidad" tabindex="-1" data-choice="active">
+                                        <?php echo $select_especialidad; ?>
+                                    </select>
+                                    <!-- <input class="form-control" id="especialidad" maxlength="149"  name="especialidad" data-color="dark" type="text" value="<?= $especialidad ?>" placeholder="Ej: México" readonly/>  -->
                                 </div>
-                                <!-- <div class="row">
+
+                                <div class="col-12 col-sm-4 mt-4" id="cont-especialidad-text" style="<?= $showEspecialidadOtro; ?>">
+
+                                    <label id="label-especialidades">Especialidad (Especifique) *</label>
+                                    <input type="text" class="form-control" id="txt_especialidad" name="txt_especialidad" value="<?= $userData['txt_especialidad'] ?>">
+
+                                </div>
+
+                                <div class="col-lg-4 col-12" style="display: none;">
+                                    <label class="form-label mt-4">Categoría </label>
+
+
+                                    <input class="form-control" id="categoria" maxlength="149" name="categoria" data-color="dark" type="text" value="<?= $categoria ?>" placeholder="Ej: México" readonly />
+                                </div>
+                            </div>
+                            <!-- <div class="row">
                                     <div class="col-md-3 align-self-center" hidden>
                                         <label class="form-label mt-4">Actividad</label>
                                         <input class="form-control" id="actividad" name="actividad" type="text" value="<?= $userData['actividad'] ?>" readonly />
@@ -206,22 +213,22 @@
                                     </div>
                                 </div> -->
 
-                                <div class="row">
-                                        
-                                    <!-- <div class="col-md-6">
+                            <div class="row">
+
+                                <!-- <div class="col-md-6">
                                         <label class="form-label mt-4">Restricciones alimenticias *</label>
                                         <input class="form-control" id="alergia" maxlength="149" required name="alergia" data-color="dark" type="text" value="<?= $userData['alergia'] ?>" placeholder="Escribe las restricciones alimenticias" readonly/>
                                         <?php echo $restricciones; ?>
                                     </div> -->
-                                    <br>
-                                </div>
+                                <br>
+                            </div>
 
-                                <div class="row">
-                                    <div class="button-row d-flex mt-4 col-12">
-                                        <a class="btn bg-gradient-light mb-0 js-btn-prev" href="/Home/" title="Prev">Regresar</a>
-                                        <button class="btn bg-gradient-dark ms-auto mb-0" type="submit" title="Actualizar">Actualizar</button>
-                                    </div>
+                            <div class="row">
+                                <div class="button-row d-flex mt-4 col-12">
+                                    <a class="btn bg-gradient-light mb-0 js-btn-prev" href="/Home/" title="Prev">Regresar</a>
+                                    <button class="btn bg-gradient-dark ms-auto mb-0" type="submit" title="Actualizar">Actualizar</button>
                                 </div>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -230,58 +237,84 @@
                 <!-- Card Basic Info -->
                 <div class="card mt-4" id="fiscal-info">
                     <div class="card-header">
-                            <h5>INFORMACIÓN FISCAL</h5>
-                            
-                        </div>
+                        <h5>INFORMACIÓN FISCAL</h5>
 
-                        <form class="form-horizontal" id="update_form_fiscal" action="" method="POST">
-                            <div class="card-body pt-0">
-                                <div class="row">
+                    </div>
+
+                    <form class="form-horizontal" id="update_form_fiscal" action="" method="POST">
+                        <div class="card-body pt-0">
+                            <div class="row">
                                 <input id="email_user" name="email_user" maxlength="49" class="form-control" type="hidden" placeholder="example@email.com" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $userData['usuario'] ?>">
 
-                                    <div class="col-12 col-sm-4">
-                                        <label>Razón Social *</label>
-                                        <input class="multisteps-form__input form-control" type="text" id="business_name_iva" name="business_name_iva" placeholder="eg. Christopher Prior Jones" maxlength="49" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $userData['business_name_iva'] ?>">
-                                    </div>                             
-                            
+                                <div class="col-12 col-sm-4">
+                                    <label>Razón Social *</label>
+                                    <input class="multisteps-form__input form-control" type="text" id="business_name_iva" name="business_name_iva" placeholder="eg. Christopher Prior Jones" maxlength="49" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $userData['business_name_iva'] ?>">
+                                </div>
 
-                                    <div class="col-12 col-sm-4 mt-1 mt-sm-0">
-                                        <label>RFC  *</label>
-                                        <input class="multisteps-form__input form-control" type="text" id="code_iva" name="code_iva" placeholder="eg. CPJ41250AS" maxlength="13" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $userData['code_iva'] ?>">
-                                    </div>
 
-                                    <!-- <div class="col-12 col-sm-4 mt-1 mt-sm-0">
+                                <div class="col-12 col-sm-4 mt-1 mt-sm-0">
+                                    <label>RFC *</label>
+                                    <input class="multisteps-form__input form-control" type="text" id="code_iva" name="code_iva" placeholder="eg. CPJ41250AS" maxlength="13" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $userData['code_iva'] ?>">
+                                </div>
+
+                                <!-- <div class="col-12 col-sm-4 mt-1 mt-sm-0">
                                         <label>Metodo de Pago *</label>
                                         <input class="multisteps-form__input form-control" type="text" id="payment_method_iva" name="payment_method_iva" placeholder="eg. CPJ41250AS" maxlength="13" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $userData['payment_method_iva'] ?>">
                                         
                                     </div> -->
 
-                                    <div class="col-12 col-sm-4">
-                                        <label>Correo Electrónico facturación * </label>
-                                        <input class="multisteps-form__input form-control" type="text"  id="email_receipt_iva" name="email_receipt_iva" placeholder="eg. user@domain.com" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $userData['email_receipt_iva'] ?>">
-                                        <span class="mb-0 text-sm" id="error_email_send" style="display:none;color:red;">Wrong email</span>
-                                    </div>
-                                    <!-- <div class="col-12 col-sm-2">
+                                <div class="col-12 col-sm-4">
+                                    <label>Correo Electrónico facturación * </label>
+                                    <input class="multisteps-form__input form-control" type="text" id="email_receipt_iva" name="email_receipt_iva" placeholder="eg. user@domain.com" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $userData['email_receipt_iva'] ?>">
+                                    <span class="mb-0 text-sm" id="error_email_send" style="display:none;color:red;">Wrong email</span>
+                                </div>
+
+                                <div class="col-md-4 col-sm-12 mt-2">
+                                    <label>CP * </label>
+                                    <input class="multisteps-form__input form-control" type="text" id="cp_fac" name="cp_fac" placeholder="" onfocus="focused(this)" onfocusout="defocused(this)" value="<?=$userData['postal_code_iva']?>">
+
+                                </div>
+
+                                <div class="col-md-4 col-sm-12 mt-2">
+                                    <label>CFDI * </label>
+                                    <select class="multisteps-form__select form-control all_input_select" name="cfdi" id="cfdi">
+                                        <option value="">Selecciona una opción</option>
+                                        <?= $usoCfdi ?>
+
+                                    </select>
+
+                                </div>
+
+                                <div class="col-md-4 col-sm-12 mt-2">
+                                    <label>RÉGIMEN FISCAL * </label>
+                                    <select class="multisteps-form__select form-control all_input_select" name="regimen_fiscal" id="regimen_fiscal">
+                                        <option value="">Selecciona una opción</option>
+                                        <?= $remigenFiscal ?>
+
+                                    </select>
+
+                                </div>
+                                <!-- <div class="col-12 col-sm-2">
                                         <label>C.P *</label>
                                         <input class="multisteps-form__input form-control" type="text" id="postal_code_iva" name="postal_code_iva" maxlength="5" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" placeholder="eg. 50398"  value="<?= $userData['postal_code_iva'] ?>">
                                     </div> -->
 
-                                    <div class="row">
-                                        <div class="button-row d-flex mt-4 col-12">
-                                            <a class="btn bg-gradient-light mb-0 js-btn-prev" href="/Home/" title="Prev">Regresar</a>
-                                            <button class="btn bg-gradient-dark ms-auto mb-0" type="submit" title="Actualizar">Actualizar</button>
-                                        </div>
+                                <div class="row">
+                                    <div class="button-row d-flex mt-4 col-12">
+                                        <a class="btn bg-gradient-light mb-0 js-btn-prev" href="/Home/" title="Prev">Regresar</a>
+                                        <button class="btn bg-gradient-dark ms-auto mb-0" type="submit" title="Actualizar">Actualizar</button>
                                     </div>
-                                </div>    
+                                </div>
                             </div>
-                        </form>
-                                                            
-                                                            
+                        </div>
+                    </form>
+
+
 
                 </div>
 
 
-                
+
 
                 <!-- <div class="card mt-4" id="adicional-info">
                     <div class="card-header">
@@ -337,11 +370,11 @@
                                         <label>¿Eres miembro de la WADD? *</label>
                                        
                                        
-                                        <input class="multisteps-form__input form-control" type="text" id="wadd_member" name="wadd_member" maxlength="5" value="<?=  $wadd_member = $userData['wadd_member'] == '1' ? "SI" : "NO";?>" readonly>
+                                        <input class="multisteps-form__input form-control" type="text" id="wadd_member" name="wadd_member" maxlength="5" value="<?= $wadd_member = $userData['wadd_member'] == '1' ? "SI" : "NO"; ?>" readonly>
                                     </div>
                                     <div class="col-4">
                                         <label>¿Eres socio de la APM? *</label>
-                                        <input class="multisteps-form__input form-control" type="text" id="apm_member" name="apm_member" maxlength="5" value="<?=  $apm_member = $userData['apm_member'] == '1' ? "SI" : "NO";?>" readonly>
+                                        <input class="multisteps-form__input form-control" type="text" id="apm_member" name="apm_member" maxlength="5" value="<?= $apm_member = $userData['apm_member'] == '1' ? "SI" : "NO"; ?>" readonly>
                                         
                                     </div>
                                     <div class="col-4">
@@ -364,97 +397,107 @@
                     
                 </div> -->
 
-        </div>
-        <?php echo $footer; ?>
+            </div>
+            <?php echo $footer; ?>
 </main>
 
 <script>
+    $("#especialidad").on("change", function() {
+        // var especialidad = $("#especialidades option:selected").text();
+        var especialidad = $(this).val();
+        if (especialidad == 6) {
+            $("#cont-especialidad-text").show();
+        } else {
+            $("#cont-especialidad-text").hide();
+        }
+    })
+
     $("#pais_edit").on("change", function() {
-            var pais = $(this).val();
-            // alert(pais);
-            $.ajax({
-                url: "/Account/getEstadoPais",
-                type: "POST",
-                data: {
-                    pais
-                },
-                dataType: "json",
-                beforeSend: function() {
-                    console.log("Procesando....");
-                    $('#estado_edit')
-                        .find('option')
-                        .remove()
-                        .end();
+        var pais = $(this).val();
+        // alert(pais);
+        $.ajax({
+            url: "/Account/getEstadoPais",
+            type: "POST",
+            data: {
+                pais
+            },
+            dataType: "json",
+            beforeSend: function() {
+                console.log("Procesando....");
+                $('#estado_edit')
+                    .find('option')
+                    .remove()
+                    .end();
 
-                },
-                success: function(respuesta) {
-                    console.log(respuesta);
+            },
+            success: function(respuesta) {
+                console.log(respuesta);
 
-                    $('#estado_edit').removeAttr('disabled');
+                $('#estado_edit').removeAttr('disabled');
 
+                $('#estado_edit')
+                    .append($('<option>', {
+                            value: ''
+                        })
+                        .text('Selecciona una opción'));
+
+                $.each(respuesta, function(key, value) {
+                    //console.log(key);
+                    console.log(value);
                     $('#estado_edit')
                         .append($('<option>', {
-                                value: ''
+                                value: value.id_estado
                             })
-                            .text('Selecciona una opción'));
+                            .text(value.estado));
+                });
 
-                    $.each(respuesta, function(key, value) {
-                        //console.log(key);
-                        console.log(value);
-                        $('#estado_edit')
-                            .append($('<option>', {
-                                    value: value.id_estado
-                                })
-                                .text(value.estado));
-                    });
-
-                },
-                error: function(respuesta) {
-                    console.log(respuesta);
-                }
-
-            });
-        });
-
-        
-        $("#update_form_fiscal").on("submit", function(event) {
-            event.preventDefault();
-
-            var formData = new FormData(document.getElementById("update_form_fiscal"));
-            for (var value of formData.values()) {
-               console.log(value);
+            },
+            error: function(respuesta) {
+                console.log(respuesta);
             }
 
-            $.ajax({
-                url: "/Account/ActualizarFiscal",
-                type: "POST",
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false,
-                beforeSend: function() {
-                    console.log("Procesando....");
-
-
-                },
-                success: function(respuesta) {
-                    console.log(respuesta);
-                    if (respuesta == 'success') {
-                        swal("¡Se actualizaron tus datos correctamente!", "", "success").
-                        then((value) => {
-                            window.location.replace("/Home/");
-                        });
-                    } else {
-                        swal("¡Usted No Actualizo Nada!", "", "warning").
-                        then((value) => {
-                            window.location.replace("/Account/")
-                        });
-                    }
-                },
-                error: function(respuesta) {
-                    console.log(respuesta);
-                }
-
-            });
         });
+    });
+
+
+    $("#update_form_fiscal").on("submit", function(event) {
+        event.preventDefault();
+
+        var formData = new FormData(document.getElementById("update_form_fiscal"));
+        for (var value of formData.values()) {
+            console.log(value);
+        }
+
+        $.ajax({
+            url: "/Account/ActualizarFiscal",
+            type: "POST",
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            beforeSend: function() {
+                console.log("Procesando....");
+
+
+            },
+            success: function(respuesta) {
+                console.log(respuesta);
+                if (respuesta == 'success') {
+                    swal("¡Se actualizaron tus datos correctamente!", "", "success").
+                    then((value) => {
+                        window.location.replace("/Home/");
+                    });
+                } else {
+                    swal("¡Usted No Actualizo Nada!", "", "warning").
+                    then((value) => {
+                        window.location.replace("/Account/")
+                    });
+                }
+            },
+            error: function(respuesta) {
+                console.log(respuesta);
+            }
+
+        });
+    });
 </script>

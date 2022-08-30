@@ -21,7 +21,8 @@ echo $header;
                         <ul class="navbar-nav d-lg-inline d-none">
                            
                             <li class="nav-item">
-                                <a href="#" class="btn btn-sm btn-round mb-0 me-1" onclick="history.go(-1)"><i class="fas fa-undo"></i>  REGRESAR</a>
+                                <!-- <a href="#" class="btn btn-sm btn-round mb-0 me-1" onclick="history.go(-1)"><i class="fas fa-undo"></i>  REGRESAR</a> -->
+                                <a href="/Register" class="btn btn-sm btn-round mb-0 me-1"><i class="fas fa-undo"></i>  REGRESAR</a>
                                 <a href="/Inicio/" class="btn btn-sm  bg-gradient-info  btn-round mb-0 me-1" onclick="smoothToPricing('pricing-soft-ui')">INICIAR SESIÓN</a>
                             </li>
                         </ul>
@@ -162,6 +163,8 @@ echo $header;
 
 <script>
     $(document).ready(function() {
+
+        
 
         $("#btncheck2").on("click",function(){
             // alert($(this).val());

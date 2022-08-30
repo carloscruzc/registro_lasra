@@ -19,7 +19,7 @@ echo $header;
                         </ul>
                         <ul class="navbar-nav d-lg-block d-none">
                             <li class="nav-item">
-                                <a href="#" class="btn btn-sm btn-round mb-0 me-1" onclick="history.go(-1)"><i class="fas fa-undo"></i>  REGRESAR</a>
+                                <a href="/Register" class="btn btn-sm btn-round mb-0 me-1"><i class="fas fa-undo"></i> REGRESAR</a>
                                 <a href="/Inicio/" class="btn btn-sm  bg-gradient-info  btn-round mb-0 me-1" onclick="smoothToPricing('pricing-soft-ui')">INICIAR SESIÓN</a>
                             </li>
                         </ul>
@@ -193,8 +193,40 @@ echo $header;
 <script>
     $(document).ready(function() {
 
+        let userDataFiscal = JSON.parse(localStorage.getItem("user_data_fiscal"));
+
+        if (userDataFiscal) {
+
+
+            $("#business_name_iva").val(userDataFiscal.razon_social);
+            $("#code_iva").val(userDataFiscal.rfc_social);
+            $("#email_receipt_iva").val(userDataFiscal.email_social);
+            $("#cp_fac").val(userDataFiscal.cp_social);
+            $("#cfdi").val(userDataFiscal.cfdi_social);
+            $("#regimen_fiscal").val(userDataFiscal.regimen_fiscal_social);
+
+
+            // setTimeout(function() {
+            //     $("#state option[value=" + userData.state + "]").attr('selected', true)
+            // }, 100)
+
+
+
+        }
+
         $("#btn_next").on("click", function(event) {
             event.preventDefault();
+
+            const form_update_fiscal = {
+                razon_social: $("#business_name_iva").val(),
+                rfc_social: $("#code_iva").val(),
+                email_social: $("#email_receipt_iva").val(),
+                cp_social: $("#cp_fac").val(),
+                cfdi_social: $("#cfdi").val(),
+                regimen_fiscal_social: $("#regimen_fiscal").val()
+            }
+
+            localStorage.setItem('user_data_fiscal', JSON.stringify(form_update_fiscal));
 
             var email = $("#email").val();
 

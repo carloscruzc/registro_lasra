@@ -235,7 +235,7 @@ html;
             }
         }
         
-        function actualizaEdos() {
+        function actualizaEdos(pais = null) {
         var pais = $('#nationality').val();
         $.ajax({
           url: '/Register/ObtenerEstado',
@@ -1938,7 +1938,7 @@ html;
         } else {
             $html = "";
             $html .= '
-                <option value="" disabled selected>Selecciona una Opción</option>
+                <option value="" disabled>Selecciona una Opción</option>
                 <option value="2537">Aguascalientes</option>
                 <option value="2538">Baja California</option>
                 <option value="2539">Baja California Sur</option>

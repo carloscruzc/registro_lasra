@@ -140,7 +140,7 @@ echo $header;
                                                                         <div class="col-12 col-sm-4" id="cont-especialidades">
 
                                                                             <label id="label-especialidades">Especialidades *</label>
-                                                                            <select class="multisteps-form__select form-control all_input_select" name="especialidades" id="especialidades" disabled>
+                                                                            <select class="multisteps-form__select form-control all_input_select" name="especialidades" id="especialidades" disabled required>
                                                                                 <option value="" disabled selected>Selecciona una Opción</option>
 
                                                                                 <?= $especialidades ?>
@@ -155,7 +155,7 @@ echo $header;
                                                                             <label id="label-especialidades">Especialidad (Especifique) *</label>
                                                                             <input type="text" class="form-control" id="txt_especialidad" name="txt_especialidad">
 
-                                                                        </div> 
+                                                                        </div>
 
                                                                         <!-- <div class="col-12 col-sm-4" id="cont-especialidades">
 
@@ -182,7 +182,7 @@ echo $header;
 
                                                                         <div class="col-12 col-sm-4">
                                                                             <label>País *</label>
-                                                                            <select class="multisteps-form__select form-control all_input_select" name="nationality" id="nationality" onchange="actualizaEdos();" disabled>
+                                                                            <select class="multisteps-form__select form-control all_input_select" name="nationality" id="nationality" onchange="actualizaEdos();" disabled required>
                                                                                 <option value="" disabled selected>Selecciona una Opción</option>
                                                                                 <option value="156">Mexico</option>
                                                                                 <?php echo $idCountry; ?>
@@ -195,7 +195,7 @@ echo $header;
 
                                                                         <div class="col-12 col-sm-4 mt-3 mt-sm-0">
                                                                             <label>Estado *</label>
-                                                                            <select class="multisteps-form__select form-control all_input_select" name="state" id="state" disabled>
+                                                                            <select class="multisteps-form__select form-control all_input_select" name="state" id="state" disabled required>
 
                                                                             </select>
                                                                         </div>
@@ -258,6 +258,55 @@ echo $header;
 <script>
     $(document).ready(function() {
 
+        let userData = JSON.parse(localStorage.getItem("user_data"));
+
+        if (userData) {
+            if (userData.nombre != '') { 
+                
+                // $("#email").removeAttr('autocomplete');
+
+                $("#btn_next_1").removeAttr('disabled');
+
+                $("#email_validado").val(userData.email);
+                $("#email").val(userData.email)              
+                $("#confirm_email").val(userData.email)
+                $("#nombre").val(userData.nombre)
+                $("#apellidop").val(userData.apellidop)
+                $("#apellidom").val(userData.apellidom)
+                $("#telephone").val(userData.telefono)
+                $("#especialidades").val(userData.especialidades)
+                $("#txt_especialidad").val(userData.txt_especialidad)
+                $("#nationality").val(userData.nationality)
+                actualizaEdos(userData.nationality);
+                
+                setTimeout(function(){
+                    $("#state option[value="+userData.state+"]").attr('selected',true) 
+                },100)
+                 
+
+                if($("#especialidades").val() == 6){
+                    $("#cont-especialidad-text").show();
+                }
+
+                
+                
+                // $("#especialidades").removeAttr('disabled')
+
+                document.getElementById('confirm_email').disabled = false;
+                document.getElementById('title').disabled = false;
+                document.getElementById('apellidop').disabled = false;
+                document.getElementById('apellidom').disabled = false;
+                document.getElementById('telephone').disabled = false;
+                document.getElementById('nationality').disabled = false;
+                document.getElementById('state').disabled = false;
+                document.getElementById('nombre').disabled = false;
+         
+                document.getElementById('especialidades').disabled = false;         
+            }
+        }else{
+            //no esta hecho el json
+        }
+
 
         //codigo de beca
         if ($("#codigo_beca").val() == '' || $("#codigo_beca").val() == 0) {
@@ -275,16 +324,33 @@ echo $header;
             // $("#label-especialidades").css('display','none');
         }
 
-        $("#especialidades").on("change",function(){
+        $("#especialidades").on("change", function() {
             // var especialidad = $("#especialidades option:selected").text();
             var especialidad = $(this).val();
-            if(especialidad == 6){
+            if (especialidad == 6) {
                 $("#cont-especialidad-text").show();
-            }else{
+            } else {
                 $("#cont-especialidad-text").hide();
                 $("#txt_especialidad").val("");
             }
         })
+
+        $("#btn_next_1").on("click", function() {
+            const form_add = {
+                email: $("#confirm_email").val(),
+                nombre: $("#nombre").val(),
+                apellidop: $("#apellidop").val(),
+                apellidom: $("#apellidom").val(),
+                telefono: $("#telephone").val(),
+                especialidades: $("#especialidades").val(),
+                txt_especialidad: $("#txt_especialidad").val(),
+                nationality: $("#nationality").val(),
+                state: $("#state").val()
+
+            }
+
+            localStorage.setItem('user_data', JSON.stringify(form_add));
+        });
 
         $("#btn_next_update").on("click", function() {
 
@@ -332,52 +398,58 @@ echo $header;
         // }
 
 
-        if ($("#email_register").val() == '') {
+        // if ($("#email_register").val() == '') {
             let email = localStorage.getItem("email");
-            
+
+            if(email){
 
             $("#email").val(email);
-            if ($("#email").val() != '') {
-                $("#confirm_email").removeAttr('disabled');
+                if ($("#email").val() != '') {
+                    $("#confirm_email").removeAttr('disabled');
+                } else {
+                    $("#email").removeAttr('readonly');
+                }
+
+                mostrarCategorias();
             }else{
-                $("#email").removeAttr('readonly');
+                $("#email").removeAttr('readonly')
             }
 
-            mostrarCategorias();
+        // } 
+        
+        // else {
+        //     var email_uno = document.getElementById('email').value;
+        //     var email_dos = document.getElementById('confirm_email').value;
+        //     var id_categoria = $("#id_categoria").val();
+        //     document.getElementById("btn_next_1").disabled = false;
+        //     document.getElementById("btn_next_update").disabled = false;
 
-        } else {
-            var email_uno = document.getElementById('email').value;
-            var email_dos = document.getElementById('confirm_email').value;
-            var id_categoria = $("#id_categoria").val();
-            document.getElementById("btn_next_1").disabled = false;
-            document.getElementById("btn_next_update").disabled = false;
+        //     if (email_uno == email_dos) {
+        //         document.getElementById('confirm_email').disabled = false;
+        //         document.getElementById('title').disabled = false;
+        //         document.getElementById('apellidop').disabled = false;
+        //         document.getElementById('apellidom').disabled = false;
+        //         document.getElementById('telephone').disabled = false;
+        //         document.getElementById('nationality').disabled = false;
+        //         document.getElementById('state').disabled = false;
+        //         document.getElementById('nombre').disabled = false;
+        //         document.getElementById('categorias').disabled = false;
+        //         document.getElementById('especialidades').disabled = false;
+        //         document.getElementById("email_validado").value = email_uno;
 
-            if (email_uno == email_dos) {
-                document.getElementById('confirm_email').disabled = false;
-                document.getElementById('title').disabled = false;
-                document.getElementById('apellidop').disabled = false;
-                document.getElementById('apellidom').disabled = false;
-                document.getElementById('telephone').disabled = false;
-                document.getElementById('nationality').disabled = false;
-                document.getElementById('state').disabled = false;
-                document.getElementById('nombre').disabled = false;
-                document.getElementById('categorias').disabled = false;
-                document.getElementById('especialidades').disabled = false;
-                document.getElementById("email_validado").value = email_uno;
+        //     }
 
-            }
+        //     mostrarCategoriaByUser(id_categoria);
 
-            mostrarCategoriaByUser(id_categoria);
+        //     console.log($("#categorias option:selected").val());
 
-            console.log($("#categorias option:selected").val());
+        //     if (id_categoria == 2) {
+        //         $("#cont-especialidades").show();
+        //     } else {
+        //         $("#cont-especialidades").hide();
+        //     }
 
-            if (id_categoria == 2) {
-                $("#cont-especialidades").show();
-            } else {
-                $("#cont-especialidades").hide();
-            }
-
-        }
+        // }
 
         // $("#categorias").on("change", function() {
         //     id_categoria = $(this).val();
@@ -489,7 +561,7 @@ echo $header;
                             .append('<option value="' + value.id_categoria + '" ' + selectedCategoria + '>' + value.categoria + '</option>');
                     });
 
-                    if($('select[id="categorias"] option:selected').text() == "Socio"){
+                    if ($('select[id="categorias"] option:selected').text() == "Socio") {
                         $("#cont-clave-socio").show();
                     }
 

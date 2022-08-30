@@ -256,10 +256,10 @@ class Mailer
             $mail->CharSet = 'UTF-8';
 
             $mail->send();
-           echo 'El mensaje ha sido enviado';
+        //    echo 'El mensaje ha sido enviado';
             
         } catch (Exception $e) {
-            echo "No se pudo enviar el email: {$mail->ErrorInfo}";
+            // echo "No se pudo enviar el email: {$mail->ErrorInfo}";
         }
     }
 

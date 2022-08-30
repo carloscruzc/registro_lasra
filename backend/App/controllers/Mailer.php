@@ -218,9 +218,11 @@ class Mailer
                     <p>
                         a) Número de cuenta: 0110402915
                         <br>
-                        b)	Banco: BBVA
+                        b) Número de cuenta CLABE: 012041001104029153
                         <br>
-                        c)	Nombre: LASRA MÉXICO AC
+                        c)	Banco: BBVA
+                        <br>
+                        d)	Nombre: LASRA MÉXICO AC
                     </p>
                     <p>
                         <b>Referencia:</b> '.$msg['referencia'].'
@@ -353,9 +355,11 @@ class Mailer
                     <p>
                         a) Número de cuenta: 0110402915
                         <br>
-                        b)	Banco: BBVA
+                        b) Número de cuenta CLABE: 012041001104029153
                         <br>
-                        c)	Nombre: LASRA MÉXICO AC
+                        c)	Banco: BBVA
+                        <br>
+                        d)	Nombre: LASRA MÉXICO AC
                     </p>
                     <p>
                         <b>Referencia:</b> '.$msg['referencia'].'

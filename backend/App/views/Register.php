@@ -282,6 +282,7 @@ echo $header;
                 $("#cont-especialidad-text").show();
             }else{
                 $("#cont-especialidad-text").hide();
+                $("#txt_especialidad").val("");
             }
         })
 

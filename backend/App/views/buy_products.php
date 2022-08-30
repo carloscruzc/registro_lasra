@@ -70,6 +70,14 @@
                         <div class="input-group"></div>
                     </div>
 
+                    
+
+                    <ul class="navbar-nav  justify-content-end">
+                        <li class="nav-item d-flex align-items-center">
+                            <a href="#" class="btn btn-sm btn-round mb-0 me-1" onclick="history.go(-1)" style="color: #176DBA; background-color: #fff;"><i class="fas fa-undo"></i>  REGRESAR</a>
+                        </li>
+                    </ul>
+
                     <ul class="navbar-nav  justify-content-end">
                         <li class="nav-item d-flex align-items-center">
                             <a href="/Account" class="nav-link text-body font-weight-bold mx-lg-4 mx-0  px-0" style="color: #fff;">

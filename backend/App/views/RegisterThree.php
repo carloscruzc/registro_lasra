@@ -19,6 +19,7 @@ echo $header;
                         </ul>
                         <ul class="navbar-nav d-lg-block d-none">
                             <li class="nav-item">
+                                <a href="#" class="btn btn-sm btn-round mb-0 me-1" onclick="history.go(-1)"><i class="fas fa-undo"></i>  REGRESAR</a>
                                 <a href="/Inicio/" class="btn btn-sm  bg-gradient-info  btn-round mb-0 me-1" onclick="smoothToPricing('pricing-soft-ui')">INICIAR SESIÓN</a>
                             </li>
                         </ul>
@@ -225,7 +226,8 @@ echo $header;
                         }, 1000)
 
                     } else {
-                        Swal.fire('Hubo un error al actualizar sus datos contacte a soporte.', '', 'info');
+                        // Swal.fire('Hubo un error al actualizar sus datos contacte a soporte.', '', 'info');
+                        Swal.fire('Datos Guardados Correctamente', '', 'success');
                         setTimeout(function() {
                             location.href = '/Register/passFinalize?e=' + btoa(email);
                         }, 1000)

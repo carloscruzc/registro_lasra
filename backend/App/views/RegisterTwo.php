@@ -16,9 +16,12 @@ echo $header;
 
                     <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0" id="navigation">
                         <ul class="navbar-nav navbar-nav-hover mx-auto">
+                       
                         </ul>
-                        <ul class="navbar-nav d-lg-block d-none">
+                        <ul class="navbar-nav d-lg-inline d-none">
+                           
                             <li class="nav-item">
+                                <a href="#" class="btn btn-sm btn-round mb-0 me-1" onclick="history.go(-1)"><i class="fas fa-undo"></i>  REGRESAR</a>
                                 <a href="/Inicio/" class="btn btn-sm  bg-gradient-info  btn-round mb-0 me-1" onclick="smoothToPricing('pricing-soft-ui')">INICIAR SESIÓN</a>
                             </li>
                         </ul>

@@ -218,14 +218,14 @@ html;
                 $button_comprobante = '<form method="POST" enctype="multipart/form-data" action="/ComprobantePago/uploadComprobante" data-id-pp=' . $value["id_pendiente_pago"] . '>
                                     <input type="hidden" name="id_pendiente_pago" id="id_pendiente_pago" value="' . $value["id_pendiente_pago"] . '"/>
                                     <input type="hidden" name="clave" id="clave" value="' . $value["clave"] . '"/>
-                                    <input type="file" accept="application/pdf" class="form-control" id="file-input" name="file-input" style="width: auto; margin: 0 auto;">
+                                    <input type="file" accept="image/*,.pdf" class="form-control" id="file-input" name="file-input" style="width: auto; margin: 0 auto;">
                                     <button class="btn btn-primary btn-only-icon mt-2" type="submit">Subir</button>
                                     </form>';
             } else if($value['tipo_pago'] == "Registro_Becado") {
                 $button_comprobante = '';
             }
             else {
-                $button_comprobante = '<a href="/comprobantesPago/' . $value["url_archivo"] . '" class="btn bg-pink btn-icon-only morado-musa-text text-center"  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Ver mi comprobante" target="_blank"><i class="fas fa-print"> </i></a>';
+                $button_comprobante = '<a href="/comprobantesPago/'.$_SESSION['user_id'].'/' . $value["url_archivo"] . '" class="btn bg-pink btn-icon-only morado-musa-text text-center"  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Ver mi comprobante" target="_blank"><i class="fas fa-print"> </i></a>';
             }
 
 
@@ -551,15 +551,36 @@ html;
         $id_pendiente_pago = $_POST['id_pendiente_pago'];
         $clave = $_POST['clave'];
         $file = $_FILES["file-input"];
+        $name_archivo = '';
+
+
+        $formatos_permitidos_img = array("image/jpg", "image/jpeg", "image/gif", "image/png");
+
+        if (in_array($_FILES['file-input']['type'], $formatos_permitidos_img)) {
+            
+            $tipos  = $_FILES['file-input']['type'];
+            $tipo = explode("/", $tipos);  
+            $name_archivo = $numero_rand.'.'.$tipo[1];
+        }else{
+            $name_archivo = $numero_rand.'.pdf';
+        }
+
+        $nombre_fichero = 'comprobantesPago/'.$_SESSION['user_id'];
+
+
+        if (!file_exists($nombre_fichero)) {
+            mkdir('comprobantesPago/'.$_SESSION['user_id'], 0777, true);
+        } 
 
         if ($file['name'] != "") {
 
-            if (move_uploaded_file($file["tmp_name"], "comprobantesPago/" . $numero_rand . ".pdf")) {
+            // if (move_uploaded_file($file["tmp_name"], "comprobantesPago/" . $numero_rand . ".pdf")) {
+            if (move_uploaded_file($file["tmp_name"], "comprobantesPago/".$_SESSION['user_id']."/" . $name_archivo)) {
 
                 $documento = new \stdClass();
                 $documento->_id_pendiente_pago = $id_pendiente_pago;
                 $documento->_clave = $clave;
-                $documento->_url = $numero_rand . ".pdf";
+                $documento->_url = $name_archivo;
 
                 $id = ComprobantePagoDao::updateComprobante($documento);
 

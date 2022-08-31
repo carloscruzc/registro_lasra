@@ -508,25 +508,25 @@ html;
         }
 
         //folio
-        $pdf->SetXY(1, 104);
+        $pdf->SetXY(1, 102.5);
         $pdf->SetFont('Arial', 'B', 10);
         $pdf->SetTextColor(0, 0, 0);
         $pdf->Multicell(80, 10, $clave.'-'.$user_id, 0, 'C');
 
         //fecha
-        $pdf->SetXY(8, 112.5);
+        $pdf->SetXY(8, 110);
         $pdf->SetFont('Arial', 'B', 10);
         $pdf->SetTextColor(0, 0, 0);
         $pdf->Multicell(100, 10, $fecha_limite, 0, 'C');
 
         //nombre
-        $pdf->SetXY(10, 62);
+        $pdf->SetXY(10, 60);
         $pdf->SetFont('Arial', 'B', 10);
         $pdf->SetTextColor(0, 0, 0);
         $pdf->Multicell(100, 10, utf8_decode($nombre_completo), 0, 'C');
 
         //metodo pago
-        $pdf->SetXY(16, 70.5);
+        $pdf->SetXY(16, 68);
         $pdf->SetFont('Arial', 'B', 10);
         $pdf->SetTextColor(0, 0, 0);
         $pdf->Multicell(80, 10, utf8_decode($metodo_pago), 0, 'C');
@@ -534,7 +534,7 @@ html;
 
 
         // total
-        $pdf->SetXY(5, 108.5);
+        $pdf->SetXY(5, 106);
         $pdf->SetFont('Arial', 'B', 10);
         $pdf->SetTextColor(0, 0, 0);
         $pdf->Multicell(100, 10, number_format(array_sum($total), 2) . ' MXN', 0, 'C');

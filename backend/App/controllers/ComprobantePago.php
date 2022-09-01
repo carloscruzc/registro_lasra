@@ -304,7 +304,7 @@ html;
 
             <td style="text-align:left; vertical-align:middle;" >                 
                 <div class="text-center">                
-                <p>$ {$total} {$value['tipo_moneda']}</p>
+                <p>$ {$total} {$value['t_moneda']}</p>
             </div>
           
         </td>
@@ -490,6 +490,8 @@ html;
 
             $metodo_pago = $value['tipo_pago'];
 
+            $tipo_moneda = $value['t_moneda'];
+
             array_push($total, $precio);
 
             // //Nombre Curso
@@ -537,7 +539,7 @@ html;
         $pdf->SetXY(5, 106);
         $pdf->SetFont('Arial', 'B', 10);
         $pdf->SetTextColor(0, 0, 0);
-        $pdf->Multicell(100, 10, number_format(array_sum($total), 2) . ' MXN', 0, 'C');
+        $pdf->Multicell(100, 10, number_format(array_sum($total), 2) . ' '.$tipo_moneda, 0, 'C');
 
         $pdf->Output();
         // $pdf->Output('F','constancias/'.$clave.$id_curso.'.pdf');

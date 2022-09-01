@@ -1193,7 +1193,7 @@ html;
         <div class="row">
             <div class="col-md-8">
                 <div class="form-check">
-                    <input class="form-check-input checks_product" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" {$disabled} {$checked} data-precio="{$precio}" data-precio-socio="{$value['precio_socio']}" data-nombre-producto="{$value['nombre_producto']}">
+                    <input class="form-check-input checks_product" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" {$disabled} {$checked} data-precio="{$precio}" data-precio-usd="{$value['precio_publico_usd']}" data-precio-socio="{$value['precio_socio']}" data-precio-socio-usd="{$value['precio_socio_usd']}" data-nombre-producto="{$value['nombre_producto']}">
                     <label class="form-check-label" for="check_curso_{$value['id_producto']}">
                     {$value['tipo']} {$value['nombre_producto']} - {$fecha} <span style="font-size: 13px; text-decoration: underline; color: green;">{$pend_validar}</span>
                     </label>
@@ -1275,7 +1275,7 @@ html;
             <div class="row">
                  <div class="col-md-8">
                      <div class="form-check">
-                         <input class="form-check-input checks_product" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" data-precio="{$precio}" data-precio-socio="{$value['precio_socio']}" data-nombre-producto="{$value['nombre_producto']}" {$check_disabled}>
+                         <input class="form-check-input checks_product" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" data-precio="{$precio}" data-precio-usd="{$value['precio_publico_usd']}" data-precio-socio="{$value['precio_socio']}" data-precio-socio-usd="{$value['precio_socio_usd']}" data-nombre-producto="{$value['nombre_producto']}" {$check_disabled}>
                          <label class="form-check-label" for="check_curso_{$value['id_producto']}">
                          {$value['tipo']} {$value['nombre_producto']} - {$fecha}
                          </label>

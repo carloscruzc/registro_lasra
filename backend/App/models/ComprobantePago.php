@@ -23,7 +23,7 @@ sql;
     public static function getAllComprobantes($id){
       $mysqli = Database::getInstance();
       $query=<<<sql
-      SELECT pro.id_producto,pro.nombre,pro.precio_publico,pro.precio_socio,pro.tipo_moneda,pro.caratula,pro.es_curso,pro.es_servicio,pro.es_congreso,ua.monto_congreso as amout_due,ua.clave_socio,pp.id_pendiente_pago,pp.status,pp.tipo_pago,pp.url_archivo,pp.clave,pp.monto
+      SELECT pro.id_producto,pro.nombre,pro.precio_publico,pro.precio_socio,pro.tipo_moneda,pro.caratula,pro.es_curso,pro.es_servicio,pro.es_congreso,ua.monto_congreso as amout_due,ua.clave_socio,pp.id_pendiente_pago,pp.status,pp.tipo_pago,pp.url_archivo,pp.clave,pp.monto,pp.monto,pp.tipo_moneda as t_moneda
       FROM productos pro
       INNER JOIN pendiente_pago pp ON (pro.id_producto = pp.id_producto)
       INNER JOIN utilerias_administradores ua ON(ua.user_id = pp.user_id)
@@ -35,7 +35,7 @@ sql;
     public static function getAllComprobantesbyClave($id,$clave){
       $mysqli = Database::getInstance();
       $query=<<<sql
-      SELECT pro.nombre,pro.precio_publico,pro.precio_socio,pro.tipo_moneda,pro.caratula,pro.es_curso,pro.es_servicio,pro.es_congreso,ua.monto_congreso as amout_due,ua.clave_socio,pp.id_pendiente_pago,pp.status,pp.tipo_pago,pp.url_archivo,pp.clave, pp.comprado_en, pp.monto
+      SELECT pro.nombre,pro.precio_publico,pro.precio_socio,pro.tipo_moneda,pro.caratula,pro.es_curso,pro.es_servicio,pro.es_congreso,ua.monto_congreso as amout_due,ua.clave_socio,pp.id_pendiente_pago,pp.status,pp.tipo_pago,pp.url_archivo,pp.clave, pp.comprado_en, pp.monto,pp.tipo_moneda as t_moneda
       FROM productos pro
       INNER JOIN pendiente_pago pp ON (pro.id_producto = pp.id_producto)
       INNER JOIN utilerias_administradores ua ON(ua.user_id = pp.user_id)

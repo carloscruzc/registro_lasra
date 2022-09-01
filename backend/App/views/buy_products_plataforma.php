@@ -95,9 +95,9 @@
                                             </div>
 
                                             <div class="col-md-6">
-                                                <!-- <p>Su pago en dolares es: $ <span id="total"><? //= $total_pago 
-                                                                                                    ?></span> USD</p> -->
-                                                <p>Su pago en pesos mexicanos es: $ <span id="total_mx"></span> </p>
+                                                
+                                                <p>Su pago en pesos mexicanos es: $ <span id="total_mx">0</span> </p>
+                                                <p>Su pago en USD: $ <span id="total_usd">0</span> </p>
 
                                             </div>
                                         </div>
@@ -117,8 +117,16 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <select id="forma_pago" name="forma_pago" class="form-control">
-                                                    <option value="">Seleccione una Opción</option>
+                                                    <option value="">Seleccione una Opción de pago</option>
                                                     <option value="Transferencia">Depósito/Transferencia</option>
+                                                    <!-- <option value="Paypal">Paypal</option> -->
+                                                </select>
+
+                                                <br>
+                                                <select id="tipo_moneda_pago" name="tipo_moneda_pago" class="form-control">
+                                                    <option value="">Seleccione tipo de moneda de pago</option>
+                                                    <option value="MXN">$ Pesos Mexicanos - MXN</option>
+                                                    <option value="USD">$ Dolares - USD</option>
                                                     <!-- <option value="Paypal">Paypal</option> -->
                                                 </select>
 
@@ -356,6 +364,8 @@
                 var id_product = $(this).val();
                 var precio = $(this).attr('data-precio');
                 var precio_socio = $(this).attr('data-precio-socio');
+                var precio_usd = $(this).attr('data-precio-usd');
+                var precio_socio_usd = $(this).attr('data-precio-socio-usd');
                 var cantidad = $("#numero_articulos" + id_product).val();
                 var nombre_producto = $(this).attr('data-nombre-producto');
 
@@ -380,6 +390,7 @@
                             precios.push({
                                 'id_product': '2',
                                 'precio': '2500', //cambiar manualmente
+                                'precio_usd': '130',
                                 'cantidad': '1'
                             });
 
@@ -387,6 +398,7 @@
                                 'id_product': '2',
                                 'precio': '2500', //cambiar manualmente
                                 'cantidad': '1',
+                                'precio_usd': '130',
                                 'nombre_producto': 'ANUALIDAD (2022)'
                             });
 
@@ -395,6 +407,15 @@
                             $("#check_curso_2").attr('disabled', 'disabled');
                         }
 
+                    }
+
+                    //precio socio si tiene anaulidad
+                    if (nombre_producto == 'ANUALIDAD (2022)') {
+
+                        $(".checks_product").each(function(index) {
+                            $("#cont_precio_" + $(this).val()).html($(this).data('precio-socio') + ' - MXN ');
+                            
+                        });
                     }
 
                     //validaciones para los talleres simultaneos 
@@ -448,6 +469,7 @@
                         precios.push({
                             'id_product': id_product,
                             'precio': precio_socio,
+                            'precio_usd': precio_socio_usd,
                             'cantidad': cantidad
                         });
 
@@ -455,6 +477,7 @@
                         productos.push({
                             'id_product': id_product,
                             'precio': precio_socio,
+                            'precio_usd': precio_socio_usd,
                             'cantidad': cantidad,
                             'nombre_producto': nombre_producto
                         });
@@ -465,6 +488,7 @@
                         precios.push({
                             'id_product': id_product,
                             'precio': precio,
+                            'precio_usd': precio_socio_usd,
                             'cantidad': cantidad
                         });
 
@@ -472,6 +496,7 @@
                         productos.push({
                             'id_product': id_product,
                             'precio': precio,
+                            'precio_usd': precio_socio_usd,
                             'cantidad': cantidad,
                             'nombre_producto': nombre_producto
                         });
@@ -672,6 +697,7 @@
                 // var sumaArticulos = <?= $total_productos ?>;
 
                 var sumaPrecios = 0;
+                var sumaPreciosUsd = 0;
                 var sumaArticulos = 0;
 
                 precios.forEach(function(precio, index) {
@@ -681,18 +707,23 @@
                     sumaPrecios += parseInt(precio.precio * precio.cantidad);
                     sumaArticulos += parseInt(precio.cantidad);
 
+                    sumaPreciosUsd += parseInt(precio.precio_usd * precio.cantidad);
+
 
                 });
 
 
 
                 console.log("Suma precios " + sumaPrecios);
+                console.log("--------------");
+                console.log("Suma precios usd " + sumaPreciosUsd);
 
                 $("#total").html(sumaPrecios);
                 $("#amount").val(sumaPrecios);
 
                 // $("#total_mx").html(($("#tipo_cambio").val() * sumaPrecios).toFixed(2));
                 $("#total_mx").html((sumaPrecios).toFixed(2));
+                $("#total_usd").html((sumaPreciosUsd).toFixed(2));
 
                 console.log("Suma Articulos " + sumaArticulos);
 
@@ -725,6 +756,7 @@
                 var clave = $("#clave").val();
                 var usuario = $("#email_usuario").val();
                 var metodo_pago = $("#metodo_pago").val();
+                var tipo_moneda = $("#tipo_moneda_pago").val();
                 var compra_en = 'plataforma';
 
                 console.log("precios ------");
@@ -740,7 +772,9 @@
                     Swal.fire("¡Debes seleccionar un metodo de pago!", "", "warning")
                 } else if ($("#forma_pago").val() == '' && $("#clave_socio").val() == '') {
                     Swal.fire("¡Debes seleccionar un metodo de pago!", "", "warning")
-                } else {
+                } else if($("#tipo_moneda_pago").val() == ''){
+                    Swal.fire("¡Debes seleccionar el tipo de Cambio a pagar!", "", "warning")
+                }else {
                     var plantilla_productos = '';
 
                     plantilla_productos += `<ul>`;
@@ -786,7 +820,8 @@
                                         clave,
                                         usuario,
                                         metodo_pago,
-                                        plataforma
+                                        plataforma,
+                                        tipo_moneda
                                     },
                                     cache: false,
                                     dataType: "json",
@@ -826,7 +861,8 @@
                                         clave,
                                         usuario,
                                         metodo_pago,
-                                        enviar_email
+                                        enviar_email,
+                                        tipo_moneda
                                     },
                                     cache: false,
                                     dataType: "json",

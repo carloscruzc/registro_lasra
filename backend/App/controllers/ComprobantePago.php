@@ -276,7 +276,7 @@ html;
                     $status = '<span class="badge badge-success">Aceptado</span>';
                 } else {
                     $icon_status = '<i class="far fa-times-circle" style="color: red;"></i>';
-                    $status = '<span class="badge badge-danger">Carga un Archivo PDF valido</span>';
+                    $status = '<span class="badge badge-danger">Carga un archivo válido</span>';
                 }
 
                 if($value2['status'] == 0 || $value2['status'] == 2){

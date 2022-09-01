@@ -814,18 +814,24 @@ html;
             $pend_validar = '';
             $fecha = $value['fecha_producto'];
 
-            if ($value['es_congreso'] == 1) {
-                $precio = $value['amout_due'];
-            } elseif ($value['es_congreso'] == 1 && $value['clave_socio'] != "") {
-                $precio = $value['amout_due'];
-            } else if ($value['es_servicio'] == 1 && $value['clave_socio'] == "") {
+            // if ($value['es_congreso'] == 1) {
+            //     $precio = $value['amout_due'];
+            // } elseif ($value['es_congreso'] == 1 && $value['clave_socio'] != "") {
+            //     $precio = $value['amout_due'];
+            // } else if ($value['es_servicio'] == 1 && $value['clave_socio'] == "") {
+            //     $precio = $value['precio_publico'];
+            // } else if ($value['es_servicio'] == 1 && $value['clave_socio'] != "") {
+            //     $precio = $value['precio_socio'];
+            // } else if ($value['es_curso'] == 1  && $value['clave_socio'] == "") {
+            //     $precio = $value['precio_publico'];
+            // } else if ($value['es_curso'] == 1  && $value['clave_socio'] != "") {
+            //     $precio = $value['precio_socio'];
+            // }
+
+            if($value['es_congreso'] == 1){
+                $precio = $value['monto'];
+            }else{
                 $precio = $value['precio_publico'];
-            } else if ($value['es_servicio'] == 1 && $value['clave_socio'] != "") {
-                $precio = $value['precio_socio'];
-            } else if ($value['es_curso'] == 1  && $value['clave_socio'] == "") {
-                $precio = $value['precio_publico'];
-            } else if ($value['es_curso'] == 1  && $value['clave_socio'] != "") {
-                $precio = $value['precio_socio'];
             }
 
             $count_producto = HomeDao::getCountProductos($data_user['user_id'], $value['id_producto'])[0];
@@ -868,7 +874,7 @@ html;
             <div class="row">
                 <div class="col-md-8">
                     <div class="form-check">
-                        <input class="form-check-input checks_product" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" {$disabled} {$checked} data-precio="{$precio}" data-precio-socio="{$value['precio_socio']}" data-nombre-producto="{$value['nombre_producto']}">
+                        <input class="form-check-input checks_product" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" {$disabled} {$checked} data-precio="{$precio}" data-precio-usd="{$value['precio_publico_usd']}" data-precio-socio="{$value['precio_socio']}" data-precio-socio-usd="{$value['precio_socio_usd']}" data-nombre-producto="{$value['nombre_producto']}">
                         <label class="form-check-label" for="check_curso_{$value['id_producto']}">
                             {$value['tipo']} {$value['nombre_producto']} - {$fecha} <span style="font-size: 13px; text-decoration: underline; color: green;">{$pend_validar}</span>
                         </label>
@@ -909,19 +915,22 @@ html;
 
 
             //Esto se tiene que modificar por el nombre prducto 
-            if ($value['es_congreso'] == 1 && $value['nombre_producto'] == "V Congreso LASRA México (socio)") {
-                $precio = $value['precio_publico'];
-            } elseif ($value['es_congreso'] == 1) {
-                $precio = $value['amout_due'];
-            } else if ($value['es_servicio'] == 1 && $value['clave_socio'] == "") {
-                $precio = $value['precio_publico'];
-            } else if ($value['es_servicio'] == 1 && $value['clave_socio'] != "") {
-                $precio = $value['precio_socio'];
-            } else if ($value['es_curso'] == 1  && $value['clave_socio'] == "") {
-                $precio = $value['precio_publico'];
-            } else if ($value['es_curso'] == 1  && $value['clave_socio'] != "") {
-                $precio = $value['precio_socio'];
-            }
+
+            // if ($value['es_congreso'] == 1 && $value['nombre_producto'] == "V Congreso LASRA México (socio)") {
+            //     $precio = $value['precio_publico'];
+            // } elseif ($value['es_congreso'] == 1) {
+            //     $precio = $value['amout_due'];
+            // } else if ($value['es_servicio'] == 1 && $value['clave_socio'] == "") {
+            //     $precio = $value['precio_publico'];
+            // } else if ($value['es_servicio'] == 1 && $value['clave_socio'] != "") {
+            //     $precio = $value['precio_socio'];
+            // } else if ($value['es_curso'] == 1  && $value['clave_socio'] == "") {
+            //     $precio = $value['precio_publico'];
+            // } else if ($value['es_curso'] == 1  && $value['clave_socio'] != "") {
+            //     $precio = $value['precio_socio'];
+            // }
+
+            $precio = $value['precio_publico'];
 
             if ($value['max_compra'] <= 1) {
                 $numero_productos = '<input type="number" id="numero_articulos' . $value['id_producto'] . '" name="numero_articulos" value="' . $value['max_compra'] . '" style="border:none;" readonly>';
@@ -939,7 +948,7 @@ html;
             <div class="row">
                  <div class="col-md-8">
                      <div class="form-check">
-                         <input class="form-check-input checks_product" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" data-precio="{$precio}" data-precio-socio="{$value['precio_socio']}" data-nombre-producto="{$value['nombre_producto']}" {$check_disabled}>
+                         <input class="form-check-input checks_product" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" data-precio="{$precio}" data-precio-usd="{$value['precio_publico_usd']}" data-precio-socio="{$value['precio_socio']}" data-precio-socio-usd="{$value['precio_socio_usd']}" data-nombre-producto="{$value['nombre_producto']}" {$check_disabled}>
                          <label class="form-check-label" for="check_curso_{$value['id_producto']}">
                          {$value['tipo']} {$value['nombre_producto']} - {$fecha}
                          </label>
@@ -947,7 +956,7 @@ html;
                  </div>
                
                  <div class="col-md-2">
-                     <span class="cont_precio" id="cont_precio_{$value['id_producto']}">{$precio} <span>- {$value['tipo_moneda']}
+                     <span class="cont_precio" id="cont_precio_{$value['id_producto']}">{$precio} <span>- {$value['tipo_moneda']} 
                  </div>
 
                  <div class="col-md-2">
@@ -1189,7 +1198,7 @@ html;
         <div class="row">
             <div class="col-md-8">
                 <div class="form-check">
-                    <input class="form-check-input checks_product" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" {$disabled} {$checked} data-precio="{$precio}" data-precio-socio="{$value['precio_socio']}" data-nombre-producto="{$value['nombre_producto']}">
+                    <input class="form-check-input checks_product" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" {$disabled} {$checked} data-precio="{$precio}" data-precio-usd="{$value['precio_publico_usd']}" data-precio-socio="{$value['precio_socio']}" data-precio-socio-usd="{$value['precio_socio_usd']}" data-nombre-producto="{$value['nombre_producto']}">
                     <label class="form-check-label" for="check_curso_{$value['id_producto']}">
                     {$value['tipo']} {$value['nombre_producto']} <span style="font-size: 13px; text-decoration: underline; color: green;">{$pend_validar}</span>
                     </label>
@@ -1272,7 +1281,7 @@ html;
             <div class="row">
                  <div class="col-md-8">
                      <div class="form-check">
-                         <input class="form-check-input checks_product" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" data-precio="{$precio}" data-precio-socio="{$value['precio_socio']}" data-nombre-producto="{$value['nombre_producto']}" {$check_disabled}>
+                         <input class="form-check-input checks_product" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" data-precio="{$precio}" data-precio-usd="{$value['precio_publico_usd']}" data-precio-socio="{$value['precio_socio']}" data-precio-socio-usd="{$value['precio_socio_usd']}" data-nombre-producto="{$value['nombre_producto']}" {$check_disabled}>
                          <label class="form-check-label" for="check_curso_{$value['id_producto']}">
                          {$value['tipo']} {$value['nombre_producto']} - {$fecha}
                          </label>
@@ -1338,6 +1347,8 @@ html;
         $clave = $_POST['clave'];
         $usuario = $_POST['usuario'];
         $tipo_pago = $_POST['metodo_pago'];
+        $tipo_moneda = $_POST['tipo_moneda'];
+
 
         $datos = json_decode($_POST['array'], true);
 
@@ -1357,7 +1368,12 @@ html;
                 $documento = new \stdClass();
 
                 $id_producto = $value['id_product'];
-                $monto = $value['precio'];
+
+                if($tipo_moneda == 'MXN'){
+                    $monto = $value['precio'];
+                }else{
+                    $monto = $value['precio_usd'];
+                }          
 
 
                 $documento->_id_producto = $id_producto;
@@ -1366,6 +1382,7 @@ html;
                 $documento->_fecha = $fecha;
                 $documento->_monto = $monto;
                 $documento->_tipo_pago = $tipo_pago;
+                $documento->_tipo_moneda = $tipo_moneda;
                 $documento->_clave = $clave;
 
                 if ($id_producto == 1 && $monto == 0) {
@@ -1630,6 +1647,7 @@ html;
             // $monto = $value['precio_publico'];
             $monto = $precio;
             $tipo_pago = $metodo_pago;
+            $tipo_moneda = $value['tipo_moneda'];
             $status = 0;
 
 
@@ -1721,7 +1739,7 @@ html;
         $pdf->SetXY(5, 106);
         $pdf->SetFont('Arial', 'B', 10);
         $pdf->SetTextColor(0, 0, 0);
-        $pdf->Multicell(100, 10, number_format(array_sum($total), 2) . ' MXN', 0, 'C');
+        $pdf->Multicell(100, 10, number_format(array_sum($total), 2) . ' '.$tipo_moneda, 0, 'C');
 
         // $pdf->Output();
         $pdf->Output('F','comprobantesPago/'.$clave.'.pdf');        
@@ -1735,7 +1753,8 @@ html;
             'importe_pagar' => number_format(array_sum($total), 2),
             'fecha_limite_pago' => $fecha_limite,
             'email' => $usuario,
-            'clave' => $clave
+            'clave' => $clave,
+            'tipo_moneda' => $tipo_moneda
         ];
 
     

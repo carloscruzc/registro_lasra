@@ -227,7 +227,7 @@ class Mailer
                     <p>
                         <b>Referencia:</b> '.$msg['referencia'].'
                         <br>
-                        <b>Importe a pagar:</b> $ '.$msg['importe_pagar'].' MXN
+                        <b>Importe a pagar:</b> $ '.$msg['importe_pagar'].' '.$msg['tipo_moneda'].'
                         <br>
                         <b>Fecha límite de pago:</b> '.$fecha_limite.' 
                         

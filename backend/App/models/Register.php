@@ -217,7 +217,7 @@ sql;
   {
     $mysqli = Database::getInstance(1);
     $query = <<<sql
-    INSERT INTO pendiente_pago (id_producto, user_id, reference, clave	,fecha, monto, tipo_pago,status, comprado_en) VALUES (:id_producto, :user_id, :reference, :clave, :fecha, :monto, :tipo_pago,:status, 1);
+    INSERT INTO pendiente_pago (id_producto, user_id, reference, clave,fecha, monto, tipo_moneda,tipo_pago,status, comprado_en) VALUES (:id_producto, :user_id, :reference, :clave, :fecha, :monto, :tipo_moneda,:tipo_pago,:status, 1);
 sql;
 
     $parametros = array(
@@ -228,6 +228,7 @@ sql;
       ':fecha' => $data->_fecha,
       ':monto' => $data->_monto,
       ':tipo_pago' => $data->_tipo_pago,
+      ':tipo_moneda' => $data->_tipo_moneda,
       ':status' => $data->_status
 
     );

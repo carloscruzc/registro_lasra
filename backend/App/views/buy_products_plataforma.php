@@ -69,6 +69,8 @@
             <div class="card col-lg-12 mt-lg-4 mt-1">
                 <div class="card-header pb-0 p-3">
                     <p style="font-size: 14px">(Seleccione a continuación lo que desea pagar y presione el boton de pagar y muestre el codigo de pago en caja)</p>
+                   
+                    <input type="hidden" name="id_pais" id="id_pais" value="<?=$datos['id_pais']?>">
                 </div>
                 <div class="card-body px-5 pb-5">
 
@@ -250,6 +252,10 @@
     <script>
         $(document).ready(function() {
             
+            if($("#id_pais").val() != 156){
+                $("#cont_check2").addClass('d-none');
+                $("#cont_check23").addClass('d-none');
+            }
 
             if ($("#check_curso_24").prop('checked')) {
                 $("#check_curso_27").attr('disabled', 'disabled');
@@ -513,7 +519,7 @@
 
                         // if ($("#check_curso_2").is(":checked")) {
 
-                        $(".checks_product").each(function(index) {
+                        $(".checks_product_no_comprados").each(function(index) {
                             $("#cont_precio_" + $(this).val()).html($(this).data('precio') + ' - MXN');
 
                         });
@@ -541,8 +547,8 @@
 
                             }
 
-                            $(".checks_product").prop('checked', false);
-                            $(".checks_product").removeAttr('disabled', 'disabled');
+                            $(".checks_product_no_comprados").prop('checked', false);
+                            $(".checks_product_no_comprados").removeAttr('disabled', 'disabled');
                             precios = [];
                             productos = [];
 
@@ -789,8 +795,11 @@
                     });
 
                     plantilla_productos += `</ul>`;
-                    // plantilla_productos += `<p><strong>Total en dolares: $ ${$("#total").text()} USD </strong></p>`;
-                    plantilla_productos += `<p><strong>Total en pesos mexicanos: $ ${$("#total_mx").text()}</strong></p>`;
+                    if(tipo_moneda == "USD"){
+                        plantilla_productos += `<p><strong>Total en dolares: $ ${$("#total_usd").text()} USD </strong></p>`;
+                    }else{
+                        plantilla_productos += `<p><strong>Total en pesos mexicanos: $ ${$("#total_mx").text()} MXN</strong></p>`;
+                    }
 
                     // plantilla_productos += `<p>Confirme su selección y de clic en procesar compra y espere su turno en línea de cajas.</p>`;
 

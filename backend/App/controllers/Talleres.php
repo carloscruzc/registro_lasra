@@ -1189,27 +1189,29 @@ html;
             }
 
             $checks .= <<<html
+            
+            <div id="cont_check{$value['id_producto']}">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-check">
+                            <input class="form-check-input checks_product" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" {$disabled} {$checked} data-precio="{$precio}" data-precio-usd="{$value['precio_publico_usd']}" data-precio-socio="{$value['precio_socio']}" data-precio-socio-usd="{$value['precio_socio_usd']}" data-nombre-producto="{$value['nombre_producto']}">
+                            <label class="form-check-label" for="check_curso_{$value['id_producto']}">
+                            {$value['tipo']} {$value['nombre_producto']} - {$fecha} <span style="font-size: 13px; text-decoration: underline; color: green;">{$pend_validar}</span>
+                            </label>
+                        </div>
+                    </div>
 
-        <div class="row">
-            <div class="col-md-8">
-                <div class="form-check">
-                    <input class="form-check-input checks_product" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" {$disabled} {$checked} data-precio="{$precio}" data-precio-usd="{$value['precio_publico_usd']}" data-precio-socio="{$value['precio_socio']}" data-precio-socio-usd="{$value['precio_socio_usd']}" data-nombre-producto="{$value['nombre_producto']}">
-                    <label class="form-check-label" for="check_curso_{$value['id_producto']}">
-                    {$value['tipo']} {$value['nombre_producto']} - {$fecha} <span style="font-size: 13px; text-decoration: underline; color: green;">{$pend_validar}</span>
-                    </label>
+                    <div class="col-md-2">
+                        <span class="cont_precio" id="cont_precio_{$value['id_producto']}">{$precio} <span>- {$value['tipo_moneda']}
+                    </div>
+
+                    <div class="col-md-2">
+                        {$numero_productos}
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-md-2">
-                <span class="cont_precio" id="cont_precio_{$value['id_producto']}">{$precio} <span>- {$value['tipo_moneda']}
+                <hr>
             </div>
-
-            <div class="col-md-2">
-                {$numero_productos}
-            </div>
-        </div>
-
-        <hr>
 html;
 
             $numero_productos = '';
@@ -1271,28 +1273,29 @@ html;
             }
 
             $checks .= <<<html
+            <div id="cont_check{$value['id_producto']}">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-check">
+                            <input class="form-check-input checks_product checks_product_no_comprados" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" data-precio="{$precio}" data-precio-usd="{$value['precio_publico_usd']}" data-precio-socio="{$value['precio_socio']}" data-precio-socio-usd="{$value['precio_socio_usd']}" data-nombre-producto="{$value['nombre_producto']}" {$check_disabled}>
+                            <label class="form-check-label" for="check_curso_{$value['id_producto']}">
+                            {$value['tipo']} {$value['nombre_producto']} - {$fecha}
+                            </label>
+                        </div>
+                    </div>
+                
+                    <div class="col-md-2">
+                        <span class="cont_precio" id="cont_precio_{$value['id_producto']}">{$precio} <span>- {$value['tipo_moneda']}
+                    </div>
 
-            <div class="row">
-                 <div class="col-md-8">
-                     <div class="form-check">
-                         <input class="form-check-input checks_product" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" data-precio="{$precio}" data-precio-usd="{$value['precio_publico_usd']}" data-precio-socio="{$value['precio_socio']}" data-precio-socio-usd="{$value['precio_socio_usd']}" data-nombre-producto="{$value['nombre_producto']}" {$check_disabled}>
-                         <label class="form-check-label" for="check_curso_{$value['id_producto']}">
-                         {$value['tipo']} {$value['nombre_producto']} - {$fecha}
-                         </label>
-                     </div>
-                 </div>
-               
-                 <div class="col-md-2">
-                     <span class="cont_precio" id="cont_precio_{$value['id_producto']}">{$precio} <span>- {$value['tipo_moneda']}
-                 </div>
+                    <div class="col-md-2">
+                            {$numero_productos}
+                    </div>
 
-                 <div class="col-md-2">
-                        {$numero_productos}
-                 </div>
+                </div>
 
-             </div>
-
-             <hr>
+                <hr>
+            </div>
 html;
 
             $numero_productos = '';

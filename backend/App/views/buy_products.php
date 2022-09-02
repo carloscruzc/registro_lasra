@@ -65,6 +65,8 @@
 
                 <input type="hidden" id="categoria" value="<?= $categoria['categoria']; ?>">
                 <input type="hidden" name="datos" id="datos" value="<?php echo $datos; ?>">
+                <input type="hidden" name="id_pais" id="id_pais" value="<?=$datos['id_pais']?>">
+                
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                         <div class="input-group"></div>
@@ -291,12 +293,17 @@
     <script>
         $(document).ready(function() {            
 
-            if ($('#categoria').val() == 'Socio') {
-                Swal.fire("¡Te registraste como socio!", "Debemos validar tu información para que puedas comprar", "warning")
+            // if ($('#categoria').val() == 'Socio') {
+            //     Swal.fire("¡Te registraste como socio!", "Debemos validar tu información para que puedas comprar", "warning")
 
-                setTimeout(function() {
-                    window.location.replace('/Login')
-                }, 3000);
+            //     setTimeout(function() {
+            //         window.location.replace('/Login')
+            //     }, 3000);
+            // }
+
+            if($("#id_pais").val() != 156){
+                $("#cont_check2").addClass('d-none');
+                $("#cont_check23").addClass('d-none');
             }
 
             $('#forma_pago').on('change', function(e) {
@@ -794,8 +801,12 @@
                     });
 
                     plantilla_productos += `</ul>`;
-                    // plantilla_productos += `<p><strong>Total en dolares: $ ${$("#total").text()} USD </strong></p>`;
-                    plantilla_productos += `<p><strong>Total en pesos mexicanos: $ ${$("#total_mx").text()}</strong></p>`;
+                    if(tipo_moneda == "USD"){
+                        plantilla_productos += `<p><strong>Total en dolares: $ ${$("#total_usd").text()} USD </strong></p>`;
+                    }else{
+                        plantilla_productos += `<p><strong>Total en pesos mexicanos: $ ${$("#total_mx").text()} MXN</strong></p>`;
+                    }
+                    
 
                     // plantilla_productos += `<p>Confirme su selección y de clic en procesar compra y espere su turno en línea de cajas.</p>`;
 

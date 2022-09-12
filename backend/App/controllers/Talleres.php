@@ -1129,7 +1129,7 @@ html;
             $checked = '';
             $pend_validar = '';
 
-            if ($value['es_congreso'] == 1 && $value['nombre_producto'] == "V Congreso LASRA México (socio)") {
+            if ($value['es_congreso'] == 1 && $value['nombre_producto'] == "V Congreso LASRA México (socio)" || $value['nombre_producto'] == "V Congreso LASRA México (Residente)") {
                 $precio = $value['precio_publico'];
             } elseif ($value['es_congreso'] == 1) {
                 $precio = $value['amout_due'];
@@ -1238,7 +1238,7 @@ html;
             // }
 
             //Esto se tiene que modificar por el nombre prducto 
-            if ($value['es_congreso'] == 1 && $value['nombre_producto'] == "V Congreso LASRA México (socio)") {
+            if ($value['es_congreso'] == 1 && $value['nombre_producto'] == "V Congreso LASRA México (socio)" || $value['nombre_producto'] == "V Congreso LASRA México (Residente)") {
                 $precio = $value['precio_publico'];
             } elseif ($value['es_congreso'] == 1) {
                 $precio = $value['amout_due'];

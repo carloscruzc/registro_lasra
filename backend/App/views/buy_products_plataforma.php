@@ -47,7 +47,7 @@
                                 $arr1 = str_split($apellido);
 
                                 ?>
-                                <span class="d-sm-inline"><?php echo $datos['nombre'] ." ".$arr1[0].".";?></span>
+                                <span class="d-sm-inline"><?php echo $datos['nombre'] . " " . $arr1[0] . "."; ?></span>
                             </a>
                         </li>
                     </ul>
@@ -61,7 +61,7 @@
                     </ul>
                 </div>
 
-                
+
             </div>
         </nav>
 
@@ -69,8 +69,8 @@
             <div class="card col-lg-12 mt-lg-4 mt-1">
                 <div class="card-header pb-0 p-3">
                     <p style="font-size: 14px">(Seleccione a continuación lo que desea pagar y presione el boton de pagar y muestre el codigo de pago en caja)</p>
-                   
-                    <input type="hidden" name="id_pais" id="id_pais" value="<?=$datos['id_pais']?>">
+
+                    <input type="hidden" name="id_pais" id="id_pais" value="<?= $datos['id_pais'] ?>">
                 </div>
                 <div class="card-body px-5 pb-5">
 
@@ -97,7 +97,7 @@
                                             </div>
 
                                             <div class="col-md-6">
-                                                
+
                                                 <p>Su pago en pesos mexicanos es: $ <span id="total_mx">0</span> </p>
                                                 <p>Su pago en USD: $ <span id="total_usd">0</span> </p>
 
@@ -251,8 +251,8 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script>
         $(document).ready(function() {
-            
-            if($("#id_pais").val() != 156){
+
+            if ($("#id_pais").val() != 156) {
                 $("#cont_check2").addClass('d-none');
                 $("#cont_check23").addClass('d-none');
             }
@@ -271,8 +271,8 @@
             if ($("#check_curso_28").prop('checked')) {
                 $("#check_curso_29").attr('disabled', 'disabled');
                 $("#check_curso_30").attr('disabled', 'disabled');
-            //     $("#check_curso_29").prop('checked', true);
-            //     $("#check_curso_30").prop('checked', true);
+                //     $("#check_curso_29").prop('checked', true);
+                //     $("#check_curso_30").prop('checked', true);
             }
 
             if ($("#check_curso_29").prop('checked')) {
@@ -293,8 +293,8 @@
             if ($("#check_curso_31").prop('checked')) {
                 $("#check_curso_32").attr('disabled', 'disabled');
                 $("#check_curso_33").attr('disabled', 'disabled');
-            //     $("#check_curso_32").prop('checked', true);
-            //     $("#check_curso_33").prop('checked', true);
+                //     $("#check_curso_32").prop('checked', true);
+                //     $("#check_curso_33").prop('checked', true);
             }
 
             if ($("#check_curso_32").prop('checked')) {
@@ -420,7 +420,16 @@
 
                         $(".checks_product").each(function(index) {
                             $("#cont_precio_" + $(this).val()).html($(this).data('precio-socio') + ' - MXN ');
-                            
+
+                        });
+                    }
+
+                    //precio socio si tiene anaulidad residente
+                    if (nombre_producto == 'ANUALIDAD (2022) - (Residente)') {
+
+                        $(".checks_product").each(function(index) {
+                            $("#cont_precio_" + $(this).val()).html($(this).data('precio-socio') + ' - MXN ');
+
                         });
                     }
 
@@ -470,7 +479,7 @@
 
 
                     //validar si esta checado la anualidad
-                    if ($("#check_curso_2").is(":checked")) {
+                    if ($("#check_curso_2").is(":checked") || $("#check_curso_35").is(":checked")) {
 
                         precios.push({
                             'id_product': id_product,
@@ -549,6 +558,52 @@
 
                             $(".checks_product_no_comprados").prop('checked', false);
                             $(".checks_product_no_comprados").removeAttr('disabled', 'disabled');
+                            precios = [];
+                            productos = [];
+
+                            sumarPrecios(precios);
+                            sumarProductos(productos);
+                        }
+
+
+                        // }
+                    }
+
+                    //si se selecciona residente
+                    if (nombre_producto == 'ANUALIDAD (2022) - (Residente)') {
+
+                        // if ($("#check_curso_2").is(":checked")) {
+
+                        $(".checks_product").each(function(index) {
+                            $("#cont_precio_" + $(this).val()).html($(this).data('precio') + ' - MXN ');
+
+                        });
+
+                        $("#check_curso_35").prop('checked', false);
+                        $("#check_curso_35").removeAttr('disabled', 'disabled');
+
+
+                        for (var i = 0; i < precios.length; i++) {
+
+
+                            if (precios[i].id_product === '2') {
+                                console.log("remover aqui");
+                                precios.splice(i, 1);
+                                productos.splice(i, 1);
+
+
+
+                            } else if (precios[i].id_product === '2' && precios[i].cantidad === cantidad) {
+                                precios.splice(i, 1);
+                                productos.splice(i, 1);
+
+                                // sumarPrecios(precios);
+                                // sumarProductos(productos);
+
+                            }
+
+                            $(".checks_product").prop('checked', false);
+                            $(".checks_product").removeAttr('disabled', 'disabled');
                             precios = [];
                             productos = [];
 
@@ -778,9 +833,9 @@
                     Swal.fire("¡Debes seleccionar un metodo de pago!", "", "warning")
                 } else if ($("#forma_pago").val() == '' && $("#clave_socio").val() == '') {
                     Swal.fire("¡Debes seleccionar un metodo de pago!", "", "warning")
-                } else if($("#tipo_moneda_pago").val() == ''){
+                } else if ($("#tipo_moneda_pago").val() == '') {
                     Swal.fire("¡Debes seleccionar el tipo de Cambio a pagar!", "", "warning")
-                }else {
+                } else {
                     var plantilla_productos = '';
 
                     plantilla_productos += `<ul>`;
@@ -795,9 +850,9 @@
                     });
 
                     plantilla_productos += `</ul>`;
-                    if(tipo_moneda == "USD"){
+                    if (tipo_moneda == "USD") {
                         plantilla_productos += `<p><strong>Total en dolares: $ ${$("#total_usd").text()} USD </strong></p>`;
-                    }else{
+                    } else {
                         plantilla_productos += `<p><strong>Total en pesos mexicanos: $ ${$("#total_mx").text()} MXN</strong></p>`;
                     }
 

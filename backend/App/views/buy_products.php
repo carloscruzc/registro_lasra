@@ -65,8 +65,8 @@
 
                 <input type="hidden" id="categoria" value="<?= $categoria['categoria']; ?>">
                 <input type="hidden" name="datos" id="datos" value="<?php echo $datos; ?>">
-                <input type="hidden" name="id_pais" id="id_pais" value="<?=$datos['id_pais']?>">
-                
+                <input type="hidden" name="id_pais" id="id_pais" value="<?= $datos['id_pais'] ?>">
+
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                         <div class="input-group"></div>
@@ -291,7 +291,7 @@
     </main>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script>
-        $(document).ready(function() {            
+        $(document).ready(function() {
 
             // if ($('#categoria').val() == 'Socio') {
             //     Swal.fire("¡Te registraste como socio!", "Debemos validar tu información para que puedas comprar", "warning")
@@ -301,7 +301,7 @@
             //     }, 3000);
             // }
 
-            if($("#id_pais").val() != 156){
+            if ($("#id_pais").val() != 156) {
                 $("#cont_check2").addClass('d-none');
                 $("#cont_check23").addClass('d-none');
             }
@@ -412,12 +412,59 @@
 
                     }
 
+
                     //precio socio si tiene anaulidad
                     if (nombre_producto == 'ANUALIDAD (2022)') {
 
                         $(".checks_product").each(function(index) {
                             $("#cont_precio_" + $(this).val()).html($(this).data('precio-socio') + ' - MXN ');
-                            
+
+                        });
+                    }
+
+                    //validacion para congreso precio residente
+
+                    // if (nombre_producto == 'V Congreso LASRA México (Residente)') {
+
+                    //     $(".checks_product").each(function(index) {
+                    //         $("#cont_precio_" + $(this).val()).html($(this).data('precio-socio') + ' - MXN');
+                    //     });
+
+
+                    //     // if (!$("#check_curso_35").is(":checked")) {
+
+                    //     //     // Swal.fire('Aviso', 'Para obtener este costo se debe de pagar la anualidad (Residente) también', 'info');
+                    //     //     $("#check_curso_35").prop('checked', true);
+                    //     //     $("#check_curso_35").attr('disabled', 'disabled');
+
+                    //     //     precios.push({
+                    //     //         'id_product': '35',
+                    //     //         'precio': '500', //cambiar manualmente
+                    //     //         'precio_usd': '26',
+                    //     //         'cantidad': '1'
+                    //     //     });
+
+                    //     //     productos.push({
+                    //     //         'id_product': '35',
+                    //     //         'precio': '500', //cambiar manualmente
+                    //     //         'precio_usd': '26',
+                    //     //         'cantidad': '1',
+                    //     //         'nombre_producto': 'ANUALIDAD (2022) - (Residente)'
+                    //     //     });
+
+
+                    //     // } else {
+                    //     //     $("#check_curso_35").attr('disabled', 'disabled');
+                    //     // }
+
+                    // }
+
+                    //precio socio si tiene anaulidad residente
+                    if (nombre_producto == 'ANUALIDAD (2022) - (Residente)') {
+
+                        $(".checks_product").each(function(index) {
+                            $("#cont_precio_" + $(this).val()).html($(this).data('precio-socio') + ' - MXN ');
+
                         });
                     }
 
@@ -473,7 +520,7 @@
 
 
                     //validar si esta checado la anualidad
-                    if ($("#check_curso_2").is(":checked")) {
+                    if ($("#check_curso_2").is(":checked") || $("#check_curso_35").is(":checked")) {
 
                         precios.push({
                             'id_product': id_product,
@@ -529,6 +576,52 @@
 
                         $("#check_curso_2").prop('checked', false);
                         $("#check_curso_2").removeAttr('disabled', 'disabled');
+
+
+                        for (var i = 0; i < precios.length; i++) {
+
+
+                            if (precios[i].id_product === '2') {
+                                console.log("remover aqui");
+                                precios.splice(i, 1);
+                                productos.splice(i, 1);
+
+
+
+                            } else if (precios[i].id_product === '2' && precios[i].cantidad === cantidad) {
+                                precios.splice(i, 1);
+                                productos.splice(i, 1);
+
+                                // sumarPrecios(precios);
+                                // sumarProductos(productos);
+
+                            }
+
+                            $(".checks_product").prop('checked', false);
+                            $(".checks_product").removeAttr('disabled', 'disabled');
+                            precios = [];
+                            productos = [];
+
+                            sumarPrecios(precios);
+                            sumarProductos(productos);
+                        }
+
+
+                        // }
+                    }
+
+                    //si se selecciona residente
+                    if (nombre_producto == 'ANUALIDAD (2022) - (Residente)') {
+
+                        // if ($("#check_curso_2").is(":checked")) {
+
+                        $(".checks_product").each(function(index) {
+                            $("#cont_precio_" + $(this).val()).html($(this).data('precio') + ' - MXN ');
+
+                        });
+
+                        $("#check_curso_35").prop('checked', false);
+                        $("#check_curso_35").removeAttr('disabled', 'disabled');
 
 
                         for (var i = 0; i < precios.length; i++) {
@@ -721,7 +814,7 @@
                     sumaArticulos += parseInt(precio.cantidad);
 
                     sumaPreciosUsd += parseInt(precio.precio_usd * precio.cantidad);
-   
+
 
                 });
 
@@ -784,9 +877,9 @@
                     Swal.fire("¡Debes seleccionar un metodo de pago!", "", "warning")
                 } else if ($("#forma_pago").val() == '' && $("#clave_socio").val() == '') {
                     Swal.fire("¡Debes seleccionar un metodo de pago!", "", "warning")
-                } else if($("#tipo_moneda_pago").val() == ''){
+                } else if ($("#tipo_moneda_pago").val() == '') {
                     Swal.fire("¡Debes seleccionar el tipo de Cambio a pagar!", "", "warning")
-                }else {
+                } else {
                     var plantilla_productos = '';
 
                     plantilla_productos += `<ul>`;
@@ -801,12 +894,12 @@
                     });
 
                     plantilla_productos += `</ul>`;
-                    if(tipo_moneda == "USD"){
+                    if (tipo_moneda == "USD") {
                         plantilla_productos += `<p><strong>Total en dolares: $ ${$("#total_usd").text()} USD </strong></p>`;
-                    }else{
+                    } else {
                         plantilla_productos += `<p><strong>Total en pesos mexicanos: $ ${$("#total_mx").text()} MXN</strong></p>`;
                     }
-                    
+
 
                     // plantilla_productos += `<p>Confirme su selección y de clic en procesar compra y espere su turno en línea de cajas.</p>`;
 
@@ -824,7 +917,7 @@
                     }).then((result) => {
                         if (result.isConfirmed) {
 
-                            
+
                             console.log($("#total_mx").text());
                             if ($("#total_mx").text() == '0.00') {
                                 // $(".form_compra").submit();

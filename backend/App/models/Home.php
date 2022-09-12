@@ -145,7 +145,7 @@ sql;
     INNER JOIN utilerias_administradores ua ON(ua.user_id = pp.user_id)
     INNER JOIN productos pro ON (pp.id_producto = pro.id_producto)
     LEFT JOIN asigna_producto aspro ON(pp.user_id = aspro.user_id AND pp.id_producto = aspro.id_producto)
-    WHERE ua.user_id = $id GROUP BY id_producto;
+    WHERE ua.user_id = $id GROUP BY id_producto ORDER BY pro.nombre;
 sql;
     return $mysqli->queryAll($query);
   }
@@ -172,7 +172,7 @@ sql;
     SELECT p.id_producto, p.nombre as nombre_producto, p.precio_publico, p.precio_socio, p.tipo_moneda,p.precio_publico_usd, p.precio_socio_usd, p.tipo_moneda_usd, p.max_compra, p.es_congreso, p.es_servicio, p.es_curso, p.tipo,p.fecha_producto,ua.clave_socio, ua.monto_congreso as amout_due 
     FROM productos p
     INNER JOIN utilerias_administradores ua
-    WHERE id_producto NOT IN (SELECT id_producto FROM pendiente_pago WHERE user_id = $id) AND ua.user_id = $id;
+    WHERE id_producto NOT IN (SELECT id_producto FROM pendiente_pago WHERE user_id = $id) AND ua.user_id = $id ORDER BY p.nombre;
 sql;
     return $mysqli->queryAll($query);
   }

@@ -841,7 +841,7 @@ html;
             if ($value['estatus_compra'] == 1) {
                 $disabled = 'disabled';
                 $checked = 'checked';
-                $pend_validar = 'Pagado y validado por AMH';
+                $pend_validar = 'Pagado y validado';
                 // $btn_imp = '';
                 // $productos_pendientes_comprados[0]['clave'].'" target="blank_">Imprimir Formato de Pago</a>';
                 // $ocultar = 'display:none;';

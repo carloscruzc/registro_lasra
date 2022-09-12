@@ -255,6 +255,8 @@
             if ($("#id_pais").val() != 156) {
                 $("#cont_check2").addClass('d-none');
                 $("#cont_check23").addClass('d-none');
+                $("#cont_check34").addClass('d-none');
+                $("#cont_check35").addClass('d-none');
             }
 
             if ($("#check_curso_24").prop('checked')) {

@@ -6,7 +6,7 @@ require_once dirname(__DIR__) . '/../public/librerias/fpdf/fpdf.php';
 use \Core\View;
 use \Core\Controller;
 use \App\models\Home AS HomeDao;
-use App\models\RegistroAcceso as RegistroAccesoDao;
+use App\models\Register as RegisterDao;
 use \App\models\Talleres as TalleresDao;
 use \App\models\General as GeneralDao;
 
@@ -421,10 +421,42 @@ else {
 html;
         }
 
+        $comprobante = '';
+            $datos_estudiante = RegisterDao::getEstudiante($_SESSION['usuario']);
+            if($datos_estudiante){
+                $comprobante .= <<<html
+                <div class="col-6 m-auto m-md-0 col-lg-3 col-md-4 my-md-3 mt-4">
+                    <a href="/ComprobanteEstudiante/">
+                        <div class="card card-link btn-menu-home m-auto" style="background-image: url(/img/SMNP_Iconos/Web3.png); background-size: contain; background-repeat: no-repeat;">
+                            <div class="card-body mt-md-3 text-center content-card-home">
+                                <div class="col-12 text-center">
+                                </div>
+                            </div>
+                        </div>
+                        Completa este registro para subir el comprobante de tus pagos
+                    </a>
+                </div>
+html;
+        }else{
+            $comprobante .= <<<html
+                <div class="col-6 m-auto m-md-0 col-lg-3 col-md-4 my-md-3 mt-4">
+                    <a href="/ComprobantePago/">
+                        <div class="card card-link btn-menu-home m-auto" style="background-image: url(/img/SMNP_Iconos/Web3.png); background-size: contain; background-repeat: no-repeat;">
+                            <div class="card-body mt-md-3 text-center content-card-home">
+                                <div class="col-12 text-center">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+html;
+        }
+
         View::set('header',$this->_contenedor->header($extraHeader));
         View::set('footer', $this->_contenedor->footer($extraFooter));
         View::set('permisos_congreso',$permisos_congreso);
         View::set('datos',$data_user);
+        View::set('comprobante',$comprobante);
         View::set('encuesta',$encuesta);
         View::set('id_curso',$id_curso);
         View::render("principal_all");
@@ -771,11 +803,4 @@ html;
 
         // $pdf->Output('F', 'C:/pases_abordar/'. $clave.'.pdf');
     }
-
-    function getItinerario(){
-      $id_asis = $_POST['id'];
-      $asistenteItinerario = HomeDao::getItinerarioAsistente($id_asis)[0];
-      echo json_encode($asistenteItinerario);
-    }
-
 }

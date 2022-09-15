@@ -22,7 +22,7 @@ class Register
         <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/logo_lasra.png">
         <link rel="icon" type="image/vnd.microsoft.icon" href="/assets/img/logo_lasra.png">
         <title>
-            Registro - XVII Congreso Nacional de Hepatología
+            Registro - 5° Congreso Mexicano de Anestesia Regional
         </title>
          <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
          <!-- Nucleo Icons -->
@@ -345,7 +345,7 @@ html;
         <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/logo_lasra.png">
         <link rel="icon" type="image/vnd.microsoft.icon" href="/assets/img/logo_lasra.png">
         <title>
-            Registro - XVII Congreso Nacional de Hepatología
+            Registro - 5° Congreso Mexicano de Anestesia Regional
         </title>
          <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
          <!-- Nucleo Icons -->
@@ -448,7 +448,7 @@ html;
         <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/logo_lasra.png">
         <link rel="icon" type="image/vnd.microsoft.icon" href="/assets/img/logo_lasra.png">
         <title>
-            Registro - XVII Congreso Nacional de Hepatología
+            Registro - 5° Congreso Mexicano de Anestesia Regional
         </title>
          <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
          <!-- Nucleo Icons -->
@@ -1410,6 +1410,26 @@ html;
                     $bandera = true;
                 } else {
                     $id = RegisterDao::inserPendientePago($documento);
+                    $datos_estudiante = RegisterDao::getEstudiante($user_id);
+                    date_default_timezone_set('America/Mexico_City');
+                    $fecha_pendiente = date('Y-m-d H:i:s');
+
+                    if(!$datos_estudiante){
+                        $existe_residente = RegisterDao::getPendientesResidentes($user_id);
+                        if($existe_residente){
+                        $ida = RegisterDao::insertPendienteEstudiante($fecha_pendiente,$user_id);
+                            if($ida){
+                                // echo 'FUNCIONA';
+                            }else{
+                                // echo 'NO FUNCIONA';
+                            }
+                        }else{
+                            
+                        }
+                    }else{
+                        // no es estudiante
+                        // echo 'No funciona';
+                    }
                 }
 
                 if ($id) {

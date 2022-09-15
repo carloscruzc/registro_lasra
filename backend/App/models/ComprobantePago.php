@@ -72,5 +72,31 @@ sql;
 
     }
 
+    public static function updateComprobanteEstudiante($data){
+      $mysqli = Database::getInstance(true);
+      // var_dump($user);
+      $query=<<<sql
+      UPDATE pendiente_estudiante SET url_archivo = :url_archivo, status = 0  WHERE user_id = :user_id;
+sql;
+      $parametros = array(
+        ':url_archivo'=>$data->_url,
+        ':user_id' => $data->_user_id
+        // ':id_pendiente_pago'=>$data->_id_pendiente_pago
+      );
+     
+      return $mysqli->update($query, $parametros);
+
+  }
+
+  public static function getAllComprobantesEstudiante($id){
+    $mysqli = Database::getInstance();
+    $query=<<<sql
+    SELECT pe.*,ua.usuario,CONCAT(ua.nombre," ",ua.apellidop," ",ua.apellidom) as nombre_completo, pe.status
+    FROM pendiente_estudiante pe
+    INNER JOIN utilerias_administradores ua ON(ua.user_id = pe.user_id)
+    WHERE pe.user_id = $id
+sql;
+    return $mysqli->queryAll($query);
+  }
   
 }

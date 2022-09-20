@@ -481,26 +481,26 @@
 
 
                     //validar si esta checado la anualidad
-                    if ($("#check_curso_2").is(":checked") || $("#check_curso_35").is(":checked")) {
+                    // if ($("#check_curso_2").is(":checked") || $("#check_curso_35").is(":checked")) {
 
-                        precios.push({
-                            'id_product': id_product,
-                            'precio': precio_socio,
-                            'precio_usd': precio_socio_usd,
-                            'cantidad': cantidad
-                        });
-
-
-                        productos.push({
-                            'id_product': id_product,
-                            'precio': precio_socio,
-                            'precio_usd': precio_socio_usd,
-                            'cantidad': cantidad,
-                            'nombre_producto': nombre_producto
-                        });
+                    //     precios.push({
+                    //         'id_product': id_product,
+                    //         'precio': precio_socio,
+                    //         'precio_usd': precio_socio_usd,
+                    //         'cantidad': cantidad
+                    //     });
 
 
-                    } else {
+                    //     productos.push({
+                    //         'id_product': id_product,
+                    //         'precio': precio_socio,
+                    //         'precio_usd': precio_socio_usd,
+                    //         'cantidad': cantidad,
+                    //         'nombre_producto': nombre_producto
+                    //     });
+
+
+                    // } else {
 
                         precios.push({
                             'id_product': id_product,
@@ -517,7 +517,7 @@
                             'cantidad': cantidad,
                             'nombre_producto': nombre_producto
                         });
-                    }
+                    // }
                     sumarPrecios(precios);
                     sumarProductos(productos);
 

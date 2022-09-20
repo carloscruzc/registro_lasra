@@ -178,4 +178,13 @@ sql;
         
     }
 
+    public static function getCategorias(){
+      $mysqli = Database::getInstance();
+      $query=<<<sql
+      SELECT * FROM categorias WHERE id_categoria IN (3,7)
+sql;
+      return $mysqli->queryAll($query);
+      
+  }
+
 }

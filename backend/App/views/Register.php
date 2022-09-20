@@ -123,14 +123,15 @@ echo $header;
                                                                     <div class="row mt-3">
 
 
-                                                                        <!-- <div class="col-12 col-sm-4" id="cont-categoria">
+                                                                        <div class="col-12 col-sm-4" id="cont-categoria">
 
-                                                                            <label>Categoria *</label>
+                                                                            <label>Nivel *</label>
                                                                             <select class="multisteps-form__select form-control all_input_select" name="categorias" id="categorias" disabled>
                                                                                 <option value="" disabled selected>Selecciona una Opción</option>
+                                                                                <?php echo $categorias ?>
                                                                             </select>
 
-                                                                        </div> -->
+                                                                        </div>
 
                                                                         <div class="col-12 col-sm-4" id="cont-clave-socio" style="display: none;">
                                                                             <label id="label-clave-socio">Clave Socio *</label>
@@ -274,6 +275,7 @@ echo $header;
                 $("#apellidop").val(userData.apellidop)
                 $("#apellidom").val(userData.apellidom)
                 $("#telephone").val(userData.telefono)
+                $("#categorias").val(userData.categorias)
                 $("#especialidades").val(userData.especialidades)
                 $("#txt_especialidad").val(userData.txt_especialidad)
                 $("#nationality").val(userData.nationality)
@@ -300,7 +302,7 @@ echo $header;
                 document.getElementById('nationality').disabled = false;
                 document.getElementById('state').disabled = false;
                 document.getElementById('nombre').disabled = false;
-         
+                document.getElementById('categorias').disabled = false; 
                 document.getElementById('especialidades').disabled = false;         
             }
         }else{
@@ -343,6 +345,7 @@ echo $header;
                 apellidom: $("#apellidom").val(),
                 telefono: $("#telephone").val(),
                 especialidades: $("#especialidades").val(),
+                categorias: $("#categorias").val(),
                 txt_especialidad: $("#txt_especialidad").val(),
                 nationality: $("#nationality").val(),
                 state: $("#state").val()
@@ -410,7 +413,7 @@ echo $header;
                     $("#email").removeAttr('readonly');
                 }
 
-                mostrarCategorias();
+                // mostrarCategorias();
             }else{
                 $("#email").removeAttr('readonly')
             }

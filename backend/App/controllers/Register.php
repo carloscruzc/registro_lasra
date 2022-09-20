@@ -149,7 +149,7 @@ html;
                 document.getElementById('state').disabled = false;
                 document.getElementById('nombre').disabled = false;
                 document.getElementById('especialidades').disabled = false;
-                // document.getElementById('categorias').disabled = false;
+                document.getElementById('categorias').disabled = false;
                 document.getElementById("email_validado").value = email_uno;
 
                 console.log(document.getElementById('nombre'));
@@ -295,10 +295,19 @@ html;
         <option value="{$value['id_especialidad']}">{$value['nombre']}</option>
 html;
         }
+
+        $categorias = '';
+        foreach (RegisterDao::getCategorias() as $key => $value) {
+            $categorias .= <<<html
+           
+        <option value="{$value['id_categoria']}">{$value['categoria']}</option>
+html;
+        }
         View::set('header', $extraHeader);
         View::set('footer', $extraFooter);
         View::set('idCountry', $this->getCountry());
         View::set('especialidades', $especialidades);
+        View::set('categorias', $categorias);
         View::render("Register");
     }
 
@@ -411,7 +420,7 @@ html;
         $apellidop = $_POST['apellidop'];
         $apellidom = $_POST['apellidom'];
         $telephone = $_POST['telephone'];
-        $categorias = 5; //por ahora se deja por default la categoria 5  $_POST['categorias'];
+        $categorias = $_POST['categorias']; //por ahora se deja por default la categoria 5  $_POST['categorias'];
         $especialidades = $_POST['especialidades'];
         $nationality = $_POST['nationality'];
         $state = $_POST['state'];
@@ -676,6 +685,7 @@ html;
         $documento->_clave_socio = $data['clave_socio'];
         $documento->_txt_especialidad = $data['txt_especialidad'];
 
+
         $existe_user = RegisterDao::getUser($data['email']);
 
         if ($existe_user) {
@@ -790,21 +800,6 @@ html;
         $array_precios = [];
         $array_productos = [];
 
-        // // $clave = HomeDao::getProductosPendCompradosClave($data_user['user_id'])[0]['clave'];
-
-        // $clave = HomeDao::getLastQrPendientePago($data_user['user_id'])['clave'];
-
-
-        // if($clave != ""){
-        //     // $src_qr = '/qrs/'.$productos_pendientes_comprados[0]['clave'].'.png';
-        //     $src_qr = '/qrs/'.$clave.'.png';           
-        //     // $btn_block = 'style = "display:none"';
-        //     // $check_disabled = 'disabled';
-        // }else{
-        //     $src_qr = '';
-        //     $btn_block = '';
-
-        // }   
 
 
 
@@ -814,19 +809,7 @@ html;
             $pend_validar = '';
             $fecha = $value['fecha_producto'];
 
-            // if ($value['es_congreso'] == 1) {
-            //     $precio = $value['amout_due'];
-            // } elseif ($value['es_congreso'] == 1 && $value['clave_socio'] != "") {
-            //     $precio = $value['amout_due'];
-            // } else if ($value['es_servicio'] == 1 && $value['clave_socio'] == "") {
-            //     $precio = $value['precio_publico'];
-            // } else if ($value['es_servicio'] == 1 && $value['clave_socio'] != "") {
-            //     $precio = $value['precio_socio'];
-            // } else if ($value['es_curso'] == 1  && $value['clave_socio'] == "") {
-            //     $precio = $value['precio_publico'];
-            // } else if ($value['es_curso'] == 1  && $value['clave_socio'] != "") {
-            //     $precio = $value['precio_socio'];
-            // }
+  
 
             if($value['es_congreso'] == 1){
                 $precio = $value['monto'];

@@ -426,40 +426,40 @@
 
                     //validacion para congreso precio residente
 
-                    // if (nombre_producto == 'V Congreso LASRA México (Residente)') {
+                    if (nombre_producto == 'ANUALIDAD (2022) - (Residente)') {
 
-                    //     $(".checks_product").each(function(index) {
-                    //         $("#cont_precio_" + $(this).val()).html($(this).data('precio-socio') + ' - MXN');
-                    //     });
-
-
-                    //     // if (!$("#check_curso_35").is(":checked")) {
-
-                    //     //     // Swal.fire('Aviso', 'Para obtener este costo se debe de pagar la anualidad (Residente) también', 'info');
-                    //     //     $("#check_curso_35").prop('checked', true);
-                    //     //     $("#check_curso_35").attr('disabled', 'disabled');
-
-                    //     //     precios.push({
-                    //     //         'id_product': '35',
-                    //     //         'precio': '500', //cambiar manualmente
-                    //     //         'precio_usd': '26',
-                    //     //         'cantidad': '1'
-                    //     //     });
-
-                    //     //     productos.push({
-                    //     //         'id_product': '35',
-                    //     //         'precio': '500', //cambiar manualmente
-                    //     //         'precio_usd': '26',
-                    //     //         'cantidad': '1',
-                    //     //         'nombre_producto': 'ANUALIDAD (2022) - (Residente)'
-                    //     //     });
+                        $(".checks_product").each(function(index) {
+                            $("#cont_precio_" + $(this).val()).html($(this).data('precio-socio') + ' - MXN');
+                        });
 
 
-                    //     // } else {
-                    //     //     $("#check_curso_35").attr('disabled', 'disabled');
-                    //     // }
+                        if (!$("#check_curso_34").is(":checked")) {
 
-                    // }
+                            // Swal.fire('Aviso', 'Para obtener este costo se debe de pagar la anualidad (Residente) también', 'info');
+                            $("#check_curso_34").prop('checked', true);
+                            $("#check_curso_34").attr('disabled', 'disabled');
+
+                            precios.push({
+                                'id_product': '34',
+                                'precio': '1500', //cambiar manualmente
+                                'precio_usd': '77',
+                                'cantidad': '1'
+                            });
+
+                            productos.push({
+                                'id_product': '34',
+                                'precio': '1500', //cambiar manualmente
+                                'precio_usd': '77',
+                                'cantidad': '1',
+                                'nombre_producto': 'V Congreso LASRA México (Residente)'
+                            });
+
+
+                        } else {
+                            $("#check_curso_35").attr('disabled', 'disabled');
+                        }
+
+                    }
 
                     //precio socio si tiene anaulidad residente
                     if (nombre_producto == 'ANUALIDAD (2022) - (Residente)') {
@@ -613,7 +613,7 @@
                     }
 
                     //si se selecciona residente
-                    if (nombre_producto == 'ANUALIDAD (2022) - (Residente)') {
+                    if (nombre_producto == 'ANUALIDAD (2022) - (Residente)' || nombre_producto == 'V Congreso LASRA México (Residente)' ) {
 
                         // if ($("#check_curso_2").is(":checked")) {
 

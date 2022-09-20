@@ -42,6 +42,22 @@ sql;
     return $id;
   }
 
+  public static function insertPendienteEstudiante($fecha_pendiente,$user_id)
+  {
+    $mysqli = Database::getInstance();
+    $query = <<<sql
+        INSERT INTO pendiente_estudiante
+        (user_id,fecha,url_archivo,status) VALUES($user_id,'$fecha_pendiente','',0)                        
+sql;
+
+    $parametros = array(
+      
+    );
+
+    $ida = $mysqli->insert($query, $parametros);
+    return $ida;
+  }
+
   public static function updateBecado($user)
   {
     $mysqli = Database::getInstance(true);
@@ -102,6 +118,18 @@ sql;
 sql;
 
     return $mysqli->queryAll($query);
+  }
+
+  public static function getEstudiante($usuario)
+  {
+    $mysqli = Database::getInstance(true);
+    $query = <<<sql
+    SELECT ua.usuario,pe.* FROM utilerias_administradores ua
+    INNER JOIN pendiente_estudiante pe ON pe.user_id = ua.user_id
+    WHERE ua.usuario = '$usuario' AND pe.status = 0;
+sql;
+
+    return $mysqli->queryOne($query);
   }
 
   public static function getUserById($id)
@@ -285,6 +313,15 @@ sql;
     $mysqli = Database::getInstance();
     $query = <<<sql
   SELECT * FROM pendiente_pago WHERE id_producto = $id_producto AND user_id = $user_id 
+sql;
+    return $mysqli->queryAll($query);
+  }
+
+  public static function getPendientesResidentes($user_id)
+  {
+    $mysqli = Database::getInstance();
+    $query = <<<sql
+  SELECT * FROM pendiente_pago WHERE id_producto IN (34,35)  AND user_id = $user_id 
 sql;
     return $mysqli->queryAll($query);
   }

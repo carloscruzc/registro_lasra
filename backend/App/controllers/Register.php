@@ -789,6 +789,243 @@ html;
         </head>
 html;
 
+$extraFooter = <<<html
+     
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/validate/jquery.validate.js"></script>
+        <script src="/js/alertify/alertify.min.js"></script>
+        <!-- -------- END FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
+       <!--   Core JS Files   -->
+          <script src="../../../assets/js/core/popper.min.js"></script>
+          <script src="../../../assets/js/core/bootstrap.min.js"></script>
+          <script src="../../../assets/js/plugins/perfect-scrollbar.min.js"></script>
+          <script src="../../../assets/js/plugins/smooth-scrollbar.min.js"></script>
+          <script src="../../../assets/js/plugins/multistep-form.js"></script>
+          <!-- Kanban scripts -->
+          <script src="../../../assets/js/plugins/dragula/dragula.min.js"></script>
+          <script src="../../../assets/js/plugins/jkanban/jkanban.js"></script>
+          <script>
+            var win = navigator.platform.indexOf('Win') > -1;
+            if (win && document.querySelector('#sidenav-scrollbar')) {
+              var options = {
+                damping: '0.5'
+              }
+              Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+            }
+          </script>
+          <!-- Github buttons -->
+          <script async defer src="https://buttons.github.io/buttons.js"></script>
+          <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+          <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <script>
+        window.addEventListener("keypress", function(event){
+            if (event.keyCode == 13){
+                event.preventDefault();
+            }
+        }, false);
+        
+          window.onload = function() {
+          var myInput = document.getElementById('confirm_email');
+          var myInput_conf = document.getElementById('confirm_email_iva');
+          myInput.onpaste = function(e) {
+            e.preventDefault();
+          }
+          myInput_conf.onpaste = function(e) {
+            e.preventDefault();
+          }
+          
+          myInput.oncopy = function(e) {
+            e.preventDefault();
+          }
+          myInput_conf.oncopy = function(e) {
+            e.preventDefault();
+          }
+        }
+        
+        $('#email').on('keypress', function() {
+            var re = /([A-Z0-9a-z_-][^@])+?@[^$#<>?]+?\.[\w]{2,4}/.test(this.value);
+            if(!re) {
+                $('#error').show();
+                 document.getElementById('confirm_email').disabled = true;
+                 
+            } else {
+                $('#error').hide();
+                document.getElementById('confirm_email').disabled = false;
+                
+            }
+        })
+        
+        
+        $('#confirm_email').on('keypress', function() {
+            document.getElementById('email').disabled = true;
+            var re = /([A-Z0-9a-z_-][^@])+?@[^$#<>?]+?\.[\w]{2,4}/.test(this.value);
+            if(!re) {
+                $('#error_confirm').show();
+            } else {
+                $('#error_confirm').hide();
+            }
+        })
+        
+         $("#confirm_email").on("keyup", function() 
+        {
+    	    var email_uno = document.getElementById('email').value;
+            var email_dos = document.getElementById('confirm_email').value;
+
+            console.log($(this).val());
+
+                  
+            if(email_uno == email_dos)
+            {
+                // document.getElementById('confirm_email').disabled = true;
+                $("#confirm_email").attr('readonly', true);
+                $("#btn_next_1").removeAttr('disabled');
+                document.getElementById('title').disabled = false;
+                document.getElementById('apellidop').disabled = false;
+                document.getElementById('apellidom').disabled = false;
+                document.getElementById('telephone').disabled = false;
+                document.getElementById('nationality').disabled = false;
+                document.getElementById('state').disabled = false;
+                document.getElementById('nombre').disabled = false;
+                document.getElementById('especialidades').disabled = false;
+                document.getElementById('categorias').disabled = false;
+                document.getElementById("email_validado").value = email_uno;
+
+                console.log(document.getElementById('nombre'));
+
+            }
+        });
+     
+        $('#email_receipt_iva').on('keypress', function() {
+            var re = /([A-Z0-9a-z_-][^@])+?@[^$#<>?]+?\.[\w]{2,4}/.test(this.value);
+            if(!re) {
+                $('#error_email_send').show();
+            } else {
+                $('#error_email_send').hide();
+            }
+        })
+        $('#confirm_email_iva').on('keypress', function() {
+            var re = /([A-Z0-9a-z_-][^@])+?@[^$#<>?]+?\.[\w]{2,4}/.test(this.value);
+            if(!re) {
+                $('#error_email_send_confirm').show();
+            } else {
+                $('#error_email_send_confirm').hide();
+            }
+        })
+        
+
+        
+        function myFunction() 
+        {
+            var one = document.getElementById("card_one");
+            var two = document.getElementById("card_two");
+            var three = document.getElementById("card_three");
+            var four = document.getElementById("card_four");
+            var five = document.getElementById("card_five");
+            var card_progress = document.getElementById("card_progress");
+            var Menu_Two = document.getElementById("Menu_Two");
+            
+            if (five.style.display === 'none') 
+            {
+                one.style.display = 'none';
+                two.style.display = 'none';
+                three.style.display = 'none';
+                four.style.display = 'none';
+                card_progress.style.display = 'none';
+                five.style.display = 'block';
+                Menu_Two.style.display = 'block';
+                 $("#ModalPayOne").modal('hide');
+            }
+        }
+        
+        function myFunctionDiscardVAT() 
+        {
+            var one = document.getElementById("card_one");
+            var two = document.getElementById("card_two");
+            var three = document.getElementById("card_three");
+            var four = document.getElementById("card_four");
+            var six = document.getElementById("card_six");
+            var card_progress = document.getElementById("card_progress");
+            var Menu_Two = document.getElementById("Menu_Two");
+            
+            if (six.style.display === 'none') 
+            {
+                one.style.display = 'none';
+                two.style.display = 'none';
+                three.style.display = 'none';
+                four.style.display = 'none';
+                card_progress.style.display = 'none';
+                six.style.display = 'block';
+                Menu_Two.style.display = 'block';
+            }
+
+            
+        }
+        
+        function myFunction_TermsConditions() 
+        {
+            var five = document.getElementById("card_five");
+            var six = document.getElementById("card_six");
+             
+            if (six.style.display === 'none') 
+            {
+                six.style.display = 'block';
+                five.style.display = 'none';
+            }
+        }
+        
+        function actualizaEdos(pais = null) {
+        var pais = $('#nationality').val();
+        $.ajax({
+          url: '/Register/ObtenerEstado',
+          type: 'POST',
+          dataType: 'json',
+          data: {pais:pais},
+    
+        })
+        .done(function(json) {
+            if(json.success)
+            {
+                $("#state").html(json.html);
+            }
+        })
+        .fail(function() 
+        {
+          alert("Ocurrio un error al actualizar el estado intenta de nuevo");
+        })
+      }
+        
+        $(document).ready(function(){
+                
+                $('input[type="checkbox"]').on('change', function() 
+                {
+                    $('input[name="' + this.name + '"]').not(this).prop('checked', false);
+                    $('#ModalPayOne').show();
+                });
+                
+                $.validator.addMethod("checkUserName",function(value, element) {
+                  var response = false;
+                    $.ajax({
+                        type:"POST",
+                        async: false,
+                        url: "/Login/isUserValidate",
+                        data: {usuario: $("#usuario").val()},
+                        success: function(data) {
+                            if(data=="true"){
+                                $('#btnEntrar').attr("disabled", false);
+                                response = true;
+                            }else{
+                                $('#btnEntrar').attr("disabled", true);
+                            }
+                        }
+                    });
+
+                    return response;
+                },"El usuario no es correcto");
+            });
+      </script>
+      
+html;
         $data_user = HomeDao::getDataUser($data['email']);
 
         $productos_pendientes_comprados = HomeDao::getProductosPendComprados($data_user['user_id']);
@@ -966,6 +1203,7 @@ html;
 
         View::set('categoria', $getCategoria);
         View::set('header', $header);
+        View::set('footer', $extraFooter);
         View::set('datos', $data_user);
         View::set('clave', $clave);
         View::set('checks', $checks);

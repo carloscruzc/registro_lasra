@@ -95,6 +95,7 @@ sql;
     FROM pendiente_estudiante pe
     INNER JOIN utilerias_administradores ua ON(ua.user_id = pe.user_id)
     WHERE pe.user_id = $id
+    GROUP BY pe.user_id;
 sql;
     return $mysqli->queryAll($query);
   }

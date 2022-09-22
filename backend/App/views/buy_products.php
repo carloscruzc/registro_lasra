@@ -460,15 +460,23 @@
                         }
 
                     }
+                    //precio socio si tiene anaulidad
+                    if (nombre_producto == 'ANUALIDAD (2022)') {
+
+                        $(".checks_product").each(function(index) {
+                            $("#cont_precio_" + $(this).val()).html($(this).data('precio-socio') + ' - MXN ');
+
+                        });
+                    }
 
                     //precio socio si tiene anaulidad residente
-                    // if (nombre_producto == 'ANUALIDAD (2022) - (Residente)') {
+                    if (nombre_producto == 'ANUALIDAD (2022) - (Residente)') {
 
-                    //     $(".checks_product").each(function(index) {
-                    //         $("#cont_precio_" + $(this).val()).html($(this).data('precio-socio') + ' - MXN ');
+                        $(".checks_product").each(function(index) {
+                            $("#cont_precio_" + $(this).val()).html($(this).data('precio-socio') + ' - MXN ');
 
-                    //     });
-                    // }
+                        });
+                    }
 
                     //validaciones para los talleres simultaneos 
 
@@ -613,7 +621,7 @@
                     }
 
                     //si se selecciona residente
-                    if (nombre_producto == 'ANUALIDAD (2022) - (Residente)' || nombre_producto == 'V Congreso LASRA México (Residente)' ) {
+                    if (nombre_producto == 'ANUALIDAD (2022) - (Residente)' || nombre_producto == 'V Congreso LASRA México (Residente)') {
 
                         // if ($("#check_curso_2").is(":checked")) {
 

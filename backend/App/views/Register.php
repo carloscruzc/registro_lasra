@@ -102,7 +102,7 @@ echo $header;
 
                                                                         <div class="col-12 col-sm-5">
                                                                             <label>Primer apellido *</label>
-                                                                            <input class="multisteps-form__input form-control all_input" type="text" id="apellidop" name="apellidop" maxlength="15" placeholder="eg. Jones" disabled value="<?= $data['apellidop'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                                                            <input class="multisteps-form__input form-control all_input" type="text" id="apellidop" name="apellidop" maxlength="15" placeholder="eg. Jones" disabled value="<?= $data['apellidop'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" required>
                                                                         </div>
 
                                                                     </div>

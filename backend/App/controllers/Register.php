@@ -252,7 +252,7 @@ html;
         })
         .fail(function() 
         {
-          alert("Ocurrio un error al actualizar el estado intenta de nuevo");
+        //   alert("Ocurrio un error al actualizar el estado intenta de nuevo");
         })
       }
         

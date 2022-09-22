@@ -115,7 +115,7 @@ echo $header;
 
                                                                         <div class="col-12 col-sm-4">
                                                                             <label>Teléfono</label>
-                                                                            <input class="multisteps-form__input form-control" type="text" id="telephone" name="telephone" maxlength="10" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" placeholder="ej. (555) 555-1234" autocomplete="no" value="<?= $data['telefono'] ?>" disabled>
+                                                                            <input class="multisteps-form__input form-control" type="number" id="telephone" name="telephone" maxlength="10" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" placeholder="ej. (555) 555-1234" autocomplete="no" value="<?= $data['telefono'] ?>" disabled>
                                                                         </div>
 
                                                                     </div>
@@ -295,6 +295,7 @@ echo $header;
 
                 if($("#especialidades").val() == 6){
                     $("#cont-especialidad-text").show();
+                    $("#txt_especialidad").attr('required','required');
                 }
 
                 
@@ -338,9 +339,11 @@ echo $header;
             var especialidad = $(this).val();
             if (especialidad == 6) {
                 $("#cont-especialidad-text").show();
+                $("#txt_especialidad").attr('required','required');
             } else {
                 $("#cont-especialidad-text").hide();
                 $("#txt_especialidad").val("");
+                $("#txt_especialidad").removeAttr('required');
             }
         })
 

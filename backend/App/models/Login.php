@@ -80,6 +80,23 @@ sql;
           
       }
 
+      public static function insertComentario($data){
+        $mysqli = Database::getInstance(1);
+        $query=<<<sql
+        INSERT INTO comentarios(comentario,sitio,fecha)
+        VALUES (:comentario, :sitio,:fecha);
+  sql;
+  
+            $parametros = array(
+            ':comentario'=>$data->_comentario,
+            ':sitio'=>$data->_sitio,
+            ':fecha'=>$data->_fecha
+            );
+
+            $id = $mysqli->insert($query,$parametros);
+            return $id;
+      }
+
     public static function getFreeCourses(){
         $mysqli = Database::getInstance(true);
         $query =<<<sql

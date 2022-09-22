@@ -184,11 +184,18 @@ echo $header;
                 </div>
             </div>
         </footer>
+        <div class="fixed-bottom space-wa">
+            <div class="m-5">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#Modal_Caja">
+                    <span title="Caja de Comentarios" class="fa fa-comment px-2 py-3-3 icon-wa bg-gradient-dark"></span>
+                </a>
+            </div>
+        </div>
         <?php echo $footer; ?>
     </main>
-
-
 </body>
+
+<?php include 'Comentarios.php';?>
 
 <script>
     $(document).ready(function() {

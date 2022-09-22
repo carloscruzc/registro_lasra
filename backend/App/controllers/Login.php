@@ -5,6 +5,8 @@ defined("APPPATH") OR die("Access denied");
 use \Core\View;
 use \Core\MasterDom;
 use App\models\Login as LoginDao;
+use \DateTime;
+use \DatetimeZone;
 
 
 class Login{
@@ -334,6 +336,30 @@ html;
         // $data->_utilerias_administrador_id = $_SESSION['utilerias_administradores_id'];
 
         $id = LoginDao::insert($data);
+        if ($id >= 1) {
+            echo "success";
+            // $this->alerta($id,'add');
+            //header('Location: /PickUp');
+        } else {
+            echo "error";
+            // header('Location: /PickUp');
+            //var_dump($id);
+        }
+    }
+
+    public function saveComentario()
+    {
+        $data = new \stdClass();
+        $date = new DateTime("now", new DateTimeZone('America/Mexico_City') );
+        $fecha = $date->format('Y-m-d H:i:s');
+
+        $data->_comentario = MasterDom::getData('comentario');
+        $data->_sitio = MasterDom::getData('sitio');
+        $data->_fecha = $fecha;
+        // $data->_utilerias_administrador_id = $_SESSION['utilerias_administradores_id'];
+
+        $id = LoginDao::insertComentario($data);
+
         if ($id >= 1) {
             echo "success";
             // $this->alerta($id,'add');

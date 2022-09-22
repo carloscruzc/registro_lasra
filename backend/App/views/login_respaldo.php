@@ -191,14 +191,14 @@ echo $header;
                 </div>
             </div>
         </section>
-        <!-- WHATSAPP
-            <div class="fixed-bottom space-wa">
+        <!-- WHATSAPP -->
+        <div class="fixed-bottom space-wa">
             <div class="m-5">
-                <a href="https://api.whatsapp.com/send?phone=527293787668&text=Buen%20d%C3%ADa" target="_blank">
-                    <span class="fa fa-whatsapp px-1 py-3-3 icon-wa bg-gradient-success"></span>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#Modal_Caja">
+                    <span title="Caja de Comentarios" class="fa fa-comment px-2 py-3-3 icon-wa bg-gradient-dark"></span>
                 </a>
             </div>
-        </div> -->
+        </div>
     </main>
     <!-- Modal -->
     <div class="modal" id="doc_programa" role="dialog" aria-labelledby="doc_programaLabel" aria-hidden="true">
@@ -322,6 +322,8 @@ echo $header;
             </div>
         </div>
     </div>
+
+    <?php include 'Comentarios.php';?>
     <!-- end modal add_register-->
     <!-- -------- START FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
     <script>

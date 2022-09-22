@@ -126,7 +126,7 @@ echo $header;
                                                                         <div class="col-12 col-sm-4" id="cont-categoria">
 
                                                                             <label>Nivel *</label>
-                                                                            <select class="multisteps-form__select form-control all_input_select" name="categorias" id="categorias" disabled>
+                                                                            <select class="multisteps-form__select form-control all_input_select" name="categorias" id="categorias" required disabled>
                                                                                 <option value="" disabled selected>Selecciona una Opción</option>
                                                                                 <?php echo $categorias ?>
                                                                             </select>

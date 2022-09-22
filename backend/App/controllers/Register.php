@@ -10,6 +10,7 @@ use \Core\MasterDom;
 use \App\models\Register as RegisterDao;
 use \App\models\Login as LoginDao;
 use \App\models\Home as HomeDao;
+use \App\models\ComprobantePago as ComprobantePagoDao;
 
 class Register
 {
@@ -427,6 +428,20 @@ html;
         $clave_socio = $_POST['clave_socio'];
         $txt_especialidad = $_POST['txt_especialidad'];
 
+     
+
+        if (isset($_FILES['archivo_residente'])) {
+            $archivo_residente = $_FILES['archivo_residente'];
+        } else {
+            $archivo_residente = 0;
+        }
+
+        if (isset($_POST['ano_residencia'])) {
+            $ano_residencia = $_POST['ano_residencia'];
+        } else {
+            $ano_residencia = 0;
+        }
+
         $data = [
             'email' => $email,
             'title' => $prefijo,
@@ -439,8 +454,11 @@ html;
             'nationality' => $nationality,
             'state' => $state,
             'clave_socio' => $clave_socio,
-            'txt_especialidad' => $txt_especialidad
+            'txt_especialidad' => $txt_especialidad,
+            'ano_residencia' => $ano_residencia
         ];
+
+
 
         View::set('dataUser', $data);
         View::set('header', $extraHeader);
@@ -640,19 +658,19 @@ html;
         }
     }
 
+   
     public function passFinalize_()
     {
 
         //Acarrear los datos
         $data = unserialize($_POST['dataUser']);
+       
 
         if ($data['categorias'] == 0) {
             $monto_congreso = RegisterDao::getMontoPago(1)['costo'];
         } else {
             $monto_congreso = RegisterDao::getMontoPago($data['categorias'])['costo'];
         }
-
-
 
         if ($data['especialidades'] == null) {
             $data['especialidades'] = '';
@@ -789,7 +807,7 @@ html;
         </head>
 html;
 
-$extraFooter = <<<html
+        $extraFooter = <<<html
      
         <script src="/js/jquery.min.js"></script>
         <script src="/js/validate/jquery.validate.js"></script>
@@ -1046,11 +1064,11 @@ html;
             $pend_validar = '';
             $fecha = $value['fecha_producto'];
 
-  
 
-            if($value['es_congreso'] == 1){
+
+            if ($value['es_congreso'] == 1) {
                 $precio = $value['monto'];
-            }else{
+            } else {
                 $precio = $value['precio_publico'];
             }
 
@@ -1592,11 +1610,11 @@ html;
 
                 $id_producto = $value['id_product'];
 
-                if($tipo_moneda == 'MXN'){
+                if ($tipo_moneda == 'MXN') {
                     $monto = $value['precio'];
-                }else{
+                } else {
                     $monto = $value['precio_usd'];
-                }          
+                }
 
 
                 $documento->_id_producto = $id_producto;
@@ -1635,19 +1653,18 @@ html;
                     date_default_timezone_set('America/Mexico_City');
                     $fecha_pendiente = date('Y-m-d H:i:s');
 
-                    if(!$datos_estudiante){
+                    if (!$datos_estudiante) {
                         $existe_residente = RegisterDao::getPendientesResidentes($user_id);
-                        if($existe_residente){
-                        $ida = RegisterDao::insertPendienteEstudiante($fecha_pendiente,$user_id);
-                            if($ida){
+                        if ($existe_residente) {
+                            $ida = RegisterDao::insertPendienteEstudiante($fecha_pendiente, $user_id);
+                            if ($ida) {
                                 // echo 'FUNCIONA';
-                            }else{
+                            } else {
                                 // echo 'NO FUNCIONA';
                             }
-                        }else{
-                            
+                        } else {
                         }
-                    }else{
+                    } else {
                         // no es estudiante
                         // echo 'No funciona';
                     }
@@ -1682,7 +1699,7 @@ html;
                 //     'clave' => $clave
                 // ];
 
-          
+
 
                 // $mailer = new Mailer();
                 // $mailer->mailerPago($msg);
@@ -1691,7 +1708,7 @@ html;
                 // // }else{
                 // //     $mailer->mailerPagoPlataforma($msg);
                 // // }
-                
+
             }
         } else {
             $res = [
@@ -1847,9 +1864,9 @@ html;
         date_default_timezone_set('America/Mexico_City');
 
         $fecha =  date("Y-m-d");
-        $f = explode('-',$fecha);
+        $f = explode('-', $fecha);
 
-        $fecha_limite = date("d-m-Y",strtotime($fecha."+ 5 days"));
+        $fecha_limite = date("d-m-Y", strtotime($fecha . "+ 5 days"));
 
 
         $usuario = $_POST['email_usuario'];
@@ -1862,7 +1879,7 @@ html;
         $user_id = $datos_user['user_id'];
         $clave = $_POST['clave'];
 
-        $productos = RegisterDao::getProductosPendientesPagoByUserandClave($user_id,$clave);
+        $productos = RegisterDao::getProductosPendientesPagoByUserandClave($user_id, $clave);
 
         foreach ($productos as $key => $value) {
 
@@ -1886,15 +1903,12 @@ html;
             $nombre_curso = $value['nombre'];
             $id_producto = $value['id_producto'];
             $user_id = $datos_user['user_id'];
-            $reference = $f[1].$f[2].'-'.$user_id;
+            $reference = $f[1] . $f[2] . '-' . $user_id;
             // $monto = $value['precio_publico'];
             $monto = $precio;
             $tipo_pago = $metodo_pago;
             $tipo_moneda = $value['tipo_moneda'];
             $status = 0;
-
-
-
         }
 
         // $d = $this->fechaCastellano($fecha);
@@ -1956,7 +1970,7 @@ html;
         $pdf->SetXY(1, 102.5);
         $pdf->SetFont('Arial', 'B', 10);
         $pdf->SetTextColor(0, 0, 0);
-        $pdf->Multicell(80, 10, $clave.'-'.$user_id, 0, 'C');
+        $pdf->Multicell(80, 10, $clave . '-' . $user_id, 0, 'C');
 
         //fecha
         $pdf->SetXY(8, 110);
@@ -1982,17 +1996,17 @@ html;
         $pdf->SetXY(5, 106);
         $pdf->SetFont('Arial', 'B', 10);
         $pdf->SetTextColor(0, 0, 0);
-        $pdf->Multicell(100, 10, number_format(array_sum($total), 2) . ' '.$tipo_moneda, 0, 'C');
+        $pdf->Multicell(100, 10, number_format(array_sum($total), 2) . ' ' . $tipo_moneda, 0, 'C');
 
         // $pdf->Output();
-        $pdf->Output('F','comprobantesPago/'.$clave.'.pdf');        
-        $pdf->Output('D','comprobantesPago/'.$clave.'.pdf');
-        chmod('comprobantesPago/'.$clave.'.pdf', 0755);
+        $pdf->Output('F', 'comprobantesPago/' . $clave . '.pdf');
+        $pdf->Output('D', 'comprobantesPago/' . $clave . '.pdf');
+        chmod('comprobantesPago/' . $clave . '.pdf', 0755);
 
         $msg = [
             'nombre' => $datos_user['nombre'] . ' ' . $datos_user['apellidop'] . ' ' . $datos_user['apellidom'],
             'metodo_pago' => $tipo_pago,
-            'referencia' => $clave.'-'.$datos_user['user_id'],
+            'referencia' => $clave . '-' . $datos_user['user_id'],
             'importe_pagar' => number_format(array_sum($total), 2),
             'fecha_limite_pago' => $fecha_limite,
             'email' => $usuario,
@@ -2000,24 +2014,24 @@ html;
             'tipo_moneda' => $tipo_moneda
         ];
 
-    
+
 
         $mailer = new Mailer();
         $mailer->mailerPago($msg);
-        
+
 
         // $pdf->Output('F', 'C:/pases_abordar/'. $clave.'.pdf');
     }
 
 
-    public function ticketAll_($usuario,$metodo_pago,$clave)
+    public function ticketAll_($usuario, $metodo_pago, $clave)
     {
         date_default_timezone_set('America/Mexico_City');
 
         $fecha =  date("Y-m-d");
-        $f = explode('-',$fecha);
+        $f = explode('-', $fecha);
 
-        $fecha_limite = date("d-m-Y",strtotime($fecha."+ 5 days"));
+        $fecha_limite = date("d-m-Y", strtotime($fecha . "+ 5 days"));
 
 
         // $usuario = $_POST['email_usuario'];
@@ -2030,7 +2044,7 @@ html;
         $user_id = $datos_user['user_id'];
         // $clave = $_POST['clave'];
 
-        $productos = RegisterDao::getProductosPendientesPagoByUserandClave($user_id,$clave);
+        $productos = RegisterDao::getProductosPendientesPagoByUserandClave($user_id, $clave);
 
         foreach ($productos as $key => $value) {
 
@@ -2054,14 +2068,11 @@ html;
             $nombre_curso = $value['nombre'];
             $id_producto = $value['id_producto'];
             $user_id = $datos_user['user_id'];
-            $reference = $f[1].$f[2].'-'.$user_id;
+            $reference = $f[1] . $f[2] . '-' . $user_id;
             // $monto = $value['precio_publico'];
             $monto = $precio;
             $tipo_pago = $metodo_pago;
             $status = 0;
-
-
-
         }
 
         // $d = $this->fechaCastellano($fecha);
@@ -2123,7 +2134,7 @@ html;
         $pdf->SetXY(1, 104);
         $pdf->SetFont('Arial', 'B', 10);
         $pdf->SetTextColor(0, 0, 0);
-        $pdf->Multicell(80, 10, $clave.'-'.$user_id, 0, 'C');
+        $pdf->Multicell(80, 10, $clave . '-' . $user_id, 0, 'C');
 
         //fecha
         $pdf->SetXY(8, 112.5);
@@ -2152,9 +2163,9 @@ html;
         $pdf->Multicell(100, 10, number_format(array_sum($total), 2) . ' MXN', 0, 'C');
 
         // $pdf->Output();
-        $pdf->Output('F','comprobantesPago/'.$clave.'.pdf');
-        $pdf->Output('D','comprobantesPago/'.$clave.'.pdf');
-        
+        $pdf->Output('F', 'comprobantesPago/' . $clave . '.pdf');
+        $pdf->Output('D', 'comprobantesPago/' . $clave . '.pdf');
+
 
         // $pdf->Output('F', 'C:/pases_abordar/'. $clave.'.pdf');
     }

@@ -57,6 +57,7 @@ echo $header;
                                                         <form class="multisteps-form__form" id="add" action="/Register/passThree" method="POST">
                                                             <!--single form panel-->
                                                             <input type="hidden" name="dataUser" value='<?php echo serialize($dataUser)?>' >
+                                                            
                                                             <div id="card_two" class="card multisteps-form__panel p-3 border-radius-xl bg-white js-active" id="card_one" data-animation="FadeIn">
 
                                                                 <?php if ($dataUser['categorias'] == 3): ?>
@@ -174,12 +175,14 @@ echo $header;
         $("#btncheck2").on("click",function(){
             // alert($(this).val());
             $("#add").attr('action','/Register/passThree');
+            $("#add").attr("enctype","multipart/form-data");
             $("#add").submit();
         });
 
         $("#btncheck3").on("click",function(){
             // alert($(this).val());
             $("#add").attr('action','/Register/passFinalize_');
+            $("#add").attr("enctype","multipart/form-data");
             $("#add").submit();
         });
 

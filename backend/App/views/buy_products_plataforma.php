@@ -512,6 +512,44 @@
                                         $("#check_curso_32").attr('disabled', 'disabled');
                                     }
 
+                                    //Especialista
+
+                                    if (nombre_producto == 'SUPRA Clinical WorkShop 2 hands on') {
+                                        $("#check_curso_40").attr('disabled', 'disabled');
+                                        $("#check_curso_39").attr('disabled', 'disabled');
+                                    }
+
+                                    if (nombre_producto == 'SUPRA Clinical WorkShop 3 hands on') {
+                                        $("#check_curso_41").attr('disabled', 'disabled');
+                                        $("#check_curso_39").attr('disabled', 'disabled');
+                                    }
+
+                                    if (nombre_producto == 'SUPRA Clinical WorkShop 4 hands on') {
+                                        $("#check_curso_40").attr('disabled', 'disabled');
+                                        $("#check_curso_41").attr('disabled', 'disabled');
+                                    }
+                                    //fin especialista
+
+
+                                    
+                                    //Residentes
+
+                                    if (nombre_producto == 'SUPRA Clinical WorkShop 2 hands on') {
+                                        $("#check_curso_36").attr('disabled', 'disabled');
+                                        $("#check_curso_37").attr('disabled', 'disabled');
+                                    }
+
+                                    if (nombre_producto == 'SUPRA Clinical WorkShop 3 hands on') {
+                                        $("#check_curso_36").attr('disabled', 'disabled');
+                                        $("#check_curso_38").attr('disabled', 'disabled');
+                                    }
+
+                                    if (nombre_producto == 'SUPRA Clinical WorkShop 4 hands on') {
+                                        $("#check_curso_37").attr('disabled', 'disabled');
+                                        $("#check_curso_38").attr('disabled', 'disabled');
+                                    }
+                                    //fin residentes
+
                                     //fin de validaciones para talleres simultaneos
 
 
@@ -694,6 +732,47 @@
                                         $("#check_curso_31").removeAttr('disabled');
                                         $("#check_curso_32").removeAttr('disabled');
                                     }
+
+
+                                    //Especialista
+
+                                    if (nombre_producto == 'SUPRA Clinical WorkShop 2 hands on') {
+                                        $("#check_curso_40").removeAttr('disabled');
+                                        $("#check_curso_39").removeAttr('disabled');
+                                    }
+
+                                    if (nombre_producto == 'SUPRA Clinical WorkShop 3 hands on') {
+                                        $("#check_curso_41").removeAttr('disabled');
+                                        $("#check_curso_39").removeAttr('disabled');
+                                    }
+
+                                    if (nombre_producto == 'SUPRA Clinical WorkShop 4 hands on') {
+                                        $("#check_curso_40").removeAttr('disabled');
+                                        $("#check_curso_41").removeAttr('disabled');
+                                    }
+                                    //fin especialista
+
+
+                                    
+                                    //Residentes
+
+                                    if (nombre_producto == 'SUPRA Clinical WorkShop 2 hands on') {
+                                        $("#check_curso_36").removeAttr('disabled');
+                                        $("#check_curso_37").removeAttr('disabled');
+                                    }
+
+                                    if (nombre_producto == 'SUPRA Clinical WorkShop 3 hands on') {
+                                        $("#check_curso_36").removeAttr('disabled');
+                                        $("#check_curso_38").removeAttr('disabled');
+                                    }
+
+                                    if (nombre_producto == 'SUPRA Clinical WorkShop 4 hands on') {
+                                        $("#check_curso_37").removeAttr('disabled');
+                                        $("#check_curso_38").removeAttr('disabled');
+                                    }
+                                    //fin residentes
+
+
                                     //fin de validaciones para talleres simultaneos
 
 

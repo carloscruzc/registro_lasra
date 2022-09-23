@@ -1232,7 +1232,7 @@
                 event.preventDefault();
                 var formData = new FormData(document.getElementById("form_datos_caja"));
                 $.ajax({
-                    url: "/ComprobantePago/saveComprobante",
+                    url: "/Register/saveComprobante",
                     type: "POST",
                     data: formData,
                     contentType: false,

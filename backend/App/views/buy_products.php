@@ -292,7 +292,7 @@
 
     <!-- ABRE MODAL -->
 <div class="modal fade" id="Modal_Caja" role="dialog" aria-labelledby="" aria-hidden="">
-    <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">
@@ -308,11 +308,11 @@
                         <center>
                         <div class="col-8">
                             <label class="control-label col-12" for="comentario">Comprobante de Anualidad 2022<span class="required">*</span></label>
-                            <input type="file" accept="image/*,.pdf" class="form-control" id="file-input" name="file-input" style="width: auto; margin: 0 auto;" required>
+                            <label for="">Sube tu archivo</label><input type="file" accept="image/*,.pdf" class="form-control" id="file-input" name="file-input" style="width: auto; margin: 0 auto;" required>
                             <input type="hidden" class="form-control" id="sitio" name="sitio">
                             <input type="hidden" id="clave_socio" name="clave_socio" value="<?= $datos['clave_socio'] ?>">
                             <input type="hidden" id="email_usuario" name="email_usuario" value="<?= $datos['usuario'] ?>">
-                            <input type="hidden" id="metodo_pago" name="metodo_pago" value="">
+                            <input type="hidden" id="metodo_pago" name="metodo_pago" value="<?= $datos['metodo_pago'] ?>">
                             <input type="hidden" id="clave" name="clave" value="<?= $clave ?>">
                         </div>
                         </center>

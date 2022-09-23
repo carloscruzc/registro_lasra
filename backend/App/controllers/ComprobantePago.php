@@ -713,10 +713,7 @@ html;
                     // ];
                 }
             }else{
-                echo "<script>
-                         alert('Hubo un error al subir el archivo');
-                        window.location.href = /ComprobantePago/;
-                    </script>";
+                echo "error1";
             }
             // move_uploaded_file($file["tmp_name"], "comprobantesPago/".$numero_rand.".pdf");
 
@@ -724,10 +721,7 @@ html;
 
 
         } else {
-            echo "<script>
-                 alert('No selecciono ningun archivo');
-                window.location.href = /ComprobantePago/;
-            </script>";
+            echo "error2";
         }
     }
 

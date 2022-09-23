@@ -57,7 +57,7 @@ echo $header;
                                                 <!--form panels-->
                                                 <div class="row">
                                                     <div class="col-12 col-lg-12 m-auto">
-                                                        <form class="multisteps-form__form" id="add" action="" method="POST">
+                                                        <form class="multisteps-form__form" id="add" action="" method="POST" enctype="multipart/form-data">
                                                             <!--single form panel-->
                                                             <div id="card_one" class="card multisteps-form__panel p-3 border-radius-xl bg-white js-active" id="card_one" data-animation="FadeIn">
                                                                 <h5 class="font-weight-bolder mb-0">INFORMACIÓN PERSONAL</h5>
@@ -133,7 +133,28 @@ echo $header;
 
                                                                         </div>
 
-                                                                        <div class="col-12 col-sm-4" id="cont-clave-socio" style="display: none;">
+
+
+                                                                        <div class="col-12 col-sm-4" id="cont-ano-residente" style="display: none;">
+
+                                                                            <label>Año de Residencia *</label>
+                                                                            <select class="multisteps-form__select form-control all_input_select" name="ano_residencia" id="ano_residencia">
+                                                                                <option value="" disabled selected>Selecciona una Opción</option>
+                                                                                <option value="1">1</option>
+                                                                                <option value="2">2</option>
+                                                                                <option value="3">3</option>
+
+                                                                            </select>
+
+                                                                        </div>
+
+                                                                        <div class="col-12 col-sm-4" id="cont-archivo-residente" style="display: none;">
+                                                                            <label>Archivo *</label>
+                                                                            <input type="file" accept="image/*,.pdf" class="form-control" id="archivo_residente" name="archivo_residente" style="width: auto; margin: 0 auto;" onfocus="focused(this)" onfocusout="defocused(this)">
+                                                                        </div>
+                                                                        <!-- </div> -->
+
+                                                                        <div class="col-12 col-sm-4 mt-3" id="cont-clave-socio" style="display: none;">
                                                                             <label id="label-clave-socio">Clave Socio *</label>
                                                                             <input type="text" class="form-control" name="clave_socio" id="clave_socio" value="<?= $data['clave_socio'] ?>">
                                                                         </div>
@@ -191,10 +212,7 @@ echo $header;
                                                                         </div>
 
 
-                                                                    </div>
-                                                                    <div class="row mt-3">
-
-                                                                        <div class="col-12 col-sm-4 mt-3 mt-sm-0">
+                                                                        <div class="col-12 col-sm-4  ">
                                                                             <label>Estado *</label>
                                                                             <select class="multisteps-form__select form-control all_input_select" name="state" id="state" disabled required>
 
@@ -261,7 +279,7 @@ echo $header;
     </main>
 </body>
 
-<?php include 'Comentarios.php';?>
+<?php include 'Comentarios.php'; ?>
 
 <script>
     $(document).ready(function() {
@@ -269,14 +287,14 @@ echo $header;
         let userData = JSON.parse(localStorage.getItem("user_data"));
 
         if (userData) {
-            if (userData.nombre != '') { 
-                
+            if (userData.nombre != '') {
+
                 // $("#email").removeAttr('autocomplete');
 
                 $("#btn_next_1").removeAttr('disabled');
 
                 $("#email_validado").val(userData.email);
-                $("#email").val(userData.email)              
+                $("#email").val(userData.email)
                 $("#confirm_email").val(userData.email)
                 $("#nombre").val(userData.nombre)
                 $("#apellidop").val(userData.apellidop)
@@ -287,19 +305,19 @@ echo $header;
                 $("#txt_especialidad").val(userData.txt_especialidad)
                 $("#nationality").val(userData.nationality)
                 actualizaEdos(userData.nationality);
-                
-                setTimeout(function(){
-                    $("#state option[value="+userData.state+"]").attr('selected',true) 
-                },100)
-                 
 
-                if($("#especialidades").val() == 6){
+                setTimeout(function() {
+                    $("#state option[value=" + userData.state + "]").attr('selected', true)
+                }, 100)
+
+
+                if ($("#especialidades").val() == 6) {
                     $("#cont-especialidad-text").show();
-                    $("#txt_especialidad").attr('required','required');
+                    $("#txt_especialidad").attr('required', 'required');
                 }
 
-                
-                
+
+
                 // $("#especialidades").removeAttr('disabled')
 
                 document.getElementById('confirm_email').disabled = false;
@@ -310,12 +328,31 @@ echo $header;
                 document.getElementById('nationality').disabled = false;
                 document.getElementById('state').disabled = false;
                 document.getElementById('nombre').disabled = false;
-                document.getElementById('categorias').disabled = false; 
-                document.getElementById('especialidades').disabled = false;         
+                document.getElementById('categorias').disabled = false;
+                document.getElementById('especialidades').disabled = false;
             }
-        }else{
+        } else {
             //no esta hecho el json
         }
+
+        //si la categoria es residente
+        $('#categorias').on('change', function() {
+            let categoria = $(this).val();
+
+            if (categoria == 3) {
+                // $('#cont-archivo-residente').css('display', 'inline-block');
+                // $('#archivo_residente').attr('required', 'required');
+                $('#cont-ano-residente').css('display', 'inline-block');
+                $('#ano_residencia').attr('required', 'required');
+            } else {
+                // $('#cont-archivo-residente').css('display', 'none');
+                // $('#archivo_residente').removeAttr('required')
+                // $('#archivo_residente').val('')
+                $('#cont-ano-residente').css('display', 'none');
+                $('#ano_residencia').removeAttr('required');
+                $('#ano_residencia').val('');
+            }
+        });
 
 
         //codigo de beca
@@ -339,7 +376,7 @@ echo $header;
             var especialidad = $(this).val();
             if (especialidad == 6) {
                 $("#cont-especialidad-text").show();
-                $("#txt_especialidad").attr('required','required');
+                $("#txt_especialidad").attr('required', 'required');
             } else {
                 $("#cont-especialidad-text").hide();
                 $("#txt_especialidad").val("");
@@ -412,24 +449,24 @@ echo $header;
 
 
         // if ($("#email_register").val() == '') {
-            let email = localStorage.getItem("email");
+        let email = localStorage.getItem("email");
 
-            if(email){
+        if (email) {
 
             $("#email").val(email);
-                if ($("#email").val() != '') {
-                    $("#confirm_email").removeAttr('disabled');
-                } else {
-                    $("#email").removeAttr('readonly');
-                }
-
-                // mostrarCategorias();
-            }else{
-                $("#email").removeAttr('readonly')
+            if ($("#email").val() != '') {
+                $("#confirm_email").removeAttr('disabled');
+            } else {
+                $("#email").removeAttr('readonly');
             }
 
+            // mostrarCategorias();
+        } else {
+            $("#email").removeAttr('readonly')
+        }
+
         // } 
-        
+
         // else {
         //     var email_uno = document.getElementById('email').value;
         //     var email_dos = document.getElementById('confirm_email').value;

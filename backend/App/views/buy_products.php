@@ -67,6 +67,8 @@
                 <input type="hidden" name="datos" id="datos" value="<?php echo $datos; ?>">
                 <input type="hidden" name="id_pais" id="id_pais" value="<?= $datos['id_pais'] ?>">
 
+                <!-- <?php var_dump($datos)?> -->
+
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                         <div class="input-group"></div>

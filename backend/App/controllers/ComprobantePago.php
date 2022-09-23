@@ -685,6 +685,7 @@ html;
                 $documento->_clave = $clave;
 
                 $id = ComprobantePagoDao::insertComprobante($documento);
+                $id = ComprobantePagoDao::updateUser($user_id);
 
                 if ($id) {
 

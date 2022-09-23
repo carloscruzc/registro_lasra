@@ -120,6 +120,19 @@ sql;
     return $mysqli->queryAll($query);
   }
 
+  public static function getUserAnualidad($usuario)
+  {
+    $mysqli = Database::getInstance(true);
+    $query = <<<sql
+      SELECT ua.usuario,ua.motivo,ua.user_id,pe.id_pendiente_pago,pe.status, pe.id_producto
+      FROM utilerias_administradores ua
+      INNER JOIN pendiente_pago pe ON pe.user_id = ua.user_id
+      WHERE ua.usuario = '$usuario' AND ua.motivo = 'Anualidad' AND pe.id_producto = 2 AND pe.status = 0;
+sql;
+
+    return $mysqli->queryOne($query);
+  }
+
   public static function getEstudiante($usuario)
   {
     $mysqli = Database::getInstance(true);

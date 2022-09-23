@@ -79,6 +79,19 @@ sql;
 
     }
 
+    public static function updateUser($user_id){
+      $mysqli = Database::getInstance(true);
+      // var_dump($user);
+      $query=<<<sql
+      UPDATE utilerias_administradores SET motivo = 'Anualidad'  WHERE user_id = $user_id;
+sql;
+      $parametros = array(
+      );
+     
+      return $mysqli->update($query, $parametros);
+
+  }
+
     public static function insertComprobante($data)
   {
     $mysqli = Database::getInstance(1);

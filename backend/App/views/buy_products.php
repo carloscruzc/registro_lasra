@@ -435,7 +435,7 @@
                             cancelButtonText: 'Cancelar',
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                window.location.href = '/Login';
+                                window.location.href = '/Login/';
                             }
                         })
                         } else {
@@ -1248,7 +1248,7 @@
                         if (respuesta == 'success') {
                             Swal.fire("¡Recibimos tu archivo! Una vez validado tu comprobante, podras comprar desde la plataforma", "", "success").
                             then((value) => {
-                                window.location.reload();
+                                window.location.href = '/Login/';
                             });
                         } else {
                             Swal.fire("¡Hubo un error, inténtalo de nuevo!", "", "warning").

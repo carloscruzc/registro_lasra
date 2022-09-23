@@ -96,7 +96,6 @@ sql;
       ':fecha' => $data->_fecha,
       ':monto' => $data->_monto,
       ':url_archivo' => $data->_url_archivo,
-      ':tipo_pago' => $data->_tipo_pago
     );
     $id = $mysqli->insert($query, $parametros);
     return $id;

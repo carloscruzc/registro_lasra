@@ -679,9 +679,9 @@ html;
                 $documento->_user_id = $user_id;
                 $documento->_reference = $reference;
                 $documento->_fecha = $fecha;
-                $documento->_monto = '1500';
-                $documento->_tipo_pago = $tipo_pago;
-                $documento->_tipo_moneda = $tipo_moneda;
+                $documento->_monto = '2500';
+                // $documento->_tipo_pago = $tipo_pago;
+                // $documento->_tipo_moneda = $tipo_moneda;
                 $documento->_clave = $clave;
 
                 $id = ComprobantePagoDao::insertComprobante($documento);

@@ -433,9 +433,11 @@ html;
                                 <div class="col-12 text-center">
                                 </div>
                             </div>
-                        </div>
-                        Se está validando tu comprobante.
+                        </div>                        
                     </a>
+                    <div class="d-flex justify-content-center">
+                     Se está validando tu comprobante.
+                    </div>
                 </div>
 html;
                 $byproducts = '';

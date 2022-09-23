@@ -434,7 +434,7 @@ html;
                                 </div>
                             </div>
                         </div>
-                        Completa este registro para subir el comprobante de tus pagos
+                        Se está validando tu comprobante.
                     </a>
                 </div>
 html;

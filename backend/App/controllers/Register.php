@@ -312,6 +312,61 @@ html;
         View::render("Register");
     }
 
+    public function uploadComprobanteResidente(){
+        $numero_rand = $this->generateRandomString();
+        $user_id = $_POST['_user_id'];
+        $file = $_FILES['archivo_residente'];
+        $name_archivo = '';
+
+        $formatos_permitidos_img = array("image/jpg", "image/jpeg", "image/gif", "image/png");
+
+        if (in_array($file['type'], $formatos_permitidos_img)) {
+
+            $tipos  = $file['type'];
+            $tipo = explode("/", $tipos);
+            $name_archivo = $numero_rand . '.' . $tipo[1];
+        } else {
+            $name_archivo = $numero_rand . '.pdf';
+        }
+
+        $nombre_fichero = 'comprobantesPago/' . $user_id;
+
+
+        if (!file_exists($nombre_fichero)) {
+            mkdir('comprobantesPago/' . $user_id, 777, true);
+        }
+
+
+        
+        if ($file['name'] != "") {
+            
+            
+            if (move_uploaded_file($file['tmp_name'], "comprobantesPago/".$user_id."/".$name_archivo)) {
+                
+                $documento = new \stdClass();
+                $documento->_user_id = $user_id;
+                $documento->_ano_residencia = $_POST['ano_residencia'];
+                $documento->_url = $name_archivo;
+
+                $idc = ComprobantePagoDao::insertComprobanteEstudiante($documento);
+
+               
+
+            }else{
+                echo "error";
+
+            }
+
+        
+        }
+
+        if($idc){
+            echo "success";
+        }else{
+            echo "error";
+        }
+    }
+
     public function UpdateData()
     {
 

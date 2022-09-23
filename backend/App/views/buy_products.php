@@ -346,9 +346,9 @@
                         <center>
                         <div class="col-8 mb-3">
                             <label class="control-label col-12" for="comentario">Comprobante<span class="required">*</span></label>
-                            <input type="file" accept="image/*,.pdf" class="form-control" id="file-input" name="file-input" style="width: auto; margin: 0 auto;" required>
-                            <input type="text" class="form-control" id="_user_id" name="_user_id" value="<?php echo $datos['user_id']?>">
-                            <input type="text" class="form-control" id="ano_residencia" name="ano_residencia" value="<?php echo $array_user['ano_residencia'];?>">
+                            <input type="file" accept="image/*,.pdf" class="form-control" id="archivo_residente" name="archivo_residente" style="width: auto; margin: 0 auto;" required>
+                            <input type="hidden" class="form-control" id="_user_id" name="_user_id" value="<?php echo $datos['user_id']?>">
+                            <input type="hidden" class="form-control" id="ano_residencia" name="ano_residencia" value="<?php echo $array_user['ano_residencia'];?>">
                             
                         </div>
                         </center>
@@ -409,7 +409,7 @@
                 event.preventDefault();
                 var formData = new FormData(document.getElementById("form_archivo_residente"));
                 $.ajax({
-                    url: "/ComprobantePago/saveComprobante",
+                    url: "/Register/uploadComprobanteResidente",
                     type: "POST",
                     data: formData,
                     contentType: false,
@@ -423,14 +423,25 @@
                         console.log(respuesta);
 
                         if (respuesta == 'success') {
-                            Swal.fire("¡Recibimos tu comentario, gracias!", "", "success").
-                            then((value) => {
-                                window.location.reload();
-                            });
+                            Swal.fire({
+                            title: '¡Correcto!',
+                            text: "Una vez validado tu comprobante, podras comprar desde la plataforma",
+                            icon: 'info',
+                            showCancelButton: true,
+                            showCancelButton: true,
+                            allowOutsideClick: false,
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'Aceptar',
+                            cancelButtonText: 'Cancelar',
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = '/Login';
+                            }
+                        })
                         } else {
                             Swal.fire("¡Hubo un error, inténtalo de nuevo!", "", "warning").
                             then((value) => {
-                                window.location.reload();
+                                // window.location.reload();
                             });
                         }
                     },
@@ -439,7 +450,7 @@
                         // alert('Error');
                         Swal.fire("¡Hubo un error, inténtalo de nuevo!", "", "warning").
                         then((value) => {
-                            window.location.reload();
+                            // window.location.reload();
                         });
                     }
                 });

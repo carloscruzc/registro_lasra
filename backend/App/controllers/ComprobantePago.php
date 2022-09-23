@@ -634,7 +634,7 @@ html;
         $id_pendiente_pago = $_POST['id_pendiente_pago'];
         $clave = $_POST['clave'];
         $file = $_FILES["file-input"];
-        $usuario = $_POST['usuario'];
+        $usuario = $_POST['email_usuario'];
         $tipo_pago = $_POST['metodo_pago'];
         $tipo_moneda = $_POST['tipo_moneda'];
         $name_archivo = '';
@@ -659,23 +659,23 @@ html;
             $name_archivo = $numero_rand.'.pdf';
         }
 
-        $nombre_fichero = 'comprobantesPago/'.$_SESSION['user_id'];
+        $nombre_fichero = 'comprobantesPago/'.$datos_user['user_id'];
 
 
         if (!file_exists($nombre_fichero)) {
-            mkdir('comprobantesPago/'.$_SESSION['user_id'], 0777, true);
+            mkdir('comprobantesPago/'.$datos_user['user_id'], 0777, true);
         } 
 
         if ($file['name'] != "") {
-            $user_id = $_SESSION['user_id'];
+            $user_id = $datos_user['user_id'];
 
             // if (move_uploaded_file($file["tmp_name"], "comprobantesPago/" . $numero_rand . ".pdf")) {
-            if (move_uploaded_file($file["tmp_name"], "comprobantesPago/".$_SESSION['user_id']."/" . $name_archivo)) {
+            if (move_uploaded_file($file["tmp_name"], "comprobantesPago/".$datos_user['user_id']."/" . $name_archivo)) {
 
                 $documento = new \stdClass();
                 $documento->_id_pendiente_pago = $id_pendiente_pago;
                 $documento->_clave = $clave;
-                $documento->_url = $name_archivo;
+                $documento->_url_archivo = $name_archivo;
                 $documento->_user_id = $user_id;
                 $documento->_reference = $reference;
                 $documento->_fecha = $fecha;
@@ -699,6 +699,8 @@ html;
                 // </script>";
                 } else {
                     echo "fail";
+                    var_dump($documento);
+                    var_dump($datos_user);
                     // echo "<script>
                     //      alert('Hubo un error al subir el archivo');
                     //     window.location.href = /ComprobantePago/;

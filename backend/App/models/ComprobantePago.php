@@ -84,20 +84,19 @@ sql;
     $mysqli = Database::getInstance(1);
     $query = <<<sql
     INSERT INTO pendiente_pago (id_producto, user_id, reference, clave,fecha, monto, tipo_moneda,tipo_pago,
-    status, comprado_en) 
-    VALUES (:id_producto, :user_id, :reference, :clave, :fecha, :monto, :tipo_moneda,
-    :tipo_pago,0, 1);
+    url_archivo, status, comprado_en) 
+    VALUES (2, :user_id, :reference, :clave, :fecha, :monto, 'MXN',
+    'Transferencia',:url_archivo,'0', '1');
 sql;
 
     $parametros = array(
-      ':id_producto' => $data->_id_producto,
       ':user_id' => $data->_user_id,
       ':reference' => $data->_reference,
       ':clave' => $data->_clave,
       ':fecha' => $data->_fecha,
       ':monto' => $data->_monto,
-      ':tipo_pago' => $data->_tipo_pago,
-      ':tipo_moneda' => $data->_tipo_moneda,
+      ':url_archivo' => $data->_url_archivo,
+      ':tipo_pago' => $data->_tipo_pago
     );
     $id = $mysqli->insert($query, $parametros);
     return $id;

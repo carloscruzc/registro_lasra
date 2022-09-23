@@ -307,7 +307,7 @@ html;
         View::set('optionEspecialidad', $optionEspecialidad);
         View::set('optionPais', $optionPais);
         // View::set('optionState', $optionState);
-        View::render("login_respaldo");
+        View::render("login");
     }
 
     public function getEstadoPais(){

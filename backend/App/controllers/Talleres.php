@@ -1225,7 +1225,7 @@ html;
 
         foreach ($productos_no_comprados as $key => $value) {
 
-            if($value['socio'] == 1 || $value['socio'] == 1){
+            if($value['socio'] == 1 || $value['socio'] == '1'){
                 $precio = $value['precio_socio'];
             }else{
                 $precio = $value['precio_publico'];

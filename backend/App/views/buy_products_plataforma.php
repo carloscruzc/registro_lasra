@@ -252,835 +252,835 @@
     <script>
         $(document).ready(function() {
 
-                    if ($("#id_pais").val() != 156) {
-                        $("#cont_check2").addClass('d-none');
-                        $("#cont_check23").addClass('d-none');
-                        $("#cont_check34").addClass('d-none');
-                        $("#cont_check35").addClass('d-none');
-                    }
+            if ($("#id_pais").val() != 156) {
+                $("#cont_check2").addClass('d-none');
+                $("#cont_check23").addClass('d-none');
+                $("#cont_check34").addClass('d-none');
+                $("#cont_check35").addClass('d-none');
+            }
 
-                    if ($("#check_curso_24").prop('checked')) {
-                        $("#check_curso_27").attr('disabled', 'disabled');
-                        // $("#check_curso_27").prop('checked', true);
-                    }
+            if ($("#check_curso_24").prop('checked')) {
+                $("#check_curso_27").attr('disabled', 'disabled');
+                // $("#check_curso_27").prop('checked', true);
+            }
 
-                    if ($("#check_curso_27").prop('checked')) {
-                        $("#check_curso_24").attr('disabled', 'disabled');
-                        // $("#check_curso_24").prop('checked', true);
-                    }
-
-
-                    if ($("#check_curso_28").prop('checked')) {
-                        $("#check_curso_29").attr('disabled', 'disabled');
-                        $("#check_curso_30").attr('disabled', 'disabled');
-                        //     $("#check_curso_29").prop('checked', true);
-                        //     $("#check_curso_30").prop('checked', true);
-                    }
-
-                    if ($("#check_curso_29").prop('checked')) {
-                        $("#check_curso_28").attr('disabled', 'disabled');
-                        $("#check_curso_30").attr('disabled', 'disabled');
-                        // $("#check_curso_28").prop('checked', true);
-                        // $("#check_curso_30").prop('checked', true);
-                    }
-
-                    if ($("#check_curso_30").prop('checked')) {
-                        $("#check_curso_28").attr('disabled', 'disabled');
-                        $("#check_curso_29").attr('disabled', 'disabled');
-                        // $("#check_curso_28").prop('checked', true);
-                        // $("#check_curso_29").prop('checked', true);
-                    }
+            if ($("#check_curso_27").prop('checked')) {
+                $("#check_curso_24").attr('disabled', 'disabled');
+                // $("#check_curso_24").prop('checked', true);
+            }
 
 
-                    if ($("#check_curso_31").prop('checked')) {
-                        $("#check_curso_32").attr('disabled', 'disabled');
-                        $("#check_curso_33").attr('disabled', 'disabled');
-                        //     $("#check_curso_32").prop('checked', true);
-                        //     $("#check_curso_33").prop('checked', true);
-                    }
+            if ($("#check_curso_28").prop('checked')) {
+                $("#check_curso_29").attr('disabled', 'disabled');
+                $("#check_curso_30").attr('disabled', 'disabled');
+                //     $("#check_curso_29").prop('checked', true);
+                //     $("#check_curso_30").prop('checked', true);
+            }
 
-                    if ($("#check_curso_32").prop('checked')) {
-                        $("#check_curso_31").attr('disabled', 'disabled');
-                        $("#check_curso_33").attr('disabled', 'disabled');
-                        // $("#check_curso_31").prop('checked', true);
-                        // $("#check_curso_33").prop('checked', true);
-                    }
+            if ($("#check_curso_29").prop('checked')) {
+                $("#check_curso_28").attr('disabled', 'disabled');
+                $("#check_curso_30").attr('disabled', 'disabled');
+                // $("#check_curso_28").prop('checked', true);
+                // $("#check_curso_30").prop('checked', true);
+            }
 
-                    if ($("#check_curso_33").prop('checked')) {
-                        $("#check_curso_31").attr('disabled', 'disabled');
-                        $("#check_curso_32").attr('disabled', 'disabled');
-                        // $("#check_curso_31").prop('checked', true);
-                        // $("#check_curso_32").prop('checked', true);
-                    }
+            if ($("#check_curso_30").prop('checked')) {
+                $("#check_curso_28").attr('disabled', 'disabled');
+                $("#check_curso_29").attr('disabled', 'disabled');
+                // $("#check_curso_28").prop('checked', true);
+                // $("#check_curso_29").prop('checked', true);
+            }
 
-                    if ($('#categoria').val() == 'Socio') {
-                        Swal.fire("¡Te registraste como socio!", "Debemos validar tu información para que puedas comprar", "warning")
 
-                        setTimeout(function() {
-                            window.location.replace('/Login')
-                        }, 3000);
-                    }
+            if ($("#check_curso_31").prop('checked')) {
+                $("#check_curso_32").attr('disabled', 'disabled');
+                $("#check_curso_33").attr('disabled', 'disabled');
+                //     $("#check_curso_32").prop('checked', true);
+                //     $("#check_curso_33").prop('checked', true);
+            }
 
-                    $('#forma_pago').on('change', function(e) {
-                        var tipo = $(this).val();
-                        $("#metodo_pago").val(tipo);
-                        // alert(tipo);
-                        if (tipo == 'Paypal') {
-                            // $(".form_compra").attr('action','/OrdenPago/PagarPaypal');
-                            $(".form_compra").attr('action', 'https://www.paypal.com/es/cgi-bin/webscr');
-                            // $(".btn_comprar").val('Paypal');
-                            $("#tipo_pago_paypal").val('Paypal');
-                        } else if (tipo == 'Transferencia') {
-                            $(".form_compra").attr('action', '/Register/ticketAll');
-                            $("#tipo_pago_paypal").val('');
-                            // $(".btn_comprar").val('Efectivo');
-                            // $(".tipo_pago").val('Efectivo');
+            if ($("#check_curso_32").prop('checked')) {
+                $("#check_curso_31").attr('disabled', 'disabled');
+                $("#check_curso_33").attr('disabled', 'disabled');
+                // $("#check_curso_31").prop('checked', true);
+                // $("#check_curso_33").prop('checked', true);
+            }
 
+            if ($("#check_curso_33").prop('checked')) {
+                $("#check_curso_31").attr('disabled', 'disabled');
+                $("#check_curso_32").attr('disabled', 'disabled');
+                // $("#check_curso_31").prop('checked', true);
+                // $("#check_curso_32").prop('checked', true);
+            }
+
+            if ($('#categoria').val() == 'Socio') {
+                Swal.fire("¡Te registraste como socio!", "Debemos validar tu información para que puedas comprar", "warning")
+
+                setTimeout(function() {
+                    window.location.replace('/Login')
+                }, 3000);
+            }
+
+            $('#forma_pago').on('change', function(e) {
+                var tipo = $(this).val();
+                $("#metodo_pago").val(tipo);
+                // alert(tipo);
+                if (tipo == 'Paypal') {
+                    // $(".form_compra").attr('action','/OrdenPago/PagarPaypal');
+                    $(".form_compra").attr('action', 'https://www.paypal.com/es/cgi-bin/webscr');
+                    // $(".btn_comprar").val('Paypal');
+                    $("#tipo_pago_paypal").val('Paypal');
+                } else if (tipo == 'Transferencia') {
+                    $(".form_compra").attr('action', '/Register/ticketAll');
+                    $("#tipo_pago_paypal").val('');
+                    // $(".btn_comprar").val('Efectivo');
+                    // $(".tipo_pago").val('Efectivo');
+
+                }
+
+            });
+
+
+            var precios = [];
+            var productos = [];
+            var total = 0;
+
+            // if ($("#clave_socio").val() != '') {
+            //     precios.push({
+            //         'id_product': 1,
+            //         'precio': 0,
+            //         'cantidad': 1
+            //     });
+            //     // sumarPrecios(precios);
+
+            //     productos.push({
+            //         'id_product': 1,
+            //         'precio': 0,
+            //         'cantidad': 1,
+            //         'nombre_producto': 'Congreso'
+            //     });
+
+            //     // sumarProductos(productos);
+
+            //     $("#check_curso_1").prop('checked', true);
+            //     $("#check_curso_1").prop('disabled', true);
+            // }
+
+
+
+            $(".checks_product").on("change", function() {
+                var id_product = $(this).val();
+                var precio = $(this).attr('data-precio');
+                var precio_socio = $(this).attr('data-precio-socio');
+                var precio_usd = $(this).attr('data-precio-usd');
+                var precio_socio_usd = $(this).attr('data-precio-socio-usd');
+                var cantidad = $("#numero_articulos" + id_product).val();
+                var nombre_producto = $(this).attr('data-nombre-producto');
+
+
+
+                if (this.checked) {
+
+                    //validacion para comprar con costo de socio y anualidad
+                    if (nombre_producto == 'V Congreso LASRA México (socio)') {
+
+                        $(".checks_product").each(function(index) {
+                            $("#cont_precio_" + $(this).val()).html($(this).data('precio-socio') + ' - MXN');
+                        });
+
+
+                        if (!$("#check_curso_2").is(":checked")) {
+
+                            Swal.fire('Aviso', 'Para obtener este costo se debe de pagar la anualidad también', 'info');
+                            $("#check_curso_2").prop('checked', true);
+                            $("#check_curso_2").attr('disabled', 'disabled');
+
+                            precios.push({
+                                'id_product': '2',
+                                'precio': '2500', //cambiar manualmente
+                                'precio_usd': '130',
+                                'cantidad': '1'
+                            });
+
+                            productos.push({
+                                'id_product': '2',
+                                'precio': '2500', //cambiar manualmente
+                                'cantidad': '1',
+                                'precio_usd': '130',
+                                'nombre_producto': 'ANUALIDAD (2022)'
+                            });
+
+
+                        } else {
+                            $("#check_curso_2").attr('disabled', 'disabled');
                         }
 
-                    });
+                    }
 
+                    if (nombre_producto == 'ANUALIDAD (2022) - (Residente)') {
 
-                    var precios = [];
-                    var productos = [];
-                    var total = 0;
-
-                    if ($("#clave_socio").val() != '') {
-                        precios.push({
-                            'id_product': 1,
-                            'precio': 0,
-                            'cantidad': 1
-                        });
-                        // sumarPrecios(precios);
-
-                        productos.push({
-                            'id_product': 1,
-                            'precio': 0,
-                            'cantidad': 1,
-                            'nombre_producto': 'Congreso'
+                        $(".checks_product").each(function(index) {
+                            $("#cont_precio_" + $(this).val()).html($(this).data('precio-socio') + ' - MXN');
                         });
 
-                        // sumarProductos(productos);
 
-                        $("#check_curso_1").prop('checked', true);
-                        $("#check_curso_1").prop('disabled', true);
+                        if (!$("#check_curso_34").is(":checked")) {
+
+                            // Swal.fire('Aviso', 'Para obtener este costo se debe de pagar la anualidad (Residente) también', 'info');
+                            $("#check_curso_34").prop('checked', true);
+                            $("#check_curso_34").attr('disabled', 'disabled');
+
+                            precios.push({
+                                'id_product': '34',
+                                'precio': '1500', //cambiar manualmente
+                                'precio_usd': '77',
+                                'cantidad': '1'
+                            });
+
+                            productos.push({
+                                'id_product': '34',
+                                'precio': '1500', //cambiar manualmente
+                                'precio_usd': '77',
+                                'cantidad': '1',
+                                'nombre_producto': 'V Congreso LASRA México (Residente)'
+                            });
+
+
+                        } else {
+                            $("#check_curso_35").attr('disabled', 'disabled');
+                        }
                     }
 
 
+                    //precio socio si tiene anaulidad
+                    if (nombre_producto == 'ANUALIDAD (2022)') {
 
-                    $(".checks_product").on("change", function() {
-                            var id_product = $(this).val();
-                            var precio = $(this).attr('data-precio');
-                            var precio_socio = $(this).attr('data-precio-socio');
-                            var precio_usd = $(this).attr('data-precio-usd');
-                            var precio_socio_usd = $(this).attr('data-precio-socio-usd');
-                            var cantidad = $("#numero_articulos" + id_product).val();
-                            var nombre_producto = $(this).attr('data-nombre-producto');
+                        $(".checks_product").each(function(index) {
+                            $("#cont_precio_" + $(this).val()).html($(this).data('precio-socio') + ' - MXN ');
 
+                        });
+                    }
 
+                    //precio socio si tiene anaulidad residente
+                    if (nombre_producto == 'ANUALIDAD (2022) - (Residente)') {
 
-                            if (this.checked) {
+                        $(".checks_product").each(function(index) {
+                            $("#cont_precio_" + $(this).val()).html($(this).data('precio-socio') + ' - MXN ');
 
-                                //validacion para comprar con costo de socio y anualidad
-                                if (nombre_producto == 'V Congreso LASRA México (socio)') {
+                        });
+                    }
 
-                                    $(".checks_product").each(function(index) {
-                                        $("#cont_precio_" + $(this).val()).html($(this).data('precio-socio') + ' - MXN');
-                                    });
+                    //validaciones para los talleres simultaneos 
 
+                    if (nombre_producto == 'INDISPENSABLE BLOQUEOS BASICOS MIEMBRO SUPERIOR/MIEMBRO INFERIOR') {
+                        $("#check_curso_27").attr('disabled', 'disabled');
+                    }
 
-                                    if (!$("#check_curso_2").is(":checked")) {
+                    if (nombre_producto == 'PERFUSIONES INTRAVENOSAS PARA SEDACIÓN DE LO MANUAL A TCI') {
+                        $("#check_curso_24").attr('disabled', 'disabled');
+                    }
 
-                                        Swal.fire('Aviso', 'Para obtener este costo se debe de pagar la anualidad también', 'info');
-                                        $("#check_curso_2").prop('checked', true);
-                                        $("#check_curso_2").attr('disabled', 'disabled');
 
-                                        precios.push({
-                                            'id_product': '2',
-                                            'precio': '2500', //cambiar manualmente
-                                            'precio_usd': '130',
-                                            'cantidad': '1'
-                                        });
+                    if (nombre_producto == 'SIMULADORES ESCANEA Y PRACTICA CON MODELO EN SIMULACION') {
+                        $("#check_curso_29").attr('disabled', 'disabled');
+                        $("#check_curso_30").attr('disabled', 'disabled');
+                    }
 
-                                        productos.push({
-                                            'id_product': '2',
-                                            'precio': '2500', //cambiar manualmente
-                                            'cantidad': '1',
-                                            'precio_usd': '130',
-                                            'nombre_producto': 'ANUALIDAD (2022)'
-                                        });
+                    if (nombre_producto == 'ULTRASONIDO EN BLOQUEOS PARA DOLOR CRONICO') {
+                        $("#check_curso_28").attr('disabled', 'disabled');
+                        $("#check_curso_30").attr('disabled', 'disabled');
+                    }
 
+                    if (nombre_producto == 'BLOQUEOS AVANZADOS :TORAX Y ABDOMEN') {
+                        $("#check_curso_28").attr('disabled', 'disabled');
+                        $("#check_curso_29").attr('disabled', 'disabled');
+                    }
 
-                                    } else {
-                                        $("#check_curso_2").attr('disabled', 'disabled');
-                                    }
 
-                                }
+                    if (nombre_producto == 'ACCESOS VASCULARES PRAVE') {
+                        $("#check_curso_32").attr('disabled', 'disabled');
+                        $("#check_curso_33").attr('disabled', 'disabled');
+                    }
 
-                                if (nombre_producto == 'ANUALIDAD (2022) - (Residente)') {
+                    if (nombre_producto == 'BLOQUEOS AVANZADOS :MIEMBROS SUPERIOR E INFERIOR / COLUMNA') {
+                        $("#check_curso_31").attr('disabled', 'disabled');
+                        $("#check_curso_33").attr('disabled', 'disabled');
+                    }
 
-                                    $(".checks_product").each(function(index) {
-                                        $("#cont_precio_" + $(this).val()).html($(this).data('precio-socio') + ' - MXN');
-                                    });
+                    if (nombre_producto == 'ABASI APRENDIZAJE BASADO EN SIMULACION') {
+                        $("#check_curso_31").attr('disabled', 'disabled');
+                        $("#check_curso_32").attr('disabled', 'disabled');
+                    }
 
+                    //Especialista
 
-                                    if (!$("#check_curso_34").is(":checked")) {
+                    if (nombre_producto == 'SUPRA Clinical WorkShop 2 hands on') {
+                        $("#check_curso_40").attr('disabled', 'disabled');
+                        $("#check_curso_39").attr('disabled', 'disabled');
+                    }
 
-                                        // Swal.fire('Aviso', 'Para obtener este costo se debe de pagar la anualidad (Residente) también', 'info');
-                                        $("#check_curso_34").prop('checked', true);
-                                        $("#check_curso_34").attr('disabled', 'disabled');
+                    if (nombre_producto == 'SUPRA Clinical WorkShop 3 hands on') {
+                        $("#check_curso_41").attr('disabled', 'disabled');
+                        $("#check_curso_39").attr('disabled', 'disabled');
+                    }
 
-                                        precios.push({
-                                            'id_product': '34',
-                                            'precio': '1500', //cambiar manualmente
-                                            'precio_usd': '77',
-                                            'cantidad': '1'
-                                        });
+                    if (nombre_producto == 'SUPRA Clinical WorkShop 4 hands on') {
+                        $("#check_curso_40").attr('disabled', 'disabled');
+                        $("#check_curso_41").attr('disabled', 'disabled');
+                    }
+                    //fin especialista
 
-                                        productos.push({
-                                            'id_product': '34',
-                                            'precio': '1500', //cambiar manualmente
-                                            'precio_usd': '77',
-                                            'cantidad': '1',
-                                            'nombre_producto': 'V Congreso LASRA México (Residente)'
-                                        });
 
 
-                                    } else {
-                                        $("#check_curso_35").attr('disabled', 'disabled');
-                                    }
-                                }
+                    //Residentes
 
+                    if (nombre_producto == 'SUPRA Clinical WorkShop 2 hands on') {
+                        $("#check_curso_36").attr('disabled', 'disabled');
+                        $("#check_curso_37").attr('disabled', 'disabled');
+                    }
 
-                                    //precio socio si tiene anaulidad
-                                    if (nombre_producto == 'ANUALIDAD (2022)') {
+                    if (nombre_producto == 'SUPRA Clinical WorkShop 3 hands on') {
+                        $("#check_curso_36").attr('disabled', 'disabled');
+                        $("#check_curso_38").attr('disabled', 'disabled');
+                    }
 
-                                        $(".checks_product").each(function(index) {
-                                            $("#cont_precio_" + $(this).val()).html($(this).data('precio-socio') + ' - MXN ');
+                    if (nombre_producto == 'SUPRA Clinical WorkShop 4 hands on') {
+                        $("#check_curso_37").attr('disabled', 'disabled');
+                        $("#check_curso_38").attr('disabled', 'disabled');
+                    }
+                    //fin residentes
 
-                                        });
-                                    }
+                    //fin de validaciones para talleres simultaneos
 
-                                    //precio socio si tiene anaulidad residente
-                                    if (nombre_producto == 'ANUALIDAD (2022) - (Residente)') {
 
-                                        $(".checks_product").each(function(index) {
-                                            $("#cont_precio_" + $(this).val()).html($(this).data('precio-socio') + ' - MXN ');
+                    //validar si esta checado la anualidad
+                    if ($("#check_curso_2").is(":checked") || $("#check_curso_35").is(":checked")) {
 
-                                        });
-                                    }
+                        precios.push({
+                            'id_product': id_product,
+                            'precio': precio_socio,
+                            'precio_usd': precio_socio_usd,
+                            'cantidad': cantidad
+                        });
 
-                                    //validaciones para los talleres simultaneos 
 
-                                    if (nombre_producto == 'INDISPENSABLE BLOQUEOS BASICOS MIEMBRO SUPERIOR/MIEMBRO INFERIOR') {
-                                        $("#check_curso_27").attr('disabled', 'disabled');
-                                    }
+                        productos.push({
+                            'id_product': id_product,
+                            'precio': precio_socio,
+                            'precio_usd': precio_socio_usd,
+                            'cantidad': cantidad,
+                            'nombre_producto': nombre_producto
+                        });
 
-                                    if (nombre_producto == 'PERFUSIONES INTRAVENOSAS PARA SEDACIÓN DE LO MANUAL A TCI') {
-                                        $("#check_curso_24").attr('disabled', 'disabled');
-                                    }
 
+                    } else {
 
-                                    if (nombre_producto == 'SIMULADORES ESCANEA Y PRACTICA CON MODELO EN SIMULACION') {
-                                        $("#check_curso_29").attr('disabled', 'disabled');
-                                        $("#check_curso_30").attr('disabled', 'disabled');
-                                    }
+                        precios.push({
+                            'id_product': id_product,
+                            'precio': precio,
+                            'precio_usd': precio_socio_usd,
+                            'cantidad': cantidad
+                        });
 
-                                    if (nombre_producto == 'ULTRASONIDO EN BLOQUEOS PARA DOLOR CRONICO') {
-                                        $("#check_curso_28").attr('disabled', 'disabled');
-                                        $("#check_curso_30").attr('disabled', 'disabled');
-                                    }
 
-                                    if (nombre_producto == 'BLOQUEOS AVANZADOS :TORAX Y ABDOMEN') {
-                                        $("#check_curso_28").attr('disabled', 'disabled');
-                                        $("#check_curso_29").attr('disabled', 'disabled');
-                                    }
+                        productos.push({
+                            'id_product': id_product,
+                            'precio': precio,
+                            'precio_usd': precio_socio_usd,
+                            'cantidad': cantidad,
+                            'nombre_producto': nombre_producto
+                        });
+                    }
+                    sumarPrecios(precios);
+                    sumarProductos(productos);
 
 
-                                    if (nombre_producto == 'ACCESOS VASCULARES PRAVE') {
-                                        $("#check_curso_32").attr('disabled', 'disabled');
-                                        $("#check_curso_33").attr('disabled', 'disabled');
-                                    }
+                } else if (!this.checked) {
 
-                                    if (nombre_producto == 'BLOQUEOS AVANZADOS :MIEMBROS SUPERIOR E INFERIOR / COLUMNA') {
-                                        $("#check_curso_31").attr('disabled', 'disabled');
-                                        $("#check_curso_33").attr('disabled', 'disabled');
-                                    }
+                    //Si se selecciona el prodicto 2
 
-                                    if (nombre_producto == 'ABASI APRENDIZAJE BASADO EN SIMULACION') {
-                                        $("#check_curso_31").attr('disabled', 'disabled');
-                                        $("#check_curso_32").attr('disabled', 'disabled');
-                                    }
+                    if (nombre_producto == 'V Congreso LASRA México (socio)' || nombre_producto == 'ANUALIDAD (2022)') {
 
-                                    //Especialista
+                        // if ($("#check_curso_2").is(":checked")) {
 
-                                    if (nombre_producto == 'SUPRA Clinical WorkShop 2 hands on') {
-                                        $("#check_curso_40").attr('disabled', 'disabled');
-                                        $("#check_curso_39").attr('disabled', 'disabled');
-                                    }
+                        $(".checks_product_no_comprados").each(function(index) {
+                            $("#cont_precio_" + $(this).val()).html($(this).data('precio') + ' - MXN');
 
-                                    if (nombre_producto == 'SUPRA Clinical WorkShop 3 hands on') {
-                                        $("#check_curso_41").attr('disabled', 'disabled');
-                                        $("#check_curso_39").attr('disabled', 'disabled');
-                                    }
+                        });
 
-                                    if (nombre_producto == 'SUPRA Clinical WorkShop 4 hands on') {
-                                        $("#check_curso_40").attr('disabled', 'disabled');
-                                        $("#check_curso_41").attr('disabled', 'disabled');
-                                    }
-                                    //fin especialista
+                        $("#check_curso_2").prop('checked', false);
+                        $("#check_curso_2").removeAttr('disabled', 'disabled');
 
 
-                                    
-                                    //Residentes
+                        for (var i = 0; i < precios.length; i++) {
 
-                                    if (nombre_producto == 'SUPRA Clinical WorkShop 2 hands on') {
-                                        $("#check_curso_36").attr('disabled', 'disabled');
-                                        $("#check_curso_37").attr('disabled', 'disabled');
-                                    }
 
-                                    if (nombre_producto == 'SUPRA Clinical WorkShop 3 hands on') {
-                                        $("#check_curso_36").attr('disabled', 'disabled');
-                                        $("#check_curso_38").attr('disabled', 'disabled');
-                                    }
+                            if (precios[i].id_product === '2') {
+                                console.log("remover aqui");
+                                precios.splice(i, 1);
+                                productos.splice(i, 1);
 
-                                    if (nombre_producto == 'SUPRA Clinical WorkShop 4 hands on') {
-                                        $("#check_curso_37").attr('disabled', 'disabled');
-                                        $("#check_curso_38").attr('disabled', 'disabled');
-                                    }
-                                    //fin residentes
 
-                                    //fin de validaciones para talleres simultaneos
 
+                            } else if (precios[i].id_product === '2' && precios[i].cantidad === cantidad) {
+                                precios.splice(i, 1);
+                                productos.splice(i, 1);
 
-                                    //validar si esta checado la anualidad
-                                    // if ($("#check_curso_2").is(":checked") || $("#check_curso_35").is(":checked")) {
-
-                                    //     precios.push({
-                                    //         'id_product': id_product,
-                                    //         'precio': precio_socio,
-                                    //         'precio_usd': precio_socio_usd,
-                                    //         'cantidad': cantidad
-                                    //     });
-
-
-                                    //     productos.push({
-                                    //         'id_product': id_product,
-                                    //         'precio': precio_socio,
-                                    //         'precio_usd': precio_socio_usd,
-                                    //         'cantidad': cantidad,
-                                    //         'nombre_producto': nombre_producto
-                                    //     });
-
-
-                                    // } else {
-
-                                    precios.push({
-                                        'id_product': id_product,
-                                        'precio': precio,
-                                        'precio_usd': precio_socio_usd,
-                                        'cantidad': cantidad
-                                    });
-
-
-                                    productos.push({
-                                        'id_product': id_product,
-                                        'precio': precio,
-                                        'precio_usd': precio_socio_usd,
-                                        'cantidad': cantidad,
-                                        'nombre_producto': nombre_producto
-                                    });
-                                    // }
-                                    sumarPrecios(precios);
-                                    sumarProductos(productos);
-
-
-                                } else if (!this.checked) {
-
-                                    //Si se selecciona el prodicto 2
-
-                                    if (nombre_producto == 'V Congreso LASRA México (socio)' || nombre_producto == 'ANUALIDAD (2022)') {
-
-                                        // if ($("#check_curso_2").is(":checked")) {
-
-                                        $(".checks_product_no_comprados").each(function(index) {
-                                            $("#cont_precio_" + $(this).val()).html($(this).data('precio') + ' - MXN');
-
-                                        });
-
-                                        $("#check_curso_2").prop('checked', false);
-                                        $("#check_curso_2").removeAttr('disabled', 'disabled');
-
-
-                                        for (var i = 0; i < precios.length; i++) {
-
-
-                                            if (precios[i].id_product === '2') {
-                                                console.log("remover aqui");
-                                                precios.splice(i, 1);
-                                                productos.splice(i, 1);
-
-
-
-                                            } else if (precios[i].id_product === '2' && precios[i].cantidad === cantidad) {
-                                                precios.splice(i, 1);
-                                                productos.splice(i, 1);
-
-                                                // sumarPrecios(precios);
-                                                // sumarProductos(productos);
-
-                                            }
-
-                                            $(".checks_product_no_comprados").prop('checked', false);
-                                            $(".checks_product_no_comprados").removeAttr('disabled', 'disabled');
-                                            precios = [];
-                                            productos = [];
-
-                                            sumarPrecios(precios);
-                                            sumarProductos(productos);
-                                        }
-
-
-                                        // }
-                                    }
-
-                                    //si se selecciona residente
-                                    if (nombre_producto == 'ANUALIDAD (2022) - (Residente)' || nombre_producto == 'V Congreso LASRA México (Residente)') {
-
-                                        // if ($("#check_curso_2").is(":checked")) {
-
-                                        $(".checks_product").each(function(index) {
-                                            $("#cont_precio_" + $(this).val()).html($(this).data('precio') + ' - MXN ');
-
-                                        });
-
-                                        $("#check_curso_35").prop('checked', false);
-                                        $("#check_curso_35").removeAttr('disabled', 'disabled');
-
-
-                                        for (var i = 0; i < precios.length; i++) {
-
-
-                                            if (precios[i].id_product === '2') {
-                                                console.log("remover aqui");
-                                                precios.splice(i, 1);
-                                                productos.splice(i, 1);
-
-
-
-                                            } else if (precios[i].id_product === '2' && precios[i].cantidad === cantidad) {
-                                                precios.splice(i, 1);
-                                                productos.splice(i, 1);
-
-                                                // sumarPrecios(precios);
-                                                // sumarProductos(productos);
-
-                                            }
-
-                                            $(".checks_product").prop('checked', false);
-                                            $(".checks_product").removeAttr('disabled', 'disabled');
-                                            precios = [];
-                                            productos = [];
-
-                                            sumarPrecios(precios);
-                                            sumarProductos(productos);
-                                        }
-
-
-                                        // }
-                                    }
-
-
-
-                                    //validaciones para los talleres simultaneos 
-
-                                    if (nombre_producto == 'INDISPENSABLE BLOQUEOS BASICOS MIEMBRO SUPERIOR/MIEMBRO INFERIOR') {
-                                        $("#check_curso_27").removeAttr('disabled');
-                                    }
-
-                                    if (nombre_producto == 'PERFUSIONES INTRAVENOSAS PARA SEDACIÓN DE LO MANUAL A TCI') {
-                                        $("#check_curso_24").removeAttr('disabled');
-                                    }
-
-                                    if (nombre_producto == 'SIMULADORES ESCANEA Y PRACTICA CON MODELO EN SIMULACION') {
-                                        $("#check_curso_29").removeAttr('disabled');
-                                        $("#check_curso_30").removeAttr('disabled');
-                                    }
-
-                                    if (nombre_producto == 'ULTRASONIDO EN BLOQUEOS PARA DOLOR CRONICO') {
-                                        $("#check_curso_28").removeAttr('disabled');
-                                        $("#check_curso_30").removeAttr('disabled');
-                                    }
-
-                                    if (nombre_producto == 'BLOQUEOS AVANZADOS :TORAX Y ABDOMEN') {
-                                        $("#check_curso_28").removeAttr('disabled');
-                                        $("#check_curso_29").removeAttr('disabled');
-                                    }
-
-
-                                    if (nombre_producto == 'ACCESOS VASCULARES PRAVE') {
-                                        $("#check_curso_32").removeAttr('disabled');
-                                        $("#check_curso_33").removeAttr('disabled');
-                                    }
-
-                                    if (nombre_producto == 'BLOQUEOS AVANZADOS :MIEMBROS SUPERIOR E INFERIOR / COLUMNA') {
-                                        $("#check_curso_31").removeAttr('disabled');
-                                        $("#check_curso_33").removeAttr('disabled');
-                                    }
-
-                                    if (nombre_producto == 'ABASI APRENDIZAJE BASADO EN SIMULACION') {
-                                        $("#check_curso_31").removeAttr('disabled');
-                                        $("#check_curso_32").removeAttr('disabled');
-                                    }
-
-
-                                    //Especialista
-
-                                    if (nombre_producto == 'SUPRA Clinical WorkShop 2 hands on') {
-                                        $("#check_curso_40").removeAttr('disabled');
-                                        $("#check_curso_39").removeAttr('disabled');
-                                    }
-
-                                    if (nombre_producto == 'SUPRA Clinical WorkShop 3 hands on') {
-                                        $("#check_curso_41").removeAttr('disabled');
-                                        $("#check_curso_39").removeAttr('disabled');
-                                    }
-
-                                    if (nombre_producto == 'SUPRA Clinical WorkShop 4 hands on') {
-                                        $("#check_curso_40").removeAttr('disabled');
-                                        $("#check_curso_41").removeAttr('disabled');
-                                    }
-                                    //fin especialista
-
-
-                                    
-                                    //Residentes
-
-                                    if (nombre_producto == 'SUPRA Clinical WorkShop 2 hands on') {
-                                        $("#check_curso_36").removeAttr('disabled');
-                                        $("#check_curso_37").removeAttr('disabled');
-                                    }
-
-                                    if (nombre_producto == 'SUPRA Clinical WorkShop 3 hands on') {
-                                        $("#check_curso_36").removeAttr('disabled');
-                                        $("#check_curso_38").removeAttr('disabled');
-                                    }
-
-                                    if (nombre_producto == 'SUPRA Clinical WorkShop 4 hands on') {
-                                        $("#check_curso_37").removeAttr('disabled');
-                                        $("#check_curso_38").removeAttr('disabled');
-                                    }
-                                    //fin residentes
-
-
-                                    //fin de validaciones para talleres simultaneos
-
-
-                                    for (var i = 0; i < precios.length; i++) {
-
-                                        if (precios[i].id_product === id_product) {
-                                            // console.log("remover");
-                                            precios.splice(i, 1);
-
-                                            productos.splice(i, 1);
-                                            sumarPrecios(precios);
-                                            sumarProductos(productos);
-                                        } else if (precios[i].id_product === id_product && precios[i].cantidad === cantidad) {
-                                            precios.splice(i, 1);
-
-                                            productos.splice(i, 1);
-                                            sumarPrecios(precios);
-                                            sumarProductos(productos);
-
-                                        }
-                                    }
-
-                                    // $.ajax({
-                                    //     url: "/Home/removePendientesPago",
-                                    //     type: "POST",
-                                    //     data: {
-                                    //         id_product,cantidad
-                                    //     },
-                                    //     cache: false,
-                                    //     beforeSend: function() {
-                                    //         console.log("Procesando....");
-
-                                    //     },
-                                    //     success: function(respuesta) {
-
-                                    //         console.log(respuesta);
-                                    //         if(respuesta == "success"){
-                                    //             location.reload();
-                                    //         }
-
-
-                                    //     },
-                                    //     error: function(respuesta) {
-                                    //         console.log(respuesta);
-                                    //     }
-
-                                    // });
-                                }
-                                // console.log(productos);
                                 // sumarPrecios(precios);
                                 // sumarProductos(productos);
 
-                            });
-
-
-                        $(".select_numero_articulos").on("change", function() {
-                            var id_producto = $(this).attr('data-id-producto');
-                            var cantidad = $(this).val();
-                            var precio = $(this).attr('data-precio');
-                            var nombre_producto = $(this).attr('data-nombre-producto');
-
-                            if ($("#check_curso_" + id_producto).is(':checked')) {
-
-                                for (var i = 0; i < precios.length; i++) {
-
-                                    if (precios[i].id_product === id_producto && precios[i].cantidad != cantidad) {
-                                        console.log("remover");
-                                        precios.splice(i, 1, {
-                                            'id_product': id_producto,
-                                            'precio': precio,
-                                            'cantidad': cantidad
-                                        });
-
-                                        productos.splice(i, 1, {
-                                            'id_product': id_producto,
-                                            'precio': precio,
-                                            'cantidad': cantidad,
-                                            'nombre_producto': nombre_producto
-                                        });
-
-                                        // precios.push({'id_product':id_product,'precio':precio,'cantidad':cantidad});
-                                    }
-
-                                }
-                                console.log(precios.length);
-
-                                console.log(productos);
-
-                                sumarPrecios(precios);
-
                             }
+
+                            $(".checks_product_no_comprados").prop('checked', false);
+                            $(".checks_product_no_comprados").removeAttr('disabled', 'disabled');
+                            precios = [];
+                            productos = [];
+
+                            sumarPrecios(precios);
+                            sumarProductos(productos);
+                        }
+
+
+                        // }
+                    }
+
+                    //si se selecciona residente
+                    if (nombre_producto == 'ANUALIDAD (2022) - (Residente)' || nombre_producto == 'V Congreso LASRA México (Residente)') {
+
+                        // if ($("#check_curso_2").is(":checked")) {
+
+                        $(".checks_product").each(function(index) {
+                            $("#cont_precio_" + $(this).val()).html($(this).data('precio') + ' - MXN ');
 
                         });
 
-                        function sumarPrecios(precios) {
-                            console.log(precios);
-
-                            // var sumaPrecios = <?= $total_pago ?>;
-                            // var sumaArticulos = <?= $total_productos ?>;
-
-                            var sumaPrecios = 0;
-                            var sumaPreciosUsd = 0;
-                            var sumaArticulos = 0;
-
-                            precios.forEach(function(precio, index) {
-
-                                console.log("precio " + index + " | id_product: " + precio.id_product + " precio: " + parseInt(precio.precio) + " cantidad: " + parseInt(precio.cantidad))
-
-                                sumaPrecios += parseInt(precio.precio * precio.cantidad);
-                                sumaArticulos += parseInt(precio.cantidad);
-
-                                sumaPreciosUsd += parseInt(precio.precio_usd * precio.cantidad);
+                        $("#check_curso_35").prop('checked', false);
+                        $("#check_curso_35").removeAttr('disabled', 'disabled');
 
 
-                            });
+                        for (var i = 0; i < precios.length; i++) {
+
+
+                            if (precios[i].id_product === '2') {
+                                console.log("remover aqui");
+                                precios.splice(i, 1);
+                                productos.splice(i, 1);
 
 
 
-                            console.log("Suma precios " + sumaPrecios);
-                            console.log("--------------");
-                            console.log("Suma precios usd " + sumaPreciosUsd);
+                            } else if (precios[i].id_product === '2' && precios[i].cantidad === cantidad) {
+                                precios.splice(i, 1);
+                                productos.splice(i, 1);
 
-                            $("#total").html(sumaPrecios);
-                            $("#amount").val(sumaPrecios);
+                                // sumarPrecios(precios);
+                                // sumarProductos(productos);
 
-                            // $("#total_mx").html(($("#tipo_cambio").val() * sumaPrecios).toFixed(2));
-                            $("#total_mx").html((sumaPrecios).toFixed(2));
-                            $("#total_usd").html((sumaPreciosUsd).toFixed(2));
+                            }
 
-                            console.log("Suma Articulos " + sumaArticulos);
+                            $(".checks_product").prop('checked', false);
+                            $(".checks_product").removeAttr('disabled', 'disabled');
+                            precios = [];
+                            productos = [];
 
-                            $("#productos_agregados").html(sumaArticulos);
-
-                        }
-
-                        function sumarProductos(productos) {
-                            console.log(productos);
-                            var nombreProductos = '';
-
-                            productos.forEach(function(producto, index) {
-
-                                console.log("precio " + index + " | id_product: " + producto.id_product + " precio: " + parseInt(producto.precio) + " cantidad: " + parseInt(producto.cantidad) + " producto: " + producto.nombre_producto)
-
-                                nombreProductos += producto.nombre_producto + ',';
-                            });
-
-                            console.log(nombreProductos);
-                            $("#item_name").val(nombreProductos);
-
-
+                            sumarPrecios(precios);
+                            sumarProductos(productos);
                         }
 
 
-
-                        $("#btn_pago").on("click", function(event) {
-                            event.preventDefault();
-                            // var metodo_pago = $("#metodo_pago").val();
-                            var clave = $("#clave").val();
-                            var usuario = $("#email_usuario").val();
-                            var metodo_pago = $("#metodo_pago").val();
-                            var tipo_moneda = $("#tipo_moneda_pago").val();
-                            var compra_en = 'plataforma';
-
-                            console.log("precios ------");
-                            console.log(precios);
+                        // }
+                    }
 
 
-                            if (precios.length <= 0) {
 
-                                Swal.fire("¡Debes seleccionar al menos un producto!", "", "warning")
+                    //validaciones para los talleres simultaneos 
+
+                    if (nombre_producto == 'INDISPENSABLE BLOQUEOS BASICOS MIEMBRO SUPERIOR/MIEMBRO INFERIOR') {
+                        $("#check_curso_27").removeAttr('disabled');
+                    }
+
+                    if (nombre_producto == 'PERFUSIONES INTRAVENOSAS PARA SEDACIÓN DE LO MANUAL A TCI') {
+                        $("#check_curso_24").removeAttr('disabled');
+                    }
+
+                    if (nombre_producto == 'SIMULADORES ESCANEA Y PRACTICA CON MODELO EN SIMULACION') {
+                        $("#check_curso_29").removeAttr('disabled');
+                        $("#check_curso_30").removeAttr('disabled');
+                    }
+
+                    if (nombre_producto == 'ULTRASONIDO EN BLOQUEOS PARA DOLOR CRONICO') {
+                        $("#check_curso_28").removeAttr('disabled');
+                        $("#check_curso_30").removeAttr('disabled');
+                    }
+
+                    if (nombre_producto == 'BLOQUEOS AVANZADOS :TORAX Y ABDOMEN') {
+                        $("#check_curso_28").removeAttr('disabled');
+                        $("#check_curso_29").removeAttr('disabled');
+                    }
 
 
-                            } else if (precios.length >= 2 && $("#forma_pago").val() == '' && $("#clave_socio").val() != '') {
-                                Swal.fire("¡Debes seleccionar un metodo de pago!", "", "warning")
-                            } else if ($("#forma_pago").val() == '' && $("#clave_socio").val() == '') {
-                                Swal.fire("¡Debes seleccionar un metodo de pago!", "", "warning")
-                            } else if ($("#tipo_moneda_pago").val() == '') {
-                                Swal.fire("¡Debes seleccionar el tipo de Cambio a pagar!", "", "warning")
-                            } else {
-                                var plantilla_productos = '';
+                    if (nombre_producto == 'ACCESOS VASCULARES PRAVE') {
+                        $("#check_curso_32").removeAttr('disabled');
+                        $("#check_curso_33").removeAttr('disabled');
+                    }
 
-                                plantilla_productos += `<ul>`;
+                    if (nombre_producto == 'BLOQUEOS AVANZADOS :MIEMBROS SUPERIOR E INFERIOR / COLUMNA') {
+                        $("#check_curso_31").removeAttr('disabled');
+                        $("#check_curso_33").removeAttr('disabled');
+                    }
+
+                    if (nombre_producto == 'ABASI APRENDIZAJE BASADO EN SIMULACION') {
+                        $("#check_curso_31").removeAttr('disabled');
+                        $("#check_curso_32").removeAttr('disabled');
+                    }
 
 
-                                $.each(productos, function(key, value) {
-                                    console.log("funcioina");
-                                    console.log(value);
-                                    plantilla_productos += `<li style="text-align: justify; font-size:14px;">
+                    //Especialista
+
+                    if (nombre_producto == 'SUPRA Clinical WorkShop 2 hands on') {
+                        $("#check_curso_40").removeAttr('disabled');
+                        $("#check_curso_39").removeAttr('disabled');
+                    }
+
+                    if (nombre_producto == 'SUPRA Clinical WorkShop 3 hands on') {
+                        $("#check_curso_41").removeAttr('disabled');
+                        $("#check_curso_39").removeAttr('disabled');
+                    }
+
+                    if (nombre_producto == 'SUPRA Clinical WorkShop 4 hands on') {
+                        $("#check_curso_40").removeAttr('disabled');
+                        $("#check_curso_41").removeAttr('disabled');
+                    }
+                    //fin especialista
+
+
+
+                    //Residentes
+
+                    if (nombre_producto == 'SUPRA Clinical WorkShop 2 hands on') {
+                        $("#check_curso_36").removeAttr('disabled');
+                        $("#check_curso_37").removeAttr('disabled');
+                    }
+
+                    if (nombre_producto == 'SUPRA Clinical WorkShop 3 hands on') {
+                        $("#check_curso_36").removeAttr('disabled');
+                        $("#check_curso_38").removeAttr('disabled');
+                    }
+
+                    if (nombre_producto == 'SUPRA Clinical WorkShop 4 hands on') {
+                        $("#check_curso_37").removeAttr('disabled');
+                        $("#check_curso_38").removeAttr('disabled');
+                    }
+                    //fin residentes
+
+
+                    //fin de validaciones para talleres simultaneos
+
+
+                    for (var i = 0; i < precios.length; i++) {
+
+                        if (precios[i].id_product === id_product) {
+                            // console.log("remover");
+                            precios.splice(i, 1);
+
+                            productos.splice(i, 1);
+                            sumarPrecios(precios);
+                            sumarProductos(productos);
+                        } else if (precios[i].id_product === id_product && precios[i].cantidad === cantidad) {
+                            precios.splice(i, 1);
+
+                            productos.splice(i, 1);
+                            sumarPrecios(precios);
+                            sumarProductos(productos);
+
+                        }
+                    }
+
+                    // $.ajax({
+                    //     url: "/Home/removePendientesPago",
+                    //     type: "POST",
+                    //     data: {
+                    //         id_product,cantidad
+                    //     },
+                    //     cache: false,
+                    //     beforeSend: function() {
+                    //         console.log("Procesando....");
+
+                    //     },
+                    //     success: function(respuesta) {
+
+                    //         console.log(respuesta);
+                    //         if(respuesta == "success"){
+                    //             location.reload();
+                    //         }
+
+
+                    //     },
+                    //     error: function(respuesta) {
+                    //         console.log(respuesta);
+                    //     }
+
+                    // });
+                }
+                // console.log(productos);
+                // sumarPrecios(precios);
+                // sumarProductos(productos);
+
+            });
+
+
+            $(".select_numero_articulos").on("change", function() {
+                var id_producto = $(this).attr('data-id-producto');
+                var cantidad = $(this).val();
+                var precio = $(this).attr('data-precio');
+                var nombre_producto = $(this).attr('data-nombre-producto');
+
+                if ($("#check_curso_" + id_producto).is(':checked')) {
+
+                    for (var i = 0; i < precios.length; i++) {
+
+                        if (precios[i].id_product === id_producto && precios[i].cantidad != cantidad) {
+                            console.log("remover");
+                            precios.splice(i, 1, {
+                                'id_product': id_producto,
+                                'precio': precio,
+                                'cantidad': cantidad
+                            });
+
+                            productos.splice(i, 1, {
+                                'id_product': id_producto,
+                                'precio': precio,
+                                'cantidad': cantidad,
+                                'nombre_producto': nombre_producto
+                            });
+
+                            // precios.push({'id_product':id_product,'precio':precio,'cantidad':cantidad});
+                        }
+
+                    }
+                    console.log(precios.length);
+
+                    console.log(productos);
+
+                    sumarPrecios(precios);
+
+                }
+
+            });
+
+            function sumarPrecios(precios) {
+                console.log(precios);
+
+                // var sumaPrecios = <?= $total_pago ?>;
+                // var sumaArticulos = <?= $total_productos ?>;
+
+                var sumaPrecios = 0;
+                var sumaPreciosUsd = 0;
+                var sumaArticulos = 0;
+
+                precios.forEach(function(precio, index) {
+
+                    console.log("precio " + index + " | id_product: " + precio.id_product + " precio: " + parseInt(precio.precio) + " cantidad: " + parseInt(precio.cantidad))
+
+                    sumaPrecios += parseInt(precio.precio * precio.cantidad);
+                    sumaArticulos += parseInt(precio.cantidad);
+
+                    sumaPreciosUsd += parseInt(precio.precio_usd * precio.cantidad);
+
+
+                });
+
+
+
+                console.log("Suma precios " + sumaPrecios);
+                console.log("--------------");
+                console.log("Suma precios usd " + sumaPreciosUsd);
+
+                $("#total").html(sumaPrecios);
+                $("#amount").val(sumaPrecios);
+
+                // $("#total_mx").html(($("#tipo_cambio").val() * sumaPrecios).toFixed(2));
+                $("#total_mx").html((sumaPrecios).toFixed(2));
+                $("#total_usd").html((sumaPreciosUsd).toFixed(2));
+
+                console.log("Suma Articulos " + sumaArticulos);
+
+                $("#productos_agregados").html(sumaArticulos);
+
+            }
+
+            function sumarProductos(productos) {
+                console.log(productos);
+                var nombreProductos = '';
+
+                productos.forEach(function(producto, index) {
+
+                    console.log("precio " + index + " | id_product: " + producto.id_product + " precio: " + parseInt(producto.precio) + " cantidad: " + parseInt(producto.cantidad) + " producto: " + producto.nombre_producto)
+
+                    nombreProductos += producto.nombre_producto + ',';
+                });
+
+                console.log(nombreProductos);
+                $("#item_name").val(nombreProductos);
+
+
+            }
+
+
+
+            $("#btn_pago").on("click", function(event) {
+                event.preventDefault();
+                // var metodo_pago = $("#metodo_pago").val();
+                var clave = $("#clave").val();
+                var usuario = $("#email_usuario").val();
+                var metodo_pago = $("#metodo_pago").val();
+                var tipo_moneda = $("#tipo_moneda_pago").val();
+                var compra_en = 'plataforma';
+
+                console.log("precios ------");
+                console.log(precios);
+
+
+                if (precios.length <= 0) {
+
+                    Swal.fire("¡Debes seleccionar al menos un producto!", "", "warning")
+
+
+                } else if (precios.length >= 2 && $("#forma_pago").val() == '' && $("#clave_socio").val() != '') {
+                    Swal.fire("¡Debes seleccionar un metodo de pago!", "", "warning")
+                } else if ($("#forma_pago").val() == '' && $("#clave_socio").val() == '') {
+                    Swal.fire("¡Debes seleccionar un metodo de pago!", "", "warning")
+                } else if ($("#tipo_moneda_pago").val() == '') {
+                    Swal.fire("¡Debes seleccionar el tipo de Cambio a pagar!", "", "warning")
+                } else {
+                    var plantilla_productos = '';
+
+                    plantilla_productos += `<ul>`;
+
+
+                    $.each(productos, function(key, value) {
+                        console.log("funcioina");
+                        console.log(value);
+                        plantilla_productos += `<li style="text-align: justify; font-size:14px;">
                                                     ${value.nombre_producto} Cant. ${value.cantidad}
                                                 </li>`;
-                                });
+                    });
 
-                                plantilla_productos += `</ul>`;
-                                if (tipo_moneda == "USD") {
-                                    plantilla_productos += `<p><strong>Total en dolares: $ ${$("#total_usd").text()} USD </strong></p>`;
-                                } else {
-                                    plantilla_productos += `<p><strong>Total en pesos mexicanos: $ ${$("#total_mx").text()} MXN</strong></p>`;
-                                }
+                    plantilla_productos += `</ul>`;
+                    if (tipo_moneda == "USD") {
+                        plantilla_productos += `<p><strong>Total en dolares: $ ${$("#total_usd").text()} USD </strong></p>`;
+                    } else {
+                        plantilla_productos += `<p><strong>Total en pesos mexicanos: $ ${$("#total_mx").text()} MXN</strong></p>`;
+                    }
 
-                                // plantilla_productos += `<p>Confirme su selección y de clic en procesar compra y espere su turno en línea de cajas.</p>`;
-
-
-                                Swal.fire({
-                                    title: 'Usted selecciono los siguientes productos',
-                                    text: '',
-                                    html: plantilla_productos,
-                                    icon: 'warning',
-                                    showCancelButton: true,
-                                    confirmButtonColor: '#3085d6',
-                                    cancelButtonColor: '#d33',
-                                    cancelButtonText: 'Cancelar',
-                                    confirmButtonText: 'Procesar Compra'
-                                }).then((result) => {
-                                    if (result.isConfirmed) {
+                    // plantilla_productos += `<p>Confirme su selección y de clic en procesar compra y espere su turno en línea de cajas.</p>`;
 
 
-                                        console.log($("#total_mx").text());
+                    Swal.fire({
+                        title: 'Usted selecciono los siguientes productos',
+                        text: '',
+                        html: plantilla_productos,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        cancelButtonText: 'Cancelar',
+                        confirmButtonText: 'Procesar Compra'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
 
-                                        if ($("#total_mx").text() == '0.00') {
-                                            $.ajax({
-                                                url: "/Register/generaterQr",
-                                                type: "POST",
-                                                data: {
-                                                    'array': JSON.stringify(precios),
-                                                    clave,
-                                                    usuario,
-                                                    metodo_pago,
-                                                    plataforma,
-                                                    tipo_moneda
-                                                },
-                                                cache: false,
-                                                dataType: "json",
-                                                // contentType: false,
-                                                // processData: false,
-                                                beforeSend: function() {
-                                                    console.log("Procesando....");
 
-                                                },
-                                                success: function(respuesta) {
+                            console.log($("#total_mx").text());
 
-                                                    console.log(respuesta);
+                            if ($("#total_mx").text() == '0.00') {
+                                $.ajax({
+                                    url: "/Register/generaterQr",
+                                    type: "POST",
+                                    data: {
+                                        'array': JSON.stringify(precios),
+                                        clave,
+                                        usuario,
+                                        metodo_pago,
+                                        plataforma,
+                                        tipo_moneda
+                                    },
+                                    cache: false,
+                                    dataType: "json",
+                                    // contentType: false,
+                                    // processData: false,
+                                    beforeSend: function() {
+                                        console.log("Procesando....");
 
-                                                    if (respuesta.status == 'success') {
+                                    },
+                                    success: function(respuesta) {
 
-                                                        Swal.fire("¡Se genero su preregistro, correctamente!", "", "success").
-                                                        then((value) => {
-                                                            // $(".form_compra").submit();
-                                                            location.href = '/Home';
-                                                        });
-                                                    }
+                                        console.log(respuesta);
 
-                                                },
-                                                error: function(respuesta) {
-                                                    console.log(respuesta);
-                                                }
+                                        if (respuesta.status == 'success') {
 
-                                            });
-
-                                        } else {
-                                            var enviar_email = 1;
-                                            $.ajax({
-                                                url: "/Register/generaterQr",
-                                                type: "POST",
-                                                data: {
-                                                    'array': JSON.stringify(precios),
-                                                    clave,
-                                                    usuario,
-                                                    metodo_pago,
-                                                    enviar_email,
-                                                    tipo_moneda
-                                                },
-                                                cache: false,
-                                                dataType: "json",
-                                                // contentType: false,
-                                                // processData: false,
-                                                beforeSend: function() {
-                                                    console.log("Procesando....");
-
-                                                },
-                                                success: function(respuesta) {
-
-                                                    console.log(respuesta);
-
-                                                    if (respuesta.status == 'success') {
-
-                                                        Swal.fire("¡Se genero su preregistro, correctamente!", "", "success").
-                                                        then((value) => {
-                                                            $(".form_compra").submit();
-                                                            location.href = '/Home';
-                                                        });
-                                                    }
-
-                                                },
-                                                error: function(respuesta) {
-                                                    console.log(respuesta);
-                                                }
-
+                                            Swal.fire("¡Se genero su preregistro, correctamente!", "", "success").
+                                            then((value) => {
+                                                // $(".form_compra").submit();
+                                                location.href = '/Home';
                                             });
                                         }
 
-
+                                    },
+                                    error: function(respuesta) {
+                                        console.log(respuesta);
                                     }
-                                })
+
+                                });
+
+                            } else {
+                                var enviar_email = 1;
+                                $.ajax({
+                                    url: "/Register/generaterQr",
+                                    type: "POST",
+                                    data: {
+                                        'array': JSON.stringify(precios),
+                                        clave,
+                                        usuario,
+                                        metodo_pago,
+                                        enviar_email,
+                                        tipo_moneda
+                                    },
+                                    cache: false,
+                                    dataType: "json",
+                                    // contentType: false,
+                                    // processData: false,
+                                    beforeSend: function() {
+                                        console.log("Procesando....");
+
+                                    },
+                                    success: function(respuesta) {
+
+                                        console.log(respuesta);
+
+                                        if (respuesta.status == 'success') {
+
+                                            Swal.fire("¡Se genero su preregistro, correctamente!", "", "success").
+                                            then((value) => {
+                                                $(".form_compra").submit();
+                                                location.href = '/Home';
+                                            });
+                                        }
+
+                                    },
+                                    error: function(respuesta) {
+                                        console.log(respuesta);
+                                    }
+
+                                });
                             }
-                        });
 
 
-                    });
+                        }
+                    })
+                }
+            });
+
+
+        });
     </script>
 
 

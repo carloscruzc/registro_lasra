@@ -497,26 +497,26 @@
             // var productos = [];
             var total = 0;
 
-            if ($("#clave_socio").val() != '') {
-                precios.push({
-                    'id_product': 1,
-                    'precio': 0,
-                    'cantidad': 1
-                });
-                // sumarPrecios(precios);
+            // if ($("#clave_socio").val() != '') {
+            //     precios.push({
+            //         'id_product': 1,
+            //         'precio': 0,
+            //         'cantidad': 1
+            //     });
+            //     // sumarPrecios(precios);
 
-                productos.push({
-                    'id_product': 1,
-                    'precio': 0,
-                    'cantidad': 1,
-                    'nombre_producto': 'Congreso'
-                });
+            //     productos.push({
+            //         'id_product': 1,
+            //         'precio': 0,
+            //         'cantidad': 1,
+            //         'nombre_producto': 'Congreso'
+            //     });
 
-                // sumarProductos(productos);
+            //     // sumarProductos(productos);
 
-                $("#check_curso_1").prop('checked', true);
-                $("#check_curso_1").prop('disabled', true);
-            }
+            //     $("#check_curso_1").prop('checked', true);
+            //     $("#check_curso_1").prop('disabled', true);
+            // }
 
 
 

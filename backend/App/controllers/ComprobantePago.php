@@ -699,8 +699,8 @@ html;
                 // </script>";
                 } else {
                     echo "fail";
-                    var_dump($documento);
-                    var_dump($datos_user);
+                    // var_dump($documento);
+                    // var_dump($datos_user);
                     // echo "<script>
                     //      alert('Hubo un error al subir el archivo');
                     //     window.location.href = /ComprobantePago/;

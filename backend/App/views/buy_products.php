@@ -63,7 +63,7 @@
 
                 </div>
 
-                <input type="hidden" id="categoria" value="<?= $categoria['categoria']; ?>">
+                <input type="text" id="categoria" value="<?= $categoria['categoria']; ?>">
                 <input type="hidden" name="datos" id="datos" value="<?php echo $datos; ?>">
                 <input type="hidden" name="id_pais" id="id_pais" value="<?= $datos['id_pais'] ?>">
 
@@ -328,6 +328,43 @@
 </div>
 <!-- CIERRA MODAL -->
 
+ <!-- ABRE MODAL -->
+ <div class="modal fade" id="modal_archivo_residente" role="dialog" aria-labelledby="" aria-hidden="" data-backdrop="static" 
+  data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal_archivo_residenteLabel">
+                    Subir Comprobante
+                </h5>
+            </div>
+            <center>
+            <div class="modal-body">
+                
+                <form method="POST" enctype="multipart/form-data" id="form_archivo_residente">
+                    <div class="row">
+                        <center>
+                        <div class="col-8 mb-3">
+                            <label class="control-label col-12" for="comentario">Comprobante<span class="required">*</span></label>
+                            <input type="file" accept="image/*,.pdf" class="form-control" id="file-input" name="file-input" style="width: auto; margin: 0 auto;" required>
+                            <input type="text" class="form-control" id="_user_id" name="_user_id" value="<?php echo $datos['user_id']?>">
+                            <input type="text" class="form-control" id="ano_residencia" name="ano_residencia" value="<?php echo $array_user['ano_residencia'];?>">
+                            
+                        </div>
+                        </center>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn bg-gradient-success" id="btn_upload" name="btn_upload">Aceptar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            </center>
+        </div>
+    </div>
+</div>
+<!-- CIERRA MODAL -->
+
+
     <script>
         $(document).ready(function() {
 
@@ -348,7 +385,65 @@
                                 jQuery('#Modal_Caja').modal('show'); 
                             }
                         })
+            }else if($('#categoria').val() == 'Residente'){
+
+                Swal.fire({
+                            title: '',
+                            text: 'Se le recuerda que deberá subir imagen legible de su credencial de residente vigente, o su carta de residencia expedida por su hospital vigente, para proceder a realizar el cobro, de lo contrario deberá pagar la inscripción al Curso o al Congreso en la Modalidad de Médico No Socio',
+                            icon: 'info',
+                            showCancelButton: true,
+                            showCancelButton: false,
+                            allowOutsideClick: false,
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'Aceptar'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                jQuery.noConflict(); 
+                                jQuery('#modal_archivo_residente').modal('show'); 
+                            }
+                        })
+                
             }
+
+            $("#form_archivo_residente").on("submit", function(event) {
+                event.preventDefault();
+                var formData = new FormData(document.getElementById("form_archivo_residente"));
+                $.ajax({
+                    url: "/ComprobantePago/saveComprobante",
+                    type: "POST",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function() {
+                        console.log("Procesando....");
+                        // alert('Se está borrando');
+
+                    },
+                    success: function(respuesta) {
+                        console.log(respuesta);
+
+                        if (respuesta == 'success') {
+                            Swal.fire("¡Recibimos tu comentario, gracias!", "", "success").
+                            then((value) => {
+                                window.location.reload();
+                            });
+                        } else {
+                            Swal.fire("¡Hubo un error, inténtalo de nuevo!", "", "warning").
+                            then((value) => {
+                                window.location.reload();
+                            });
+                        }
+                    },
+                    error: function(respuesta) {
+                        console.log(respuesta);
+                        // alert('Error');
+                        Swal.fire("¡Hubo un error, inténtalo de nuevo!", "", "warning").
+                        then((value) => {
+                            window.location.reload();
+                        });
+                    }
+                });
+            });
 
             if ($("#id_pais").val() != 156) {
                 $("#cont_check2").addClass('d-none');

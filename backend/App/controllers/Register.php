@@ -459,7 +459,6 @@ html;
         ];
 
 
-
         View::set('dataUser', $data);
         View::set('header', $extraHeader);
         View::set('footer', $extraFooter);
@@ -664,7 +663,6 @@ html;
 
         //Acarrear los datos
         $data = unserialize($_POST['dataUser']);
-       
 
         if ($data['categorias'] == 0) {
             $monto_congreso = RegisterDao::getMontoPago(1)['costo'];
@@ -1223,6 +1221,7 @@ html;
         View::set('header', $header);
         View::set('footer', $extraFooter);
         View::set('datos', $data_user);
+        View::set('array_user',$data);
         View::set('clave', $clave);
         View::set('checks', $checks);
         // View::set('src_qr',$src_qr); 

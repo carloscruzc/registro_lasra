@@ -426,7 +426,27 @@ html;
             $datos_estudiante = RegisterDao::getEstudiante($_SESSION['usuario']);
             $datos_user_anualidad = RegisterDao::getUserAnualidad($_SESSION['usuario']);
             
-            if($datos_estudiante || $datos_user_anualidad){
+            if($datos_user_anualidad){
+                $comprobante .= <<<html
+                <div class="col-6 m-auto m-md-0 col-lg-3 col-md-4 my-md-3 mt-4">
+                    <a href="#">
+                        <div class="card card-link btn-menu-home m-auto" style="background-image: url(/img/SMNP_Iconos/Web3.png); background-size: contain; background-repeat: no-repeat;">
+                            <div class="card-body mt-md-3 text-center content-card-home">
+                                <div class="col-12 text-center">
+                                </div>
+                            </div>
+                        </div>                        
+                    </a>
+                    <a href="/ComprobantePago/">
+                        <div class="d-flex justify-content-center">
+                        Se está validando tu comprobante de anualidad.
+                        </div>
+                    </a>
+                </div>
+html;
+                $byproducts = '';
+            }
+            else if($datos_estudiante){
                 $comprobante .= <<<html
                 <div class="col-6 m-auto m-md-0 col-lg-3 col-md-4 my-md-3 mt-4">
                     <a href="#">

@@ -424,7 +424,9 @@ html;
         $comprobante = '';
         $byproducts = '';
             $datos_estudiante = RegisterDao::getEstudiante($_SESSION['usuario']);
-            if($datos_estudiante){
+            $datos_user_anualidad = RegisterDao::getUserAnualidad($_SESSION['usuario']);
+            
+            if($datos_estudiante || $datos_user_anualidad){
                 $comprobante .= <<<html
                 <div class="col-6 m-auto m-md-0 col-lg-3 col-md-4 my-md-3 mt-4">
                     <a href="#">

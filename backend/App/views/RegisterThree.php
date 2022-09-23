@@ -48,7 +48,8 @@ echo $header;
                                                     </div>
                                                 </div>
                                                 <!--form panels-->
-                                                <!--<?php var_dump($dataUser); ?>-->
+                                                <!-- <?php var_dump($dataUser); ?> -->
+                                                <input type="hidden" id="ano_residente" name="ano_residente" value="<?php echo $dataUser['ano_residencia']?>">
                                                 <div class="row">
                                                     <div class="col-12 col-lg-12 m-auto">
                                                         <input type="hidden" id="email" name="email" value="<?php echo $dataUser['email'] ?>">
@@ -261,14 +262,14 @@ echo $header;
                     if (respuesta == "success") {
                         Swal.fire('Datos Guardados Correctamente', '', 'success');
                         setTimeout(function() {
-                            location.href = '/Register/passFinalize?e=' + btoa(email);
+                            location.href = '/Register/passFinalize?e=' + btoa(email) + '&a='+$("#ano_residente").val();
                         }, 1000)
 
                     } else {
                         // Swal.fire('Hubo un error al actualizar sus datos contacte a soporte.', '', 'info');
                         Swal.fire('Datos Guardados Correctamente', '', 'success');
                         setTimeout(function() {
-                            location.href = '/Register/passFinalize?e=' + btoa(email);
+                            location.href = '/Register/passFinalize?e=' + btoa(email) + '&a='+$("#ano_residente").val();
                         }, 1000)
                     }
 

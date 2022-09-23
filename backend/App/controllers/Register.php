@@ -615,6 +615,12 @@ html;
             $data['especialidades'] = '';
         }
 
+        if (isset($data['ano_residencia'])) {
+            $ano_residencia = $data['ano_residencia'];
+        } else {
+            $ano_residencia = 0;
+        }
+
         $date = date('Y-m-d');
         $str_nombre = str_split($data['nombre']);
         $str_apellidop = str_split($data['apellidop']);
@@ -643,6 +649,7 @@ html;
         $documento->_monto_congreso = $monto_congreso;
         $documento->_clave_socio = $data['clave_socio'];
         $documento->_txt_especialidad = $data['txt_especialidad'];
+        
 
         $existe_user = RegisterDao::getUser($data['email']);
 
@@ -669,7 +676,6 @@ html;
                     <option value="{$value['id_regimen_fiscal']}">{$value['descripcion_regimen_fiscal']}</option>
 html;
         }
-
 
         View::set('dataUser', $data);
         View::set('usoCfdi', $cfdi);
@@ -718,6 +724,7 @@ html;
 
         //Acarrear los datos
         $data = unserialize($_POST['dataUser']);
+        
 
         if ($data['categorias'] == 0) {
             $monto_congreso = RegisterDao::getMontoPago(1)['costo'];
@@ -1298,6 +1305,7 @@ html;
         $user_email = $_GET['e'];
         $user_email = base64_decode($user_email);
 
+        $array_user = ['ano_residencia' => $_GET['a']];//solo lleva el año de residencia
 
 
         $data_user = HomeDao::getDataUser($user_email);
@@ -1605,7 +1613,11 @@ html;
         // $total_mx = intval($total_pago) * floatval($tipo_cambio['tipo_cambio']);
         $total_mx = intval($total_pago);
 
+        $getCategoria = LoginDao::getCategoriaById($data_user['id_categoria']);
 
+
+        View::set('categoria', $getCategoria);        
+        View::set('array_user',$array_user);
         View::set('header', $header);
         View::set('datos', $data_user);
         View::set('clave', $clave);

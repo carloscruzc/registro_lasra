@@ -289,17 +289,66 @@
             </div>
         </div>
     </main>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+    <!-- ABRE MODAL -->
+<div class="modal fade" id="Modal_Caja" role="dialog" aria-labelledby="" aria-hidden="">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    Subir Comprobante
+                </h5>
+            </div>
+            <center>
+            <div class="modal-body">
+                <p style="font-size: 16px">¡Si cuentas con tu comprobante súbelo aquí!</p>
+                <hr>
+                <form method="POST" enctype="multipart/form-data" id="form_datos_caja">
+                    <div class="row">
+                        <center>
+                        <div class="col-8">
+                            <label class="control-label col-12" for="comentario">Comprobante de Anualidad 2022<span class="required">*</span></label>
+                            <input type="file" accept="image/*,.pdf" class="form-control" id="file-input" name="file-input" style="width: auto; margin: 0 auto;" required>
+                            <input type="hidden" class="form-control" id="sitio" name="sitio">
+                            <input type="hidden" id="clave_socio" name="clave_socio" value="<?= $datos['clave_socio'] ?>">
+                            <input type="hidden" id="email_usuario" name="email_usuario" value="<?= $datos['usuario'] ?>">
+                            <input type="hidden" id="metodo_pago" name="metodo_pago" value="">
+                            <input type="hidden" id="clave" name="clave" value="<?= $clave ?>">
+                        </div>
+                        </center>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn bg-gradient-success" id="btn_upload" name="btn_upload">Aceptar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            </center>
+        </div>
+    </div>
+</div>
+<!-- CIERRA MODAL -->
+
     <script>
         $(document).ready(function() {
 
-            // if ($('#categoria').val() == 'Socio') {
-            //     Swal.fire("¡Te registraste como socio!", "Debemos validar tu información para que puedas comprar", "warning")
-
-            //     setTimeout(function() {
-            //         window.location.replace('/Login')
-            //     }, 3000);
-            // }
+            if ($('#categoria').val() == 'Especialista') {
+                Swal.fire({
+                            title: '¡Registrado como especialista!',
+                            text: "",
+                            icon: 'info',
+                            showCancelButton: true,
+                            showCancelButton: true,
+                            allowOutsideClick: false,
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'Aceptar',
+                            cancelButtonText: 'Cancelar',
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                jQuery.noConflict(); 
+                                jQuery('#Modal_Caja').modal('show'); 
+                            }
+                        })
+            }
 
             if ($("#id_pais").val() != 156) {
                 $("#cont_check2").addClass('d-none');
@@ -1032,6 +1081,53 @@
             });
 
 
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            var currentUrl = window.location.pathname;
+            $("#sitio").val(currentUrl);
+
+            $("#form_datos_caja").on("submit", function(event) {
+                event.preventDefault();
+                var formData = new FormData(document.getElementById("form_datos_caja"));
+                $.ajax({
+                    url: "/ComprobantePago/saveComprobante",
+                    type: "POST",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function() {
+                        console.log("Procesando....");
+                        // alert('Se está borrando');
+
+                    },
+                    success: function(respuesta) {
+                        console.log(respuesta);
+
+                        if (respuesta == 'success') {
+                            Swal.fire("¡Recibimos tu comentario, gracias!", "", "success").
+                            then((value) => {
+                                window.location.reload();
+                            });
+                        } else {
+                            Swal.fire("¡Hubo un error, inténtalo de nuevo!", "", "warning").
+                            then((value) => {
+                                window.location.reload();
+                            });
+                        }
+                    },
+                    error: function(respuesta) {
+                        console.log(respuesta);
+                        // alert('Error');
+                        Swal.fire("¡Hubo un error, inténtalo de nuevo!", "", "warning").
+                        then((value) => {
+                            window.location.reload();
+                        });
+                    }
+                });
+            });
         });
     </script>
 

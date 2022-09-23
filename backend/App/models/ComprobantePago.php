@@ -72,6 +72,30 @@ sql;
 
     }
 
+    public static function insertComprobante($data)
+  {
+    $mysqli = Database::getInstance(1);
+    $query = <<<sql
+    INSERT INTO pendiente_pago (id_producto, user_id, reference, clave,fecha, monto, tipo_moneda,tipo_pago,
+    status, comprado_en) 
+    VALUES (:id_producto, :user_id, :reference, :clave, :fecha, :monto, :tipo_moneda,
+    :tipo_pago,0, 1);
+sql;
+
+    $parametros = array(
+      ':id_producto' => $data->_id_producto,
+      ':user_id' => $data->_user_id,
+      ':reference' => $data->_reference,
+      ':clave' => $data->_clave,
+      ':fecha' => $data->_fecha,
+      ':monto' => $data->_monto,
+      ':tipo_pago' => $data->_tipo_pago,
+      ':tipo_moneda' => $data->_tipo_moneda,
+    );
+    $id = $mysqli->insert($query, $parametros);
+    return $id;
+  }
+
     public static function updateComprobanteEstudiante($data){
       $mysqli = Database::getInstance(true);
       // var_dump($user);

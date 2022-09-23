@@ -422,6 +422,7 @@ html;
         }
 
         $comprobante = '';
+        $byproducts = '';
             $datos_estudiante = RegisterDao::getEstudiante($_SESSION['usuario']);
             if($datos_estudiante){
                 $comprobante .= <<<html
@@ -437,11 +438,24 @@ html;
                     </a>
                 </div>
 html;
+                $byproducts = '';
         }else{
             $comprobante .= <<<html
                 <div class="col-6 m-auto m-md-0 col-lg-3 col-md-4 my-md-3 mt-4">
                     <a href="/ComprobantePago/">
                         <div class="card card-link btn-menu-home m-auto" style="background-image: url(/img/SMNP_Iconos/Web3.png); background-size: contain; background-repeat: no-repeat;">
+                            <div class="card-body mt-md-3 text-center content-card-home">
+                                <div class="col-12 text-center">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+html;
+            $byproducts .= <<<html
+                <div class="col-6 m-auto m-md-0 col-lg-3 col-md-4 my-md-3 mt-4">
+                    <a href="/Talleres/byProducts">
+                        <div class="card card-link btn-menu-home m-auto" style="background-image: url(/img/SMNP_Iconos/Web2.png); background-size: contain; background-repeat: no-repeat;">
                             <div class="card-body mt-md-3 text-center content-card-home">
                                 <div class="col-12 text-center">
                                 </div>
@@ -457,6 +471,7 @@ html;
         View::set('permisos_congreso',$permisos_congreso);
         View::set('datos',$data_user);
         View::set('comprobante',$comprobante);
+        View::set('byproducts',$byproducts);
         View::set('encuesta',$encuesta);
         View::set('id_curso',$id_curso);
         View::render("principal_all");

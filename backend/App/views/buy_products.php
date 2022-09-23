@@ -370,8 +370,8 @@
 
             if ($('#categoria').val() == 'Especialista') {
                 Swal.fire({
-                            title: '¡Registrado como especialista!',
-                            text: "",
+                            title: 'Si ya has realizado el pago de tu anualidad, súbelo aquí',
+                            text: "Si no deseas subir ningún archivo, presiona cancelar",
                             icon: 'info',
                             showCancelButton: true,
                             showCancelButton: true,
@@ -1246,7 +1246,7 @@
                         console.log(respuesta);
 
                         if (respuesta == 'success') {
-                            Swal.fire("¡Recibimos tu comentario, gracias!", "", "success").
+                            Swal.fire("¡Recibimos tu archivo! Una vez validado tu comprobante, podras comprar desde la plataforma", "", "success").
                             then((value) => {
                                 window.location.reload();
                             });

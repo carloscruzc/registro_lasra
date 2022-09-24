@@ -331,8 +331,7 @@
 <!-- CIERRA MODAL -->
 
  <!-- ABRE MODAL -->
- <div class="modal fade" id="modal_archivo_residente" role="dialog" aria-labelledby="" aria-hidden="" data-backdrop="static" 
-  data-keyboard="false">
+ <div class="modal fade" id="modal_archivo_residente" role="dialog" aria-labelledby="" aria-hidden="" >
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -355,7 +354,9 @@
                         </div>
                         </center>
                         <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                             <button type="submit" class="btn bg-gradient-success" id="btn_upload" name="btn_upload">Aceptar</button>
+                            
                         </div>
                     </div>
                 </form>
@@ -437,7 +438,8 @@
                             cancelButtonText: 'Cancelar',
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                window.location.href = '/Login/';
+                                // window.location.href = '/Login/';
+                                window.location.reload();
                             }
                         })
                         } else {
@@ -1028,8 +1030,11 @@
                 $("#amount").val(sumaPrecios);
 
                 // $("#total_mx").html(($("#tipo_cambio").val() * sumaPrecios).toFixed(2));
-                $("#total_mx").html((sumaPrecios).toFixed(2));
-                $("#total_usd").html((sumaPreciosUsd).toFixed(2));
+                // $("#total_mx").html((sumaPrecios).toFixed(2));
+                $("#total_mx").html((sumaPrecios).toLocaleString('en'));
+                
+                // const localeString = numero.toLocaleString('en');
+                $("#total_usd").html((sumaPreciosUsd).toLocaleString('en'));
 
                 console.log("Suma Articulos " + sumaArticulos);
 
@@ -1250,7 +1255,8 @@
                         if (respuesta == 'success') {
                             Swal.fire("¡Recibimos tu archivo! Una vez validado tu comprobante, podras comprar desde la plataforma", "", "success").
                             then((value) => {
-                                window.location.href = '/Login/';
+                                // window.location.href = '/Login/';
+                                window.location.reload();
                             });
                         } else {
                             Swal.fire("¡Hubo un error, inténtalo de nuevo!", "", "warning").

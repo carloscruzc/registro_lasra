@@ -344,6 +344,17 @@ echo $header;
                 // $('#archivo_residente').attr('required', 'required');
                 $('#cont-ano-residente').css('display', 'inline-block');
                 $('#ano_residencia').attr('required', 'required');
+
+                Swal.fire({
+                    title: '',
+                    text: 'Se le recuerda que deberá subir imagen legible de su credencial de residente vigente, o su carta de residencia expedida por su hospital vigente, para proceder a realizar el cobro, de lo contrario deberá pagar la inscripción al Curso o al Congreso en la Modalidad de Médico No Socio',
+                    icon: 'info',
+                    showCancelButton: true,
+                    showCancelButton: false,
+                    allowOutsideClick: false,
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'Aceptar'
+                })
             } else {
                 // $('#cont-archivo-residente').css('display', 'none');
                 // $('#archivo_residente').removeAttr('required')
@@ -351,6 +362,8 @@ echo $header;
                 $('#cont-ano-residente').css('display', 'none');
                 $('#ano_residencia').removeAttr('required');
                 $('#ano_residencia').val('');
+
+                
             }
         });
 

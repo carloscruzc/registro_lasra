@@ -38,6 +38,10 @@ class OrdenPagoRegister
     
                 if($updatePediente){
                     $insert_asigna = RegisterDao::insertAsignaProducto($_GET['u'], $value['id_product']);
+
+                    if($value['id_product'] == 2 || $value['id_product'] == 35 ){
+                        $updateDatosSocio = RegisterDao::updateDatosSocio($_GET['u']);
+                    }
                 }
             }
 

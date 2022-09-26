@@ -1148,7 +1148,7 @@ html;
                 $pend_validar = 'Pendiente de Pagar';
                 // $btn_imp = '<a class="btn btn-primary" href="/Home/print/'.$productos_pendientes_comprados[0]['clave'].'" target="blank_">Imprimir Formato de Pago</a>';
                 // $ocultar = '';
-                // $disabled = 'disabled';
+                $disabled = 'disabled';
                 $checked = 'checked';
                 $total_productos += $count_producto['numero_productos'];
                 $total_pago += $count_producto['numero_productos'] * $precio;
@@ -1288,9 +1288,9 @@ html;
         View::set('checks', $checks);
         // View::set('src_qr',$src_qr); 
         // View::set('btn_block',$btn_block); 
-        View::set('total_productos', $total_productos);
-        View::set('total_pago', $total_pago);
-        View::set('total_pago_mx', $total_mx);
+        // View::set('total_productos', $total_productos);
+        // View::set('total_pago', $total_pago);
+        // View::set('total_pago_mx', $total_mx);
         // View::set('btn_imp',$btn_imp); 
         // View::set('ocultar',$ocultar);
         View::set('tipo_cambio', $tipo_cambio['tipo_cambio']);
@@ -1479,7 +1479,7 @@ html;
                 $pend_validar = 'Pendiente de Pagar';
                 // $btn_imp = '<a class="btn btn-primary" href="/Home/print/'.$productos_pendientes_comprados[0]['clave'].'" target="blank_">Imprimir Formato de Pago</a>';
                 // $ocultar = '';
-                // $disabled = 'disabled';
+                $disabled = 'disabled';
                 $checked = 'checked';
                 $total_productos += $count_producto['numero_productos'];
                 $total_pago += $count_producto['numero_productos'] * $precio;
@@ -1703,7 +1703,7 @@ html;
 
                     $existe_asigna = RegisterDao::getProductosAsignaProducto($user_id, $id_producto);
                     if (!$existe_asigna) {
-                        $insert_asigna = RegisterDao::insertAsignaProducto($data);
+                        $insert_asigna = RegisterDao::insertAsignaProducto($user_id,$id_producto);
                     }
                 } else {
                     $status = 0;

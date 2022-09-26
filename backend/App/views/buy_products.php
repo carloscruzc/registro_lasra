@@ -68,7 +68,7 @@
                 <input type="hidden" name="id_pais" id="id_pais" value="<?= $datos['id_pais'] ?>">
                 <input type="hidden" id="user_id" name="user_id" value="<?= $datos['user_id'] ?>">
 
-                <!-- <?php var_dump($datos)?> -->
+                <!-- <?php var_dump($datos) ?> -->
 
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -143,7 +143,7 @@
                                             <div class="col-md-6">
                                                 <!-- <p>Su pago en dolares es: $ <span id="total"><? //= $total_pago 
                                                                                                     ?></span> USD</p> -->
-                                                <p>Su pago en pesos mexicanos es: $ <span id="total_mx"><?= $total_pago_mx ?></span> </p>
+                                                <p>Su pago en pesos mexicanos es: $ <span id="total_mx">0</span> </p>
                                                 <p>Su pago en USD: $ <span id="total_usd">0</span> </p>
 
                                             </div>
@@ -193,7 +193,7 @@
                                                     <input type='hidden' id='return' name='return' value=''>
                                                     <input type="hidden" id="cmd" name="cmd" value="_xclick">
                                                     <input type="hidden" id="order" name="order" value="<?= $clave ?>">
-                                                    <input type='hidden' name='upload'  value='1' />
+                                                    <input type='hidden' name='upload' value='1' />
 
 
                                                 </form>
@@ -294,119 +294,158 @@
     </main>
 
     <!-- ABRE MODAL -->
-<div class="modal fade" id="Modal_Caja" role="dialog" aria-labelledby="" aria-hidden="">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">
-                    Subir Comprobante
-                </h5>
-            </div>
-            <center>
-            <div class="modal-body">
-                <p style="font-size: 16px">¡Si cuentas con tu comprobante súbelo aquí!</p>
-                <hr>
-                <form method="POST" enctype="multipart/form-data" id="form_datos_caja">
-                    <div class="row">
-                        <center>
-                        <div class="col-8">
-                            <label class="control-label col-12" for="comentario">Comprobante de Anualidad 2022<span class="required">*</span></label>
-                            <label for="">Sube tu archivo</label><input type="file" accept="image/*,.pdf" class="form-control" id="file-input" name="file-input" style="width: auto; margin: 0 auto;" required>
-                            <input type="hidden" class="form-control" id="sitio" name="sitio">
-                            <input type="hidden" id="clave_socio" name="clave_socio" value="<?= $datos['clave_socio'] ?>">
-                            <input type="hidden" id="email_usuario" name="email_usuario" value="<?= $datos['usuario'] ?>">
-                            <input type="hidden" id="metodo_pago" name="metodo_pago" value="<?= $datos['metodo_pago'] ?>">
-                            <input type="hidden" id="clave" name="clave" value="<?= $clave ?>">
-                        </div>
-                        </center>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn bg-gradient-success" id="btn_upload" name="btn_upload">Aceptar</button>
-                        </div>
+    <div class="modal fade" id="Modal_Caja" role="dialog" aria-labelledby="" aria-hidden="">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        Subir Comprobante
+                    </h5>
+                </div>
+                <center>
+                    <div class="modal-body">
+                        <p style="font-size: 16px">¡Si cuentas con tu comprobante súbelo aquí!</p>
+                        <hr>
+                        <form method="POST" enctype="multipart/form-data" id="form_datos_caja">
+                            <div class="row">
+                                <center>
+                                    <div class="col-8">
+                                        <label class="control-label col-12" for="comentario">Comprobante de Anualidad 2022<span class="required">*</span></label>
+                                        <label for="">Sube tu archivo</label><input type="file" accept="image/*,.pdf" class="form-control" id="file-input" name="file-input" style="width: auto; margin: 0 auto;" required>
+                                        <input type="hidden" class="form-control" id="sitio" name="sitio">
+                                        <input type="hidden" id="clave_socio" name="clave_socio" value="<?= $datos['clave_socio'] ?>">
+                                        <input type="hidden" id="email_usuario" name="email_usuario" value="<?= $datos['usuario'] ?>">
+                                        <input type="hidden" id="metodo_pago" name="metodo_pago" value="<?= $datos['metodo_pago'] ?>">
+                                        <input type="hidden" id="clave" name="clave" value="<?= $clave ?>">
+                                    </div>
+                                </center>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn bg-gradient-success" id="btn_upload" name="btn_upload">Aceptar</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                </center>
             </div>
-            </center>
         </div>
     </div>
-</div>
-<!-- CIERRA MODAL -->
+    <!-- CIERRA MODAL -->
 
- <!-- ABRE MODAL -->
- <div class="modal fade" id="modal_archivo_residente" role="dialog" aria-labelledby="" aria-hidden="" >
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modal_archivo_residenteLabel">
-                    Subir Comprobante
-                </h5>
-            </div>
-            <center>
-            <div class="modal-body">
-                
-                <form method="POST" enctype="multipart/form-data" id="form_archivo_residente">
-                    <div class="row">
-                        <center>
-                        <div class="col-8 mb-3">
-                            <label class="control-label col-12" for="comentario">Comprobante<span class="required">*</span></label>
-                            <input type="file" accept="image/*,.pdf" class="form-control" id="archivo_residente" name="archivo_residente" style="width: auto; margin: 0 auto;" required>
-                            <input type="hidden" class="form-control" id="_user_id" name="_user_id" value="<?php echo $datos['user_id']?>">
-                            <input type="hidden" class="form-control" id="ano_residencia" name="ano_residencia" value="<?php echo $array_user['ano_residencia'];?>">
-                            
-                        </div>
-                        </center>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" class="btn bg-gradient-success" id="btn_upload" name="btn_upload">Aceptar</button>
-                            
-                        </div>
+    <!-- ABRE MODAL -->
+    <div class="modal fade" id="modal_archivo_residente" role="dialog" aria-labelledby="" aria-hidden="">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal_archivo_residenteLabel">
+                        Subir Comprobante
+                    </h5>
+                </div>
+                <center>
+                    <div class="modal-body">
+
+                        <form method="POST" enctype="multipart/form-data" id="form_archivo_residente">
+                            <div class="row">
+                                <center>
+                                    <div class="col-8 mb-3">
+                                        <label class="control-label col-12" for="comentario">Comprobante<span class="required">*</span></label>
+                                        <input type="file" accept="image/*,.pdf" class="form-control" id="archivo_residente" name="archivo_residente" style="width: auto; margin: 0 auto;" required>
+                                        <input type="hidden" class="form-control" id="_user_id" name="_user_id" value="<?php echo $datos['user_id'] ?>">
+                                        <input type="hidden" class="form-control" id="ano_residencia" name="ano_residencia" value="<?php echo $array_user['ano_residencia']; ?>">
+
+                                    </div>
+                                </center>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <button type="submit" class="btn bg-gradient-success" id="btn_upload" name="btn_upload">Aceptar</button>
+
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                </center>
             </div>
-            </center>
         </div>
     </div>
-</div>
-<!-- CIERRA MODAL -->
+    <!-- CIERRA MODAL -->
 
 
     <script>
         $(document).ready(function() {
-           
+
+
+
+            //bloqueo residentes
+            if ($("#check_curso_38").prop('checked')) {
+                $("#check_curso_36").attr('disabled', 'disabled');
+                $("#check_curso_37").attr('disabled', 'disabled');
+            }
+
+            if ($("#check_curso_37").prop('checked')) {
+                $("#check_curso_36").attr('disabled', 'disabled');
+                $("#check_curso_38").attr('disabled', 'disabled');
+            }
+
+            if ($("#check_curso_36").prop('checked')) {
+                $("#check_curso_37").attr('disabled', 'disabled');
+                $("#check_curso_38").attr('disabled', 'disabled');
+            }
+
+            //fin bloqueo residentes
+
+
+            //bloqueo especialistas
+
+            if ($("#check_curso_41").prop('checked')) {
+                $("#check_curso_40").attr('disabled', 'disabled');
+                $("#check_curso_39").attr('disabled', 'disabled');
+            }
+
+            if ($("#check_curso_40").prop('checked')) {
+                $("#check_curso_41").attr('disabled', 'disabled');
+                $("#check_curso_39").attr('disabled', 'disabled');
+            }
+
+            if ($("#check_curso_39").prop('checked')) {
+                $("#check_curso_40").attr('disabled', 'disabled');
+                $("#check_curso_41").attr('disabled', 'disabled');
+            }
+            //fin especialista
+
             if ($('#categoria').val() == 'Especialista') {
                 Swal.fire({
-                            title: 'Si ya has realizado el pago de tu anualidad, súbelo aquí',
-                            text: "Si no deseas subir ningún archivo, presiona cancelar",
-                            icon: 'info',
-                            showCancelButton: true,
-                            showCancelButton: true,
-                            allowOutsideClick: false,
-                            confirmButtonColor: '#3085d6',
-                            confirmButtonText: 'Aceptar',
-                            cancelButtonText: 'Cancelar',
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                jQuery.noConflict(); 
-                                jQuery('#Modal_Caja').modal('show'); 
-                            }
-                        })
-            }else if($('#categoria').val() == 'Residente'){
+                    title: 'Si ya has realizado el pago de tu anualidad, súbelo aquí',
+                    text: "Si no deseas subir ningún archivo, presiona cancelar",
+                    icon: 'info',
+                    showCancelButton: true,
+                    showCancelButton: true,
+                    allowOutsideClick: false,
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'Aceptar',
+                    cancelButtonText: 'Cancelar',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        jQuery.noConflict();
+                        jQuery('#Modal_Caja').modal('show');
+                    }
+                })
+            } else if ($('#categoria').val() == 'Residente') {
 
                 Swal.fire({
-                            title: '',
-                            text: 'Se le recuerda que deberá subir imagen legible de su credencial de residente vigente, o su carta de residencia expedida por su hospital vigente, para proceder a realizar el cobro, de lo contrario deberá pagar la inscripción al Curso o al Congreso en la Modalidad de Médico No Socio',
-                            icon: 'info',
-                            showCancelButton: true,
-                            showCancelButton: false,
-                            allowOutsideClick: false,
-                            confirmButtonColor: '#3085d6',
-                            confirmButtonText: 'Aceptar'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                jQuery.noConflict(); 
-                                jQuery('#modal_archivo_residente').modal('show'); 
-                            }
-                        })
-                
+                    title: '',
+                    text: 'Se le recuerda que deberá subir imagen legible de su credencial de residente vigente, o su carta de residencia expedida por su hospital vigente, para proceder a realizar el cobro, de lo contrario deberá pagar la inscripción al Curso o al Congreso en la Modalidad de Médico No Socio',
+                    icon: 'info',
+                    showCancelButton: true,
+                    showCancelButton: false,
+                    allowOutsideClick: false,
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'Aceptar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        jQuery.noConflict();
+                        jQuery('#modal_archivo_residente').modal('show');
+                    }
+                })
+
             }
 
             $("#form_archivo_residente").on("submit", function(event) {
@@ -428,21 +467,21 @@
 
                         if (respuesta == 'success') {
                             Swal.fire({
-                            title: '¡Correcto!',
-                            text: "Una vez validado tu comprobante, podras comprar desde la plataforma",
-                            icon: 'info',
-                            showCancelButton: true,
-                            showCancelButton: true,
-                            allowOutsideClick: false,
-                            confirmButtonColor: '#3085d6',
-                            confirmButtonText: 'Aceptar',
-                            cancelButtonText: 'Cancelar',
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                // window.location.href = '/Login/';
-                                window.location.reload();
-                            }
-                        })
+                                title: '¡Correcto!',
+                                text: "Una vez validado tu comprobante, podras comprar desde la plataforma",
+                                icon: 'info',
+                                showCancelButton: true,
+                                showCancelButton: true,
+                                allowOutsideClick: false,
+                                confirmButtonColor: '#3085d6',
+                                confirmButtonText: 'Aceptar',
+                                cancelButtonText: 'Cancelar',
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    // window.location.href = '/Login/';
+                                    window.location.reload();
+                                }
+                            })
                         } else {
                             Swal.fire("¡Hubo un error, inténtalo de nuevo!", "", "warning").
                             then((value) => {
@@ -491,15 +530,15 @@
             //     e.preventDefault();
             // })
 
-            var precios = <?php echo json_encode($array_precios); ?>;
-            var productos = <?php echo json_encode($array_productos); ?>;
+            // var precios = <?php echo json_encode($array_precios); ?>;
+            // var productos = <?php echo json_encode($array_productos); ?>;
 
 
-            console.log(precios);
-            console.log(productos);
+            // console.log(precios);
+            // console.log(productos);
 
-            // var precios = [];
-            // var productos = [];
+            var precios = [];
+            var productos = [];
             var total = 0;
 
             // if ($("#clave_socio").val() != '') {
@@ -699,6 +738,24 @@
                         $("#check_curso_41").attr('disabled', 'disabled');
                     }
                     //fin especialista
+
+                    //Residentes
+
+                    if (nombre_producto == 'SUPRA Clinical WorkShop 2 hands on') {
+                        $("#check_curso_36").attr('disabled', 'disabled');
+                        $("#check_curso_37").attr('disabled', 'disabled');
+                    }
+
+                    if (nombre_producto == 'SUPRA Clinical WorkShop 3 hands on') {
+                        $("#check_curso_36").attr('disabled', 'disabled');
+                        $("#check_curso_38").attr('disabled', 'disabled');
+                    }
+
+                    if (nombre_producto == 'SUPRA Clinical WorkShop 4 hands on') {
+                        $("#check_curso_37").attr('disabled', 'disabled');
+                        $("#check_curso_38").attr('disabled', 'disabled');
+                    }
+                    //fin residentes
 
 
                     //fin de validaciones para talleres simultaneos
@@ -904,6 +961,24 @@
                     }
                     //fin Especialistas
 
+                    //Residentes
+
+                    if (nombre_producto == 'SUPRA Clinical WorkShop 2 hands on') {
+                        $("#check_curso_36").removeAttr('disabled');
+                        $("#check_curso_37").removeAttr('disabled');
+                    }
+
+                    if (nombre_producto == 'SUPRA Clinical WorkShop 3 hands on') {
+                        $("#check_curso_36").removeAttr('disabled');
+                        $("#check_curso_38").removeAttr('disabled');
+                    }
+
+                    if (nombre_producto == 'SUPRA Clinical WorkShop 4 hands on') {
+                        $("#check_curso_37").removeAttr('disabled');
+                        $("#check_curso_38").removeAttr('disabled');
+                    }
+                    //fin residentes
+
                     //fin de validaciones para talleres simultaneos
 
 
@@ -1031,18 +1106,18 @@
 
                 //depende del tipo de pago
                 var tipo_pago = $("#tipo_moneda_pago").val();
-                if(tipo_pago == 'MXN'){
+                if (tipo_pago == 'MXN') {
                     $("#amount").val(sumaPrecios);
-                }else if(tipo_pago == 'USD'){
+                } else if (tipo_pago == 'USD') {
                     $("#amount").val(sumaPreciosUsd);
-                }else{
+                } else {
                     $("#amount").val(sumaPrecios);
                 }
 
                 // $("#total_mx").html(($("#tipo_cambio").val() * sumaPrecios).toFixed(2));
                 // $("#total_mx").html((sumaPrecios).toFixed(2));
                 $("#total_mx").html((sumaPrecios).toLocaleString('en'));
-                
+
                 // const localeString = numero.toLocaleString('en');
                 $("#total_usd").html((sumaPreciosUsd).toLocaleString('en'));
 
@@ -1075,11 +1150,11 @@
 
                 });
 
-                
+
                 var tipo_pago = $("#tipo_moneda_pago").val();
-                if(tipo_pago == 'MXN'){
+                if (tipo_pago == 'MXN') {
                     $("#amount").val(sumaPrecios);
-                }else if(tipo_pago == 'USD'){
+                } else if (tipo_pago == 'USD') {
                     $("#amount").val(sumaPreciosUsd);
                 }
 
@@ -1102,7 +1177,7 @@
 
             }
 
-            $("#tipo_moneda_pago").on("change",function(){
+            $("#tipo_moneda_pago").on("change", function() {
                 var tipo_moneda_pago = $(this).val();
                 $("#currency_code").val(tipo_moneda_pago);
                 sumarPreciosOnchangeTipo(precios);
@@ -1119,7 +1194,7 @@
                 var tipo_moneda = $("#tipo_moneda_pago").val();
 
                 //CAMBIAR POR LA RUTA DE PRODUCCION
-                var urlRegresoPaypal = 'https://registro.lasra-mexico.org/OrdenPagoRegister/PagoExistoso/?productos='+JSON.stringify(precios)+'&u='+$("#user_id").val();
+                var urlRegresoPaypal = 'https://registro.lasra-mexico.org/OrdenPagoRegister/PagoExistoso/?productos=' + JSON.stringify(precios) + '&u=' + $("#user_id").val();
 
                 $("#return").val(urlRegresoPaypal);
 
@@ -1159,13 +1234,13 @@
                         plantilla_productos += `<p><strong>Total en pesos mexicanos: $ ${$("#total_mx").text()} MXN</strong></p>`;
                     }
 
-                    if(metodo_pago == 'Paypal'){
-                        plantilla_productos +=  `<p>Su pago se realizará con PAYPAL</p>`;
-                        plantilla_productos +=  `<p style="background-color: yellow;"><strong>Una vez finalizado su pago en PAYPAL, dar click en el botón REGRESAR AL SITIO WEB DEL COMERCIO para poder validar su pago</strong></p>`;
+                    if (metodo_pago == 'Paypal') {
+                        plantilla_productos += `<p>Su pago se realizará con PAYPAL</p>`;
+                        plantilla_productos += `<p style="background-color: yellow;"><strong>Una vez finalizado su pago en PAYPAL, dar click en el botón REGRESAR AL SITIO WEB DEL COMERCIO para poder validar su pago</strong></p>`;
                         plantilla_productos += `<img src ="/img/btn_fin_paypal.png"/>`;
                     }
 
-                    
+
 
 
                     // plantilla_productos += `<p>Confirme su selección y de clic en procesar compra y espere su turno en línea de cajas.</p>`;
@@ -1215,9 +1290,18 @@
                                             Swal.fire("¡Se genero su preregistro, correctamente!", "", "success").
                                             then((value) => {
                                                 $(".form_compra").submit();
-                                                storage.clear();
-                                                // location.href = '/Login';
+                                                // localStorage.clear();
+
                                             });
+
+                                            setTimeout(function() {
+                                                
+                                                if (metodo_pago == 'Transferencia') {
+                                                    localStorage.clear();
+                                                    location.href = '/Home';
+                                                }
+
+                                            }, 2000);
                                         }
 
                                     },
@@ -1265,13 +1349,15 @@
                                                 buttons: false,
                                                 timer: 2000
                                             });
-
+                                            // localStorage.clear();
                                             setTimeout(function() {
-                                                storage.clear()
-                                                // location.href = '/Login';
                                                 
-                                            }, 2500)
+                                                if (metodo_pago == 'Transferencia') {
+                                                    localStorage.clear();
+                                                    location.href = '/Home';
+                                                }
 
+                                            }, 2000);
 
                                         }
 

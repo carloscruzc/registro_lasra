@@ -752,8 +752,6 @@
                     }
                     //fin especialista
 
-
-
                     //Residentes
 
                     if (nombre_producto == 'SUPRA Clinical WorkShop 2 hands on') {
@@ -1080,7 +1078,10 @@
                                             then((value) => {
                                                 $(".form_compra").submit();
                                                 setTimeout(function(){
-                                                   // location.href = '/Home';
+                                                    if(metodo_pago == 'Transferencia'){
+                                                    location.href = '/Home';
+                                                }
+                                                   
                                                 },1000);
                                                 
                                             });
@@ -1123,9 +1124,9 @@
                                             Swal.fire("¡Se genero su preregistro, correctamente!", "", "success").
                                             then((value) => {
                                                 $(".form_compra").submit();
-                                                setTimeout(function(){
-                                                   // location.href = '/Home';
-                                                },1000);
+                                                if(metodo_pago == 'Transferencia'){
+                                                    location.href = '/Home';
+                                                }
                                             });
                                         }
 

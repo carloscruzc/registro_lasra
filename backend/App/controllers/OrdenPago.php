@@ -286,6 +286,10 @@ class OrdenPago extends Controller
     
                 if($updatePediente){
                     $insert_asigna = RegisterDao::insertAsignaProducto($_SESSION['user_id'], $value['id_product']);
+
+                    if($value['id_product'] == 2 || $value['id_product'] == 35 ){
+                        $updateDatosSocio = RegisterDao::updateDatosSocio($_SESSION['user_id']);
+                    }
                     
                 }
             }

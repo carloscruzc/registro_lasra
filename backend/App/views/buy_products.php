@@ -66,6 +66,7 @@
                 <input type="hidden" id="categoria" value="<?= $categoria['categoria']; ?>">
                 <input type="hidden" name="datos" id="datos" value="<?php echo $datos; ?>">
                 <input type="hidden" name="id_pais" id="id_pais" value="<?= $datos['id_pais'] ?>">
+                <input type="hidden" id="user_id" name="user_id" value="<?= $datos['user_id'] ?>">
 
                 <!-- <?php var_dump($datos)?> -->
 
@@ -165,14 +166,13 @@
                                                 <select id="forma_pago" name="forma_pago" class="form-control">
                                                     <option value="">Seleccione una Opción de pago</option>
                                                     <option value="Transferencia">Depósito/Transferencia</option>
-                                                    <!-- <option value="Paypal">Paypal</option> -->
+                                                    <option value="Paypal">Paypal</option>
                                                 </select>
                                                 <br>
                                                 <select id="tipo_moneda_pago" name="tipo_moneda_pago" class="form-control">
                                                     <option value="">Seleccione tipo de moneda de pago</option>
                                                     <option value="MXN">$ Pesos Mexicanos - MXN</option>
                                                     <option value="USD">$ Dolares - USD</option>
-                                                    <!-- <option value="Paypal">Paypal</option> -->
                                                 </select>
 
                                                 <form class="form_compra" method="POST" action="">
@@ -184,15 +184,16 @@
 
                                                     <hr>
 
-                                                    <input type='hidden' id='business' name='business' value='aspsiqm@prodigy.net.mx'>
+                                                    <input type='hidden' id='business' name='business' value='pagos@grupolahe.com'>
                                                     <input type='hidden' id='item_name' name='item_name' value='<?= $producto_s ?>'>
                                                     <input type='hidden' id='item_number' name='item_number' value="<?= $clave ?>">
                                                     <input type='hidden' id='amount' name='amount' value='<?= $total ?>'>
-                                                    <input type='hidden' id='currency_code' name='currency_code' value='MXN'>
+                                                    <input type='hidden' id='currency_code' name='currency_code'>
                                                     <input type='hidden' id='notify_url' name='notify_url' value=''>
-                                                    <input type='hidden' id='return' name='return' value='https://registro.dualdisorderswaddmexico2022.com/ComprobantePago/'>
+                                                    <input type='hidden' id='return' name='return' value=''>
                                                     <input type="hidden" id="cmd" name="cmd" value="_xclick">
                                                     <input type="hidden" id="order" name="order" value="<?= $clave ?>">
+                                                    <input type='hidden' name='upload'  value='1' />
 
 
                                                 </form>
@@ -370,7 +371,7 @@
 
     <script>
         $(document).ready(function() {
-
+           
             if ($('#categoria').val() == 'Especialista') {
                 Swal.fire({
                             title: 'Si ya has realizado el pago de tu anualidad, súbelo aquí',
@@ -1027,7 +1028,16 @@
                 console.log("Suma precios usd " + sumaPreciosUsd);
 
                 $("#total").html(sumaPrecios);
-                $("#amount").val(sumaPrecios);
+
+                //depende del tipo de pago
+                var tipo_pago = $("#tipo_moneda_pago").val();
+                if(tipo_pago == 'MXN'){
+                    $("#amount").val(sumaPrecios);
+                }else if(tipo_pago == 'USD'){
+                    $("#amount").val(sumaPreciosUsd);
+                }else{
+                    $("#amount").val(sumaPrecios);
+                }
 
                 // $("#total_mx").html(($("#tipo_cambio").val() * sumaPrecios).toFixed(2));
                 // $("#total_mx").html((sumaPrecios).toFixed(2));
@@ -1039,6 +1049,39 @@
                 console.log("Suma Articulos " + sumaArticulos);
 
                 $("#productos_agregados").html(sumaArticulos);
+
+            }
+
+            function sumarPreciosOnchangeTipo(precios) {
+                console.log(precios);
+
+                // var sumaPrecios = <?= $total_pago ?>;
+                // var sumaArticulos = <?= $total_productos ?>;
+
+                var sumaPrecios = 0;
+                var sumaPreciosUsd = 0;
+                var sumaArticulos = 0;
+                var sumaArticulosUsd = 0;
+
+                precios.forEach(function(precio, index) {
+
+                    console.log("precio " + index + " | id_product: " + precio.id_product + " precio: " + parseInt(precio.precio) + " cantidad: " + parseInt(precio.cantidad))
+
+                    sumaPrecios += parseInt(precio.precio * precio.cantidad);
+                    sumaArticulos += parseInt(precio.cantidad);
+
+                    sumaPreciosUsd += parseInt(precio.precio_usd * precio.cantidad);
+
+
+                });
+
+                
+                var tipo_pago = $("#tipo_moneda_pago").val();
+                if(tipo_pago == 'MXN'){
+                    $("#amount").val(sumaPrecios);
+                }else if(tipo_pago == 'USD'){
+                    $("#amount").val(sumaPreciosUsd);
+                }
 
             }
 
@@ -1059,6 +1102,12 @@
 
             }
 
+            $("#tipo_moneda_pago").on("change",function(){
+                var tipo_moneda_pago = $(this).val();
+                $("#currency_code").val(tipo_moneda_pago);
+                sumarPreciosOnchangeTipo(precios);
+            });
+
 
 
             $("#btn_pago").on("click", function(event) {
@@ -1068,6 +1117,11 @@
                 var usuario = $("#email_usuario").val();
                 var metodo_pago = $("#metodo_pago").val();
                 var tipo_moneda = $("#tipo_moneda_pago").val();
+
+                //CAMBIAR POR LA RUTA DE PRODUCCION
+                var urlRegresoPaypal = 'https://registro.lasra-mexico.org/OrdenPagoRegister/PagoExistoso/?productos='+JSON.stringify(precios)+'&u='+$("#user_id").val();
+
+                $("#return").val(urlRegresoPaypal);
 
                 // console.log("precios ------");
                 // console.log(precios);
@@ -1104,6 +1158,14 @@
                     } else {
                         plantilla_productos += `<p><strong>Total en pesos mexicanos: $ ${$("#total_mx").text()} MXN</strong></p>`;
                     }
+
+                    if(metodo_pago == 'Paypal'){
+                        plantilla_productos +=  `<p>Su pago se realizará con PAYPAL</p>`;
+                        plantilla_productos +=  `<p style="background-color: yellow;"><strong>Una vez finalizado su pago en PAYPAL, dar click en el botón REGRESAR AL SITIO WEB DEL COMERCIO para poder validar su pago</strong></p>`;
+                        plantilla_productos += `<img src ="/img/btn_fin_paypal.png"/>`;
+                    }
+
+                    
 
 
                     // plantilla_productos += `<p>Confirme su selección y de clic en procesar compra y espere su turno en línea de cajas.</p>`;
@@ -1205,8 +1267,9 @@
                                             });
 
                                             setTimeout(function() {
-                                                location.href = '/Login';
                                                 storage.clear()
+                                                // location.href = '/Login';
+                                                
                                             }, 2500)
 
 

@@ -121,7 +121,7 @@
                                                 <select id="forma_pago" name="forma_pago" class="form-control">
                                                     <option value="">Seleccione una Opción de pago</option>
                                                     <option value="Transferencia">Depósito/Transferencia</option>
-                                                    <!-- <option value="Paypal">Paypal</option> -->
+                                                    <option value="Paypal">Paypal</option>
                                                 </select>
 
                                                 <br>
@@ -132,7 +132,7 @@
                                                     <!-- <option value="Paypal">Paypal</option> -->
                                                 </select>
 
-                                                <form class="form_compra" method="POST" action="" target="_blank">
+                                                <form class="form_compra" method="POST" action="">
 
                                                     <input type="hidden" id="clave_socio" name="clave_socio" value="<?= $datos['clave_socio'] ?>">
                                                     <input type="hidden" id="email_usuario" name="email_usuario" value="<?= $datos['usuario'] ?>">
@@ -141,13 +141,13 @@
 
                                                     <hr>
 
-                                                    <input type='hidden' id='business' name='business' value='aspsiqm@prodigy.net.mx'>
+                                                    <input type='hidden' id='business' name='business' value='pagos@grupolahe.com'>
                                                     <input type='hidden' id='item_name' name='item_name' value='<?= $producto_s ?>'>
                                                     <input type='hidden' id='item_number' name='item_number' value="<?= $clave ?>">
                                                     <input type='hidden' id='amount' name='amount' value='<?= $total ?>'>
-                                                    <input type='hidden' id='currency_code' name='currency_code' value='MXN'>
+                                                    <input type='hidden' id='currency_code' name='currency_code' value=''>
                                                     <input type='hidden' id='notify_url' name='notify_url' value=''>
-                                                    <input type='hidden' id='return' name='return' value='https://registro.dualdisorderswaddmexico2022.com/ComprobantePago/'>
+                                                    <input type='hidden' id='return' name='return' value=''>
                                                     <input type="hidden" id="cmd" name="cmd" value="_xclick">
                                                     <input type="hidden" id="order" name="order" value="<?= $clave ?>">
 
@@ -896,7 +896,16 @@
                 console.log("Suma precios usd " + sumaPreciosUsd);
 
                 $("#total").html(sumaPrecios);
-                $("#amount").val(sumaPrecios);
+                
+                //depende del tipo de pago
+                var tipo_pago = $("#tipo_moneda_pago").val();
+                if(tipo_pago == 'MXN'){
+                    $("#amount").val(sumaPrecios);
+                }else if(tipo_pago == 'USD'){
+                    $("#amount").val(sumaPreciosUsd);
+                }else{
+                    $("#amount").val(sumaPrecios);
+                }
 
                 // $("#total_mx").html(($("#tipo_cambio").val() * sumaPrecios).toFixed(2));
                 $("#total_mx").html((sumaPrecios).toFixed(2));
@@ -905,6 +914,39 @@
                 console.log("Suma Articulos " + sumaArticulos);
 
                 $("#productos_agregados").html(sumaArticulos);
+
+            }
+
+            function sumarPreciosOnchangeTipo(precios) {
+                console.log(precios);
+
+                // var sumaPrecios = <?= $total_pago ?>;
+                // var sumaArticulos = <?= $total_productos ?>;
+
+                var sumaPrecios = 0;
+                var sumaPreciosUsd = 0;
+                var sumaArticulos = 0;
+                var sumaArticulosUsd = 0;
+
+                precios.forEach(function(precio, index) {
+
+                    console.log("precio " + index + " | id_product: " + precio.id_product + " precio: " + parseInt(precio.precio) + " cantidad: " + parseInt(precio.cantidad))
+
+                    sumaPrecios += parseInt(precio.precio * precio.cantidad);
+                    sumaArticulos += parseInt(precio.cantidad);
+
+                    sumaPreciosUsd += parseInt(precio.precio_usd * precio.cantidad);
+
+
+                });
+
+                
+                var tipo_pago = $("#tipo_moneda_pago").val();
+                if(tipo_pago == 'MXN'){
+                    $("#amount").val(sumaPrecios);
+                }else if(tipo_pago == 'USD'){
+                    $("#amount").val(sumaPreciosUsd);
+                }
 
             }
 
@@ -925,6 +967,12 @@
 
             }
 
+            $("#tipo_moneda_pago").on("change",function(){
+                var tipo_moneda_pago = $(this).val();
+                $("#currency_code").val(tipo_moneda_pago);
+                sumarPreciosOnchangeTipo(precios);
+            });
+
 
 
             $("#btn_pago").on("click", function(event) {
@@ -938,6 +986,11 @@
 
                 console.log("precios ------");
                 console.log(precios);
+
+                //CAMBIAR POR LA RUTA DE PRODUCCION
+                var urlRegresoPaypal = 'https://registro.lasra-mexico.org/OrdenPago/PagoExistoso/?productos='+JSON.stringify(precios);
+
+                $("#return").val(urlRegresoPaypal);
 
 
                 if (precios.length <= 0) {
@@ -970,6 +1023,12 @@
                         plantilla_productos += `<p><strong>Total en dolares: $ ${$("#total_usd").text()} USD </strong></p>`;
                     } else {
                         plantilla_productos += `<p><strong>Total en pesos mexicanos: $ ${$("#total_mx").text()} MXN</strong></p>`;
+                    }
+
+                    if(metodo_pago == 'Paypal'){
+                        plantilla_productos +=  `<p>Su pago se realizará con PAYPAL</p>`;
+                        plantilla_productos +=  `<p style="background-color: yellow;"><strong>Una vez finalizado su pago en PAYPAL, dar click en el botón REGRESAR AL SITIO WEB DEL COMERCIO para poder validar su pago</strong></p>`;
+                        plantilla_productos += `<img src ="/img/btn_fin_paypal.png"/>`;
                     }
 
                     // plantilla_productos += `<p>Confirme su selección y de clic en procesar compra y espere su turno en línea de cajas.</p>`;
@@ -1019,8 +1078,11 @@
 
                                             Swal.fire("¡Se genero su preregistro, correctamente!", "", "success").
                                             then((value) => {
-                                                // $(".form_compra").submit();
-                                                location.href = '/Home';
+                                                $(".form_compra").submit();
+                                                setTimeout(function(){
+                                                   // location.href = '/Home';
+                                                },1000);
+                                                
                                             });
                                         }
 
@@ -1061,7 +1123,9 @@
                                             Swal.fire("¡Se genero su preregistro, correctamente!", "", "success").
                                             then((value) => {
                                                 $(".form_compra").submit();
-                                                location.href = '/Home';
+                                                setTimeout(function(){
+                                                   // location.href = '/Home';
+                                                },1000);
                                             });
                                         }
 

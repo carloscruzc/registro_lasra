@@ -37,6 +37,19 @@ sql;
     return $mysqli->queryAll($query);
   }
 
+  public static function getAllComprobantesStatusCero($id,$clave){
+    $mysqli = Database::getInstance();
+    $query=<<<sql
+    SELECT pro.id_producto,pro.nombre,pro.precio_publico,pro.precio_socio,pro.tipo_moneda,pro.caratula,pro.es_curso,pro.es_servicio,pro.es_congreso,pp.id_pendiente_pago,pp.status,pp.tipo_pago,pp.url_archivo,pp.clave,pp.tipo_moneda,pp.monto,c.costo
+    FROM productos pro
+    INNER JOIN pendiente_pago pp ON (pro.id_producto = pp.id_producto)
+    INNER JOIN utilerias_administradores ua ON(ua.user_id = pp.user_id)
+    INNER JOIN categorias c ON (c.id_categoria = ua.id_categoria)
+    WHERE pp.user_id = $id AND pp.status = 0 AND pp.clave = '$clave' 
+sql;
+    return $mysqli->queryAll($query);
+  }
+
   public static function getAllComprobantesbyClave($id, $clave)
   {
     $mysqli = Database::getInstance();

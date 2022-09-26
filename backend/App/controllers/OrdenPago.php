@@ -270,6 +270,34 @@ class OrdenPago extends Controller
 
         // $pdf->Output('F', 'C:/pases_abordar/'. $clave.'.pdf');
     }
+
+    function PagoExistoso(){
+        try {
+            $prodcutos = json_decode($_GET['productos'],true);
+
+            foreach($prodcutos as $key => $value){
+
+                $documento = new \stdClass();
+        
+                $documento->_id_producto = $value['id_product'];
+                $documento->_id_registrado = $_SESSION['user_id'];
+                
+                $updatePediente = HomeDao::updateStatusPendientePaypal($documento);
+    
+                if($updatePediente){
+                    $insert_asigna = RegisterDao::insertAsignaProducto($_SESSION['user_id'], $value['id_product']);
+                    
+                }
+            }
+
+            $status = true;
+        } catch (\Throwable $th) {
+            $status = false;
+        }
+
+        header('Location: /Home');
+        
+    }
     
 
 

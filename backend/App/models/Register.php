@@ -303,18 +303,16 @@ sql;
     return $mysqli->queryAll($query);
   }
 
-  public static function insertAsignaProducto($data)
+  public static function insertAsignaProducto($id_registrado, $id_producto)
   {
 
     $mysqli = Database::getInstance();
     $query = <<<sql
-  INSERT INTO asigna_producto (user_id,id_producto,fecha_asignacion,status) VALUES(:user_id,:id_producto,NOW(),1)                        
+    INSERT INTO asigna_producto (user_id,id_producto,fecha_asignacion,status) 
+    VALUES($id_registrado,$id_producto,NOW(),1)
 sql;
 
-    $parametros = array(
-      ':user_id' => $data->_user_id,
-      ':id_producto' => $data->_id_producto
-    );
+    $parametros = array();
 
     $id = $mysqli->insert($query, $parametros);
 

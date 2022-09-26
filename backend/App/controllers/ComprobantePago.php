@@ -146,7 +146,7 @@ html;
         foreach (ComprobantePagoDao::getAllComprobantes($id_user) as $key => $value) {
 
             $total_array = array();
-
+            $array_pro = array();
             $precio = 0;
 
             // if ($value['status'] == 0) {
@@ -168,7 +168,7 @@ html;
                 $total_array_paypal = array();
                 $nombre_producto = '';
 
-                foreach (ComprobantePagoDao::getAllComprobantes($id_user, $value['clave']) as $key => $value) {
+                foreach (ComprobantePagoDao::getAllComprobantesStatusCero($id_user, $value['clave']) as $key => $value) {
 
                     // if($value['es_congreso'] == 1 && $value['clave_socio'] == ""){
                     //     $precio = $value['amout_due'];
@@ -192,36 +192,45 @@ html;
                     array_push($total_array_paypal, $precio);
 
                     $nombre_producto .= $value['nombre'] . ",";
+
+                    $array_productos = [
+                        'id_product' => $value['id_producto']
+                    ];
+
+                    array_push($array_pro,$array_productos);
                 }
 
-                $total_paypal = number_format(array_sum($total_array_paypal));
-                $reimprimir_ticket = '<form method="POST"  action="https://www.paypal.com/es/cgi-bin/webscr" data-form-paypal=' . $value["id_pendiente_pago"] . ' target="_blank">
-            <input type="hidden" name="business" value="aspsiqm@prodigy.net.mx"> 
-            <input type="hidden" name="item_name" value="' . $nombre_producto . '"> 
-            <input type="hidden" name="item_number" value="' . $value["clave"] . '"> 
-            <input type="hidden" name="amount" value="' . $total_paypal . '"> 
-            <input type="hidden" name="currency_code" value="USD"> 
-            <input type="hidden" name="notify_url" value=""> 
-            <input type="hidden" name="return" value="https://registro.dualdisorderswaddmexico2022.com/ComprobantePago/"> 
-            <input type="hidden" name="cmd" value="_xclick">  
-            <input type="hidden" name="order" value="' . $value["clave"] . '">
-           
-            <button class="btn btn-primary btn-only-icon mt-2" type="submit">Realizar pago Paypal</button>
-            </form>';
+                $array_pro = json_encode($array_pro);
+
+                $total_paypal = array_sum($total_array_paypal);
+                $reimprimir_ticket = "<form method='POST'  action='https://www.paypal.com/es/cgi-bin/webscr' data-form-paypal=" . $value['id_pendiente_pago'] . " class='form-paypal'>
+                                        <input type='hidden' name='business' value='pagos@grupolahe.com'> 
+                                        <input type='hidden' name='item_name' value='" . $nombre_producto . "'> 
+                                        <input type='hidden' name='item_number' value='" . $value['clave'] . "'> 
+                                        <input type='hidden' name='amount' value='" . $total_paypal . "'> 
+                                        <input type='hidden' name='currency_code' value='MXN'> 
+                                        <input type='hidden' name='notify_url' value=''> 
+                                        <input type='hidden' name='return' value='https://registro.lasra-mexico.org/OrdenPago/PagoExistoso/?productos=$array_pro'> 
+                                        <input type='hidden' name='cmd' value='_xclick'>  
+                                        <input type='hidden' name='order' value='" . $value['clave'] . "'>  
+                                        <input name='upload' type='hidden' value='1' />              
+                                        <button class='btn btn-primary btn-only-icon mt-2 btn_pay_paypal' type='button'>Realizar pago Paypal</button>
+                                    </form>";
 
                 $nombre_producto = '';
             } else if ($value['tipo_pago'] == "Paypal" && !empty($value['url_archivo'])) {
                 $reimprimir_ticket = '';
             }
 
-            if (empty($value['url_archivo']) || $value['url_archivo'] == '' || $value['status'] == 2) {
+            if ($value['tipo_pago'] == "Transferencia" && empty($value['url_archivo']) || $value['status'] == 2) {
                 $button_comprobante = '<form method="POST" enctype="multipart/form-data" action="/ComprobantePago/uploadComprobante" data-id-pp=' . $value["id_pendiente_pago"] . '>
                                     <input type="hidden" name="id_pendiente_pago" id="id_pendiente_pago" value="' . $value["id_pendiente_pago"] . '"/>
                                     <input type="hidden" name="clave" id="clave" value="' . $value["clave"] . '"/>
                                     <input type="file" accept="image/*,.pdf" class="form-control" id="file-input" name="file-input" style="width: auto; margin: 0 auto;">
                                     <button class="btn btn-primary btn-only-icon mt-2" type="submit">Subir</button>
                                     </form>';
-            } else if($value['tipo_pago'] == "Registro_Becado") {
+            } 
+            else if($value['tipo_pago'] == "Paypal"){
                 $button_comprobante = '';
             }
             else {

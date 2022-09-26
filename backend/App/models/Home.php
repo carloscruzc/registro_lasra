@@ -197,4 +197,19 @@ sql;
     return $mysqli->queryOne($query);
   }
 
+
+  public static function updateStatusPendientePaypal($data)
+  {
+    $mysqli = Database::getInstance(true);
+
+    $query = <<<sql
+    UPDATE pendiente_pago SET status = 1, url_archivo = 'PAGO_PAYPAL'  WHERE id_producto = :id_producto AND user_id = :id_registrado AND tipo_pago = 'Paypal' AND status = 0;
+sql;
+    $parametros = array(
+      ':id_producto' => $data->_id_producto,
+      ':id_registrado' => $data->_id_registrado
+    );
+    return $mysqli->update($query, $parametros);
+  }
+
 }

@@ -170,6 +170,35 @@
             });
         });
 
+        $(".btn_pay_paypal").on("click",function(){
+            
+            var plantilla_productos = '';
+
+            plantilla_productos +=  `<p style="background-color: yellow;"><strong>Una vez finalizado su pago en PAYPAL, dar click en el botón REGRESAR AL SITIO WEB DEL COMERCIO para poder validar su pago</strong></p>`;
+            plantilla_productos += `<img src ="/img/btn_fin_paypal.png"/>`;
+
+           
+                    Swal.fire({
+                    title: '',
+                    text: '',
+                    html: plantilla_productos,
+                    icon: 'warning',
+                    showCancelButton: false,
+                    showConfirmButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    cancelButtonText: 'Cancelar',
+                    confirmButtonText: 'Procesar Compra'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $(this).closest('.form-paypal').submit();
+
+                    }
+                })
+        })
+
+        
+
         
 
         // repetirCadaSegundo();

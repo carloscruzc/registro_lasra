@@ -381,9 +381,27 @@ public static function updateDatosSocio($user_id)
     $query = <<<sql
     UPDATE utilerias_administradores SET socio = 1 WHERE user_id = $user_id;
 sql;
-
-
     return $mysqli->update($query);
   }
+
+  public static function updateStatusEmailInvi($user_id)
+  {
+    $mysqli = Database::getInstance(true);
+    $query = <<<sql
+    UPDATE utilerias_administradores SET email_invitacion = 1 WHERE user_id = $user_id;
+sql;
+    return $mysqli->update($query);
+  }
+
+  public static function updateStatusEmailConfi($user_id)
+  {
+    $mysqli = Database::getInstance(true);
+    $query = <<<sql
+    UPDATE utilerias_administradores SET email_confirmacion = 1 WHERE user_id = $user_id;
+sql;
+    return $mysqli->update($query);
+  } 
+
+  
   
 }

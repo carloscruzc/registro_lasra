@@ -773,6 +773,14 @@ html;
             $id = RegisterDao::insertNewUser($documento);
         }
 
+        //enviar email de invitacion
+
+        $existe_user = RegisterDao::getUser($data['email']);
+
+        if($existe_user[0]['email_invitacion'] == 0){
+            $updateStatusEmailInvi = RegisterDao::updateStatusEmailInvi($existe_user[0]['user_id']);
+            $this->cartaInvitacion($existe_user);
+        }
 
 
         $header = <<<html
@@ -1310,6 +1318,12 @@ html;
 
         $data_user = HomeDao::getDataUser($user_email);
 
+        if($data_user['email_invitacion'] == 0){
+            $updateStatusEmailInvi = RegisterDao::updateStatusEmailInvi($data_user['user_id']);
+            $this->cartaInvitacion_($data_user);
+        }
+
+
         $header = <<<html
         <!DOCTYPE html>
         <html lang="es">
@@ -1754,6 +1768,13 @@ html;
 
             ];
 
+            if($datos_user['email_confirmacion'] == 0){
+                $updateStatusEmailConfi = RegisterDao::updateStatusEmailConfi($datos_user['user_id']);
+                $this->cartaConfirmacion($datos_user);
+            }
+
+            
+
             if (isset($_POST['enviar_email'])) {
 
                 // $msg = [
@@ -2022,6 +2043,191 @@ html;
 
     //     // $pdf->Output('F', 'C:/pases_abordar/'. $clave.'.pdf');
     // }
+
+    public function cartaInvitacion($array_user)
+    {
+        date_default_timezone_set('America/Mexico_City');
+
+        $array_user = $array_user[0];
+
+        $fecha = date("d-m-Y");
+        $d = $this->fechaCastellano($fecha);
+        $nombre_completo = $array_user['title'] . " " . $array_user['nombre'] . " " . $array_user['apellidop']. " " . $array_user['apellidom'];
+
+
+        $pdf = new \FPDF($orientation = 'P', $unit = 'mm', $format = 'A4');
+        $pdf->AddPage();
+        $pdf->SetFont('Arial', 'B', 8);    //Letra Arial, negrita (Bold), tam. 20
+        $pdf->setY(1);
+        $pdf->SetFont('Arial', 'B', 16);
+        $pdf->Image('constancias/plantillas/carta_invitacion.png', 0, 0, 210, 300);  
+
+        //fecha
+        $pdf->SetXY(95, 35);
+        $pdf->SetFont('Arial', 'B', 10);
+        $pdf->SetTextColor(0, 0, 0);
+        $pdf->Multicell(100, 10, utf8_decode('Ciudad de México a '.$d), 0, 'C');
+
+        //nombre
+        $pdf->SetXY(32, 67);
+        $pdf->SetFont('Arial', 'B', 10);
+        $pdf->SetTextColor(0, 0, 0);
+        $pdf->Multicell(100, 10, utf8_decode($nombre_completo), 0, 'C');
+
+
+        $nombre_fichero = 'cartas/' . $array_user['user_id'];
+
+
+        if (!file_exists($nombre_fichero)) {
+            mkdir('cartas/' . $array_user['user_id'], 0777, true);
+        } 
+
+        // $pdf->Output();
+        $pdf->Output('F', 'cartas/' . $array_user['user_id'] .'/carta_invitacion_'.$array_user['nombre'] . " " . $array_user['apellidop'].'.pdf');
+        chmod('cartas/' . $array_user['user_id'] .'/carta_invitacion_'.$array_user['nombre'] . " " . $array_user['apellidop'].'.pdf', 0755);
+
+        $msg = [
+            'email' => $array_user['usuario'],
+            'nombre' => $nombre_completo,
+            'name' => $array_user['nombre'],
+            'surname' => $array_user['apellidop'],
+            'user_id' => $array_user['user_id'],
+            'fecha' => $d
+        ];
+
+
+
+        $mailer = new Mailer();
+        $mailer->mailCartaInvitacion($msg);
+    }
+
+    public function cartaInvitacion_($array_user)
+    {
+        date_default_timezone_set('America/Mexico_City');
+
+        $fecha = date("d-m-Y");
+        $d = $this->fechaCastellano($fecha);
+        $nombre_completo = $array_user['title'] . " " . $array_user['nombre'] . " " . $array_user['apellidop']. " " . $array_user['apellidom'];
+
+
+        $pdf = new \FPDF($orientation = 'P', $unit = 'mm', $format = 'A4');
+        $pdf->AddPage();
+        $pdf->SetFont('Arial', 'B', 8);    //Letra Arial, negrita (Bold), tam. 20
+        $pdf->setY(1);
+        $pdf->SetFont('Arial', 'B', 16);
+        $pdf->Image('constancias/plantillas/carta_invitacion.png', 0, 0, 210, 300);  
+
+        //fecha
+        $pdf->SetXY(95, 35);
+        $pdf->SetFont('Arial', 'B', 10);
+        $pdf->SetTextColor(0, 0, 0);
+        $pdf->Multicell(100, 10, utf8_decode('Ciudad de México a '.$d), 0, 'C');
+
+        //nombre
+        $pdf->SetXY(32, 67);
+        $pdf->SetFont('Arial', 'B', 10);
+        $pdf->SetTextColor(0, 0, 0);
+        $pdf->Multicell(100, 10, utf8_decode($nombre_completo), 0, 'C');
+
+
+        $nombre_fichero = 'cartas/' . $array_user['user_id'];
+
+
+        if (!file_exists($nombre_fichero)) {
+            mkdir('cartas/' . $array_user['user_id'], 0777, true);
+        } 
+
+        // $pdf->Output();
+        $pdf->Output('F', 'cartas/' . $array_user['user_id'] .'/carta_invitacion_'.$array_user['nombre'] . " " . $array_user['apellidop'].'.pdf');
+        chmod('cartas/' . $array_user['user_id'] .'/carta_invitacion_'.$array_user['nombre'] . " " . $array_user['apellidop'].'.pdf', 0755);
+
+        $msg = [
+            'email' => $array_user['usuario'],
+            'nombre' => $nombre_completo,
+            'name' => $array_user['nombre'],
+            'surname' => $array_user['apellidop'],
+            'user_id' => $array_user['user_id'],
+            'fecha' => $d
+        ];
+
+
+
+        $mailer = new Mailer();
+        $mailer->mailCartaInvitacion($msg);
+    }
+
+    public function cartaConfirmacion($array_user)
+    {
+        date_default_timezone_set('America/Mexico_City');
+
+        $fecha = date("d-m-Y");
+        $d = $this->fechaCastellano($fecha);
+        $nombre_completo = $array_user['title'] . " " . $array_user['nombre'] . " " . $array_user['apellidop']. " " . $array_user['apellidom'];
+
+
+        $pdf = new \FPDF($orientation = 'P', $unit = 'mm', $format = 'A4');
+        $pdf->AddPage();
+        $pdf->SetFont('Arial', 'B', 8);    //Letra Arial, negrita (Bold), tam. 20
+        $pdf->setY(1);
+        $pdf->SetFont('Arial', 'B', 16);
+        $pdf->Image('constancias/plantillas/carta_confirmacion.png', 0, 0, 210, 300);  
+
+        //fecha
+        $pdf->SetXY(95, 35);
+        $pdf->SetFont('Arial', 'B', 10);
+        $pdf->SetTextColor(0, 0, 0);
+        $pdf->Multicell(100, 10, utf8_decode('Ciudad de México a '.$d), 0, 'C');
+
+        //nombre
+        $pdf->SetXY(32, 67);
+        $pdf->SetFont('Arial', 'B', 10);
+        $pdf->SetTextColor(0, 0, 0);
+        $pdf->Multicell(100, 10, utf8_decode($nombre_completo), 0, 'C');
+
+
+        $nombre_fichero = 'cartas/' . $array_user['user_id'];
+
+
+        if (!file_exists($nombre_fichero)) {
+            mkdir('cartas/' . $array_user['user_id'], 0777, true);
+        } 
+
+        // $pdf->Output();
+        $pdf->Output('F', 'cartas/' . $array_user['user_id'] .'/carta_confirmacion_'.$array_user['nombre'] . " " . $array_user['apellidop'].'.pdf');
+        chmod('cartas/' . $array_user['user_id'] .'/carta_confirmacion_'.$array_user['nombre'] . " " . $array_user['apellidop'].'.pdf', 0755);
+
+        $msg = [
+            'email' => $array_user['usuario'],
+            'nombre' => $nombre_completo,
+            'name' => $array_user['nombre'],
+            'surname' => $array_user['apellidop'],
+            'user_id' => $array_user['user_id'],
+            'fecha' => $d
+        ];
+
+
+
+        $mailer = new Mailer();
+        $mailer->mailCartaConfirmacion($msg);
+    }
+
+    function fechaCastellano ($fecha) {
+        $fecha = substr($fecha, 0, 10);
+        $numeroDia = date('d', strtotime($fecha));
+        $dia = date('l', strtotime($fecha));
+        $mes = date('F', strtotime($fecha));
+        $anio = date('Y', strtotime($fecha));
+    
+        $dias_ES = array("Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo");
+        $dias_EN = array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday");
+        $nombredia = str_replace($dias_EN, $dias_ES, $dia);
+        $meses_ES = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+        $meses_EN = array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+        $nombreMes = str_replace($meses_EN, $meses_ES, $mes);
+    
+        // return $nombredia." ".$numeroDia." de ".$nombreMes." de ".$anio;
+        return $numeroDia." de ".$nombreMes." de ".$anio;
+    }
 
     public function ticketAll($clave = null, $id_curso = null)
     {

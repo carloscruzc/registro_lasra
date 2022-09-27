@@ -11,6 +11,7 @@ use \Core\MasterDom;
 use \Core\Controller;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use \App\models\Register as RegisterDao;
 
 
 class Mailer
@@ -406,6 +407,9 @@ class Mailer
 
     public function mailCartaInvitacion($msg)
     {
+
+        $userData = RegisterDao::userDataForEmail($msg['user_id']);
+
         $mail = new PHPMailer(true);   
 
         try {
@@ -424,6 +428,7 @@ class Mailer
             //Recipients
             $mail->setFrom($msg['email'], 'LASRA 2022 Registro');
             $mail->addAddress($msg['email'], $msg['name']);     //Add a recipient
+            $mail->addCC('registro@lasra-mexico.org');
 
            
 
@@ -479,7 +484,19 @@ class Mailer
                     <p>
                         <b>Estimado :</b>'.$msg['nombre'].'
                     </p>
-                    
+                    <p>
+                        Usted se registro con los siguintes datos:
+                    </p>
+                    <p>
+                        <b>Email: </b>'.$userData['usuario'].'<br>
+                        <b>Nombre: </b>'.$userData['nombre'].' '.$userData['apellidop'].' '.$userData['apellidom'].'<br>
+                        <b>Teléfono: </b>'.$userData['telefono'].'<br>
+                        <b>Nivel: </b>'.$userData['categoria'].'<br>
+                        <b>Especialidad: </b>'.$userData['nombre_especialidad'].'<br>
+                        <b>Pais: </b>'.$userData['pais'].'<br>
+                        <b>Estado: </b>'.$userData['estado'].'<br>
+                        
+                    </p>
                     
                     <p>
                         Por medio de la presente la Asociación Latinoamericana de Anestesia Regional LASRA México le hace una atenta invitación para que asista en calidad de Congresista al V Congreso Mexicano de Anestesia Regional y Medicina del Dolor, el cual se llevará a cabo del 09 al 12 de noviembre del presente, en la Ciudad de México 
@@ -522,6 +539,7 @@ class Mailer
 
     public function mailCartaConfirmacion($msg)
     {
+       
         $mail = new PHPMailer(true);   
 
         try {
@@ -540,6 +558,7 @@ class Mailer
             //Recipients
             $mail->setFrom($msg['email'], 'LASRA 2022 Registro');
             $mail->addAddress($msg['email'], $msg['name']);     //Add a recipient
+            $mail->addCC('registro@lasra-mexico.org');
 
            
 
@@ -595,7 +614,6 @@ class Mailer
                     <p>
                         <b>Estimado :</b>'.$msg['nombre'].'
                     </p>
-                    
                     
                     <p>
                         Por medio de la presente la Asociación Latinoamericana de Anestesia Regional LASRA México confirma su registro al V Congreso Mexicano de Anestesia Regional y Medicina del Dolor, el cual se llevará a cabo del 09 al 12 de noviembre del presente, en la Ciudad de México  

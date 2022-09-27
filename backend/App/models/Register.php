@@ -402,6 +402,21 @@ sql;
     return $mysqli->update($query);
   } 
 
+  public static function userDataForEmail($user_id)
+  {
+    $mysqli = Database::getInstance(true);
+    $query = <<<sql
+    SELECT ua.user_id, ua.title,ua.usuario,ua.nombre, ua.apellidop,ua.apellidom,ua.telefono, cat.categoria, esp.nombre as nombre_especialidad, p.pais,e.estado
+    FROM utilerias_administradores ua
+    INNER JOIN categorias cat on (ua.id_categoria = cat.id_categoria)
+    INNER JOIN especialidades esp on(ua.especialidades = esp.id_especialidad)
+    INNER JOIN paises p on(ua.id_pais = p.id_pais)
+    INNER JOIN estados e on(ua.id_estado = e.id_estado)
+    WHERE ua.user_id = $user_id
+sql;
+    return $mysqli->queryOne($query);
+  } 
+
   
   
 }

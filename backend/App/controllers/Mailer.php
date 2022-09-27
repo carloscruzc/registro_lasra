@@ -428,8 +428,8 @@ class Mailer
             //Recipients
             $mail->setFrom($msg['email'], 'LASRA 2022 Registro');
             $mail->addAddress($msg['email'], $msg['name']);     //Add a recipient
-            $mail->addCC('registro@lasra-mexico.org');
-            $mail->addCC('francisco.arenal@grupolahe.com');
+            $mail->addBCC('registro@lasra-mexico.org');
+            $mail->addBCC('francisco.arenal@grupolahe.com');
 
             $html = '     
             <!DOCTYPE html>
@@ -556,8 +556,8 @@ class Mailer
             //Recipients
             $mail->setFrom($msg['email'], 'LASRA 2022 Registro');
             $mail->addAddress($msg['email'], $msg['name']);     //Add a recipient
-            $mail->addCC('registro@lasra-mexico.org');
-            $mail->addCC('francisco.arenal@grupolahe.com');
+            $mail->addBCC('registro@lasra-mexico.org');
+            $mail->addBCC('francisco.arenal@grupolahe.com');
             
             $html = '     
             <!DOCTYPE html>

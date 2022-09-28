@@ -83,12 +83,13 @@ sql;
       public static function insertComentario($data){
         $mysqli = Database::getInstance(1);
         $query=<<<sql
-        INSERT INTO comentarios(comentario,sitio,fecha)
-        VALUES (:comentario, :sitio,:fecha);
+        INSERT INTO comentarios(comentario,nombre_completo,sitio,fecha)
+        VALUES (:comentario,:nombre_completo, :sitio,:fecha);
   sql;
   
             $parametros = array(
             ':comentario'=>$data->_comentario,
+            ':nombre_completo'=>$data->_nombre_completo,
             ':sitio'=>$data->_sitio,
             ':fecha'=>$data->_fecha
             );

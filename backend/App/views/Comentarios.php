@@ -1,6 +1,6 @@
 <!-- ABRE MODAL -->
 <div class="modal fade" id="Modal_Caja" role="dialog" aria-labelledby="" aria-hidden="">
-    <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">
@@ -17,11 +17,22 @@
                 en la caja de comentarios!</p>
                 <hr>
                 <form method="POST" enctype="multipart/form-data" id="form_datos_caja">
+
+                    <div class="row">
+                        <center>
+                        <div class="col-8">
+                            <label class="control-label col-12" for="nombre_completo">Escribe tu nombre completo <span class="required">*</span></label>
+                            <input type="text" class="form-control" id="nombre_completo" name="nombre_completo" placeholder="¡Escribe nombre aquí!" require>
+                        </div>
+                        </center>
+                        
+                    </div>
                     <div class="row">
                         <center>
                         <div class="col-8">
                             <label class="control-label col-12" for="comentario">Caja de Comentarios <span class="required">*</span></label>
-                            <input type="text" class="form-control" id="comentario" name="comentario" placeholder="¡Escribe tu comentario aquí!" require>
+                            <!-- <input type="text" class="form-control" id="comentario" name="comentario" placeholder="¡Escribe tu comentario aquí!" require> -->
+                            <textarea class="form-control mb-3" name="comentario" id="comentario" cols="30" rows="5"></textarea>
                             <input type="hidden" class="form-control" id="sitio" name="sitio">
                         </div>
                         </center>

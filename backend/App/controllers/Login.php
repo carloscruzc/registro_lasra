@@ -354,6 +354,7 @@ html;
         $fecha = $date->format('Y-m-d H:i:s');
 
         $data->_comentario = MasterDom::getData('comentario');
+        $data->_nombre_completo = MasterDom::getData('nombre_completo');
         $data->_sitio = MasterDom::getData('sitio');
         $data->_fecha = $fecha;
         // $data->_utilerias_administrador_id = $_SESSION['utilerias_administradores_id'];
@@ -367,7 +368,7 @@ html;
         } else {
             echo "error";
             // header('Location: /PickUp');
-            //var_dump($id);
+            // var_dump($id);
         }
     }
 

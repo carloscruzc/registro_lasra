@@ -2572,49 +2572,49 @@ html;
     {
         $pais = $_POST['pais'];
 
-        if ($pais != 156) {
+        // if ($pais != 156) {
             $estados = RegisterDao::getState($pais);
             $html = "";
             foreach ($estados as $estado) {
                 $html .= '<option value="' . $estado['id_estado'] . '">' . $estado['estado'] . '</option>';
             }
-        } else {
-            $html = "";
-            $html .= '
-                <option value="" disabled>Selecciona una Opción</option>
-                <option value="2537">Aguascalientes</option>
-                <option value="2538">Baja California</option>
-                <option value="2539">Baja California Sur</option>
-                <option value="2540">Campeche</option>
-                <option value="2541">Chiapas</option>
-                <option value="2542">Chihuahua</option>
-                <option value="2543">Coahuila de Zaragoza</option>
-                <option value="2544">Colima</option>
-                <option value="2545">Ciudad de Mexico</option>
-                <option value="2546">Durango</option>
-                <option value="2547">Guanajuato</option>
-                <option value="2548">guerrero</option>
-                <option value="2549">Hidalgo</option>
-                <option value="2550">Jalisco</option>
-                <option value="2551">Estado de Mexico</option>
-                <option value="2552">Michoacan de Ocampo</option>
-                <option value="2553">Morelos</option>
-                <option value="2554">Nayarit</option>
-                <option value="2555">Nuevo Leon</option>
-                <option value="2556">Oaxaca</option>
-                <option value="2557">Puebla</option>
-                <option value="2558">Queretaro de Artiaga</option>
-                <option value="2559">Quinta Roo</option>
-                <option value="2560">San Lusi Potosi</option>
-                <option value="2561">Sonora</option>
-                <option value="2562">Tabasco</option>
-                <option value="2563">Tamaulipas</option>
-                <option value="2564">Tlaxcala</option>
-                <option value="2565">Veracruz-Llave</option>
-                <option value="2566">Yucatan</option>
-                <option value="2567">Zacatecas</option>
-                ';
-        }
+        // } else {
+        //     $html = "";
+        //     $html .= '
+        //         <option value="" disabled>Selecciona una Opción</option>
+        //         <option value="2537">Aguascalientes</option>
+        //         <option value="2538">Baja California</option>
+        //         <option value="2539">Baja California Sur</option>
+        //         <option value="2540">Campeche</option>
+        //         <option value="2541">Chiapas</option>
+        //         <option value="2542">Chihuahua</option>
+        //         <option value="2543">Coahuila de Zaragoza</option>
+        //         <option value="2544">Colima</option>
+        //         <option value="2545">Ciudad de Mexico</option>
+        //         <option value="2546">Durango</option>
+        //         <option value="2547">Guanajuato</option>
+        //         <option value="2548">guerrero</option>
+        //         <option value="2549">Hidalgo</option>
+        //         <option value="2550">Jalisco</option>
+        //         <option value="2551">Estado de Mexico</option>
+        //         <option value="2552">Michoacan de Ocampo</option>
+        //         <option value="2553">Morelos</option>
+        //         <option value="2554">Nayarit</option>
+        //         <option value="2555">Nuevo Leon</option>
+        //         <option value="2556">Oaxaca</option>
+        //         <option value="2557">Puebla</option>
+        //         <option value="2558">Queretaro de Artiaga</option>
+        //         <option value="2559">Quinta Roo</option>
+        //         <option value="2560">San Lusi Potosi</option>
+        //         <option value="2561">Sonora</option>
+        //         <option value="2562">Tabasco</option>
+        //         <option value="2563">Tamaulipas</option>
+        //         <option value="2564">Tlaxcala</option>
+        //         <option value="2565">Veracruz-Llave</option>
+        //         <option value="2566">Yucatan</option>
+        //         <option value="2567">Zacatecas</option>
+        //         ';
+        // }
 
 
         $respuesta = new respuesta();

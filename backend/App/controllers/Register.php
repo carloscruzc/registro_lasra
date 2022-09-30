@@ -312,7 +312,8 @@ html;
         View::render("Register");
     }
 
-    public function uploadComprobanteResidente(){
+    public function uploadComprobanteResidente()
+    {
         $numero_rand = $this->generateRandomString();
         $user_id = $_POST['_user_id'];
         $file = $_FILES['archivo_residente'];
@@ -337,32 +338,26 @@ html;
         }
 
 
-        
+
         if ($file['name'] != "") {
-            
-            
-            if (move_uploaded_file($file['tmp_name'], "comprobantesPago/".$user_id."/".$name_archivo)) {
-                
+
+
+            if (move_uploaded_file($file['tmp_name'], "comprobantesPago/" . $user_id . "/" . $name_archivo)) {
+
                 $documento = new \stdClass();
                 $documento->_user_id = $user_id;
                 $documento->_ano_residencia = $_POST['ano_residencia'];
                 $documento->_url = $name_archivo;
 
                 $idc = ComprobantePagoDao::insertComprobanteEstudiante($documento);
-
-               
-
-            }else{
+            } else {
                 echo "error";
-
             }
-
-        
         }
 
-        if($idc){
+        if ($idc) {
             echo "success";
-        }else{
+        } else {
             echo "error";
         }
     }
@@ -483,7 +478,7 @@ html;
         $clave_socio = $_POST['clave_socio'];
         $txt_especialidad = $_POST['txt_especialidad'];
 
-     
+
 
         if (isset($_FILES['archivo_residente'])) {
             $archivo_residente = $_FILES['archivo_residente'];
@@ -649,7 +644,7 @@ html;
         $documento->_monto_congreso = $monto_congreso;
         $documento->_clave_socio = $data['clave_socio'];
         $documento->_txt_especialidad = $data['txt_especialidad'];
-        
+
 
         $existe_user = RegisterDao::getUser($data['email']);
 
@@ -718,13 +713,13 @@ html;
         }
     }
 
-   
+
     public function passFinalize_()
     {
 
         //Acarrear los datos
         $data = unserialize($_POST['dataUser']);
-        
+
 
         if ($data['categorias'] == 0) {
             $monto_congreso = RegisterDao::getMontoPago(1)['costo'];
@@ -777,7 +772,7 @@ html;
 
         $existe_user = RegisterDao::getUser($data['email']);
 
-        if($existe_user[0]['email_invitacion'] == 0){
+        if ($existe_user[0]['email_invitacion'] == 0) {
             $updateStatusEmailInvi = RegisterDao::updateStatusEmailInvi($existe_user[0]['user_id']);
             $this->cartaInvitacion($existe_user);
         }
@@ -1291,7 +1286,7 @@ html;
         View::set('header', $header);
         View::set('footer', $extraFooter);
         View::set('datos', $data_user);
-        View::set('array_user',$data);
+        View::set('array_user', $data);
         View::set('clave', $clave);
         View::set('checks', $checks);
         // View::set('src_qr',$src_qr); 
@@ -1313,12 +1308,12 @@ html;
         $user_email = $_GET['e'];
         $user_email = base64_decode($user_email);
 
-        $array_user = ['ano_residencia' => $_GET['a']];//solo lleva el año de residencia
+        $array_user = ['ano_residencia' => $_GET['a']]; //solo lleva el año de residencia
 
 
         $data_user = HomeDao::getDataUser($user_email);
 
-        if($data_user['email_invitacion'] == 0){
+        if ($data_user['email_invitacion'] == 0) {
             $updateStatusEmailInvi = RegisterDao::updateStatusEmailInvi($data_user['user_id']);
             $this->cartaInvitacion_($data_user);
         }
@@ -1630,8 +1625,8 @@ html;
         $getCategoria = LoginDao::getCategoriaById($data_user['id_categoria']);
 
 
-        View::set('categoria', $getCategoria);        
-        View::set('array_user',$array_user);
+        View::set('categoria', $getCategoria);
+        View::set('array_user', $array_user);
         View::set('header', $header);
         View::set('datos', $data_user);
         View::set('clave', $clave);
@@ -1717,7 +1712,7 @@ html;
 
                     $existe_asigna = RegisterDao::getProductosAsignaProducto($user_id, $id_producto);
                     if (!$existe_asigna) {
-                        $insert_asigna = RegisterDao::insertAsignaProducto($user_id,$id_producto);
+                        $insert_asigna = RegisterDao::insertAsignaProducto($user_id, $id_producto);
                     }
                 } else {
                     $status = 0;
@@ -1768,12 +1763,12 @@ html;
 
             ];
 
-            if($datos_user['email_confirmacion'] == 0){
+            if ($datos_user['email_confirmacion'] == 0) {
                 $updateStatusEmailConfi = RegisterDao::updateStatusEmailConfi($datos_user['user_id']);
                 $this->cartaConfirmacion($datos_user);
             }
 
-            
+
 
             if (isset($_POST['enviar_email'])) {
 
@@ -1808,6 +1803,118 @@ html;
         echo json_encode($res);
     }
 
+    public function choseWorkshops()
+    {
+        date_default_timezone_set('America/Mexico_City');
+
+        $bandera = false;
+        $total = 0;
+
+        $compra_en = $_POST['compra_en'];
+
+
+        // $clave = $this->generateRandomString();
+        $clave = $_POST['clave'];
+        $usuario = $_POST['usuario'];
+        $tipo_pago = $_POST['metodo_pago'];
+        $tipo_moneda = $_POST['tipo_moneda'];
+
+
+        $datos = json_decode($_POST['array'], true);
+
+        $datos_user = RegisterDao::getDataUser($usuario);
+
+
+        $user_id = $datos_user['user_id'];
+        $reference = $datos_user['referencia'];
+        // $tipo_pago = $metodo_pago;
+        $fecha =  date("Y-m-d");
+
+
+        foreach ($datos as $key => $value) {
+
+
+            for ($i = 1; $i <= $value['cantidad']; $i++) {
+                $documento = new \stdClass();
+
+                $id_producto = $value['id_product'];
+
+
+
+                $documento->_id_producto = $id_producto;
+                $documento->_user_id = $user_id;
+                $documento->_reference = $reference;
+                $documento->_fecha = $fecha;
+                $documento->_monto = 0;
+                $documento->_tipo_pago = $tipo_pago;
+                $documento->_tipo_moneda = $tipo_moneda;
+                $documento->_clave = $clave;
+
+                
+                $documento->_status = 1;
+
+                $existe_pendiente = RegisterDao::getProductosPendientesPago($user_id, $id_producto);
+
+                if ($existe_pendiente) {
+                    $bandera = true;
+                } else {
+                    $id = RegisterDao::inserPendientePago($documento);
+
+                    // // $datos_estudiante = RegisterDao::getEstudiante($user_id);
+                    // date_default_timezone_set('America/Mexico_City');
+                    // $fecha_pendiente = date('Y-m-d H:i:s');
+
+                    // // if (!$datos_estudiante) {
+                    //     $existe_residente = RegisterDao::getPendientesResidentes($user_id);
+                    //     if ($existe_residente) {
+                    //         $ida = RegisterDao::insertPendienteEstudiante($fecha_pendiente, $user_id);
+                    //         if ($ida) {
+                    //             // echo 'FUNCIONA';
+                    //         } else {
+                    //             // echo 'NO FUNCIONA';
+                    //         }
+                    //     } else {
+                    //     }
+                    // // } else {
+                    // //     // no es estudiante
+                    // //     // echo 'No funciona';
+                    // // }
+                }
+
+                if ($id) {
+                    $insert_asigna = RegisterDao::insertAsignaProducto($user_id,$id_producto);
+
+                    $restarStock = RegisterDao::restarStock($id_producto);
+
+                    $bandera = true;
+                }
+
+                // echo 'Se inserta '.$i. 'veces' .' la cantidad '.$value['cantidad'];
+                // echo "<br>";
+            }
+            // $total += $monto;
+        }
+
+        if ($bandera) {
+            $res = [
+                'status' => 'success',
+                'code' => $clave
+
+            ];
+
+            $updateCheckTalleres = HomeDao::updateCheckTalleres($user_id);
+
+            
+        } else {
+            $res = [
+                'status' => 'fail',
+                'code' => $clave
+
+            ];
+        }
+        echo json_encode($res);
+    }
+
     public function saveComprobante()
     {
         $numero_rand = $this->generateRandomString();
@@ -1831,26 +1938,26 @@ html;
         $formatos_permitidos_img = array("image/jpg", "image/jpeg", "image/gif", "image/png");
 
         if (in_array($_FILES['file-input']['type'], $formatos_permitidos_img)) {
-            
+
             $tipos  = $_FILES['file-input']['type'];
-            $tipo = explode("/", $tipos);  
-            $name_archivo = $numero_rand.'.'.$tipo[1];
-        }else{
-            $name_archivo = $numero_rand.'.pdf';
+            $tipo = explode("/", $tipos);
+            $name_archivo = $numero_rand . '.' . $tipo[1];
+        } else {
+            $name_archivo = $numero_rand . '.pdf';
         }
 
-        $nombre_fichero = 'comprobantesPago/'.$datos_user['user_id'];
+        $nombre_fichero = 'comprobantesPago/' . $datos_user['user_id'];
 
 
         if (!file_exists($nombre_fichero)) {
-            mkdir('comprobantesPago/'.$datos_user['user_id'], 0777, true);
-        } 
+            mkdir('comprobantesPago/' . $datos_user['user_id'], 0777, true);
+        }
 
         if ($file['name'] != "") {
             $user_id = $datos_user['user_id'];
 
             // if (move_uploaded_file($file["tmp_name"], "comprobantesPago/" . $numero_rand . ".pdf")) {
-            if (move_uploaded_file($file["tmp_name"], "comprobantesPago/".$datos_user['user_id']."/" . $name_archivo)) {
+            if (move_uploaded_file($file["tmp_name"], "comprobantesPago/" . $datos_user['user_id'] . "/" . $name_archivo)) {
 
                 $documento = new \stdClass();
                 $documento->_id_pendiente_pago = $id_pendiente_pago;
@@ -1874,10 +1981,10 @@ html;
                     //     'img' => $numero_rand.'.png'
                     // ];
                     echo "success";
-                //     echo "<script>
-                //      alert('Archivo subido correctamente');
-                //     window.location.href = /ComprobantePago/;
-                // </script>";
+                    //     echo "<script>
+                    //      alert('Archivo subido correctamente');
+                    //     window.location.href = /ComprobantePago/;
+                    // </script>";
                 } else {
                     echo "fail";
                     // var_dump($documento);
@@ -1892,7 +1999,7 @@ html;
 
                     // ];
                 }
-            }else{
+            } else {
                 echo "error1";
             }
             // move_uploaded_file($file["tmp_name"], "comprobantesPago/".$numero_rand.".pdf");
@@ -2052,7 +2159,7 @@ html;
 
         $fecha = date("d-m-Y");
         $d = $this->fechaCastellano($fecha);
-        $nombre_completo = $array_user['title'] . " " . $array_user['nombre'] . " " . $array_user['apellidop']. " " . $array_user['apellidom'];
+        $nombre_completo = $array_user['title'] . " " . $array_user['nombre'] . " " . $array_user['apellidop'] . " " . $array_user['apellidom'];
 
 
         $pdf = new \FPDF($orientation = 'P', $unit = 'mm', $format = 'A4');
@@ -2060,13 +2167,13 @@ html;
         $pdf->SetFont('Arial', 'B', 8);    //Letra Arial, negrita (Bold), tam. 20
         $pdf->setY(1);
         $pdf->SetFont('Arial', 'B', 16);
-        $pdf->Image('constancias/plantillas/carta_invitacion.png', 0, 0, 210, 300);  
+        $pdf->Image('constancias/plantillas/carta_invitacion.png', 0, 0, 210, 300);
 
         //fecha
         $pdf->SetXY(95, 35);
         $pdf->SetFont('Arial', 'B', 10);
         $pdf->SetTextColor(0, 0, 0);
-        $pdf->Multicell(100, 10, utf8_decode('Ciudad de México a '.$d), 0, 'C');
+        $pdf->Multicell(100, 10, utf8_decode('Ciudad de México a ' . $d), 0, 'C');
 
         //nombre
         $pdf->SetXY(32, 67);
@@ -2080,11 +2187,11 @@ html;
 
         if (!file_exists($nombre_fichero)) {
             mkdir('cartas/' . $array_user['user_id'], 0777, true);
-        } 
+        }
 
         // $pdf->Output();
-        $pdf->Output('F', 'cartas/' . $array_user['user_id'] .'/carta_invitacion_'.$array_user['nombre'] . " " . $array_user['apellidop'].'.pdf');
-        chmod('cartas/' . $array_user['user_id'] .'/carta_invitacion_'.$array_user['nombre'] . " " . $array_user['apellidop'].'.pdf', 0755);
+        $pdf->Output('F', 'cartas/' . $array_user['user_id'] . '/carta_invitacion_' . $array_user['nombre'] . " " . $array_user['apellidop'] . '.pdf');
+        chmod('cartas/' . $array_user['user_id'] . '/carta_invitacion_' . $array_user['nombre'] . " " . $array_user['apellidop'] . '.pdf', 0755);
 
         $msg = [
             'email' => $array_user['usuario'],
@@ -2107,7 +2214,7 @@ html;
 
         $fecha = date("d-m-Y");
         $d = $this->fechaCastellano($fecha);
-        $nombre_completo = $array_user['title'] . " " . $array_user['nombre'] . " " . $array_user['apellidop']. " " . $array_user['apellidom'];
+        $nombre_completo = $array_user['title'] . " " . $array_user['nombre'] . " " . $array_user['apellidop'] . " " . $array_user['apellidom'];
 
 
         $pdf = new \FPDF($orientation = 'P', $unit = 'mm', $format = 'A4');
@@ -2115,13 +2222,13 @@ html;
         $pdf->SetFont('Arial', 'B', 8);    //Letra Arial, negrita (Bold), tam. 20
         $pdf->setY(1);
         $pdf->SetFont('Arial', 'B', 16);
-        $pdf->Image('constancias/plantillas/carta_invitacion.png', 0, 0, 210, 300);  
+        $pdf->Image('constancias/plantillas/carta_invitacion.png', 0, 0, 210, 300);
 
         //fecha
         $pdf->SetXY(95, 35);
         $pdf->SetFont('Arial', 'B', 10);
         $pdf->SetTextColor(0, 0, 0);
-        $pdf->Multicell(100, 10, utf8_decode('Ciudad de México a '.$d), 0, 'C');
+        $pdf->Multicell(100, 10, utf8_decode('Ciudad de México a ' . $d), 0, 'C');
 
         //nombre
         $pdf->SetXY(32, 67);
@@ -2135,11 +2242,11 @@ html;
 
         if (!file_exists($nombre_fichero)) {
             mkdir('cartas/' . $array_user['user_id'], 0777, true);
-        } 
+        }
 
         // $pdf->Output();
-        $pdf->Output('F', 'cartas/' . $array_user['user_id'] .'/carta_invitacion_'.$array_user['nombre'] . " " . $array_user['apellidop'].'.pdf');
-        chmod('cartas/' . $array_user['user_id'] .'/carta_invitacion_'.$array_user['nombre'] . " " . $array_user['apellidop'].'.pdf', 0755);
+        $pdf->Output('F', 'cartas/' . $array_user['user_id'] . '/carta_invitacion_' . $array_user['nombre'] . " " . $array_user['apellidop'] . '.pdf');
+        chmod('cartas/' . $array_user['user_id'] . '/carta_invitacion_' . $array_user['nombre'] . " " . $array_user['apellidop'] . '.pdf', 0755);
 
         $msg = [
             'email' => $array_user['usuario'],
@@ -2162,7 +2269,7 @@ html;
 
         $fecha = date("d-m-Y");
         $d = $this->fechaCastellano($fecha);
-        $nombre_completo = $array_user['title'] . " " . $array_user['nombre'] . " " . $array_user['apellidop']. " " . $array_user['apellidom'];
+        $nombre_completo = $array_user['title'] . " " . $array_user['nombre'] . " " . $array_user['apellidop'] . " " . $array_user['apellidom'];
 
 
         $pdf = new \FPDF($orientation = 'P', $unit = 'mm', $format = 'A4');
@@ -2170,13 +2277,13 @@ html;
         $pdf->SetFont('Arial', 'B', 8);    //Letra Arial, negrita (Bold), tam. 20
         $pdf->setY(1);
         $pdf->SetFont('Arial', 'B', 16);
-        $pdf->Image('constancias/plantillas/carta_confirmacion.png', 0, 0, 210, 300);  
+        $pdf->Image('constancias/plantillas/carta_confirmacion.png', 0, 0, 210, 300);
 
         //fecha
         $pdf->SetXY(95, 35);
         $pdf->SetFont('Arial', 'B', 10);
         $pdf->SetTextColor(0, 0, 0);
-        $pdf->Multicell(100, 10, utf8_decode('Ciudad de México a '.$d), 0, 'C');
+        $pdf->Multicell(100, 10, utf8_decode('Ciudad de México a ' . $d), 0, 'C');
 
         //nombre
         $pdf->SetXY(32, 67);
@@ -2190,11 +2297,11 @@ html;
 
         if (!file_exists($nombre_fichero)) {
             mkdir('cartas/' . $array_user['user_id'], 0777, true);
-        } 
+        }
 
         // $pdf->Output();
-        $pdf->Output('F', 'cartas/' . $array_user['user_id'] .'/carta_confirmacion_'.$array_user['nombre'] . " " . $array_user['apellidop'].'.pdf');
-        chmod('cartas/' . $array_user['user_id'] .'/carta_confirmacion_'.$array_user['nombre'] . " " . $array_user['apellidop'].'.pdf', 0755);
+        $pdf->Output('F', 'cartas/' . $array_user['user_id'] . '/carta_confirmacion_' . $array_user['nombre'] . " " . $array_user['apellidop'] . '.pdf');
+        chmod('cartas/' . $array_user['user_id'] . '/carta_confirmacion_' . $array_user['nombre'] . " " . $array_user['apellidop'] . '.pdf', 0755);
 
         $msg = [
             'email' => $array_user['usuario'],
@@ -2211,22 +2318,23 @@ html;
         $mailer->mailCartaConfirmacion($msg);
     }
 
-    function fechaCastellano ($fecha) {
+    function fechaCastellano($fecha)
+    {
         $fecha = substr($fecha, 0, 10);
         $numeroDia = date('d', strtotime($fecha));
         $dia = date('l', strtotime($fecha));
         $mes = date('F', strtotime($fecha));
         $anio = date('Y', strtotime($fecha));
-    
+
         $dias_ES = array("Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo");
         $dias_EN = array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday");
         $nombredia = str_replace($dias_EN, $dias_ES, $dia);
         $meses_ES = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
         $meses_EN = array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
         $nombreMes = str_replace($meses_EN, $meses_ES, $mes);
-    
+
         // return $nombredia." ".$numeroDia." de ".$nombreMes." de ".$anio;
-        return $numeroDia." de ".$nombreMes." de ".$anio;
+        return $numeroDia . " de " . $nombreMes . " de " . $anio;
     }
 
     public function ticketAll($clave = null, $id_curso = null)
@@ -2573,11 +2681,11 @@ html;
         $pais = $_POST['pais'];
 
         // if ($pais != 156) {
-            $estados = RegisterDao::getState($pais);
-            $html = "";
-            foreach ($estados as $estado) {
-                $html .= '<option value="' . $estado['id_estado'] . '">' . $estado['estado'] . '</option>';
-            }
+        $estados = RegisterDao::getState($pais);
+        $html = "";
+        foreach ($estados as $estado) {
+            $html .= '<option value="' . $estado['id_estado'] . '">' . $estado['estado'] . '</option>';
+        }
         // } else {
         //     $html = "";
         //     $html .= '

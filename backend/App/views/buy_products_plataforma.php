@@ -520,7 +520,7 @@
                         $("#check_curso_33").attr('disabled', 'disabled');
                     }
 
-                    if (nombre_producto == 'BLOQUEOS AVANZADOS :MIEMBROS SUPERIOR E INFERIOR / COLUMNA') {
+                    if (nombre_producto == 'BLOQUEOS AVANZADOS: NEUROMONITOREO, MIEMBRO SUPERIOR Y MIEMBO INFERIOR') {
                         $("#check_curso_31").attr('disabled', 'disabled');
                         $("#check_curso_33").attr('disabled', 'disabled');
                     }
@@ -741,7 +741,7 @@
                         $("#check_curso_33").removeAttr('disabled');
                     }
 
-                    if (nombre_producto == 'BLOQUEOS AVANZADOS :MIEMBROS SUPERIOR E INFERIOR / COLUMNA') {
+                    if (nombre_producto == 'BLOQUEOS AVANZADOS: NEUROMONITOREO, MIEMBRO SUPERIOR Y MIEMBO INFERIOR') {
                         $("#check_curso_31").removeAttr('disabled');
                         $("#check_curso_33").removeAttr('disabled');
                     }

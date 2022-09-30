@@ -173,7 +173,7 @@ sql;
     FROM productos p
     INNER JOIN utilerias_administradores ua
     INNER JOIN costos_productos cp ON (cp.id_producto = p.id_producto and cp.id_categoria = ua.id_categoria)
-    WHERE p.id_producto NOT IN (SELECT id_producto FROM pendiente_pago WHERE user_id = $id) AND ua.user_id = $id  and p.status = 1 ORDER BY p.nombre;
+    WHERE p.id_producto NOT IN (SELECT id_producto FROM pendiente_pago WHERE user_id = $id) AND ua.user_id = $id  and p.status = 1 and tipo != "TALLER" ORDER BY p.nombre;
 sql;
     return $mysqli->queryAll($query);
   }
@@ -181,11 +181,11 @@ sql;
   public static function getTalleres($id){
     $mysqli = Database::getInstance();
     $query=<<<sql
-    SELECT p.id_producto, p.nombre as nombre_producto, p.precio_publico, p.precio_socio, p.tipo_moneda,p.precio_publico_usd, p.precio_socio_usd, p.tipo_moneda_usd, p.max_compra, p.es_congreso, p.es_servicio, p.es_curso, p.tipo,p.fecha_producto,ua.clave_socio, ua.monto_congreso as amout_due, ua.socio 
+    SELECT p.id_producto, p.nombre as nombre_producto, p.precio_publico, p.precio_socio, p.tipo_moneda,p.precio_publico_usd, p.precio_socio_usd, p.tipo_moneda_usd, p.max_compra, p.es_congreso, p.es_servicio, p.es_curso, p.tipo,p.fecha_producto,p.cupo,ua.clave_socio, ua.monto_congreso as amout_due, ua.socio 
     FROM productos p
     INNER JOIN utilerias_administradores ua
     INNER JOIN costos_productos cp ON (cp.id_producto = p.id_producto and cp.id_categoria = ua.id_categoria)
-    WHERE p.id_producto NOT IN (SELECT id_producto FROM pendiente_pago WHERE user_id = $id) AND ua.user_id = $id  and p.status = 1 ORDER BY p.nombre;
+    WHERE p.id_producto NOT IN (SELECT id_producto FROM pendiente_pago WHERE user_id = $id) and ua.user_id = $id and p.tipo ="Taller"  and p.status = 1 and p.cupo > 0 ORDER BY p.nombre;
 sql;
     return $mysqli->queryAll($query);
   }
@@ -224,4 +224,24 @@ sql;
     return $mysqli->update($query, $parametros);
   }
 
+  public static function getCombo($id_user){
+    $mysqli = Database::getInstance(true);
+    $query=<<<sql
+    SELECT * FROM pendiente_pago WHERE user_id = '$id_user'
+sql;
+    return $mysqli->queryAll($query);
+  }
+
+  public static function updateCheckTalleres($user_id)
+  {
+    $mysqli = Database::getInstance(true);
+
+    $query = <<<sql
+    UPDATE utilerias_administradores SET check_talleres = 1 WHERE user_id = $user_id
+sql;
+    
+    return $mysqli->update($query);
+  }
+
+  
 }

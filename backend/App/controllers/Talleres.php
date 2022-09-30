@@ -1329,6 +1329,41 @@ html;
 
         $data_user = HomeDao::getDataUser($this->__usuario);
 
+        if($data_user['check_talleres'] == 1){
+            header('Location: /Home/');
+        }
+        $checks = '';
+        $checked = '';
+        $total_productos = 0;
+        $total_pago = 0;
+        $check_disabled = '';
+        $array_precios = [];
+        $array_productos = [];
+        $numero_talleres = 0;
+        $nombre_combo = '';
+        $clave = '';
+
+        $getCombo = HomeDao::getCombo($data_user['user_id']);
+
+        foreach($getCombo as $key => $value){
+            if($value['id_producto'] == 38 || $value['id_producto'] == 41){
+                $numero_talleres = 2;
+                $nombre_combo = 'SUPRA Clinical WorkShop 2 hands on';
+                $clave = $value['clave'];
+                break;
+            }else if($value['id_producto'] == 37 || $value['id_producto'] == 40){
+                $numero_talleres = 3;
+                $nombre_combo = 'SUPRA Clinical WorkShop 3 hands on';
+                $clave = $value['clave'];
+                break;
+            }else if($value['id_producto'] == 36 || $value['id_producto'] == 39){
+                $numero_talleres = 4;
+                $nombre_combo = 'SUPRA Clinical WorkShop 4 hands on';
+                $clave = $value['clave'];
+                break;
+            }
+        }
+
         $header = <<<html
         <!DOCTYPE html>
         <html lang="es">
@@ -1420,14 +1455,8 @@ html;
             </style>
         </head>
 html;
-
-
-        
-
-        
-        $clave = $this->generateRandomString();
-
-        $productos_no_comprados = HomeDao::getProductosNoComprados($data_user['user_id']);
+       
+        $productos_no_comprados = HomeDao::getTalleres($data_user['user_id']);
 
         foreach ($productos_no_comprados as $key => $value) {
 
@@ -1472,11 +1501,11 @@ html;
                         </div>
                     </div>
                 
-                    <div class="col-md-2">
+                    <div class="col-md-2" style="display:none;">
                         <span class="cont_precio" id="cont_precio_{$value['id_producto']}">{$precio} <span>- {$value['tipo_moneda']}
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-2" style="display:none;">
                             {$numero_productos}
                     </div>
 
@@ -1494,7 +1523,8 @@ html;
         // $total_mx = intval($total_pago) * floatval($tipo_cambio['tipo_cambio']);
         $total_mx = intval($total_pago);
 
-
+        View::set('numero_talleres',$numero_talleres);
+        View::set('nombre_combo',$nombre_combo);
         View::set('header', $header);
         View::set('datos', $data_user);
         View::set('clave', $clave);

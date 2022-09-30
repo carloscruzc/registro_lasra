@@ -417,6 +417,15 @@ sql;
     return $mysqli->queryOne($query);
   } 
 
+  public static function restarStock($id_producto)
+  {
+    $mysqli = Database::getInstance(true);
+    $query = <<<sql
+    UPDATE productos set cupo = (SELECT cupo FROM productos WHERE id_producto = $id_producto) - 1 WHERE id_producto = $id_producto;
+sql;
+    return $mysqli->update($query);
+  }
+
   
   
 }

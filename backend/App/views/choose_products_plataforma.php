@@ -68,7 +68,7 @@
         <div class="container-fluid py-0">
             <div class="card col-lg-12 mt-lg-4 mt-1">
                 <div class="card-header pb-0 p-3">
-                    <p style="font-size: 14px">Compro el paquete (Seleccione a continuación lo que desea pagar y presione el boton de pagar y muestre el codigo de pago en caja)</p>
+                    <p style="font-size: 14px">Compro el paquete <b><?= $nombre_combo ?></b> (Seleccione a continuación los <b><span id="numero_talleres"><?= $numero_talleres ?></span></b> Talleres para crear su paquete)</p>
 
                     <input type="hidden" name="id_pais" id="id_pais" value="<?= $datos['id_pais'] ?>">
                 </div>
@@ -98,8 +98,8 @@
 
                                             <div class="col-md-6">
 
-                                                <p>Su pago en pesos mexicanos es: $ <span id="total_mx">0</span> </p>
-                                                <p>Su pago en USD: $ <span id="total_usd">0</span> </p>
+                                                <p style="display: none;">Su pago en pesos mexicanos es: $ <span id="total_mx">0</span> </p>
+                                                <p style="display: none;">Su pago en USD: $ <span id="total_usd">0</span> </p>
 
                                             </div>
                                         </div>
@@ -118,7 +118,9 @@
 
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <select id="forma_pago" name="forma_pago" class="form-control">
+                                                <input type="hidden" id="clave" name="clave" value="<?= $clave ?>">
+                                                <input type="hidden" id="email_usuario" name="email_usuario" value="<?= $datos['usuario'] ?>">
+                                                <!-- <select id="forma_pago" name="forma_pago" class="form-control">
                                                     <option value="">Seleccione una Opción de pago</option>
                                                     <option value="Transferencia">Depósito/Transferencia</option>
                                                     <option value="Paypal">Paypal</option>
@@ -129,10 +131,10 @@
                                                     <option value="">Seleccione tipo de moneda de pago</option>
                                                     <option value="MXN">$ Pesos Mexicanos - MXN</option>
                                                     <option value="USD">$ Dolares - USD</option>
-                                                    <!-- <option value="Paypal">Paypal</option> -->
-                                                </select>
+                                                    
+                                                </select> -->
 
-                                                <form class="form_compra" method="POST" action="">
+                                                <!-- <form class="form_compra" method="POST" action="">
 
                                                     <input type="hidden" id="clave_socio" name="clave_socio" value="<?= $datos['clave_socio'] ?>">
                                                     <input type="hidden" id="email_usuario" name="email_usuario" value="<?= $datos['usuario'] ?>">
@@ -157,7 +159,7 @@
                                                 <form id="form_compra_paypal" method="POST">
                                                     <input type="hidden" id="tipo_pago_paypal" name="tipo_pago_paypal">
                                                     <input type='hidden' id='clave_paypal' name='clave_paypal' value="<?= $clave ?>">
-                                                </form>
+                                                </form> -->
 
                                             </div>
 
@@ -165,7 +167,7 @@
 
 
 
-                                                <button class="btn bg-gradient-info" id="btn_pago" <?= $btn_block ?>>Proceder al pago</button>
+                                                <button class="btn bg-gradient-info" id="btn_pago" <?= $btn_block ?>>Elegir Talleres</button>
                                             </div>
                                         </div>
 
@@ -199,23 +201,7 @@
                             <div id="buttons">
 
 
-                                <!-- <div class="row">
-                                    <div class="col-md-6">
-                                        
 
-                                    </div>
-
-                                    <div class="col-md-6" style="display: flex; justify-content: end;">
-                                        <div class="form-group">
-                                            <label>Elige tu metodo de pago *</label>
-                                            <select class="multisteps-form__select form-control all_input_second_select metodo_pago" name="metodo_pago" id="metodo_pago" required>
-                                                <option value="" disabled selected>Selecciona una Opción</option>
-                                                <option value="Paypal">Paypal</option>
-                                                <option value="Efectivo">Efectivo / Transferencia electrónica</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                               </div> -->
 
 
                             </div>
@@ -226,23 +212,6 @@
                     <br>
 
 
-
-
-                    <!-- <div class="table-responsive p-0">
-                                        <table class="align-items-center mb-0 table table-borderless" style="width:100%">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Productos</th>
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Costo</th>
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><i class="fa fa-eye"></i></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php echo $tabla; ?>
-                                        </tbody>
-                                    </table>
-                                </div>  -->
 
                 </div>
             </div>
@@ -259,77 +228,7 @@
                 $("#cont_check35").addClass('d-none');
             }
 
-            if ($("#check_curso_24").prop('checked')) {
-                $("#check_curso_27").attr('disabled', 'disabled');
-                // $("#check_curso_27").prop('checked', true);
-            }
-
-            if ($("#check_curso_27").prop('checked')) {
-                $("#check_curso_24").attr('disabled', 'disabled');
-                // $("#check_curso_24").prop('checked', true);
-            }
-
-
-            if ($("#check_curso_28").prop('checked')) {
-                $("#check_curso_29").attr('disabled', 'disabled');
-                $("#check_curso_30").attr('disabled', 'disabled');
-                //     $("#check_curso_29").prop('checked', true);
-                //     $("#check_curso_30").prop('checked', true);
-            }
-
-            if ($("#check_curso_29").prop('checked')) {
-                $("#check_curso_28").attr('disabled', 'disabled');
-                $("#check_curso_30").attr('disabled', 'disabled');
-                // $("#check_curso_28").prop('checked', true);
-                // $("#check_curso_30").prop('checked', true);
-            }
-
-            if ($("#check_curso_30").prop('checked')) {
-                $("#check_curso_28").attr('disabled', 'disabled');
-                $("#check_curso_29").attr('disabled', 'disabled');
-                // $("#check_curso_28").prop('checked', true);
-                // $("#check_curso_29").prop('checked', true);
-            }
-
-
-            if ($("#check_curso_31").prop('checked')) {
-                $("#check_curso_32").attr('disabled', 'disabled');
-                $("#check_curso_33").attr('disabled', 'disabled');
-                //     $("#check_curso_32").prop('checked', true);
-                //     $("#check_curso_33").prop('checked', true);
-            }
-
-            if ($("#check_curso_32").prop('checked')) {
-                $("#check_curso_31").attr('disabled', 'disabled');
-                $("#check_curso_33").attr('disabled', 'disabled');
-                // $("#check_curso_31").prop('checked', true);
-                // $("#check_curso_33").prop('checked', true);
-            }
-
-            if ($("#check_curso_33").prop('checked')) {
-                $("#check_curso_31").attr('disabled', 'disabled');
-                $("#check_curso_32").attr('disabled', 'disabled');
-                // $("#check_curso_31").prop('checked', true);
-                // $("#check_curso_32").prop('checked', true);
-            }
-
-             //bloqueo especialistas
-
-             if ($("#check_curso_41").prop('checked')) {
-                $("#check_curso_40").attr('disabled', 'disabled');
-                $("#check_curso_39").attr('disabled', 'disabled');
-            }
-
-            if ($("#check_curso_40").prop('checked')) {
-                $("#check_curso_41").attr('disabled', 'disabled');
-                $("#check_curso_39").attr('disabled', 'disabled');
-            }
-
-            if ($("#check_curso_39").prop('checked')) {
-                $("#check_curso_40").attr('disabled', 'disabled');
-                $("#check_curso_41").attr('disabled', 'disabled');
-            }
-            //fin especialista
+            
 
             if ($('#categoria').val() == 'Socio') {
                 Swal.fire("¡Te registraste como socio!", "Debemos validar tu información para que puedas comprar", "warning")
@@ -490,125 +389,88 @@
 
                     //validaciones para los talleres simultaneos 
 
-                    if (nombre_producto == 'INDISPENSABLE BLOQUEOS BASICOS MIEMBRO SUPERIOR/MIEMBRO INFERIOR') {
+                    if (nombre_producto == 'INDISPENSABLE BLOQUEOS BASICOS MIEMBRO SUPERIOR') {
                         $("#check_curso_27").attr('disabled', 'disabled');
+
                     }
 
                     if (nombre_producto == 'PERFUSIONES INTRAVENOSAS PARA SEDACIÓN DE LO MANUAL A TCI') {
                         $("#check_curso_24").attr('disabled', 'disabled');
                     }
 
-
-                    if (nombre_producto == 'SIMULADORES ESCANEA Y PRACTICA CON MODELO EN SIMULACION') {
+                    if (nombre_producto == 'INDISPENSABLE BLOQUEOS BASICOS MIEMBRO INFERIOR') {
                         $("#check_curso_29").attr('disabled', 'disabled');
-                        $("#check_curso_30").attr('disabled', 'disabled');
                     }
 
                     if (nombre_producto == 'ULTRASONIDO EN BLOQUEOS PARA DOLOR CRONICO') {
-                        $("#check_curso_28").attr('disabled', 'disabled');
+                        $("#check_curso_25").attr('disabled', 'disabled');
+                    }
+
+                    if (nombre_producto == 'BLOQUEOS AVANZADOS: NEUROMONITOREO, MIEMBRO SUPERIOR Y MIEMBO INFERIOR') {
+                        $("#check_curso_43").attr('disabled', 'disabled');
+                    }
+
+                    if (nombre_producto == 'RECAT/ECO CRITICA') {
+                        $("#check_curso_32").attr('disabled', 'disabled');
+                    }
+
+                    if (nombre_producto == 'ACCESOS VASCULARES PRAVE') {
                         $("#check_curso_30").attr('disabled', 'disabled');
+                        $("#check_curso_28").attr('disabled', 'disabled');
                     }
 
                     if (nombre_producto == 'BLOQUEOS AVANZADOS :TORAX Y ABDOMEN') {
+                        $("#check_curso_31").attr('disabled', 'disabled');
                         $("#check_curso_28").attr('disabled', 'disabled');
-                        $("#check_curso_29").attr('disabled', 'disabled');
                     }
 
-
-                    if (nombre_producto == 'ACCESOS VASCULARES PRAVE') {
-                        $("#check_curso_32").attr('disabled', 'disabled');
-                        $("#check_curso_33").attr('disabled', 'disabled');
-                    }
-
-                    if (nombre_producto == 'BLOQUEOS AVANZADOS :MIEMBROS SUPERIOR E INFERIOR / COLUMNA') {
+                    if (nombre_producto == 'SIMULADORES ESCANEA Y PRACTICA CON MODELO EN SIMULACION') {
                         $("#check_curso_31").attr('disabled', 'disabled');
-                        $("#check_curso_33").attr('disabled', 'disabled');
+                        $("#check_curso_30").attr('disabled', 'disabled');
                     }
 
-                    if (nombre_producto == 'ABASI APRENDIZAJE BASADO EN SIMULACION') {
-                        $("#check_curso_31").attr('disabled', 'disabled');
-                        $("#check_curso_32").attr('disabled', 'disabled');
-                    }
-
-                    //Especialista
-
-                    if (nombre_producto == 'SUPRA Clinical WorkShop 2 hands on') {
-                        $("#check_curso_40").attr('disabled', 'disabled');
-                        $("#check_curso_39").attr('disabled', 'disabled');
-                    }
-
-                    if (nombre_producto == 'SUPRA Clinical WorkShop 3 hands on') {
-                        $("#check_curso_41").attr('disabled', 'disabled');
-                        $("#check_curso_39").attr('disabled', 'disabled');
-                    }
-
-                    if (nombre_producto == 'SUPRA Clinical WorkShop 4 hands on') {
-                        $("#check_curso_40").attr('disabled', 'disabled');
-                        $("#check_curso_41").attr('disabled', 'disabled');
-                    }
-                    //fin especialista
-
-
-
-                    //Residentes
-
-                    if (nombre_producto == 'SUPRA Clinical WorkShop 2 hands on') {
-                        $("#check_curso_36").attr('disabled', 'disabled');
-                        $("#check_curso_37").attr('disabled', 'disabled');
-                    }
-
-                    if (nombre_producto == 'SUPRA Clinical WorkShop 3 hands on') {
-                        $("#check_curso_36").attr('disabled', 'disabled');
-                        $("#check_curso_38").attr('disabled', 'disabled');
-                    }
-
-                    if (nombre_producto == 'SUPRA Clinical WorkShop 4 hands on') {
-                        $("#check_curso_37").attr('disabled', 'disabled');
-                        $("#check_curso_38").attr('disabled', 'disabled');
-                    }
-                    //fin residentes
 
                     //fin de validaciones para talleres simultaneos
 
 
                     //validar si esta checado la anualidad
-                    if ($("#check_curso_2").is(":checked") || $("#check_curso_35").is(":checked")) {
+                    // if ($("#check_curso_2").is(":checked") || $("#check_curso_35").is(":checked")) {
 
-                        precios.push({
-                            'id_product': id_product,
-                            'precio': precio_socio,
-                            'precio_usd': precio_socio_usd,
-                            'cantidad': cantidad
-                        });
-
-
-                        productos.push({
-                            'id_product': id_product,
-                            'precio': precio_socio,
-                            'precio_usd': precio_socio_usd,
-                            'cantidad': cantidad,
-                            'nombre_producto': nombre_producto
-                        });
+                    //     precios.push({
+                    //         'id_product': id_product,
+                    //         'precio': precio_socio,
+                    //         'precio_usd': precio_socio_usd,
+                    //         'cantidad': cantidad
+                    //     });
 
 
-                    } else {
+                    //     productos.push({
+                    //         'id_product': id_product,
+                    //         'precio': precio_socio,
+                    //         'precio_usd': precio_socio_usd,
+                    //         'cantidad': cantidad,
+                    //         'nombre_producto': nombre_producto
+                    //     });
 
-                        precios.push({
-                            'id_product': id_product,
-                            'precio': precio,
-                            'precio_usd': precio_socio_usd,
-                            'cantidad': cantidad
-                        });
+
+                    // } else {
+
+                    precios.push({
+                        'id_product': id_product,
+                        'precio': '0',
+                        'precio_usd': '0',
+                        'cantidad': cantidad
+                    });
 
 
-                        productos.push({
-                            'id_product': id_product,
-                            'precio': precio,
-                            'precio_usd': precio_socio_usd,
-                            'cantidad': cantidad,
-                            'nombre_producto': nombre_producto
-                        });
-                    }
+                    productos.push({
+                        'id_product': id_product,
+                        'precio': '0',
+                        'precio_usd': '0',
+                        'cantidad': cantidad,
+                        'nombre_producto': nombre_producto
+                    });
+                    // }
                     sumarPrecios(precios);
                     sumarProductos(productos);
 
@@ -712,81 +574,51 @@
 
                     //validaciones para los talleres simultaneos 
 
-                    if (nombre_producto == 'INDISPENSABLE BLOQUEOS BASICOS MIEMBRO SUPERIOR/MIEMBRO INFERIOR') {
+                    if (nombre_producto == 'INDISPENSABLE BLOQUEOS BASICOS MIEMBRO SUPERIOR') {
                         $("#check_curso_27").removeAttr('disabled');
+
                     }
 
                     if (nombre_producto == 'PERFUSIONES INTRAVENOSAS PARA SEDACIÓN DE LO MANUAL A TCI') {
                         $("#check_curso_24").removeAttr('disabled');
                     }
 
-                    if (nombre_producto == 'SIMULADORES ESCANEA Y PRACTICA CON MODELO EN SIMULACION') {
+                    if (nombre_producto == 'INDISPENSABLE BLOQUEOS BASICOS MIEMBRO INFERIOR') {
                         $("#check_curso_29").removeAttr('disabled');
-                        $("#check_curso_30").removeAttr('disabled');
                     }
 
                     if (nombre_producto == 'ULTRASONIDO EN BLOQUEOS PARA DOLOR CRONICO') {
-                        $("#check_curso_28").removeAttr('disabled');
+                        $("#check_curso_25").removeAttr('disabled');
+                    }
+
+                    if (nombre_producto == 'BLOQUEOS AVANZADOS: NEUROMONITOREO, MIEMBRO SUPERIOR Y MIEMBO INFERIOR') {
+                        $("#check_curso_43").removeAttr('disabled');
+                    }
+
+                    if (nombre_producto == 'RECAT/ECO CRITICA') {
+                        $("#check_curso_32").removeAttr('disabled');
+                    }
+
+                    if (nombre_producto == 'ACCESOS VASCULARES PRAVE') {
                         $("#check_curso_30").removeAttr('disabled');
+                        $("#check_curso_28").removeAttr('disabled');
                     }
 
                     if (nombre_producto == 'BLOQUEOS AVANZADOS :TORAX Y ABDOMEN') {
+                        $("#check_curso_31").removeAttr('disabled');
                         $("#check_curso_28").removeAttr('disabled');
-                        $("#check_curso_29").removeAttr('disabled');
                     }
 
-
-                    if (nombre_producto == 'ACCESOS VASCULARES PRAVE') {
-                        $("#check_curso_32").removeAttr('disabled');
-                        $("#check_curso_33").removeAttr('disabled');
-                    }
-
-                    if (nombre_producto == 'BLOQUEOS AVANZADOS :MIEMBROS SUPERIOR E INFERIOR / COLUMNA') {
+                    if (nombre_producto == 'SIMULADORES ESCANEA Y PRACTICA CON MODELO EN SIMULACION') {
                         $("#check_curso_31").removeAttr('disabled');
-                        $("#check_curso_33").removeAttr('disabled');
-                    }
-
-                    if (nombre_producto == 'ABASI APRENDIZAJE BASADO EN SIMULACION') {
-                        $("#check_curso_31").removeAttr('disabled');
-                        $("#check_curso_32").removeAttr('disabled');
+                        $("#check_curso_30").removeAttr('disabled');
                     }
 
 
-                    //Especialista
+                    //fin de validaciones para talleres simultaneos
 
-                    if (nombre_producto == 'SUPRA Clinical WorkShop 2 hands on') {
-                        $("#check_curso_40").removeAttr('disabled');
-                        $("#check_curso_39").removeAttr('disabled');
-                    }
 
-                    if (nombre_producto == 'SUPRA Clinical WorkShop 3 hands on') {
-                        $("#check_curso_41").removeAttr('disabled');
-                        $("#check_curso_39").removeAttr('disabled');
-                    }
 
-                    if (nombre_producto == 'SUPRA Clinical WorkShop 4 hands on') {
-                        $("#check_curso_40").removeAttr('disabled');
-                        $("#check_curso_41").removeAttr('disabled');
-                    }
-                    //fin especialista
-
-                    //Residentes
-
-                    if (nombre_producto == 'SUPRA Clinical WorkShop 2 hands on') {
-                        $("#check_curso_36").removeAttr('disabled');
-                        $("#check_curso_37").removeAttr('disabled');
-                    }
-
-                    if (nombre_producto == 'SUPRA Clinical WorkShop 3 hands on') {
-                        $("#check_curso_36").removeAttr('disabled');
-                        $("#check_curso_38").removeAttr('disabled');
-                    }
-
-                    if (nombre_producto == 'SUPRA Clinical WorkShop 4 hands on') {
-                        $("#check_curso_37").removeAttr('disabled');
-                        $("#check_curso_38").removeAttr('disabled');
-                    }
-                    //fin residentes
 
 
                     //fin de validaciones para talleres simultaneos
@@ -912,14 +744,14 @@
                 console.log("Suma precios usd " + sumaPreciosUsd);
 
                 $("#total").html(sumaPrecios);
-                
+
                 //depende del tipo de pago
                 var tipo_pago = $("#tipo_moneda_pago").val();
-                if(tipo_pago == 'MXN'){
+                if (tipo_pago == 'MXN') {
                     $("#amount").val(sumaPrecios);
-                }else if(tipo_pago == 'USD'){
+                } else if (tipo_pago == 'USD') {
                     $("#amount").val(sumaPreciosUsd);
-                }else{
+                } else {
                     $("#amount").val(sumaPrecios);
                 }
 
@@ -956,11 +788,11 @@
 
                 });
 
-                
+
                 var tipo_pago = $("#tipo_moneda_pago").val();
-                if(tipo_pago == 'MXN'){
+                if (tipo_pago == 'MXN') {
                     $("#amount").val(sumaPrecios);
-                }else if(tipo_pago == 'USD'){
+                } else if (tipo_pago == 'USD') {
                     $("#amount").val(sumaPreciosUsd);
                 }
 
@@ -983,7 +815,7 @@
 
             }
 
-            $("#tipo_moneda_pago").on("change",function(){
+            $("#tipo_moneda_pago").on("change", function() {
                 var tipo_moneda_pago = $(this).val();
                 $("#currency_code").val(tipo_moneda_pago);
                 sumarPreciosOnchangeTipo(precios);
@@ -996,30 +828,25 @@
                 // var metodo_pago = $("#metodo_pago").val();
                 var clave = $("#clave").val();
                 var usuario = $("#email_usuario").val();
-                var metodo_pago = $("#metodo_pago").val();
-                var tipo_moneda = $("#tipo_moneda_pago").val();
+                var metodo_pago = 'combo';
+                var tipo_moneda = '-';
                 var compra_en = 'plataforma';
 
                 console.log("precios ------");
                 console.log(precios);
 
-                //CAMBIAR POR LA RUTA DE PRODUCCION
-                var urlRegresoPaypal = 'https://registro.lasra-mexico.org/OrdenPago/PagoExistoso/?productos='+JSON.stringify(precios);
-
-                $("#return").val(urlRegresoPaypal);
 
 
-                if (precios.length <= 0) {
-
-                    Swal.fire("¡Debes seleccionar al menos un producto!", "", "warning")
-
-
-                } else if (precios.length >= 2 && $("#forma_pago").val() == '' && $("#clave_socio").val() != '') {
-                    Swal.fire("¡Debes seleccionar un metodo de pago!", "", "warning")
-                } else if ($("#forma_pago").val() == '' && $("#clave_socio").val() == '') {
-                    Swal.fire("¡Debes seleccionar un metodo de pago!", "", "warning")
-                } else if ($("#tipo_moneda_pago").val() == '') {
-                    Swal.fire("¡Debes seleccionar el tipo de Cambio a pagar!", "", "warning")
+                if (precios.length < $("#numero_talleres").text()) {
+                    var resta = $("#numero_talleres").text() - precios.length;
+                    if (resta == 1) {
+                        var text = "producto";
+                    } else {
+                        var text = "productos";
+                    }
+                    Swal.fire("¡Alerta!", "Tienes que seleccionar " + resta + " " + text + " más", "warning");
+                } else if (precios.length > $("#numero_talleres").text()) {
+                    Swal.fire("¡Alerta!", "Solo puedes seleccionar " + $("#numero_talleres").text() + " productos", "warning");
                 } else {
                     var plantilla_productos = '';
 
@@ -1030,24 +857,12 @@
                         console.log("funcioina");
                         console.log(value);
                         plantilla_productos += `<li style="text-align: justify; font-size:14px;">
-                                                    ${value.nombre_producto} Cant. ${value.cantidad}
+                                                    ${value.nombre_producto} 
                                                 </li>`;
                     });
 
                     plantilla_productos += `</ul>`;
-                    if (tipo_moneda == "USD") {
-                        plantilla_productos += `<p><strong>Total en dolares: $ ${$("#total_usd").text()} USD </strong></p>`;
-                    } else {
-                        plantilla_productos += `<p><strong>Total en pesos mexicanos: $ ${$("#total_mx").text()} MXN</strong></p>`;
-                    }
 
-                    if(metodo_pago == 'Paypal'){
-                        plantilla_productos +=  `<p>Su pago se realizará con PAYPAL</p>`;
-                        plantilla_productos +=  `<p style="background-color: yellow;"><strong>Una vez finalizado su pago en PAYPAL, dar click en el botón REGRESAR AL SITIO WEB DEL COMERCIO para poder validar su pago</strong></p>`;
-                        plantilla_productos += `<img src ="/img/btn_fin_paypal.png"/>`;
-                    }
-
-                    // plantilla_productos += `<p>Confirme su selección y de clic en procesar compra y espere su turno en línea de cajas.</p>`;
 
 
                     Swal.fire({
@@ -1059,106 +874,57 @@
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
                         cancelButtonText: 'Cancelar',
-                        confirmButtonText: 'Procesar Compra'
+                        confirmButtonText: 'Confirmar'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            $(this).attr('disabled','disabled')
+                            $(this).attr('disabled', 'disabled')
 
                             console.log($("#total_mx").text());
 
-                            // if ($("#total_mx").text() == '0.00') {
-                            //     $.ajax({
-                            //         url: "/Register/generaterQr",
-                            //         type: "POST",
-                            //         data: {
-                            //             'array': JSON.stringify(precios),
-                            //             clave,
-                            //             usuario,
-                            //             metodo_pago,
-                            //             plataforma,
-                            //             tipo_moneda
-                            //         },
-                            //         cache: false,
-                            //         dataType: "json",
-                            //         // contentType: false,
-                            //         // processData: false,
-                            //         beforeSend: function() {
-                            //             console.log("Procesando....");
+                            var enviar_email = 1;
+                            $.ajax({
+                                url: "/Register/choseWorkshops",
+                                type: "POST",
+                                data: {
+                                    'array': JSON.stringify(precios),
+                                    clave,
+                                    usuario,
+                                    metodo_pago,
+                                    enviar_email,
+                                    tipo_moneda
+                                },
+                                cache: false,
+                                dataType: "json",
+                                // contentType: false,
+                                // processData: false,
+                                beforeSend: function() {
+                                    console.log("Procesando....");
 
-                            //         },
-                            //         success: function(respuesta) {
+                                },
+                                success: function(respuesta) {
 
-                            //             console.log(respuesta);
+                                    console.log(respuesta);
 
-                            //             if (respuesta.status == 'success') {
+                                    if (respuesta.status == 'success') {
 
-                            //                 Swal.fire("¡Se genero su preregistro, correctamente!", "", "success").
-                            //                 then((value) => {
-                            //                     $(".form_compra").submit();
-                            //                     setTimeout(function(){
-                            //                         if(metodo_pago == 'Transferencia'){
-                            //                         location.href = '/Home';
-                            //                     }
-                                                   
-                            //                     },1000);
-                                                
-                            //                 });
-                            //             }
+                                        Swal.fire("¡Se agregaron sus talleres correctamente!", "", "success").
+                                        then((value) => {
+                                            // $(".form_compra").submit();
+                                            // if (metodo_pago == 'Transferencia') {
+                                                setTimeout(function() {
+                                                    location.href = '/Home';
+                                                }, 1000);
 
-                            //         },
-                            //         error: function(respuesta) {
-                            //             console.log(respuesta);
-                            //         }
-
-                            //     });
-
-                            // } else {
-                                var enviar_email = 1;
-                                $.ajax({
-                                    url: "/Register/generaterQr",
-                                    type: "POST",
-                                    data: {
-                                        'array': JSON.stringify(precios),
-                                        clave,
-                                        usuario,
-                                        metodo_pago,
-                                        enviar_email,
-                                        tipo_moneda
-                                    },
-                                    cache: false,
-                                    dataType: "json",
-                                    // contentType: false,
-                                    // processData: false,
-                                    beforeSend: function() {
-                                        console.log("Procesando....");
-
-                                    },
-                                    success: function(respuesta) {
-
-                                        console.log(respuesta);
-
-                                        if (respuesta.status == 'success') {
-
-                                            Swal.fire("¡Se genero su preregistro, correctamente!", "", "success").
-                                            then((value) => {
-                                                $(".form_compra").submit();
-                                                if(metodo_pago == 'Transferencia'){
-                                                    setTimeout(function(){
-                                                        location.href = '/Home';
-                                                    },4000);
-                                                    
-                                                }
-                                            });
-                                        }
-
-                                    },
-                                    error: function(respuesta) {
-                                        console.log(respuesta);
+                                            // }
+                                        });
                                     }
 
-                                });
-                            // }
+                                },
+                                error: function(respuesta) {
+                                    console.log(respuesta);
+                                }
 
+                            });
 
                         }
                     })

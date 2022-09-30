@@ -133,293 +133,49 @@ html;
 
         $permisos_congreso = $data_user['congreso'] != '1' ? "style=\"display:none;\"" : "";
 
-        $id_curso = 102;
+       
 
-        $encuesta = '';
 
-        $preguntas  = TalleresDao::getPreguntasTriviaUsuario($id_curso);
-        $ha_respondido = TalleresDao::getRespuestasCurso($_SESSION['user_id'], $id_curso);
+        $hay_combo = false;
+        $getCombo = HomeDao::getCombo($data_user['user_id']);
 
-        if ($preguntas) {
-
-            $num_pregunta = 1;
-
-            if ($ha_respondido) {
-
-                foreach ($preguntas as $key => $value) {
-                    $opcion1 = $value['opcion1'];
-                    $opcion2 = $value['opcion2'];
-                    $opcion3 = $value['opcion3'];
-                    $opcion4 = $value['opcion4'];
-
-                    $encuesta .= <<<html
-                    <div class="col-12 encuesta_completa">
-                        <div class="mb-3 text-dark">
-                            <h6 class="">$num_pregunta. {$value['pregunta']}</h6>
-                        </div>
-                        <input id="id_pregunta_$num_pregunta" value="{$value['id_pregunta_encuesta']}" hidden readonly>
-                        <div class="form-group encuesta_curso_$num_pregunta">
-html;
-                    if ($value['respuesta_correcta'] == 1) {
-                        $encuesta .= <<<html
-                        <div id="op1">
-                            <input type="radio" data-label="{$value['opcion1']}" id="opcion1_$num_pregunta" name="pregunta_$num_pregunta" value="1" disabled>
-                            <label class="text-success form-label opcion-encuesta" for="opcion1_$num_pregunta">{$value['opcion1']}</label>
-                        </div>
-
-                        <div id="op2">
-                            <input type="radio" data-label="{$value['opcion2']}" id="opcion2_$num_pregunta" name="pregunta_$num_pregunta" value="2" disabled>
-                            <label class="text-dark form-label opcion-encuesta" for="opcion2_$num_pregunta">{$value['opcion2']}</label>
-                        </div>
-
-                        <div id="op3">
-                            <input type="radio" data-label="{$value['opcion3']}" id="opcion3_$num_pregunta" name="pregunta_$num_pregunta" value="3" disabled>
-                            <label class="text-dark form-label opcion-encuesta" for="opcion3_$num_pregunta">{$value['opcion3']}</label>
-                        </div>
-
-                        <div id="op4">
-                            <input type="radio" data-label="{$value['opcion4']}" id="opcion4_$num_pregunta" name="pregunta_$num_pregunta" value="4" disabled>
-                            <label class="text-dark form-label opcion-encuesta" for="opcion4_$num_pregunta">{$value['opcion4']}</label>
-                        </div>
-
-                        <div id="op5">
-                            <input type="radio" data-label="{$value['opcion5']}" id="opcion5_$num_pregunta" name="pregunta_$num_pregunta" value="5" disabled>
-                            <label class="text-dark form-label opcion-encuesta" for="opcion5_$num_pregunta">{$value['opcion5']}</label>
-                        </div>
-html;
-                    }
-
-                    if ($value['respuesta_correcta'] == 2) {
-                        $encuesta .= <<<html
-                        <div id="op1">
-                            <input type="radio" data-label="{$value['opcion1']}" id="opcion1_$num_pregunta" name="pregunta_$num_pregunta" value="1" disabled>
-                            <label class="text-dark form-label opcion-encuesta" for="opcion1_$num_pregunta">{$value['opcion1']}</label>
-                        </div>
-
-                        <div id="op2">
-                            <input type="radio" data-label="{$value['opcion2']}" id="opcion2_$num_pregunta" name="pregunta_$num_pregunta" value="2" disabled>
-                            <label class="text-success form-label opcion-encuesta" for="opcion2_$num_pregunta">{$value['opcion2']}</label>
-                        </div>
-
-                        <div id="op3">
-                            <input type="radio" data-label="{$value['opcion3']}" id="opcion3_$num_pregunta" name="pregunta_$num_pregunta" value="3" disabled>
-                            <label class="text-dark form-label opcion-encuesta" for="opcion3_$num_pregunta">{$value['opcion3']}</label>
-                        </div>
-
-                        <div id="op4">
-                            <input type="radio" data-label="{$value['opcion4']}" id="opcion4_$num_pregunta" name="pregunta_$num_pregunta" value="4" disabled>
-                            <label class="text-dark form-label opcion-encuesta" for="opcion4_$num_pregunta">{$value['opcion4']}</label>
-                        </div>
-
-                        <div id="op5">
-                            <input type="radio" data-label="{$value['opcion5']}" id="opcion5_$num_pregunta" name="pregunta_$num_pregunta" value="5" disabled>
-                            <label class="text-dark form-label opcion-encuesta" for="opcion5_$num_pregunta">{$value['opcion5']}</label>
-                        </div>
-html;
-                    }
-
-                    if ($value['respuesta_correcta'] == 3) {
-                        $encuesta .= <<<html
-                        <div id="op1">
-                            <input type="radio" data-label="{$value['opcion1']}" id="opcion1_$num_pregunta" name="pregunta_$num_pregunta" value="1" disabled>
-                            <label class="text-dark form-label opcion-encuesta" for="opcion1_$num_pregunta">{$value['opcion1']}</label>
-                        </div>
-
-                        <div id="op2">
-                            <input type="radio" data-label="{$value['opcion2']}" id="opcion2_$num_pregunta" name="pregunta_$num_pregunta" value="2" disabled>
-                            <label class="text-dark form-label opcion-encuesta" for="opcion2_$num_pregunta">{$value['opcion2']}</label>
-                        </div>
-
-                        <div id="op3">
-                            <input type="radio" data-label="{$value['opcion3']}" id="opcion3_$num_pregunta" name="pregunta_$num_pregunta" value="3" disabled>
-                            <label class="text-success form-label opcion-encuesta" for="opcion3_$num_pregunta">{$value['opcion3']}</label>
-                        </div>
-
-                        <div id="op4">
-                            <input type="radio" data-label="{$value['opcion4']}" id="opcion4_$num_pregunta" name="pregunta_$num_pregunta" value="4" disabled>
-                            <label class="text-dark form-label opcion-encuesta" for="opcion4_$num_pregunta">{$value['opcion4']}</label>
-                        </div>
-
-                        <div id="op5">
-                            <input type="radio" data-label="{$value['opcion5']}" id="opcion5_$num_pregunta" name="pregunta_$num_pregunta" value="5" disabled>
-                            <label class="text-dark form-label opcion-encuesta" for="opcion5_$num_pregunta">{$value['opcion5']}</label>
-                        </div>
-html;
-                    }
-
-                    if ($value['respuesta_correcta'] == 4) {
-                        $encuesta .= <<<html
-                        <div id="op1">
-                            <input type="radio" data-label="{$value['opcion1']}" id="opcion1_$num_pregunta" name="pregunta_$num_pregunta" value="1" disabled>
-                            <label class="text-dark form-label opcion-encuesta" for="opcion1_$num_pregunta">{$value['opcion1']}</label>
-                        </div>
-
-                        <div id="op2">
-                            <input type="radio" data-label="{$value['opcion2']}" id="opcion2_$num_pregunta" name="pregunta_$num_pregunta" value="2" disabled>
-                            <label class="text-dark form-label opcion-encuesta" for="opcion2_$num_pregunta">{$value['opcion2']}</label>
-                        </div>
-
-                        <div id="op3">
-                            <input type="radio" data-label="{$value['opcion3']}" id="opcion3_$num_pregunta" name="pregunta_$num_pregunta" value="3" disabled>
-                            <label class="text-dark form-label opcion-encuesta" for="opcion3_$num_pregunta">{$value['opcion3']}</label>
-                        </div>
-
-                        <div id="op4">
-                            <input type="radio" data-label="{$value['opcion4']}" id="opcion4_$num_pregunta" name="pregunta_$num_pregunta" value="4" disabled>
-                            <label class="text-success form-label opcion-encuesta" for="opcion4_$num_pregunta">{$value['opcion4']}</label>
-                        </div>
-
-                        <div id="op5">
-                            <input type="radio" data-label="{$value['opcion5']}" id="opcion5_$num_pregunta" name="pregunta_$num_pregunta" value="5" disabled>
-                            <label class="text-dark form-label opcion-encuesta" for="opcion5_$num_pregunta">{$value['opcion5']}</label>
-                        </div>
-html;
-                    }
-
-                    if ($value['respuesta_correcta'] == 5) {
-                        $encuesta .= <<<html
-                        <div id="op1">
-                            <input type="radio" data-label="{$value['opcion1']}" id="opcion1_$num_pregunta" name="pregunta_$num_pregunta" value="1" disabled>
-                            <label class="text-dark form-label opcion-encuesta" for="opcion1_$num_pregunta">{$value['opcion1']}</label>
-                        </div>
-
-                        <div id="op2">
-                            <input type="radio" data-label="{$value['opcion2']}" id="opcion2_$num_pregunta" name="pregunta_$num_pregunta" value="2" disabled>
-                            <label class="text-dark form-label opcion-encuesta" for="opcion2_$num_pregunta">{$value['opcion2']}</label>
-                        </div>
-
-                        <div id="op3">
-                            <input type="radio" data-label="{$value['opcion3']}" id="opcion3_$num_pregunta" name="pregunta_$num_pregunta" value="3" disabled>
-                            <label class="text-dark form-label opcion-encuesta" for="opcion3_$num_pregunta">{$value['opcion3']}</label>
-                        </div>
-
-                        <div id="op4">
-                            <input type="radio" data-label="{$value['opcion4']}" id="opcion4_$num_pregunta" name="pregunta_$num_pregunta" value="4" disabled>
-                            <label class="text-dark form-label opcion-encuesta" for="opcion4_$num_pregunta">{$value['opcion4']}</label>
-                        </div>
-
-                        <div id="op5">
-                            <input type="radio" data-label="{$value['opcion5']}" id="opcion5_$num_pregunta" name="pregunta_$num_pregunta" value="5" disabled>
-                            <label class="text-success form-label opcion-encuesta" for="opcion5_$num_pregunta">{$value['opcion5']}</label>
-                        </div>
-html;
-                    }
-
-                    $encuesta .= <<<html
-                        </div>
-                    </div>
-
-                    <script>
-                        $(document).ready(function(){
-                            
-                            // Pinta la respuesta si es correcta o no
-                            console.log({$ha_respondido[$num_pregunta - 1]['respuesta_registrado']});
-                            if({$ha_respondido[$num_pregunta - 1]['respuesta_registrado']} == 1){
-                                $('.encuesta_curso_$num_pregunta #op1 input').attr('checked','');
-                                if(!$('.encuesta_curso_$num_pregunta #op1 label').hasClass('text-success')){
-                                    $('.encuesta_curso_$num_pregunta #op1 label').removeClass('text-dark').addClass('text-danger');
-                                }
-                            } else if({$ha_respondido[$num_pregunta - 1]['respuesta_registrado']} == 2){
-                                $('.encuesta_curso_$num_pregunta #op2 input').attr('checked','');
-                                if(!$('.encuesta_curso_$num_pregunta #op2 label').hasClass('text-success')){
-                                    $('.encuesta_curso_$num_pregunta #op2 label').removeClass('text-dark').addClass('text-danger');
-                                }
-                            } else if({$ha_respondido[$num_pregunta - 1]['respuesta_registrado']} == 3){
-                                $('.encuesta_curso_$num_pregunta #op3 input').attr('checked','');
-                                if(!$('.encuesta_curso_$num_pregunta #op3 label').hasClass('text-success')){
-                                    $('.encuesta_curso_$num_pregunta #op3 label').removeClass('text-dark').addClass('text-danger');
-                                }
-                            } else if({$ha_respondido[$num_pregunta - 1]['respuesta_registrado']} == 4){
-                                $('.encuesta_curso_$num_pregunta #op4 input').attr('checked','');
-                                if(!$('.encuesta_curso_$num_pregunta #op4 label').hasClass('text-success')){
-                                    $('.encuesta_curso_$num_pregunta #op4 label').removeClass('text-dark').addClass('text-danger');
-                                }
-                            }
-
-                            $('.encuesta_curso_$num_pregunta').on('click',function(){
-                                let respuesta = $('.encuesta_curso_$num_pregunta input[name=pregunta_$num_pregunta]:checked');
-                                if($('.encuesta_curso_$num_pregunta #op'+respuesta.val()+' input').prop('checked')){
-                                    $('.encuesta_curso_$num_pregunta label').removeClass('opacity-5');
-                                    $('.encuesta_curso_$num_pregunta #op'+respuesta.val()+' label').addClass('opacity-5');
-                                }
-    
-                                // Pinta la respuesta si es correcta o no
-                                // if(respuesta.val() == {$value['respuesta_correcta']}){
-                                //     $('.encuesta_curso_$num_pregunta label').addClass('text-dark');
-                                //     $('.encuesta_curso_$num_pregunta #op'+respuesta.val()+' label').removeClass('text-dark').addClass('text-success');
-                                // } else {
-                                //     $('.encuesta_curso_$num_pregunta label').addClass('text-dark');
-                                //     $('.encuesta_curso_$num_pregunta #op'+respuesta.val()+' label').removeClass('text-dark').addClass('text-danger');
-                                // }
-                            });
-                            
-                        });
-                    </script>
-html;
-                    $num_pregunta = $num_pregunta + 1;
-                }
-            } else {
-                foreach ($preguntas as $key => $value) {
-                    $encuesta .= <<<html
-                    <div class="col-12 encuesta_completa">
-                        <div class="mb-3 text-dark">
-                            <h6 class="">$num_pregunta. {$value['pregunta']}</h6>
-                        </div>
-                        <input id="id_pregunta_$num_pregunta" value="{$value['id_pregunta_encuesta']}" hidden readonly>
-                        <div class="form-group encuesta_curso_$num_pregunta">
-                            <div id="op1">
-                                <input type="radio" data-label="{$value['opcion1']}" id="opcion1_$num_pregunta" name="pregunta_$num_pregunta" value="1" required>
-                                <label class="form-label opcion-encuesta" for="opcion1_$num_pregunta">{$value['opcion1']}</label>
-                            </div>
-
-                            <div id="op2">
-                                <input type="radio" data-label="{$value['opcion2']}" id="opcion2_$num_pregunta" name="pregunta_$num_pregunta" value="2">
-                                <label class="form-label opcion-encuesta" for="opcion2_$num_pregunta">{$value['opcion2']}</label>
-                            </div>
-
-                            <div id="op3">
-                                <input type="radio" data-label="{$value['opcion3']}" id="opcion3_$num_pregunta" name="pregunta_$num_pregunta" value="3">
-                                <label class="form-label opcion-encuesta" for="opcion3_$num_pregunta">{$value['opcion3']}</label>
-                            </div>
-
-                            <div id="op4">
-                                <input type="radio" data-label="{$value['opcion4']}" id="opcion4_$num_pregunta" name="pregunta_$num_pregunta" value="4">
-                                <label class="form-label opcion-encuesta" for="opcion4_$num_pregunta">{$value['opcion4']}</label>
-                            </div>
-                            
-                        </div>
-                    </div>
-
-                    <script>
-                        $('.encuesta_curso_$num_pregunta').on('click',function(){
-                            let respuesta = $('.encuesta_curso_$num_pregunta input[name=pregunta_$num_pregunta]:checked');
-                            if($('.encuesta_curso_$num_pregunta #op'+respuesta.val()+' input').prop('checked')){
-                                $('.encuesta_curso_$num_pregunta label').removeClass('opacity-5');
-                                $('.encuesta_curso_$num_pregunta #op'+respuesta.val()+' label').addClass('opacity-5');
-                            }
-
-                            // Pinta la respuesta si es correcta o no
-                            // if(respuesta.val() == {$value['respuesta_correcta']}){
-                            //     $('.encuesta_curso_$num_pregunta label').addClass('text-dark');
-                            //     $('.encuesta_curso_$num_pregunta #op'+respuesta.val()+' label').removeClass('text-dark').addClass('text-success');
-                            // } else {
-                            //     $('.encuesta_curso_$num_pregunta label').addClass('text-dark');
-                            //     $('.encuesta_curso_$num_pregunta #op'+respuesta.val()+' label').removeClass('text-dark').addClass('text-danger');
-                            // }
-                        });
-                            
-                        
-                    </script>
-html;
-                    $num_pregunta = $num_pregunta + 1;
-                }
+        foreach($getCombo as $key => $value){
+            
+            if(($value['id_producto'] == 38 || $value['id_producto'] == 41) && $value['status'] == 1){
+                $numero_talleres = 2;
+                $nombre_combo = 'SUPRA Clinical WorkShop 2 hands on';
+                $clave = $value['clave'];
+                $hay_combo = true;
+                
+                break;
+            }else if(($value['id_producto'] == 37 || $value['id_producto'] == 40) && $value['status'] == 1){
+                $numero_talleres = 3;
+                $nombre_combo = 'SUPRA Clinical WorkShop 3 hands on';
+                $clave = $value['clave'];
+                $hay_combo = true;
+                
+                break;
+            }else if(($value['id_producto'] == 36 || $value['id_producto'] == 39) && $value['status'] == 1){
+                $numero_talleres = 4;
+                $nombre_combo = 'SUPRA Clinical WorkShop 4 hands on';
+                $clave = $value['clave'];
+                $hay_combo = true;
+                break;
             }
-        } 
-else {
-            $encuesta = <<<html
-            <h3 class="text-danger">Aún no hay preguntas para este Curso.</h3>
-html;
+
+            
         }
+
+
+        if($hay_combo && $data_user['check_talleres'] == 0){
+            //seleccionar talleres
+            $seleccionar_talleres = 0;
+        }else{
+            //ya selecciono los talleres
+            $seleccionar_talleres = 1;
+        }
+
+       
 
         $comprobante = '';
         $byproducts = '';
@@ -498,8 +254,8 @@ html;
         View::set('datos',$data_user);
         View::set('comprobante',$comprobante);
         View::set('byproducts',$byproducts);
-        View::set('encuesta',$encuesta);
-        View::set('id_curso',$id_curso);
+        View::set('seleccionar_talleres',$seleccionar_talleres);
+        // View::set('id_curso',$id_curso);
         View::render("principal_all");
     }
 

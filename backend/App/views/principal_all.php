@@ -7,8 +7,6 @@
     .card {
         background-color: transparent !important;
     }
-
-    
 </style>
 
 <body class="bg-body" id="body-home">
@@ -66,7 +64,7 @@
                                 $arr1 = str_split($apellido);
 
                                 ?>
-                                <span class="d-sm-inline"><?php echo $datos['nombre'] ." ".$arr1[0].".";?></span>
+                                <span class="d-sm-inline"><?php echo $datos['nombre'] . " " . $arr1[0] . "."; ?></span>
                             </a>
                         </li>
                     </ul>
@@ -80,7 +78,7 @@
                     </ul>
                 </div>
 
-                
+
             </div>
         </nav>
 
@@ -114,9 +112,9 @@
                             </div>
                         </div> -->
 
-                        <?php echo $byproducts?>
+                        <?php echo $byproducts ?>
 
-                        <?php echo $comprobante?>
+                        <?php echo $comprobante ?>
 
                         <!-- <div class="col-6 m-auto m-md-0 col-lg-3 col-md-4 my-md-3 mt-4">
                             <div class="row">
@@ -203,7 +201,7 @@
                         </div> -->
 
                         <input type="hidden" id="id_curso" name="id_curso" value="<?php echo $id_curso; ?>">
-
+                        <input type="hidden" id="seleccionar_talleres" name="seleccionar_talleres" value="<?= $seleccionar_talleres ?>">
 
 
                         <!-- <div class="col-6 m-auto m-md-0 col-lg-3 col-md-4 my-md-3 mt-4">
@@ -332,6 +330,25 @@
 
 
     <script type='text/javascript'>
+
+        if ($('#seleccionar_talleres').val() == 0) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Alerta',
+                text: '¡Ahora puede seleccionar sus productos!',
+                closeOnClickOutside: false,
+                closeOnEsc: false,
+                allowOutsideClick: false,
+                buttons: false,
+
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.replace("/Talleres/chooseWorkshops/");
+                }
+            })
+        }
+
+
         getData($("#datos").val());
 
         function getData(datos) {

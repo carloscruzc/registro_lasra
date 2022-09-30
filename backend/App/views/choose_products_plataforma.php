@@ -68,7 +68,7 @@
         <div class="container-fluid py-0">
             <div class="card col-lg-12 mt-lg-4 mt-1">
                 <div class="card-header pb-0 p-3">
-                    <p style="font-size: 14px">(Seleccione a continuación lo que desea pagar y presione el boton de pagar y muestre el codigo de pago en caja)</p>
+                    <p style="font-size: 14px">Compro el paquete (Seleccione a continuación lo que desea pagar y presione el boton de pagar y muestre el codigo de pago en caja)</p>
 
                     <input type="hidden" name="id_pais" id="id_pais" value="<?= $datos['id_pais'] ?>">
                 </div>

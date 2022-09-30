@@ -1319,6 +1319,199 @@ html;
         View::render("buy_products_plataforma");
     }
 
+    public function chooseWorkshops()
+    {
+
+        // $user_email = $_GET['e'];
+        // $user_email = base64_decode($user_email);
+
+
+
+        $data_user = HomeDao::getDataUser($this->__usuario);
+
+        $header = <<<html
+        <!DOCTYPE html>
+        <html lang="es">
+        
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/logo_lasra.png">
+            <link rel="icon" type="image/png" href="/assets/img/logo_lasra.png">
+            <title>
+               LASRA - GRUPO LAHE
+            </title>
+            <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+            <!-- Nucleo Icons -->
+            <link href="../../assets/css/nucleo-icons.css" rel="stylesheet" />
+            <link href="../../assets/css/nucleo-svg.css" rel="stylesheet" />
+            <!-- Font Awesome Icons -->
+            <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+            <link href="../../assets/css/nucleo-svg.css" rel="stylesheet" />
+            <!-- CSS Files -->
+            <link id="pagestyle" href="../../assets/css/soft-ui-dashboard.css?v=1.0.5" rel="stylesheet" />
+            <!-- TEMPLATE VIEJO-->
+            <link rel="stylesheet" href="/css/alertify/alertify.core.css" />
+            <link rel="stylesheet" href="/css/alertify/alertify.default.css" id="toggleCSS" />
+
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
+
+            <!--     Fonts and icons     -->
+            <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+            <!-- Nucleo Icons -->
+            <link href="../../assets/css/nucleo-icons.css" rel="stylesheet" />
+            <link href="../../assets/css/nucleo-svg.css" rel="stylesheet" />
+            <!-- Font Awesome Icons -->
+            <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+            <link href="../../assets/css/nucleo-svg.css" rel="stylesheet" />
+            <!-- CSS Files -->
+            <link id="pagestyle" href="../../assets/css/soft-ui-dashboard.css?v=1.0.5" rel="stylesheet" />
+
+            <link rel="stylesheet" href="/css/alertify/alertify.default.css" id="toggleCSS" />
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+              
+            <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
+            <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
+            
+            <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
+            <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
+
+           <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+           <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+           <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+           <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+           <script charset="UTF-8" src="//web.webpushs.com/js/push/9d0c1476424f10b1c5e277f542d790b8_1.js" async></script>
+           
+            <!-- TEMPLATE VIEJO-->
+
+            <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+            <!-- Nucleo Icons -->
+            <link href="../../../assets/css/nucleo-icons.css" rel="stylesheet" />
+            <link href="../../../assets/css/nucleo-svg.css" rel="stylesheet" />
+            <!-- Font Awesome Icons -->
+            <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+            <link href="../../../assets/css/nucleo-svg.css" rel="stylesheet" />
+            <!-- CSS Files -->
+            <link id="pagestyle" href="../../../assets/css/soft-ui-dashboard.css?v=1.0.5" rel="stylesheet" />
+            <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+            <link href="//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+            <style>
+            .select2-container--default .select2-selection--single {
+            height: 38px!important;
+            border-radius: 8px!important;
+            
+            }
+            .select2-container {
+              width: 100%!important;
+              
+          }
+           
+            </style>
+        </head>
+html;
+
+
+        
+
+        
+        $clave = $this->generateRandomString();
+
+        $productos_no_comprados = HomeDao::getProductosNoComprados($data_user['user_id']);
+
+        foreach ($productos_no_comprados as $key => $value) {
+
+            if($value['socio'] == 1 || $value['socio'] == '1'){
+                $precio = $value['precio_socio'];
+            }else{
+                $precio = $value['precio_publico'];
+            }
+
+
+            
+
+            if ($value['max_compra'] <= 1) {
+                $numero_productos = '<input type="number" id="numero_articulos' . $value['id_producto'] . '" name="numero_articulos" value="' . $value['max_compra'] . '" style="border:none;" readonly>';
+            } else {
+                $numero_productos = '<select class="form-control select_numero_articulos" id="numero_articulos' . $value['id_producto'] . '" name="numero_articulos" data-id-producto="' . $value['id_producto'] . '"  data-precio="' . $precio . '" data-nombre-producto="' . $value['nombre_producto'] . '">';
+                for ($i = 1; $i <= $value['max_compra']; $i++) {
+                    $numero_productos .= '<option value="' . $i . '">' . $i . '</option>';
+                }
+                $numero_productos .= '</select>';
+            }
+
+            $f = $value['fecha_producto'];
+            $fechas = explode(" ", $f);
+            $f1 = $fechas[0]; 
+
+            if($value['tipo'] == 'TALLER'){
+                $fecha = $f1;
+            }else{
+                $fecha = '';
+            }
+
+            $checks .= <<<html
+            <div id="cont_check{$value['id_producto']}">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-check">
+                            <input class="form-check-input checks_product checks_product_no_comprados" type="checkbox" value="{$value['id_producto']}" id="check_curso_{$value['id_producto']}" name="checks_cursos[]" data-precio="{$precio}" data-precio-usd="{$value['precio_publico_usd']}" data-precio-socio="{$value['precio_socio']}" data-precio-socio-usd="{$value['precio_socio_usd']}" data-nombre-producto="{$value['nombre_producto']}" {$check_disabled}>
+                            <label class="form-check-label" for="check_curso_{$value['id_producto']}">
+                            {$value['tipo']} {$value['nombre_producto']} - {$fecha}
+                            </label>
+                        </div>
+                    </div>
+                
+                    <div class="col-md-2">
+                        <span class="cont_precio" id="cont_precio_{$value['id_producto']}">{$precio} <span>- {$value['tipo_moneda']}
+                    </div>
+
+                    <div class="col-md-2">
+                            {$numero_productos}
+                    </div>
+
+                </div>
+
+                <hr>
+            </div>
+html;
+
+            $numero_productos = '';
+        }
+
+        $tipo_cambio = HomeDao::getTipoCambio();
+
+        // $total_mx = intval($total_pago) * floatval($tipo_cambio['tipo_cambio']);
+        $total_mx = intval($total_pago);
+
+
+        View::set('header', $header);
+        View::set('datos', $data_user);
+        View::set('clave', $clave);
+        View::set('checks', $checks);
+        // View::set('src_qr',$src_qr); 
+        // View::set('btn_block',$btn_block); 
+        View::set('total_productos', $total_productos);
+        View::set('total_pago', $total_pago);
+        View::set('total_pago_mx', $total_mx);
+        // View::set('btn_imp',$btn_imp); 
+        // View::set('ocultar',$ocultar);
+        View::set('tipo_cambio', $tipo_cambio['tipo_cambio']);
+        View::set('array_precios', $array_precios);
+        View::set('array_productos', $array_productos);
+        View::render("choose_products_plataforma");
+    }
+
     public function generateModalComprar($datos)
     {
         if (isset($datos['amout_due'])) {

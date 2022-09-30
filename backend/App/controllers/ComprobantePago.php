@@ -170,22 +170,7 @@ html;
 
                 foreach (ComprobantePagoDao::getAllComprobantesStatusCero($id_user, $value['clave']) as $key => $value) {
 
-                    // if($value['es_congreso'] == 1 && $value['clave_socio'] == ""){
-                    //     $precio = $value['amout_due'];
-                    //     // $precio = $value['precio_publico'];
-                    // }elseif($value['es_congreso'] == 1 && $value['clave_socio'] != ""){
-                    //     $precio = $value['amout_due'];
-                    // }
-                    // else if($value['es_servicio'] == 1 && $value['clave_socio'] == ""){
-                    //     $precio = $value['precio_publico'];
-                    // }else if($value['es_servicio'] == 1 && $value['clave_socio'] != ""){
-                    //     $precio = $value['precio_socio'];
-                    // }
-                    // else if($value['es_curso'] == 1  && $value['clave_socio'] == ""){
-                    //     $precio = $value['precio_publico'];
-                    // }else if($value['es_curso'] == 1  && $value['clave_socio'] != ""){
-                    //     $precio = $value['precio_socio'];
-                    // }
+              
 
                     $precio = $value['monto'];
 
@@ -226,7 +211,7 @@ html;
                 $button_comprobante = '<form method="POST" enctype="multipart/form-data" action="/ComprobantePago/uploadComprobante" data-id-pp=' . $value["id_pendiente_pago"] . '>
                                     <input type="hidden" name="id_pendiente_pago" id="id_pendiente_pago" value="' . $value["id_pendiente_pago"] . '"/>
                                     <input type="hidden" name="clave" id="clave" value="' . $value["clave"] . '"/>
-                                    <input type="file" accept="image/*,.pdf" class="form-control" id="file-input" name="file-input" style="width: auto; margin: 0 auto;">
+                                    <input type="file" accept="image/*,.pdf" class="form-control" id="file-input" name="file-input" style="width: auto; margin: 0 auto;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Subir archivo jpg, jpeg, png ó pdf con un tamaño maximo de 5 mb">
                                     <button class="btn btn-primary btn-only-icon mt-2" type="submit">Subir</button>
                                     </form>';
             } 

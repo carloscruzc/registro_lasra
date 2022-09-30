@@ -211,7 +211,8 @@ html;
                 $button_comprobante = '<form method="POST" enctype="multipart/form-data" action="/ComprobantePago/uploadComprobante" data-id-pp=' . $value["id_pendiente_pago"] . '>
                                     <input type="hidden" name="id_pendiente_pago" id="id_pendiente_pago" value="' . $value["id_pendiente_pago"] . '"/>
                                     <input type="hidden" name="clave" id="clave" value="' . $value["clave"] . '"/>
-                                    <input type="file" accept="image/*,.pdf" class="form-control" id="file-input" name="file-input" style="width: auto; margin: 0 auto;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Subir archivo jpg, jpeg, png ó pdf con un tamaño maximo de 5 mb">
+                                    <span class="badge badge-info" style="font-size:8px;">Subir archivo jpg, jpeg, png ó pdf con un tamaño maximo de 5 mb</span>                                    
+                                    <input type="file" accept="image/*,.pdf" class="form-control mt-1" id="file-input" name="file-input" style="width: auto; margin: 0 auto;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Subir archivo jpg, jpeg, png ó pdf con un tamaño maximo de 5 mb">
                                     <button class="btn btn-primary btn-only-icon mt-2" type="submit">Subir</button>
                                     </form>';
             } 

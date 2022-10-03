@@ -1131,19 +1131,6 @@ html;
 
             $precio = $value['monto'];
 
-            // if ($value['es_congreso'] == 1 && $value['nombre_producto'] == "V Congreso LASRA México (socio)" || $value['nombre_producto'] == "V Congreso LASRA México (Residente)") {
-            //     $precio = $value['precio_publico'];
-            // } elseif ($value['es_congreso'] == 1) {
-            //     $precio = $value['amout_due'];
-            // } else if ($value['es_servicio'] == 1 && $value['clave_socio'] == "") {
-            //     $precio = $value['precio_publico'];
-            // } else if ($value['es_servicio'] == 1 && $value['clave_socio'] != "") {
-            //     $precio = $value['precio_socio'];
-            // } else if ($value['es_curso'] == 1  && $value['clave_socio'] == "") {
-            //     $precio = $value['precio_publico'];
-            // } else if ($value['es_curso'] == 1  && $value['clave_socio'] != "") {
-            //     $precio = $value['precio_socio'];
-            // }
 
             $f = $value['fecha_producto'];
             $fechas = explode(" ", $f);

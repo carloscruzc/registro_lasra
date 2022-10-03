@@ -372,7 +372,7 @@
     <script>
         $(document).ready(function() {
 
-
+    
 
             //bloqueo residentes
             if ($("#check_curso_38").prop('checked')) {

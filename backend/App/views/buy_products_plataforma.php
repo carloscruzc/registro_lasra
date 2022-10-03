@@ -259,6 +259,43 @@
                 $("#cont_check35").addClass('d-none');
             }
 
+            //bloqueo residentes
+            if ($("#check_curso_38").prop('checked')) {
+                $("#check_curso_36").attr('disabled', 'disabled');
+                $("#check_curso_37").attr('disabled', 'disabled');
+            }
+
+            if ($("#check_curso_37").prop('checked')) {
+                $("#check_curso_36").attr('disabled', 'disabled');
+                $("#check_curso_38").attr('disabled', 'disabled');
+            }
+
+            if ($("#check_curso_36").prop('checked')) {
+                $("#check_curso_37").attr('disabled', 'disabled');
+                $("#check_curso_38").attr('disabled', 'disabled');
+            }
+
+            //fin bloqueo residentes
+
+
+            //bloqueo especialistas
+
+            if ($("#check_curso_41").prop('checked')) {
+                $("#check_curso_40").attr('disabled', 'disabled');
+                $("#check_curso_39").attr('disabled', 'disabled');
+            }
+
+            if ($("#check_curso_40").prop('checked')) {
+                $("#check_curso_41").attr('disabled', 'disabled');
+                $("#check_curso_39").attr('disabled', 'disabled');
+            }
+
+            if ($("#check_curso_39").prop('checked')) {
+                $("#check_curso_40").attr('disabled', 'disabled');
+                $("#check_curso_41").attr('disabled', 'disabled');
+            }
+            //fin especialista
+
             if ($("#check_curso_24").prop('checked')) {
                 $("#check_curso_27").attr('disabled', 'disabled');
                 // $("#check_curso_27").prop('checked', true);

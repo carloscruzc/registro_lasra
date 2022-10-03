@@ -204,10 +204,15 @@ html;
             }
             else if($datos_estudiante){
                 $comprobante .= <<<html
+<<<<<<< HEAD
                 <div class="col-6 m-auto m-md-0 col-lg-3 col-md-4 my-md-3 mt-4">
                     <a href="/ComprobanteEstudiante/">
+=======
+                <div class="col-6 m-auto m-md-0 col-lg-4 col-md-4 my-md-4 mt-4">
+                    <a href="#">
+>>>>>>> 0a032c0957cd106da52d4bf6f2e9d4b2e67093a4
                         <div class="card card-link btn-menu-home m-auto" style="background-image: url(/img/SMNP_Iconos/Web3.png); background-size: contain; background-repeat: no-repeat;">
-                            <div class="card-body mt-md-3 text-center content-card-home">
+                            <div class="card-body mt-md-4 text-center content-card-home">
                                 <div class="col-12 text-center">
                                 </div>
                             </div>
@@ -223,10 +228,10 @@ html;
                 $byproducts = '';
         }else{
             $comprobante .= <<<html
-                <div class="col-6 m-auto m-md-0 col-lg-3 col-md-4 my-md-3 mt-4">
+                <div class="col-6 m-auto m-md-0 col-lg-4 col-md-4 my-md-4 mt-4">
                     <a href="/ComprobantePago/">
                         <div class="card card-link btn-menu-home m-auto" style="background-image: url(/img/SMNP_Iconos/Web3.png); background-size: contain; background-repeat: no-repeat;">
-                            <div class="card-body mt-md-3 text-center content-card-home">
+                            <div class="card-body mt-md-4 text-center content-card-home">
                                 <div class="col-12 text-center">
                                 </div>
                             </div>
@@ -235,10 +240,10 @@ html;
                 </div>
 html;
             $byproducts .= <<<html
-                <div class="col-6 m-auto m-md-0 col-lg-3 col-md-4 my-md-3 mt-4">
+                <div class="col-6 m-auto m-md-0 col-lg-4 col-md-4 my-md-4 mt-4">
                     <a href="/Talleres/byProducts">
                         <div class="card card-link btn-menu-home m-auto" style="background-image: url(/img/SMNP_Iconos/Web2.png); background-size: contain; background-repeat: no-repeat;">
-                            <div class="card-body mt-md-3 text-center content-card-home">
+                            <div class="card-body mt-md-4 text-center content-card-home">
                                 <div class="col-12 text-center">
                                 </div>
                             </div>

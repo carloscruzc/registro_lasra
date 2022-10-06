@@ -2359,6 +2359,72 @@ html;
 
     }
 
+    public function cartaConfirmacionTest()
+    {
+        date_default_timezone_set('America/Mexico_City');
+
+        $array_user = [
+            'title' => 'Dra.',
+            'nombre' => 'PATRICIA ',
+            'apellidop' => 'SILVA ',
+            'apellidom' => 'BERBER',
+            'user_id' => '373',
+            'usuario' => 'patysilvab@hotmail.com'
+        ];
+
+        // $fecha = date("d-m-Y");
+        $fecha = '05-10-2022';
+
+        $d = $this->fechaCastellano($fecha);
+        $nombre_completo = $array_user['title'] . " " . $array_user['nombre'] . " " . $array_user['apellidop'] . " " . $array_user['apellidom'];
+
+
+        $pdf = new \FPDF($orientation = 'P', $unit = 'mm', $format = 'A4');
+        $pdf->AddPage();
+        $pdf->SetFont('Arial', 'B', 8);    //Letra Arial, negrita (Bold), tam. 20
+        $pdf->setY(1);
+        $pdf->SetFont('Arial', 'B', 16);
+        $pdf->Image('constancias/plantillas/carta_confirmacion.png', 0, 0, 210, 300);
+
+        //fecha
+        $pdf->SetXY(95, 35);
+        $pdf->SetFont('Arial', 'B', 10);
+        $pdf->SetTextColor(0, 0, 0);
+        $pdf->Multicell(100, 10, utf8_decode('Ciudad de México a ' . $d), 0, 'C');
+
+        //nombre
+        $pdf->SetXY(55, 67);
+        $pdf->SetFont('Arial', 'B', 10);
+        $pdf->SetTextColor(0, 0, 0);
+        $pdf->Multicell(100, 10, utf8_decode(mb_strtoupper($nombre_completo)), 0, 'L');
+
+
+        $nombre_fichero = 'cartas/' . $array_user['user_id'];
+
+
+        if (!file_exists($nombre_fichero)) {
+            mkdir('cartas/' . $array_user['user_id'], 0777, true);
+        }
+
+        // $pdf->Output();
+        $pdf->Output('F', 'cartas/' . $array_user['user_id'] . '/carta_confirmacion_' . $array_user['nombre'] . " " . $array_user['apellidop'] . '.pdf');
+        chmod('cartas/' . $array_user['user_id'] . '/carta_confirmacion_' . $array_user['nombre'] . " " . $array_user['apellidop'] . '.pdf', 0755);
+
+        $msg = [
+            'email' => $array_user['usuario'],
+            'nombre' => $nombre_completo,
+            'name' => $array_user['nombre'],
+            'surname' => $array_user['apellidop'],
+            'user_id' => $array_user['user_id'],
+            'fecha' => $d
+        ];
+
+
+
+        $mailer = new Mailer();
+        $mailer->mailCartaConfirmacion($msg);
+    }
+
     function fechaCastellano($fecha)
     {
         $fecha = substr($fecha, 0, 10);

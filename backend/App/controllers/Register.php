@@ -2176,10 +2176,10 @@ html;
         $pdf->Multicell(100, 10, utf8_decode('Ciudad de México a ' . $d), 0, 'C');
 
         //nombre
-        $pdf->SetXY(32, 67);
+        $pdf->SetXY(55, 67);
         $pdf->SetFont('Arial', 'B', 10);
         $pdf->SetTextColor(0, 0, 0);
-        $pdf->Multicell(100, 10, utf8_decode($nombre_completo), 0, 'C');
+        $pdf->Multicell(100, 10, utf8_decode(mb_strtoupper($nombre_completo)), 0, 'L');
 
 
         $nombre_fichero = 'cartas/' . $array_user['user_id'];
@@ -2231,10 +2231,10 @@ html;
         $pdf->Multicell(100, 10, utf8_decode('Ciudad de México a ' . $d), 0, 'C');
 
         //nombre
-        $pdf->SetXY(32, 67);
+        $pdf->SetXY(55, 67);
         $pdf->SetFont('Arial', 'B', 10);
         $pdf->SetTextColor(0, 0, 0);
-        $pdf->Multicell(100, 10, utf8_decode($nombre_completo), 0, 'C');
+        $pdf->Multicell(100, 10, utf8_decode(mb_strtoupper($nombre_completo)), 0, 'L');
 
 
         $nombre_fichero = 'cartas/' . $array_user['user_id'];
@@ -2286,10 +2286,10 @@ html;
         $pdf->Multicell(100, 10, utf8_decode('Ciudad de México a ' . $d), 0, 'C');
 
         //nombre
-        $pdf->SetXY(32, 67);
+        $pdf->SetXY(55, 67);
         $pdf->SetFont('Arial', 'B', 10);
         $pdf->SetTextColor(0, 0, 0);
-        $pdf->Multicell(100, 10, utf8_decode($nombre_completo), 0, 'C');
+        $pdf->Multicell(100, 10, utf8_decode(mb_strtoupper($nombre_completo)), 0, 'L');
 
 
         $nombre_fichero = 'cartas/' . $array_user['user_id'];
@@ -2316,6 +2316,47 @@ html;
 
         $mailer = new Mailer();
         $mailer->mailCartaConfirmacion($msg);
+    }
+
+    public function pruebaCarta()
+    {
+        date_default_timezone_set('America/Mexico_City');
+
+        $array_user = [
+            'title' => 'Dr.',
+            'nombre' => 'José ',
+            'apellidop' => 'Gel ',
+            'apellidom' => 'Becerra'
+        ];
+        $fecha = date("d-m-Y");
+        $d = $this->fechaCastellano($fecha);
+        $nombre_completo = $array_user['title'] . " " . $array_user['nombre'] . " " . $array_user['apellidop'] . " " . $array_user['apellidom'];
+
+
+        $pdf = new \FPDF($orientation = 'P', $unit = 'mm', $format = 'A4');
+        $pdf->AddPage();
+        $pdf->SetFont('Arial', 'B', 8);    //Letra Arial, negrita (Bold), tam. 20
+        $pdf->setY(1);
+        $pdf->SetFont('Arial', 'B', 16);
+        $pdf->Image('constancias/plantillas/carta_invitacion.png', 0, 0, 210, 300);
+
+        //fecha
+        $pdf->SetXY(95, 35);
+        $pdf->SetFont('Arial', 'B', 10);
+        $pdf->SetTextColor(0, 0, 0);
+        $pdf->Multicell(100, 10, utf8_decode('Ciudad de México a ' . $d), 0, 'C');
+
+        //nombre
+        $pdf->SetXY(55, 67);
+        $pdf->SetFont('Arial', 'B', 10);
+        $pdf->SetTextColor(0, 0, 0);
+        $pdf->Multicell(100, 10, utf8_decode(mb_strtoupper($nombre_completo)), 0, 'L');
+
+
+
+        $pdf->Output();
+
+
     }
 
     function fechaCastellano($fecha)

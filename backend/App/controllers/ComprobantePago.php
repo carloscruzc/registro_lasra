@@ -456,7 +456,7 @@ html;
         $pdf->SetFont('Arial', 'B', 8);    //Letra Arial, negrita (Bold), tam. 20
         $pdf->setY(1);
         $pdf->SetFont('Arial', 'B', 16);
-        $pdf->Image('constancias/plantillas/orden1.png', 0, 0, 210, 300);
+        $pdf->Image('constancias/plantillas/orden2.png', 0, 0, 210, 300);
         // $pdf->SetFont('Arial', 'B', 25);
         // $pdf->Multicell(133, 80, $clave_ticket, 0, 'C');
 
@@ -465,22 +465,6 @@ html;
         foreach ($productos as $key => $value) {
 
 
-            // if($value['es_congreso'] == 1 && $value['clave_socio'] == ""){
-            // $precio = $value['amout_due'];
-            // // $precio = $value['precio_publico'];
-            // }elseif($value['es_congreso'] == 1 && $value['clave_socio'] != ""){
-            //     $precio = $value['amout_due'];
-            // }
-            // else if($value['es_servicio'] == 1 && $value['clave_socio'] == ""){
-            //     $precio = $value['precio_publico'];
-            // }else if($value['es_servicio'] == 1 && $value['clave_socio'] != ""){
-            //     $precio = $value['precio_socio'];
-            // }
-            // else if($value['es_curso'] == 1  && $value['clave_socio'] == ""){
-            //     $precio = $value['precio_publico'];
-            // }else if($value['es_curso'] == 1  && $value['clave_socio'] != ""){
-            //     $precio = $value['precio_socio'];
-            // }
             $precio = $value['monto'];
 
             $metodo_pago = $value['tipo_pago'];
@@ -505,19 +489,19 @@ html;
         }
 
         //folio
-        $pdf->SetXY(1, 102.5);
+        $pdf->SetXY(3, 137);
         $pdf->SetFont('Arial', 'B', 10);
         $pdf->SetTextColor(0, 0, 0);
         $pdf->Multicell(80, 10, $clave.'-'.$user_id, 0, 'C');
 
         //fecha
-        $pdf->SetXY(8, 110);
+        $pdf->SetXY(6, 152);
         $pdf->SetFont('Arial', 'B', 10);
         $pdf->SetTextColor(0, 0, 0);
         $pdf->Multicell(100, 10, $fecha_limite, 0, 'C');
 
         //nombre
-        $pdf->SetXY(10, 60);
+        $pdf->SetXY(10, 61);
         $pdf->SetFont('Arial', 'B', 10);
         $pdf->SetTextColor(0, 0, 0);
         $pdf->Multicell(100, 10, utf8_decode($nombre_completo), 0, 'C');
@@ -531,7 +515,7 @@ html;
 
 
         // total
-        $pdf->SetXY(5, 106);
+        $pdf->SetXY(2, 144.5);
         $pdf->SetFont('Arial', 'B', 10);
         $pdf->SetTextColor(0, 0, 0);
         $pdf->Multicell(100, 10, number_format(array_sum($total), 2) . ' '.$tipo_moneda, 0, 'C');

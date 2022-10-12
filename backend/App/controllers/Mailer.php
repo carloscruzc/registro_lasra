@@ -224,9 +224,11 @@ class Mailer
                         <br>
                         b) Número de cuenta CLABE: 012041001104029153
                         <br>
-                        c)	Banco: BBVA
+                        c) SWIFT: BCMRMXMMPYM
                         <br>
-                        d)	Nombre: LASRA MÉXICO AC
+                        d) Banco: BBVA
+                        <br>
+                        e) Nombre: LASRA MÉXICO AC
                     </p>
                     <p>
                         <b>Referencia:</b> '.$msg['referencia'].'

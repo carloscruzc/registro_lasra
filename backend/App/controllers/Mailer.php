@@ -489,7 +489,7 @@ class Mailer
                         <b>Estimado :</b>'.$msg['nombre'].'
                     </p>
                     <p>
-                        Usted se registro con los siguintes datos:
+                        Usted se registro con los siguientes datos:
                     </p>
                     <p>
                         <b>Email: </b>'.$userData['usuario'].'<br>
@@ -513,7 +513,7 @@ class Mailer
                         <a href="https://www.lasra-mexico.org/">https://www.lasra-mexico.org/</a>
                     </p>
                     <p>
-                        Culquier duda o aclaración favor de enviar un correo a: <a href = "mailto: registro@lasra-mexico.org">registro@lasra-mexico.org</a>
+                        Cualquier duda o aclaración favor de enviar un correo a: <a href = "mailto: registro@lasra-mexico.org">registro@lasra-mexico.org</a>
                     </p>
                 </div>
                 
@@ -631,7 +631,7 @@ class Mailer
                     </p>
 
                     <p>
-                        Culquier duda o aclaración favor de enviar un correo a: <a href = "mailto: registro@lasra-mexico.org">registro@lasra-mexico.org</a>
+                        Cualquier duda o aclaración favor de enviar un correo a: <a href = "mailto: registro@lasra-mexico.org">registro@lasra-mexico.org</a>
                     </p>
                 </div>
                 

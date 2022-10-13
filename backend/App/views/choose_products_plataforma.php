@@ -216,6 +216,19 @@
                 </div>
             </div>
         </div>
+        <div class="fixed-bottom space-wa">
+                <div class="m-4">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#Modal_Caja">
+                        <span title="Caja de Comentarios" class="fa fa-comment px-2 py-3-3 icon-wa bg-gradient-dark"></span>
+                    </a>
+                </div>
+
+                <div class="m-4">
+                    <a href="https://wa.link/0k8uv4" target="_blank">
+                        <span class="fa fa-whatsapp px-1 py-3-3 icon-wa bg-gradient-success"></span>
+                    </a>
+                </div>
+            </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script>

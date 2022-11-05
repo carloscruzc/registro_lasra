@@ -299,7 +299,7 @@ html;
 
             <td style="text-align:left; vertical-align:middle;" >                 
                 <div class="text-center">                
-                <p>$ {$total} {$value['t_moneda']}</p>
+                <p>$ {$total} {$value['tipo_moneda']}</p>
             </div>
           
         </td>

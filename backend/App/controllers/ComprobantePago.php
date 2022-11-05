@@ -193,7 +193,7 @@ html;
                                         <input type='hidden' name='item_name' value='" . $nombre_producto . "'> 
                                         <input type='hidden' name='item_number' value='" . $value['clave'] . "'> 
                                         <input type='hidden' name='amount' value='" . $total_paypal . "'> 
-                                        <input type='hidden' name='currency_code' value='MXN'> 
+                                        <input type='hidden' name='currency_code' value='" . $value['tipo_pago'] . "'> 
                                         <input type='hidden' name='notify_url' value=''> 
                                         <input type='hidden' name='return' value='https://registro.lasra-mexico.org/OrdenPago/PagoExistoso/?productos=$array_pro'> 
                                         <input type='hidden' name='cmd' value='_xclick'>  

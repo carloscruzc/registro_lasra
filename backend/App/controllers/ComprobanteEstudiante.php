@@ -163,11 +163,10 @@ html;
                                     <input type="file" accept="image/*,.pdf" class="form-control" id="file-input" name="file-input" style="width: auto; margin: 0 auto;">
                                     <button class="btn btn-primary btn-only-icon mt-2" type="submit">Subir</button>
                                     </form>';
-            } else if($value['tipo_pago'] == "Registro_Becado") {
+            } else if ($value['tipo_pago'] == "Registro_Becado") {
                 $button_comprobante = '';
-            }
-            else {
-                $button_comprobante = '<a href="/comprobantesPago/'.$_SESSION['user_id'].'/' . $value["url_archivo"] . '" class="btn bg-pink btn-icon-only morado-musa-text text-center"  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Ver mi comprobante" target="_blank"><i class="fas fa-print"> </i></a>';
+            } else {
+                $button_comprobante = '<a href="/comprobantesPago/' . $_SESSION['user_id'] . '/' . $value["url_archivo"] . '" class="btn bg-pink btn-icon-only morado-musa-text text-center"  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Ver mi comprobante" target="_blank"><i class="fas fa-print"> </i></a>';
             }
 
 
@@ -176,25 +175,24 @@ html;
             <td style="width:70%">
                 <div class="text-center"> 
 html;
-                if ($value['status'] == 0 && $value['url_archivo'] != '') {
-                    $icon_status = '<i class="fa fad fa-hourglass" style="color: #4eb8f7;"></i>';
-                    $status = '<span class="badge badge-info">En espera de validación</span>';
-                }
-                else if ($value['status'] == 0) {
-                    $icon_status = '<i class="fa fad fa-hourglass" style="color: #4eb8f7;"></i>';
-                    $status = '<span class="badge badge-info">Archivo pendiente de subir</span>';
-                } else if ($value['status'] == 1) {
-                    $icon_status = '<i class="far fa-check-circle" style="color: #269f61;"></i>';
-                    $status = '<span class="badge badge-success">Aceptado</span>';
-                } else {
-                    $icon_status = '<i class="far fa-times-circle" style="color: red;"></i>';
-                    $status = '<span class="badge badge-danger">Carga un Archivo PDF valido</span>';
-                }
-    
-                    $html .= <<<html
+            if ($value['status'] == 0 && $value['url_archivo'] != '') {
+                $icon_status = '<i class="fa fad fa-hourglass" style="color: #4eb8f7;"></i>';
+                $status = '<span class="badge badge-info">En espera de validación</span>';
+            } else if ($value['status'] == 0) {
+                $icon_status = '<i class="fa fad fa-hourglass" style="color: #4eb8f7;"></i>';
+                $status = '<span class="badge badge-info">Archivo pendiente de subir</span>';
+            } else if ($value['status'] == 1) {
+                $icon_status = '<i class="far fa-check-circle" style="color: #269f61;"></i>';
+                $status = '<span class="badge badge-success">Aceptado</span>';
+            } else {
+                $icon_status = '<i class="far fa-times-circle" style="color: red;"></i>';
+                $status = '<span class="badge badge-danger">Carga un Archivo PDF valido</span>';
+            }
+
+            $html .= <<<html
                         <p>{$icon_status} {$value['nombre_completo']} - {$status}</p>
 html;
-                     
+
             $html .= <<<html
                 </div>
             </td>
@@ -332,9 +330,9 @@ html;
         $productos = TalleresDao::getTicketUser($user_id, $clave);
 
 
-        $fecha =  date("Y-m-d"); 
-        
-        $fecha_limite = date("d-m-Y",strtotime($fecha."+ 5 days"));
+        $fecha =  date("Y-m-d");
+
+        $fecha_limite = date("d-m-Y", strtotime($fecha . "+ 5 days"));
 
         // $d = $this->fechaCastellano($fecha);
 
@@ -396,7 +394,7 @@ html;
         $pdf->SetXY(1, 104);
         $pdf->SetFont('Arial', 'B', 10);
         $pdf->SetTextColor(0, 0, 0);
-        $pdf->Multicell(80, 10, $clave.'-'.$user_id, 0, 'C');
+        $pdf->Multicell(80, 10, $clave . '-' . $user_id, 0, 'C');
 
         //fecha
         $pdf->SetXY(8, 112.5);
@@ -441,24 +439,24 @@ html;
         $formatos_permitidos_img = array("image/jpg", "image/jpeg", "image/gif", "image/png");
 
         if (in_array($_FILES['file-input']['type'], $formatos_permitidos_img)) {
-            
+
             $tipos  = $_FILES['file-input']['type'];
-            $tipo = explode("/", $tipos);  
-            $name_archivo = $numero_rand.'.'.$tipo[1];
-        }else{
-            $name_archivo = $numero_rand.'.pdf';
+            $tipo = explode("/", $tipos);
+            $name_archivo = $numero_rand . '.' . $tipo[1];
+        } else {
+            $name_archivo = $numero_rand . '.pdf';
         }
 
-        $nombre_fichero = 'comprobantesPago/'.$_SESSION['user_id'];
+        $nombre_fichero = 'comprobantesPago/' . $_SESSION['user_id'];
 
 
         if (!file_exists($nombre_fichero)) {
-            mkdir('comprobantesPago/'.$_SESSION['user_id'], 0777, true);
-        } 
+            mkdir('comprobantesPago/' . $_SESSION['user_id'], 0777, true);
+        }
 
         if ($file['name'] != "") {
 
-            if (move_uploaded_file($file["tmp_name"], "comprobantesPago/".$_SESSION['user_id']."/" . $name_archivo)) {
+            if (move_uploaded_file($file["tmp_name"], "comprobantesPago/" . $_SESSION['user_id'] . "/" . $name_archivo)) {
 
                 $documento = new \stdClass();
                 $documento->_id_pendiente_estudiante = $id_pendiente_estudiante;
@@ -475,22 +473,22 @@ html;
                     // ];
                     // echo "success";
                     echo "<script>
-                     alert('Archivo subido correctamente');
-                    window.location.href = /ComprobanteEstudiante/;
-                </script>";
+                            alert('Archivo subido correctamente');
+                            window.location.href = /ComprobanteEstudiante/;
+                        </script>";
                 } else {
                     // echo "fail";
                     echo "<script>
-                         alert('Hubo un error al subir el archivo');
-                        window.location.href = /ComprobanteEstudiante/;
-                    </script>";
+                            alert('Hubo un error al subir el archivo');
+                            window.location.href = /ComprobanteEstudiante/;
+                        </script>";
 
                     // $data = [
                     //     'status' => 'fail'
 
                     // ];
                 }
-            }else{
+            } else {
                 echo "<script>
                          alert('Hubo un error al subir el archivo');
                         window.location.href = /ComprobanteEstudiante/;

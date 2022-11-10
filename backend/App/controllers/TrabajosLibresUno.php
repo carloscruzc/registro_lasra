@@ -41,12 +41,12 @@ html;
 
             $like = trabajos_libres_grupo1Dao::getlike($value['id_trabajo'],$_SESSION['user_id']);
             if ($like['status'] == 1) {
-                $heart .= <<<html
-                    <span id="video_{$value['clave']}" data-clave="{$value['clave']}" class="fas fa-heart heart-like p-2"></span>
+                $heart = <<<html
+                    <span id="video_{$value['clave']}" data-clave="{$value['clave']}" class="fas fa-heart heart-like p-2"  data-bs-placement="top" data-bs-toggle="tooltip" data-bs-original-title="Votaste por ese trabajo"></span>
 html;
             } else {
-                $heart .= <<<html
-                    <span id="video_{$value['clave']}" data-clave="{$value['clave']}" class="fas fa-heart heart-not-like p-2"></span>
+                $heart = <<<html
+                    <span id="video_{$value['clave']}" data-clave="{$value['clave']}" class="fas fa-heart heart-not-like p-2 " data-bs-placement="top" data-bs-toggle="tooltip" data-bs-original-title="Da click para votar (Si todavía no has votado por ningun trabajo)"></span>
 html;
             }
 
@@ -61,12 +61,13 @@ html;
             
             <div class="col-12 col-md-4 text-center " >
                 <div class="card card-body card-course p-0 border-radius-15">
+                {$heart}
                 <img class="caratula-trabajo-img border-radius-15" src="{$ruta}">
                         <div class="mt-2 color-black font-5 text-bold iframe" data-toggle="modal" data-target="#pdf" data-pdf="{$value['pdf']}"><p class="font-14"><b> {$value['titulo']} <span class="fa fa-mouse-pointer" aria-hidden="true"></span></b></p>
                         </div>
                         <div class="color-black font-14"><p>{$value['descripcion']}</p></div>
                         <div class="color-vine font-12"><p>{$value['nombre_participante']}</p></div>
-                        {$heart}
+                        
                         <!--<span id="video_{$value['clave']}" data-clave="{$value['clave']}" class="fas fa-heart heart-like p-2"></span>-->
                 </div>
             </div>

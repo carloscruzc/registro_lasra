@@ -37256,17 +37256,13 @@ canvas {
 }
 
 .heart-not-like{
-  position: absolute;
+  /* position: absolute; */
   right: 0rem;
   top: 0rem;
   color: #A69C9A;
-  font-size: 1rem !important;
+  font-size: 1.5rem !important;
   cursor: pointer;
-  /* z-index: 5; */
-  /* text-shadow: 0px 0px 0px crimson; */
-  /* border-width: 10px;
-  border-style: solid;
-  border-color: crimson; */
+  
 }
 
 /* .heart-not-like:hover{
@@ -37280,13 +37276,13 @@ canvas {
   background: -webkit-linear-gradient(#d11010, #bd5555);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  /* text-shadow: 0px 0px 5px crimson; */
-  position: absolute;
+
+  /* position: absolute; */
   right: 0rem;
   top: 0rem;
-  font-size: 1rem !important;
+  font-size: 1.5rem !important;
   cursor: pointer;
-  /* z-index: 5; */
+  
 }
 
 .iframe{

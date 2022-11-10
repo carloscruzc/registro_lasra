@@ -77,7 +77,7 @@
                             
                         </div>
                         <div class="col-sm-auto ms-sm-auto mt-sm-0 mt-3 d-flex">
-                                <a href="/TrabajosLibres/" class="mt-2 me-2 btn-move">
+                                <a href="/Home/" class="mt-2 me-2 btn-move">
                                     <span class="text-dark mt-2"><i class="fas fa-undo"></i> Regresar</span>
                                 </a>
                             
@@ -99,6 +99,7 @@
                                 <img src="/assets/img/cinta_menu.jpeg" style="border-radius: 20px; height: 38px;" alt="">
                             </div>
                         </div> -->
+                        <div class="barrita-azul"></div>
 
 
                         <!--Aqui va la variable-->
@@ -211,6 +212,11 @@
 
 <script>
     $(document).ready(function(){
+        Swal.fire(
+            '<p>Podrá votar por su e-poster favorito dando click sobre el corazón que se encuentra en la parte superior.<strong></br> Nota: Solo podrá realizar un voto por cualquiera de los trabajos.</strong></p>',
+            '',
+            'info'
+        )
 
         $('.iframe').on('click',function(){
             var pdf = $(this).attr('data-pdf');

@@ -39,7 +39,7 @@ html;
         foreach ($trabajos_libres_grupo1 as $key => $value) {
 
 
-            $like = trabajos_libres_grupo1Dao::getlike($value['id_trabajo'],$_SESSION['id_registrado']);
+            $like = trabajos_libres_grupo1Dao::getlike($value['id_trabajo'],$_SESSION['user_id']);
             if ($like['status'] == 1) {
                 $heart .= <<<html
                     <span id="video_{$value['clave']}" data-clave="{$value['clave']}" class="fas fa-heart heart-like p-2"></span>
@@ -84,7 +84,7 @@ html;
         $clave = $_POST['clave'];
         $id_trabajo = trabajos_libres_grupo1Dao::getTrabajoByClave($clave)['id_trabajo'];
 
-        $hay_like = trabajos_libres_grupo1Dao::getlike($id_trabajo,$_SESSION['id_registrado']);
+        $hay_like = trabajos_libres_grupo1Dao::getlike($id_trabajo,$_SESSION['user_id']);
         // var_dump($hay_like);
 
         if ($hay_like) {
@@ -98,7 +98,7 @@ html;
             // echo 'siuu '.$clave;
             echo "ya_votaste";
         } else {
-            $insertLike = trabajos_libres_grupo1Dao::insertLike($id_trabajo,$_SESSION['id_registrado']);
+            $insertLike = trabajos_libres_grupo1Dao::insertLike($id_trabajo,$_SESSION['user_id']);
 
             if($insertLike){
                 echo "votar";

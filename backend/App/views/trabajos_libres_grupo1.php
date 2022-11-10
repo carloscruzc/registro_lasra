@@ -1,5 +1,5 @@
 <title>
-    Cursos - Neuropediatría 
+    Trabajos Libres Lasra
 </title>
 <?php echo $header; ?>
 <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
@@ -61,14 +61,14 @@
                 <div class="card card-body" id="profile">
                     <div class="row justify-content-center align-items-center">
                         <div class="col-sm-auto col-4">
-                            <div class="avatar avatar-xl position-relative">
+                            <!-- <div class="avatar avatar-xl position-relative">
                             <img src="/assets/img/Logo_SMNP.png">
-                            </div>
+                            </div> -->
                         </div>
                         <div class="col-sm-auto col-8 my-auto">
                             <div class="h-100">
                                 <h5 class="mb-1 font-weight-bolder" id="nombre_transmision">
-                                    Trabajos Libres Grupo 1
+                                    Trabajos Libres Lasra 2022
                                 </h5>
                             </div>
                         </div>
@@ -94,11 +94,11 @@
             <div class="card col-lg-10 mt-lg-3 mt-1" >
                 <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade show position-relative active border-radius-lg" id="m_18" role="tabpanel" aria-labelledby="m_18">
-                        <div class="card-header pb-0 p-3">
+                        <!-- <div class="card-header pb-0 p-3">
                             <div class="row">
                                 <img src="/assets/img/cinta_menu.jpeg" style="border-radius: 20px; height: 38px;" alt="">
                             </div>
-                        </div>
+                        </div> -->
 
 
                         <!--Aqui va la variable-->

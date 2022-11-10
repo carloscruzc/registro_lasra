@@ -48,7 +48,7 @@ sql;
     $query=<<<sql
       SELECT * 
       FROM likes_trabajos
-      WHERE id_registrado = $registrado AND id_trabajo = '$id_trabajo'
+      WHERE user_id = $registrado AND id_trabajo = '$id_trabajo'
 sql;
     return $mysqli->queryOne($query);
   }
@@ -58,7 +58,7 @@ sql;
     $query=<<<sql
       SELECT * 
       FROM likes_trabajos
-      WHERE id_registrado = $registrado
+      WHERE user_id = $registrado
 sql;
     return $mysqli->queryOne($query);
   }
@@ -77,7 +77,7 @@ sql;
     // $fecha_carga_documento = date("Y-m-d");
     $mysqli = Database::getInstance(1);
     $query=<<<sql
-    INSERT INTO likes_trabajos(id_like_trabajo, id_registrado, id_trabajo, status) 
+    INSERT INTO likes_trabajos(id_like_trabajo, user_id, id_trabajo, status) 
     VALUES (null,'$registrado','$trabajo','1')
 sql;
 

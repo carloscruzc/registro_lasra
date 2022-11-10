@@ -84,7 +84,7 @@ html;
         $clave = $_POST['clave'];
         $id_trabajo = TrabajosLibresDao::getTrabajoByClave($clave)['id_trabajo'];
 
-        $hay_like = TrabajosLibresDao::getlikeOne($_SESSION['id_registrado']);
+        $hay_like = TrabajosLibresDao::getlikeOne($_SESSION['user_id']);
         // var_dump($hay_like);
 
         if ($hay_like) {
@@ -94,11 +94,11 @@ html;
             // } else if ($hay_like['status'] == 0){
             //     $status = 1;
             // }
-            // TalleresDao::updateLike($id_curso,$_SESSION['id_registrado'],$status);
+            // TalleresDao::updateLike($id_curso,$_SESSION['user_id'],$status);
             // echo 'siuu '.$clave;
             echo "ya_votaste";
         } else {
-            $insertLike = TrabajosLibresDao::insertLike($id_trabajo,$_SESSION['id_registrado']);
+            $insertLike = TrabajosLibresDao::insertLike($id_trabajo,$_SESSION['user_id']);
 
             if($insertLike){
                 echo "votar";

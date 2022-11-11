@@ -154,11 +154,11 @@
                             </div>
                         </div>
 
-                        <div class="col-6 m-auto m-md-0 col-lg-3 col-md-3 my-md-3 mt-4 d-none">
+                        <div class="col-6 m-auto m-md-0 col-lg-3 col-md-3 my-md-3 mt-4">
                             <div class="row">
                                 <div class="col-12 col-md-12">
                                     <a href="/TrabajosLibresUno/">
-                                        <div class="card card-link btn-menu-home m-auto" style="background-image: url(/img/SMNP_Iconos/Web4.png); background-size: contain;  background-repeat: no-repeat;">
+                                        <div class="card card-link btn-menu-home m-auto" style="background-image: url(/img/SMNP_Iconos/trabajoslibres.png); background-size: contain;  background-repeat: no-repeat;">
                                             <div class="card-body mt-md-4 text-center content-card-home">
                                                 <div class="col-12 text-center">
 

@@ -118,7 +118,7 @@
                             <?php echo $programa_fecha1; ?>
                             <div class="row">
                                 <div class="button-row d-flex mt-4 col-12">
-                                    <a class="btn bg-gradient-light mb-0 js-btn-prev" href="/TrabajosLibres/" title="Prev">Regresar</a>
+                                    <a class="btn bg-gradient-light mb-0 js-btn-prev" href="/Home/" title="Prev">Regresar</a>
                                 </div>
                             </div>
                         </div>

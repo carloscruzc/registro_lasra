@@ -164,9 +164,9 @@ echo $header;
                                             <button type="button" id="btnEntrar" class="btn bg-gradient-info w-100 mt-1 mb-0"><b style="color: #FFFFFF">ENTRAR</b></button>
                                         </div>
                                     </form>
-                                    <div class="text-center">
+                                    <!-- <div class="text-center">
                                         <a href="/Register/" type="button" class="btn bg-gradient-faded-danger w-100 mt-4 mb-0 font-weight-bold"><b style="color: white">¡QUIERO REGISTRARME!</b></a>
-                                    </div>
+                                    </div> -->
                                     <div class="text-center m-4">
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#Modal_Caja">
                                             <span title="Caja de Comentarios" class="fa fa-comment px-2 py-3-3 icon-wa bg-gradient-dark"></span>

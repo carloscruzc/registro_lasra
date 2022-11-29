@@ -2205,7 +2205,7 @@ html;
 
 
         $mailer = new Mailer();
-        $mailer->mailCartaInvitacion($msg);
+        // $mailer->mailCartaInvitacion($msg);
     }
 
     public function cartaInvitacion_($array_user)
@@ -2260,7 +2260,7 @@ html;
 
 
         $mailer = new Mailer();
-        $mailer->mailCartaInvitacion($msg);
+        // $mailer->mailCartaInvitacion($msg);
     }
 
     public function cartaConfirmacion($array_user)

@@ -215,8 +215,8 @@ html;
                                 $('#btnEntrar').attr("disabled", true);
                                 //$('#btn_modal_add').attr("disabled",false);
                                 //$('#Modal_Add').modal('show');
-                                window.location.replace("/Register/");
-                                localStorage.setItem("email",$("#usuario").val());
+                                //window.location.replace("/Register/");
+                                //localStorage.setItem("email",$("#usuario").val());
                             }
                         }
                     });
